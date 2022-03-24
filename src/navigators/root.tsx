@@ -1,0 +1,20 @@
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
+import {RootNavigatorRouteParams} from '../models/navigation';
+import {Splash} from '../screens/splash';
+import {Start} from '../screens/start';
+import {AuthNavigator} from './auth';
+
+export const RootNavigator: React.FC = () => {
+  const Stack = createNativeStackNavigator<RootNavigatorRouteParams>();
+
+  return (
+    <Stack.Navigator
+      initialRouteName="Splash"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="Start" component={Start} />
+      <Stack.Screen name="Auth" component={AuthNavigator} />
+    </Stack.Navigator>
+  );
+};
