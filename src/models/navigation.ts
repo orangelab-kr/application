@@ -1,12 +1,19 @@
+import {ParamListBase} from '@react-navigation/native';
+import {AuthVerifyPhone} from './auth';
+
+type SubNavigator<T extends ParamListBase> = {
+  [K in keyof T]: {screen: K; params?: T[K]};
+}[keyof T];
+
 export type RootNavigatorRouteParams = {
   Splash: undefined;
   Start: undefined;
-  Auth: undefined;
+  Auth: SubNavigator<AuthNavigatorRouteParams>;
 };
 
 export type AuthNavigatorRouteParams = {
-  SignupName: undefined;
-  SignupBirthday: undefined;
-  SignupTerms: undefined;
-  Verify: undefined;
+  SignupName: {phone: AuthVerifyPhone};
+  SignupBirthday: AuthNavigatorRouteParams['SignupName'] & {realname: string};
+  SignupTerms: AuthNavigatorRouteParams['SignupBirthday'] & {birthday: Date};
+  Verify: {phoneNo: string};
 };
