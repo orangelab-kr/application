@@ -1,5 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
-import moment from 'moment';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {Formik} from 'formik';
 import React, {useState} from 'react';
 import {
   KeyboardAvoidingView,
@@ -13,13 +13,31 @@ import DatePicker from 'react-native-date-picker';
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components';
 import {Depth} from '../../../components/Depth';
-import {ShadowInput} from '../../../components/ShadowInput';
 import {screenHeight} from '../../../constants/screenSize';
+import {AuthNavigatorRouteParams} from '../../../models/navigation';
+import * as Yup from 'yup';
+import {ValidateMessage} from '../../../components/ValidateMessage';
+
+export interface AuthSignupBirthdayForm {
+  birthday: Date;
+}
+
+const defaultBirthday = new Date(946734800000);
+const AuthSignupBirthdaySchema: Yup.SchemaOf<AuthSignupBirthdayForm> =
+  Yup.object().shape({
+    birthday: Yup.date().nope(
+      [defaultBirthday],
+      '생년월일을 반드시 입력하세요.',
+    ),
+  });
 
 export const AuthSignupBirthday: React.FC = () => {
   const navigation = useNavigation();
-  const [value, setValue] = useState(new Date(946684800000));
-  const onVerify = () => navigation.navigate('SignupTerms');
+  const initialValues: AuthSignupBirthdayForm = {birthday: defaultBirthday};
+  const {params} =
+    useRoute<RouteProp<AuthNavigatorRouteParams, 'SignupBirthday'>>();
+  const onVerify = (payload: AuthSignupBirthdayForm) =>
+    navigation.navigate('SignupTerms', {...params, ...payload});
 
   return (
     <SafeAreaView>
@@ -28,14 +46,30 @@ export const AuthSignupBirthday: React.FC = () => {
         <StatusBar barStyle="dark-content" />
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
           <Container>
-            <Title>다니엘님 반가워요.</Title>
+            <Title>{params.realname}님 반가워요.</Title>
             <Title>
               <Bold>생년월일</Bold>을 알려주세요! 🥳
             </Title>
-            <DatePicker date={value} onDateChange={setValue} mode="date" />
-            <Button onPress={onVerify}>
-              <ButtonText>다음</ButtonText>
-            </Button>
+            <Formik
+              validateOnChange={false}
+              validateOnBlur={false}
+              onSubmit={onVerify}
+              validationSchema={AuthSignupBirthdaySchema}
+              initialValues={initialValues}>
+              {({handleChange, handleSubmit, values, errors}) => (
+                <View>
+                  <DatePicker
+                    date={new Date(values.birthday)}
+                    onDateChange={d => handleChange('birthday')(`${d}`)}
+                    mode="date"
+                  />
+                  <ValidateMessage message={errors.birthday} />
+                  <Button onPress={handleSubmit}>
+                    <ButtonText>다음</ButtonText>
+                  </Button>
+                </View>
+              )}
+            </Formik>
           </Container>
         </KeyboardAvoidingView>
       </ScrollView>

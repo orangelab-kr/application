@@ -1,4 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {Formik} from 'formik';
 import React from 'react';
 import {
   KeyboardAvoidingView,
@@ -10,13 +11,34 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components';
+import * as Yup from 'yup';
 import {Depth} from '../../../components/Depth';
 import {ShadowInput} from '../../../components/ShadowInput';
+import {ValidateMessage} from '../../../components/ValidateMessage';
 import {screenHeight} from '../../../constants/screenSize';
+import {AuthNavigatorRouteParams} from '../../../models/navigation';
+
+export interface AuthSignupNameForm {
+  realname: string;
+}
+
+const AuthSignupNameSchema: Yup.SchemaOf<AuthSignupNameForm> =
+  Yup.object().shape({
+    realname: Yup.string()
+      .required()
+      .matches(/^[가-힣]+$/, '실명으로 입력해주세요.')
+      .min(2, '실명으로 입력해주세요.')
+      .max(16, '이름이 너무 깁니다.')
+      .required('반드시 입력해주세요.'),
+  });
 
 export const AuthSignupName: React.FC = () => {
   const navigation = useNavigation();
-  const onClick = () => navigation.navigate('SignupBirthday');
+  const initialValues: AuthSignupNameForm = {realname: ''};
+  const {params} =
+    useRoute<RouteProp<AuthNavigatorRouteParams, 'SignupName'>>();
+  const onNext = (payload: AuthSignupNameForm) =>
+    navigation.navigate('SignupBirthday', {...params, ...payload});
 
   return (
     <SafeAreaView>
@@ -29,15 +51,31 @@ export const AuthSignupName: React.FC = () => {
             <Title>
               <Bold>이름</Bold>이 어떻게 되시나요? 🤔
             </Title>
-            <ShadowInput
-              autoFocus={true}
-              placeholder="이름"
-              maxLength={6}
-              onPress={onClick}
-            />
-            <Button onPress={onClick}>
-              <ButtonText>다음</ButtonText>
-            </Button>
+            <Formik
+              validateOnBlur={false}
+              validateOnChange={false}
+              onSubmit={onNext}
+              validationSchema={AuthSignupNameSchema}
+              initialValues={initialValues}>
+              {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+                <View>
+                  <ShadowInput
+                    value={values.realname}
+                    onChangeText={handleChange('realname')}
+                    onBlur={handleBlur('realname')}
+                    onPress={handleSubmit}
+                    autoFocus={true}
+                    placeholder="성함"
+                    maxLength={16}
+                  />
+
+                  <ValidateMessage message={errors.realname} />
+                  <Button onPress={handleSubmit}>
+                    <ButtonText>다음</ButtonText>
+                  </Button>
+                </View>
+              )}
+            </Formik>
           </Container>
         </KeyboardAvoidingView>
       </ScrollView>
