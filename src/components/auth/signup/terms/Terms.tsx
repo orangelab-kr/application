@@ -7,22 +7,22 @@ import {openInAppBrowser} from '../../../../tools/openInAppBrowser';
 export interface TermsProps {
   name: string;
   required?: boolean;
-  defaultValue?: boolean;
-  onChange?: (value: boolean) => any;
+  onChange: (value: boolean) => any;
+  value: boolean;
   url?: string;
 }
 
 export const Terms: React.FC<TermsProps> = ({
   name,
-  defaultValue,
   required,
+  value,
   onChange,
   url,
 }) => {
-  const [value, setValue] = useState(defaultValue || false);
   const openURL = () => url && openInAppBrowser(url);
-  const onPress = () => setValue(a => !a);
+  const onPress = () => onChange(!value);
   useEffect(() => onChange && onChange(value), [value]);
+
   return (
     <Container>
       <CheckBoxAndName onPress={onPress}>

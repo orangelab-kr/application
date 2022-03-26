@@ -1,8 +1,7 @@
-import React, {createRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   NativeSyntheticEvent,
   Text,
-  TextInput,
   TextInputKeyPressEventData,
   TouchableOpacity,
   View,
@@ -11,11 +10,13 @@ import styled from 'styled-components';
 import {FormatterInput, FormatterInputProps} from './FormatterInput';
 
 export interface ShadowInputProps extends FormatterInputProps {
+  hideButton?: boolean;
   buttonName?: string;
   onPress?: () => any;
 }
 
 export const ShadowInput: React.FC<ShadowInputProps> = ({
+  hideButton,
   buttonName,
   onPress,
   onChangeText,
@@ -26,7 +27,7 @@ export const ShadowInput: React.FC<ShadowInputProps> = ({
     event: NativeSyntheticEvent<TextInputKeyPressEventData>,
   ) => {
     if (event.nativeEvent.key !== 'Enter') return;
-    if (onPress) onPress();
+    if (!hideButton && onPress) onPress();
   };
 
   const onChangeTextByInput = (text: string) => {
@@ -62,7 +63,7 @@ export const ShadowInput: React.FC<ShadowInputProps> = ({
         onKeyPress={onKeyPress}
         {...props}
       />
-      {buttonName && (
+      {!hideButton && buttonName && (
         <TouchableOpacity onPress={onPress}>
           <InputButton>{buttonName}</InputButton>
         </TouchableOpacity>
@@ -79,7 +80,7 @@ const Input = styled(FormatterInput)`
 `;
 
 const InputButton = styled(Text)`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   margin: 12px;
   padding-right: 6px;
