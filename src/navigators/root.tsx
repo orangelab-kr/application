@@ -12,9 +12,17 @@ export const RootNavigator: React.FC = () => {
     <Stack.Navigator
       initialRouteName="Splash"
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{gestureEnabled: false}}
+      />
       <Stack.Screen name="Start" component={Start} />
-      <Stack.Screen name="Auth" component={AuthNavigator} />
+      <Stack.Screen
+        name="Auth"
+        component={AuthNavigator}
+        options={{animation: 'fade_from_bottom'}}
+      />
     </Stack.Navigator>
   );
 };

@@ -9,7 +9,7 @@ export const openInAppBrowser = async (url: string) => {
         // iOS Properties
         dismissButtonStyle: 'done',
         preferredBarTintColor: '#ffffff',
-        preferredControlTintColor: '#515af0',
+        preferredControlTintColor: '#000000',
         readerMode: true,
         animated: true,
         modalPresentationStyle: 'fullScreen',
