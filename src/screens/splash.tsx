@@ -1,30 +1,25 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image, Text, View} from 'react-native';
 import styled from 'styled-components';
 import {screenHeight, screenWidth} from '../constants/screenSize';
+import {useUser} from '../hooks/useUser';
 
 export const Splash: React.FC = () => {
   const navigation = useNavigation();
-  setTimeout(() => navigation.navigate('Start'), 1000);
+  const user = useUser({cache: true});
+
+  useEffect(() => {
+    if (user === undefined) return;
+    if (user == null) return navigation.navigate('Start');
+    navigation.navigate('Main');
+  }, [user]);
 
   return (
     <View style={{flex: 1}}>
       <Container>
         <Logo source={require('../assets/logo.png')} />
-        <Description
-          style={{
-            shadowColor: '#999',
-            shadowOpacity: 0.3,
-            shadowRadius: 3,
-            elevation: 5,
-            shadowOffset: {
-              height: 3,
-              width: 3,
-            },
-          }}>
-          이동을 즐겁게,
-        </Description>
+        <Description>이동을 즐겁게,</Description>
       </Container>
       <ProgressMessage>어플리케이션 초기화 중...</ProgressMessage>
     </View>
@@ -45,6 +40,11 @@ const Description = styled(Text)`
   margin-top: 5px;
   font-size: 20px;
   font-weight: 400;
+  shadow-color: #999;
+  shadow-opacity: 0.3;
+  shadow-radius: 3px;
+  elevation: 5;
+  shadow-offset: {height: 3px, width: 3px};
 `;
 
 const ProgressMessage = styled(Text)`

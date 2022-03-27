@@ -1,6 +1,10 @@
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  CommonActions,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React from 'react';
 import {
@@ -13,14 +17,18 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components';
-import {number} from 'yup/lib/locale';
+import * as Yup from 'yup';
+import {
+  AccountsClient,
+  AuthVerifyPhone,
+  ResponseAccountsAuthLogin,
+} from '../../api/accounts';
 import {Depth} from '../../components/Depth';
 import {ShadowInput} from '../../components/ShadowInput';
+import {ValidateMessage} from '../../components/ValidateMessage';
 import {screenHeight} from '../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../models/navigation';
 import {onPhoneFormatter} from '../../tools/formatter';
-import * as Yup from 'yup';
-import {ValidateMessage} from '../../components/ValidateMessage';
 export interface AuthVerifyForm {
   code: string;
 }
@@ -35,20 +43,40 @@ export const AuthVerify: React.FC = () => {
   const navigation = useNavigation();
   const initialValues: AuthVerifyForm = {code: ''};
   const {params} = useRoute<RouteProp<AuthNavigatorRouteParams, 'Verify'>>();
-  // const onVerify = (phone: AuthVerifyPhone) =>
-  const onVerify = () =>
-    navigation.navigate('SignupName', {
-      phone: {phoneId: '123123', phoneNo: params.phoneNo, code: '123123'},
-    });
+  const onVerify = async (form: AuthVerifyForm) => {
+    try {
+      const {phone} = await AccountsClient.verifyPhone(
+        params.phoneNo,
+        form.code,
+      );
+
+      const login = await onLogin(phone);
+      if (!login) return navigation.navigate('SignupName', {phone});
+      await AsyncStorage.setItem('accessToken', login.sessionId);
+      navigation.dispatch(
+        CommonActions.reset({index: 0, routes: [{name: 'Main'}]}),
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onLogin = async (
+    phone: AuthVerifyPhone,
+  ): Promise<ResponseAccountsAuthLogin | undefined> => {
+    try {
+      return await AccountsClient.loginByPhone(phone);
+    } catch (err) {}
+  };
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        <StatusBar barStyle="dark-content" />
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+        <ScrollView keyboardShouldPersistTaps="handled">
+          <StatusBar barStyle="dark-content" />
           <Depth />
           <Container>
-            <Title>{params.phoneNo}</Title>
+            <Title>{onPhoneFormatter(params.phoneNo)}</Title>
             <Title>
               <Bold>인증번호</Bold>를 발송하였습니다. ✅
             </Title>
@@ -79,8 +107,8 @@ export const AuthVerify: React.FC = () => {
               )}
             </Formik>
           </Container>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

@@ -1,5 +1,5 @@
 export const onPhoneFormatter = (value: string) => {
-  if (value.startsWith('+82')) value = value.substring(4);
+  if (value.startsWith('+82')) value = value.replace('+82', '');
   if (value.startsWith('10')) value = `0${value}`;
 
   return value

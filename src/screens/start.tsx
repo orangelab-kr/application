@@ -6,6 +6,7 @@ import {Image, KeyboardAvoidingView, StatusBar, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components';
 import * as Yup from 'yup';
+import {AccountsClient} from '../api/accounts';
 import {ShadowInput} from '../components/ShadowInput';
 import {screenHeight} from '../constants/screenSize';
 import {onPhoneFormatter} from '../tools/formatter';
@@ -22,15 +23,21 @@ export const Start: React.FC = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const initialValues: StartForm = {phoneNo: ''};
-  const onLogin = (params: StartForm) => {
-    setLoading(true);
-    navigation.navigate('Auth', {screen: 'Verify', params});
+  const onLogin = async (params: StartForm) => {
+    try {
+      setLoading(true);
+      const phoneNo = `+82${params.phoneNo.substring(1).replace(/-/g, '')}`;
+      await AccountsClient.requestPhone(phoneNo);
+      navigation.navigate('Auth', {screen: 'Verify', params: {phoneNo}});
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <ScrollView>
+    <KeyboardAvoidingView behavior="position">
       <StatusBar barStyle="light-content" />
-      <KeyboardAvoidingView behavior="position">
+      <ScrollView keyboardShouldPersistTaps="handled">
         <BackgroundImage source={require('../assets/start-background.png')} />
         <Container pointerEvents={loading ? 'none' : 'auto'}>
           <Title>이동의 즐거움,</Title>
@@ -41,7 +48,7 @@ export const Start: React.FC = () => {
             onSubmit={onLogin}
             validationSchema={StartSchema}
             initialValues={initialValues}>
-            {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+            {({handleChange, handleBlur, handleSubmit, errors}) => (
               <ShadowInput
                 editable={!loading}
                 onChangeText={handleChange('phoneNo')}
@@ -59,8 +66,8 @@ export const Start: React.FC = () => {
             )}
           </Formik>
         </Container>
-      </KeyboardAvoidingView>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
