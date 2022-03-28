@@ -59,7 +59,7 @@ export class AccountsClient {
 
   static async requestPhone(phoneNo: string): Promise<void> {
     await this.client.get('/methods/phone/verify', {
-      params: {phoneNo},
+      params: {phoneNo, debug: true},
     });
   }
 
@@ -76,5 +76,11 @@ export class AccountsClient {
     phone: AuthVerifyPhone,
   ): Promise<ResponseAccountsAuthLogin> {
     return this.client.post(`/auth/login/phone`, {phone}).then(r => r.data);
+  }
+
+  static async signup(
+    payload: RequestAccountsAuthSignup,
+  ): Promise<ResponseAccountsAuthLogin> {
+    return this.client.post(`/auth/signup`, payload).then(r => r.data);
   }
 }

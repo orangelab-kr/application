@@ -1,6 +1,12 @@
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  CommonActions,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import {Formik, FormikProps} from 'formik';
-import React, {createRef} from 'react';
+import React, {createRef, useState} from 'react';
 import {
   KeyboardAvoidingView,
   SafeAreaView,
@@ -12,7 +18,7 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components';
 import * as Yup from 'yup';
-import {RequestAccountsAuthSignup} from '../../../api/accounts';
+import {AccountsClient, RequestAccountsAuthSignup} from '../../../api/accounts';
 import {Terms} from '../../../components/auth/signup/terms/Terms';
 import {TermsGroup} from '../../../components/auth/signup/terms/TermsGroup';
 import {Depth} from '../../../components/Depth';
@@ -41,6 +47,7 @@ const AuthSignupTermsSchema: Yup.SchemaOf<AuthSignupTermsForm> =
 
 export const AuthSignupTerms: React.FC = () => {
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
   const formRef = createRef<FormikProps<AuthSignupTermsForm>>();
   const initialValues: AuthSignupTermsForm = {
     terms: false,
@@ -56,12 +63,26 @@ export const AuthSignupTerms: React.FC = () => {
     formRef.current?.setFieldValue(key, value);
   };
 
-  const onSignup = ({receiveSMS, receivePush}: AuthSignupTermsForm) => {
-    const body: RequestAccountsAuthSignup = {
-      ...params,
-      receiveSMS,
-      receivePush,
-    };
+  const onSignup = async ({receiveSMS, receivePush}: AuthSignupTermsForm) => {
+    try {
+      setLoading(true);
+      const body: RequestAccountsAuthSignup = {
+        ...params,
+        receiveSMS,
+        receivePush,
+        receiveEmail: false,
+      };
+
+      const {sessionId} = await AccountsClient.signup(body);
+      await AsyncStorage.setItem('accessToken', sessionId);
+      navigation.dispatch(
+        CommonActions.reset({index: 0, routes: [{name: 'Main'}]}),
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -123,7 +144,9 @@ export const AuthSignupTerms: React.FC = () => {
                     <ValidateMessage message={errors.receivePush} />
                   </TermsGroup>
                   <Button onPress={handleSubmit}>
-                    <ButtonText>회원가입 완료</ButtonText>
+                    <ButtonText>
+                      {loading ? '처리 중...' : '완료하기'}
+                    </ButtonText>
                   </Button>
                 </View>
               )}
