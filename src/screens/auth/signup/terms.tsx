@@ -12,14 +12,13 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components';
 import * as Yup from 'yup';
+import {RequestAccountsAuthSignup} from '../../../api/accounts';
 import {Terms} from '../../../components/auth/signup/terms/Terms';
 import {TermsGroup} from '../../../components/auth/signup/terms/TermsGroup';
 import {Depth} from '../../../components/Depth';
 import {ValidateMessage} from '../../../components/ValidateMessage';
 import {screenHeight} from '../../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../../models/navigation';
-import {AccountsAuthSignup} from '../../../models/request';
-import {AuthSignupNameForm} from './name';
 
 export interface AuthSignupTermsForm {
   terms: boolean;
@@ -58,16 +57,19 @@ export const AuthSignupTerms: React.FC = () => {
   };
 
   const onSignup = ({receiveSMS, receivePush}: AuthSignupTermsForm) => {
-    const body: AccountsAuthSignup = {...params, receiveSMS, receivePush};
-    console.log(body);
+    const body: RequestAccountsAuthSignup = {
+      ...params,
+      receiveSMS,
+      receivePush,
+    };
   };
 
   return (
     <SafeAreaView>
-      <ScrollView>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
         <Depth />
         <StatusBar barStyle="dark-content" />
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+        <ScrollView keyboardShouldPersistTaps="handled">
           <Container>
             <Title>거의 다 완료되었어요. 👍</Title>
             <Title>
@@ -127,8 +129,8 @@ export const AuthSignupTerms: React.FC = () => {
               )}
             </Formik>
           </Container>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

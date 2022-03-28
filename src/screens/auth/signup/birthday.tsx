@@ -41,10 +41,10 @@ export const AuthSignupBirthday: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <ScrollView>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
         <Depth />
         <StatusBar barStyle="dark-content" />
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+        <ScrollView keyboardShouldPersistTaps="handled">
           <Container>
             <Title>{params.realname}님 반가워요.</Title>
             <Title>
@@ -71,8 +71,8 @@ export const AuthSignupBirthday: React.FC = () => {
               )}
             </Formik>
           </Container>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

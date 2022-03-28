@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {StatusBar, StyleSheet} from 'react-native';
+import {LogBox, StatusBar, StyleSheet} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {navigationRef} from './navigators/navigation';
 import {RootNavigator} from './navigators/root';
@@ -18,3 +18,7 @@ export const App: React.FC = () => {
     </SafeAreaProvider>
   );
 };
+
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+]);
