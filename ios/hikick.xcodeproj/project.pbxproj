@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* hikick_applicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* hikick_applicationTests.m */; };
+		00E356F31AD99517003FC87E /* hikickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* hikickTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		158E9845B0EE3A8BCC708C13 /* libPods-hikick_application-hikick_applicationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACEC1ACD2D86D290647A5146 /* libPods-hikick_application-hikick_applicationTests.a */; };
+		158E9845B0EE3A8BCC708C13 /* libPods-hikick-hikickTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACEC1ACD2D86D290647A5146 /* libPods-hikick-hikickTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		BF299C34E792C491B1FB5EC0 /* libPods-hikick_application.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A3E33E9228D05071C63D99 /* libPods-hikick_application.a */; };
+		BF299C34E792C491B1FB5EC0 /* libPods-hikick.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A3E33E9228D05071C63D99 /* libPods-hikick.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,28 +22,28 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = hikick_application;
+			remoteInfo = hikick;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* hikick_applicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hikick_applicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* hikickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hikickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* hikick_applicationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hikick_applicationTests.m; sourceTree = "<group>"; };
-		0878735D414AAB8B1C0A665D /* Pods-hikick_application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick_application.debug.xcconfig"; path = "Target Support Files/Pods-hikick_application/Pods-hikick_application.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* hikick_application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hikick_application.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = hikick_application/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = hikick_application/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = hikick_application/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = hikick_application/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = hikick_application/main.m; sourceTree = "<group>"; };
-		3D7AEB285BE47B5D1925927D /* Pods-hikick_application-hikick_applicationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick_application-hikick_applicationTests.debug.xcconfig"; path = "Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests.debug.xcconfig"; sourceTree = "<group>"; };
-		502F8A73B07F3BDF75D5025E /* Pods-hikick_application-hikick_applicationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick_application-hikick_applicationTests.release.xcconfig"; path = "Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests.release.xcconfig"; sourceTree = "<group>"; };
-		78A3E33E9228D05071C63D99 /* libPods-hikick_application.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hikick_application.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = hikick_application/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ACEC1ACD2D86D290647A5146 /* libPods-hikick_application-hikick_applicationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hikick_application-hikick_applicationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* hikickTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hikickTests.m; sourceTree = "<group>"; };
+		0878735D414AAB8B1C0A665D /* Pods-hikick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick.debug.xcconfig"; path = "Target Support Files/Pods-hikick/Pods-hikick.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* hikick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hikick.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = hikick/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = hikick/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = hikick/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = hikick/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = hikick/main.m; sourceTree = "<group>"; };
+		3D7AEB285BE47B5D1925927D /* Pods-hikick-hikickTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick-hikickTests.debug.xcconfig"; path = "Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests.debug.xcconfig"; sourceTree = "<group>"; };
+		502F8A73B07F3BDF75D5025E /* Pods-hikick-hikickTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick-hikickTests.release.xcconfig"; path = "Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests.release.xcconfig"; sourceTree = "<group>"; };
+		78A3E33E9228D05071C63D99 /* libPods-hikick.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hikick.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = hikick/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ACEC1ACD2D86D290647A5146 /* libPods-hikick-hikickTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hikick-hikickTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EFCD7F10EC52558288459930 /* Pods-hikick_application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick_application.release.xcconfig"; path = "Target Support Files/Pods-hikick_application/Pods-hikick_application.release.xcconfig"; sourceTree = "<group>"; };
+		EFCD7F10EC52558288459930 /* Pods-hikick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikick.release.xcconfig"; path = "Target Support Files/Pods-hikick/Pods-hikick.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				158E9845B0EE3A8BCC708C13 /* libPods-hikick_application-hikick_applicationTests.a in Frameworks */,
+				158E9845B0EE3A8BCC708C13 /* libPods-hikick-hikickTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,20 +59,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF299C34E792C491B1FB5EC0 /* libPods-hikick_application.a in Frameworks */,
+				BF299C34E792C491B1FB5EC0 /* libPods-hikick.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* hikick_applicationTests */ = {
+		00E356EF1AD99517003FC87E /* hikickTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* hikick_applicationTests.m */,
+				00E356F21AD99517003FC87E /* hikickTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = hikick_applicationTests;
+			path = hikickTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -83,7 +83,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* hikick_application */ = {
+		13B07FAE1A68108700A75B9A /* hikick */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -93,16 +93,16 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = hikick_application;
+			name = hikick;
 			sourceTree = "<group>";
 		};
 		1B250EFA73E0BCD75238FB06 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0878735D414AAB8B1C0A665D /* Pods-hikick_application.debug.xcconfig */,
-				EFCD7F10EC52558288459930 /* Pods-hikick_application.release.xcconfig */,
-				3D7AEB285BE47B5D1925927D /* Pods-hikick_application-hikick_applicationTests.debug.xcconfig */,
-				502F8A73B07F3BDF75D5025E /* Pods-hikick_application-hikick_applicationTests.release.xcconfig */,
+				0878735D414AAB8B1C0A665D /* Pods-hikick.debug.xcconfig */,
+				EFCD7F10EC52558288459930 /* Pods-hikick.release.xcconfig */,
+				3D7AEB285BE47B5D1925927D /* Pods-hikick-hikickTests.debug.xcconfig */,
+				502F8A73B07F3BDF75D5025E /* Pods-hikick-hikickTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -111,8 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				78A3E33E9228D05071C63D99 /* libPods-hikick_application.a */,
-				ACEC1ACD2D86D290647A5146 /* libPods-hikick_application-hikick_applicationTests.a */,
+				78A3E33E9228D05071C63D99 /* libPods-hikick.a */,
+				ACEC1ACD2D86D290647A5146 /* libPods-hikick-hikickTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -127,9 +127,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* hikick_application */,
+				13B07FAE1A68108700A75B9A /* hikick */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* hikick_applicationTests */,
+				00E356EF1AD99517003FC87E /* hikickTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				1B250EFA73E0BCD75238FB06 /* Pods */,
@@ -142,8 +142,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* hikick_application.app */,
-				00E356EE1AD99517003FC87E /* hikick_applicationTests.xctest */,
+				13B07F961A680F5B00A75B9A /* hikick.app */,
+				00E356EE1AD99517003FC87E /* hikickTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,9 +151,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* hikick_applicationTests */ = {
+		00E356ED1AD99517003FC87E /* hikickTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "hikick_applicationTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "hikickTests" */;
 			buildPhases = (
 				F02BC9067169AD77A088F4E8 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -167,14 +167,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = hikick_applicationTests;
-			productName = hikick_applicationTests;
-			productReference = 00E356EE1AD99517003FC87E /* hikick_applicationTests.xctest */;
+			name = hikickTests;
+			productName = hikickTests;
+			productReference = 00E356EE1AD99517003FC87E /* hikickTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* hikick_application */ = {
+		13B07F861A680F5B00A75B9A /* hikick */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "hikick_application" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "hikick" */;
 			buildPhases = (
 				761612DB2BCAA511BDC4E9F5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -189,9 +189,9 @@
 			);
 			dependencies = (
 			);
-			name = hikick_application;
-			productName = hikick_application;
-			productReference = 13B07F961A680F5B00A75B9A /* hikick_application.app */;
+			name = hikick;
+			productName = hikick;
+			productReference = 13B07F961A680F5B00A75B9A /* hikick.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +211,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "hikick_application" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "hikick" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -224,8 +224,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* hikick_application */,
-				00E356ED1AD99517003FC87E /* hikick_applicationTests */,
+				13B07F861A680F5B00A75B9A /* hikick */,
+				00E356ED1AD99517003FC87E /* hikickTests */,
 			);
 		};
 /* End PBXProject section */
@@ -279,7 +279,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-hikick_application-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-hikick-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -292,15 +292,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AEA6D788BA0EF053DC7D437E /* [CP] Copy Pods Resources */ = {
@@ -309,15 +309,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick_application-hikick_applicationTests/Pods-hikick_application-hikick_applicationTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick-hikickTests/Pods-hikick-hikickTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BE3A8215CF8F69A9C2105215 /* [CP] Embed Pods Frameworks */ = {
@@ -326,15 +326,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application/Pods-hikick_application-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick/Pods-hikick-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application/Pods-hikick_application-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick/Pods-hikick-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick_application/Pods-hikick_application-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick/Pods-hikick-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC8B9B579BC75B1B639AB7E4 /* [CP] Copy Pods Resources */ = {
@@ -343,15 +343,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application/Pods-hikick_application-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick/Pods-hikick-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hikick_application/Pods-hikick_application-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-hikick/Pods-hikick-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick_application/Pods-hikick_application-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hikick/Pods-hikick-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F02BC9067169AD77A088F4E8 /* [CP] Check Pods Manifest.lock */ = {
@@ -369,7 +369,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-hikick_application-hikick_applicationTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-hikick-hikickTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -402,7 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* hikick_applicationTests.m in Sources */,
+				00E356F31AD99517003FC87E /* hikickTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +420,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* hikick_application */;
+			target = 13B07F861A680F5B00A75B9A /* hikick */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -428,7 +428,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D7AEB285BE47B5D1925927D /* Pods-hikick_application-hikick_applicationTests.debug.xcconfig */;
+			baseConfigurationReference = 3D7AEB285BE47B5D1925927D /* Pods-hikick-hikickTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
@@ -436,7 +436,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = hikick_applicationTests/Info.plist;
+				INFOPLIST_FILE = hikickTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,18 +450,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hikick_application.app/hikick_application";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hikick.app/hikick";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 502F8A73B07F3BDF75D5025E /* Pods-hikick_application-hikick_applicationTests.release.xcconfig */;
+			baseConfigurationReference = 502F8A73B07F3BDF75D5025E /* Pods-hikick-hikickTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
-				INFOPLIST_FILE = hikick_applicationTests/Info.plist;
+				INFOPLIST_FILE = hikickTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,20 +475,20 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hikick_application.app/hikick_application";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hikick.app/hikick";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0878735D414AAB8B1C0A665D /* Pods-hikick_application.debug.xcconfig */;
+			baseConfigurationReference = 0878735D414AAB8B1C0A665D /* Pods-hikick.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = hikick_application/Info.plist;
+				INFOPLIST_FILE = hikick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,7 +499,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.hikick.application;
-				PRODUCT_NAME = hikick_application;
+				PRODUCT_NAME = hikick;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -508,13 +508,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFCD7F10EC52558288459930 /* Pods-hikick_application.release.xcconfig */;
+			baseConfigurationReference = EFCD7F10EC52558288459930 /* Pods-hikick.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
-				INFOPLIST_FILE = hikick_application/Info.plist;
+				INFOPLIST_FILE = hikick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -525,7 +525,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.hikick.application;
-				PRODUCT_NAME = hikick_application;
+				PRODUCT_NAME = hikick;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -564,6 +564,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -629,6 +630,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -657,7 +659,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "hikick_applicationTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "hikickTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -666,7 +668,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "hikick_application" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "hikick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -675,7 +677,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "hikick_application" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "hikick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
