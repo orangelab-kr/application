@@ -1,4 +1,4 @@
-package com.hikick_application;
+package kr.hikick.application;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "hikick_application";
+    return "hikick";
   }
 }

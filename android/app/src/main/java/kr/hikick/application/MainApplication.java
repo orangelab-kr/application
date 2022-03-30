@@ -1,4 +1,4 @@
-package com.hikick_application;
+package kr.hikick.application;
 
 import android.app.Application;
 import android.content.Context;
@@ -68,7 +68,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.hikick_application.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("kr.hikick.application.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

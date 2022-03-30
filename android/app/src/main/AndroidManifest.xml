@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.hikick_application">
+  package="kr.hikick.application">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -7,10 +7,12 @@
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
+      android:roundIcon="@mipmap/ic_launcher"
       android:allowBackup="false"
-      android:usesCleartextTraffic="true"
       android:theme="@style/AppTheme">
+      <meta-data
+        android:name="com.naver.maps.map.CLIENT_ID"
+        android:value="ty26nofcpk" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

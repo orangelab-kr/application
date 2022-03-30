@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">hikick_application</string>
+    <string name="app_name" translatable="false">하이킥 공유킥보드</string>
     <string moduleConfig="true" name="CodePushDeploymentKey" translatable="false">s8-zISvTY5CvCaVq3frBKjeee6UjKq-G7DZNs</string>
 </resources>
