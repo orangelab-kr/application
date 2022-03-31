@@ -42,10 +42,10 @@ export const AuthSignupName: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+      <KeyboardAvoidingView behavior="position">
         <Depth disabled />
         <StatusBar barStyle="dark-content" />
-        <ScrollView keyboardShouldPersistTaps="handled">
+        <ScrollView keyboardShouldPersistTaps="never">
           <Container>
             <Title>안녕하세요?</Title>
             <Title>

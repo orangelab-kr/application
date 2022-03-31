@@ -71,43 +71,41 @@ export const AuthVerify: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
-        <ScrollView keyboardShouldPersistTaps="handled">
-          <StatusBar barStyle="dark-content" />
-          <Depth />
-          <Container>
-            <Title>{onPhoneFormatter(params.phoneNo)}</Title>
-            <Title>
-              <Bold>인증번호</Bold>를 발송하였습니다. ✅
-            </Title>
-            <Formik
-              validateOnChange={false}
-              validateOnBlur={false}
-              onSubmit={onVerify}
-              validationSchema={AuthVerifySchema}
-              initialValues={initialValues}>
-              {({handleChange, handleBlur, handleSubmit, errors, values}) => (
-                <View>
-                  <ShadowInput
-                    value={values.code}
-                    onChangeText={handleChange('code')}
-                    onBlur={handleBlur('code')}
-                    autoFocus={true}
-                    onFormat={onPhoneFormatter}
-                    placeholder="인증번호 6자리"
-                    keyboardType="phone-pad"
-                    maxLength={6}
-                    onPress={handleSubmit}
-                  />
-                  <ValidateMessage message={errors.code} />
-                  <Button onPress={handleSubmit}>
-                    <ButtonText>확인</ButtonText>
-                  </Button>
-                </View>
-              )}
-            </Formik>
-          </Container>
-        </ScrollView>
+      <KeyboardAvoidingView behavior="position">
+        <StatusBar barStyle="dark-content" />
+        <Depth />
+        <Container>
+          <Title>{onPhoneFormatter(params.phoneNo)}</Title>
+          <Title>
+            <Bold>인증번호</Bold>를 발송하였습니다. ✅
+          </Title>
+          <Formik
+            validateOnChange={false}
+            validateOnBlur={false}
+            onSubmit={onVerify}
+            validationSchema={AuthVerifySchema}
+            initialValues={initialValues}>
+            {({handleChange, handleBlur, handleSubmit, errors, values}) => (
+              <View>
+                <ShadowInput
+                  value={values.code}
+                  onChangeText={handleChange('code')}
+                  onBlur={handleBlur('code')}
+                  autoFocus={true}
+                  onFormat={onPhoneFormatter}
+                  placeholder="인증번호 6자리"
+                  keyboardType="phone-pad"
+                  maxLength={6}
+                  onPress={handleSubmit}
+                />
+                <ValidateMessage message={errors.code} />
+                <Button onPress={handleSubmit}>
+                  <ButtonText>확인</ButtonText>
+                </Button>
+              </View>
+            )}
+          </Formik>
+        </Container>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -139,6 +137,7 @@ const ButtonText = styled(Text)`
 `;
 
 const Title = styled(Text)`
+  color: #000;
   font-size: 26px;
   shadow-color: #999;
   shadow-opacity: 0.3;

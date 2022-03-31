@@ -87,10 +87,10 @@ export const AuthSignupTerms: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+      <KeyboardAvoidingView behavior="position">
         <Depth />
         <StatusBar barStyle="dark-content" />
-        <ScrollView keyboardShouldPersistTaps="handled">
+        <ScrollView keyboardShouldPersistTaps="never">
           <Container>
             <Title>거의 다 완료되었어요. 👍</Title>
             <Title>

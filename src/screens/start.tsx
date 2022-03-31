@@ -3,7 +3,6 @@ import {Formik} from 'formik';
 import _ from 'lodash';
 import React, {useState} from 'react';
 import {Image, KeyboardAvoidingView, StatusBar, Text, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components';
 import * as Yup from 'yup';
 import {AccountsClient} from '../api/accounts';
@@ -35,9 +34,9 @@ export const Start: React.FC = () => {
   };
 
   return (
-    <KeyboardAvoidingView behavior="position">
+    <View>
       <StatusBar barStyle="light-content" />
-      <ScrollView keyboardShouldPersistTaps="handled">
+      <KeyboardAvoidingView behavior="position">
         <BackgroundImage source={require('../assets/start-background.png')} />
         <Container pointerEvents={loading ? 'none' : 'auto'}>
           <Title>이동의 즐거움,</Title>
@@ -66,13 +65,13 @@ export const Start: React.FC = () => {
             )}
           </Formik>
         </Container>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </View>
   );
 };
 
 const BackgroundImage = styled(Image)`
-  height: ${screenHeight * 0.72}px;
+  height: ${screenHeight * 0.7}px;
   width: 100%;
 `;
 
@@ -81,6 +80,7 @@ const Container = styled(View)`
 `;
 
 const Title = styled(Text)`
+  color: #000;
   font-size: 24px;
   font-weight: 900;
 `;
