@@ -18,7 +18,12 @@ export const MainNavigator: React.FC = () => {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {borderTopWidth: 0, elevation: 0, margin: '10px 0'},
+        tabBarStyle: {
+          borderTopWidth: 0,
+          elevation: 0,
+          marginTop: 10,
+          marginBottom: 10,
+        },
       }}>
       <Tab.Screen
         name="History"

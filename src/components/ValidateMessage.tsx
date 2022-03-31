@@ -1,7 +1,7 @@
 import {FormikErrors} from 'formik';
 import React from 'react';
 import {Text} from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export interface ValidateMessageProps {
   message?: any;

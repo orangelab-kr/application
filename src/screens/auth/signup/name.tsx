@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import * as Yup from 'yup';
 import {Depth} from '../../../components/Depth';
 import {ShadowInput} from '../../../components/ShadowInput';

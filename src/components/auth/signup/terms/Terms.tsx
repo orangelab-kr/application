@@ -1,7 +1,7 @@
 import CheckBox from '@react-native-community/checkbox';
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {openInAppBrowser} from '../../../../tools/openInAppBrowser';
 
 export interface TermsProps {

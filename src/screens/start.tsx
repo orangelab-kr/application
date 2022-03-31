@@ -3,7 +3,7 @@ import {Formik} from 'formik';
 import _ from 'lodash';
 import React, {useState} from 'react';
 import {Image, KeyboardAvoidingView, StatusBar, Text, View} from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import * as Yup from 'yup';
 import {AccountsClient} from '../api/accounts';
 import {ShadowInput} from '../components/ShadowInput';
@@ -40,7 +40,7 @@ export const Start: React.FC = () => {
         <BackgroundImage source={require('../assets/start-background.png')} />
         <Container pointerEvents={loading ? 'none' : 'auto'}>
           <Title>이동의 즐거움,</Title>
-          <Title>지금 시작해볼까요? 🛴🛴</Title>
+          <Title>지금 시작해볼까요? 🛴</Title>
           <Formik
             validateOnMount
             validateOnChange

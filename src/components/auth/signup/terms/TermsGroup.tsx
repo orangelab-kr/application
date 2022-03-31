@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const TermsGroup: React.FC = ({children}) => {
   return <Container>{children}</Container>;

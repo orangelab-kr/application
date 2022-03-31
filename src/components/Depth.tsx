@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {screenWidth} from '../constants/screenSize';
 
 export interface DepthProps {

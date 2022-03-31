@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {Image, Text, View} from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../constants/screenSize';
 import {useUser} from '../hooks/useUser';
 

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {ScrollView} from 'react-native-gesture-handler';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {Depth} from '../../../components/Depth';
 import {screenHeight} from '../../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../../models/navigation';

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {FormatterInput, FormatterInputProps} from './FormatterInput';
 
 export interface ShadowInputProps extends FormatterInputProps {

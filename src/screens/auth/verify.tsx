@@ -15,8 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import * as Yup from 'yup';
 import {
   AccountsClient,
