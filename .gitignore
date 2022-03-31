@@ -20,6 +20,8 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+*.dSYM.zip
+*.dSYM
 
 # Android/IntelliJ
 #
