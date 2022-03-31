@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {useUser} from '../../../../hooks/useUser';
 
 export const MainHomeSheetWelcome: React.FC = () => {

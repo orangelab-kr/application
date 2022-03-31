@@ -2,6 +2,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import React, {createRef, useEffect} from 'react';
 import {View} from 'react-native';
 import NaverMapView, {Gravity, LayerGroup, MapType} from 'react-native-nmap';
+import {MainHomeMapRegionBulk} from '../../components/main/home/map/MainHomeMapRegionBulk';
 import {MainHomeSheetWelcome} from '../../components/main/home/sheet/MainHomeSheetWelcome';
 
 export const Home: React.FC = () => {
@@ -23,11 +24,10 @@ export const Home: React.FC = () => {
         mapType={MapType.Basic}
         logoGravity={Gravity.RIGHT}
         minZoomLevel={12}
-        useTextureView></NaverMapView>
-      <BottomSheet
-        enableHandlePanningGesture={false}
-        snapPoints={['18%']}
-        onChange={console.log}>
+        useTextureView>
+        <MainHomeMapRegionBulk />
+      </NaverMapView>
+      <BottomSheet enableHandlePanningGesture={false} snapPoints={['18%']}>
         <MainHomeSheetWelcome />
       </BottomSheet>
     </View>
