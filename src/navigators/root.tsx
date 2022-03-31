@@ -1,10 +1,10 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {RootNavigatorRouteParams} from '../models/navigation';
-import {Main} from '../screens/main';
 import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
 import {AuthNavigator} from './auth';
+import {MainNavigator} from './main';
 
 export const RootNavigator: React.FC = () => {
   const Stack = createNativeStackNavigator<RootNavigatorRouteParams>();
@@ -20,7 +20,7 @@ export const RootNavigator: React.FC = () => {
       />
       <Stack.Screen
         name="Main"
-        component={Main}
+        component={MainNavigator}
         options={{gestureEnabled: false}}
       />
       <Stack.Screen name="Start" component={Start} />

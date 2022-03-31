@@ -6,10 +6,10 @@ import {
 } from '../api/accounts';
 
 let cachedUser: AuthUser;
-export const useUser = ({cache = false}: {cache: boolean}) => {
+export const useUser = ({cache = true}: {cache: boolean}) => {
   const [user, setUser] = useState<AuthUser | null>();
   useEffect(() => {
-    if (!cache && cachedUser) {
+    if (cache && cachedUser) {
       console.log('Used cached user.');
       return setUser(cachedUser);
     }
