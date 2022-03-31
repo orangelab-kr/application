@@ -21,4 +21,5 @@ export const App: React.FC = () => {
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+  'Node of type rule not supported as an inline style',
 ]);
