@@ -8,8 +8,9 @@ type SubNavigator<T extends ParamListBase> = {
 export type RootNavigatorRouteParams = {
   Splash: undefined;
   Start: undefined;
-  Main: SubNavigator<MainNavigatorRouteParams>;
-  Auth: SubNavigator<AuthNavigatorRouteParams>;
+  Permission: undefined;
+  Main: undefined | SubNavigator<MainNavigatorRouteParams>;
+  Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
 };
 
 export type AuthNavigatorRouteParams = {
