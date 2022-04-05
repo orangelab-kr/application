@@ -66,6 +66,7 @@ export const AuthSignupTerms: React.FC = () => {
   const onSignup = async ({receiveSMS, receivePush}: AuthSignupTermsForm) => {
     try {
       setLoading(true);
+      await AsyncStorage.removeItem('accessToken');
       const body: RequestAccountsAuthSignup = {
         ...params,
         receiveSMS,
@@ -76,7 +77,7 @@ export const AuthSignupTerms: React.FC = () => {
       const {sessionId} = await AccountsClient.signup(body);
       await AsyncStorage.setItem('accessToken', sessionId);
       navigation.dispatch(
-        CommonActions.reset({index: 0, routes: [{name: 'Main'}]}),
+        CommonActions.reset({index: 0, routes: [{name: 'Splash'}]}),
       );
     } catch (err) {
       console.log(err);
@@ -90,7 +91,7 @@ export const AuthSignupTerms: React.FC = () => {
       <KeyboardAvoidingView behavior="position">
         <Depth />
         <StatusBar barStyle="dark-content" />
-        <ScrollView keyboardShouldPersistTaps="never">
+        <ScrollView keyboardShouldPersistTaps="always">
           <Container>
             <Title>거의 다 완료되었어요. 👍</Title>
             <Title>

@@ -10,7 +10,7 @@ export const MainHomeMapRegionBulk: React.FC = () => {
   return (
     <>
       {regions.map(region => (
-        <MainHomeMapRegion region={region} />
+        <MainHomeMapRegion region={region} key={region.regionId} />
       ))}
     </>
   );

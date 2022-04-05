@@ -3,7 +3,7 @@ import axios, {AxiosInstance} from 'axios';
 
 export const createClient = (service: string, auth = true): AxiosInstance => {
   const debug = true;
-  const baseURL = `https://coreservice.staging.hikick.kr/v1/${service}`;
+  const baseURL = `https://coreservice.hikick.kr/v1/${service}`;
   const client = axios.create({baseURL});
 
   client.interceptors.request.use(async request => {

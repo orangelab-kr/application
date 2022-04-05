@@ -45,7 +45,7 @@ export const AuthSignupName: React.FC = () => {
       <KeyboardAvoidingView behavior="position">
         <Depth disabled />
         <StatusBar barStyle="dark-content" />
-        <ScrollView keyboardShouldPersistTaps="never">
+        <ScrollView keyboardShouldPersistTaps="always">
           <Container>
             <Title>안녕하세요?</Title>
             <Title>

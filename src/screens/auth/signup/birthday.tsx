@@ -44,7 +44,7 @@ export const AuthSignupBirthday: React.FC = () => {
       <KeyboardAvoidingView behavior="position">
         <Depth />
         <StatusBar barStyle="dark-content" />
-        <ScrollView keyboardShouldPersistTaps="handled">
+        <ScrollView keyboardShouldPersistTaps="always">
           <Container>
             <Title>{params.realname}님 반가워요.</Title>
             <Title>
