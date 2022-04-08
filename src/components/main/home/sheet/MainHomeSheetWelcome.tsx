@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import {useUser} from '../../../../hooks/useUser';
+import { screenHeight } from '../../../../constants/screenSize';
+import { useUser } from '../../../../hooks/useUser';
 
 export const MainHomeSheetWelcome: React.FC = () => {
   const user = useUser({cache: true});
@@ -20,7 +21,7 @@ const Container = styled(View)`
 `;
 
 const Title = styled(Text)`
-  font-size: 28px;
+  font-size: ${screenHeight / 33}px;
   font-weight: 300,
   color: #000
 `;
