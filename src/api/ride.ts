@@ -1,6 +1,11 @@
 import {CommonResponse} from '../models/common';
 import {createClient} from './client';
 
+export interface RequestRideGetNearKickboard {
+  lat: number;
+  lng: number;
+}
+
 export interface RideRegionPricing {
   pricingId: string;
   name: string;
@@ -61,8 +66,30 @@ export interface RideRegion {
   geofences: RideRegionGeofence[];
 }
 
+export interface RideKickboard {
+  kickboardId: string;
+  kickboardCode: string;
+  lost?: number;
+  status: {
+    gps: {
+      latitude: number;
+      longitude: number;
+    };
+    power: {
+      scooter: {
+        battery: number;
+      };
+    };
+  };
+  helmetId: string | null;
+}
+
 export type ResponseRideGetAllRegions = CommonResponse<{
   regions: RideRegion[];
+}>;
+
+export type ResponseRideGetNearKickboards = CommonResponse<{
+  kickboards: RideKickboard[];
 }>;
 
 export class RideClient {
@@ -70,5 +97,11 @@ export class RideClient {
 
   static async getAllRegions(): Promise<ResponseRideGetAllRegions> {
     return this.client.get('/regions').then(r => r.data);
+  }
+
+  static async getNearKickboards(
+    params: RequestRideGetNearKickboard,
+  ): Promise<ResponseRideGetNearKickboards> {
+    return this.client.get('/kickboards', {params}).then(r => r.data);
   }
 }
