@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react';
 import {ResponseRideGetAllRegions, RideClient, RideRegion} from '../api/ride';
+import {HookResult} from '../models/hookResult';
 
 let cachedRegions: RideRegion[];
 export const useRegions = (
   {cache = true}: {cache: boolean} = {cache: true},
-) => {
+): HookResult<RideRegion[]> => {
   const [regions, setRegions] = useState<RideRegion[] | null>();
   useEffect(() => {
     if (cache && cachedRegions) {
@@ -22,5 +23,5 @@ export const useRegions = (
       .catch(() => setRegions(null));
   }, [cache]);
 
-  return regions;
+  return [regions, setRegions];
 };
