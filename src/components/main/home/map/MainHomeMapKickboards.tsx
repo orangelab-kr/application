@@ -16,6 +16,9 @@ export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
     <>
       {kickboards.map(kickboard => (
         <Marker
+          width={35}
+          height={50}
+          image={require('../../../../assets/pin-ride.png')}
           coordinate={kickboard.status.gps}
           key={kickboard.kickboardCode}
         />

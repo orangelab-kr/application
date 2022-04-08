@@ -29,6 +29,7 @@ export const MainHomeMapRegion: React.FC<MainHomeMapRegionProps> = ({
         <Polygon
           coordinates={getCoord(geofence)}
           color={geofence.profile.color}
+          key={geofence.geofenceId}
         />
       ))}
     </>
