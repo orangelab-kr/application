@@ -16,6 +16,7 @@ import {
   View,
 } from 'react-native';
 import {
+  check,
   openSettings,
   PERMISSIONS,
   requestMultiple,
@@ -27,31 +28,51 @@ import {IconWithTextBox} from '../components/IconWithTextBox';
 import isAndroid from '../constants/isAndroid';
 import {screenHeight} from '../constants/screenSize';
 
-export const requiredPermissions = isAndroid
+export const requestPermissions = isAndroid
   ? [
       PERMISSIONS.ANDROID.CAMERA,
       PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
       PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
-      PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
       PERMISSIONS.ANDROID.BLUETOOTH_ADVERTISE,
       PERMISSIONS.ANDROID.BLUETOOTH_CONNECT,
       PERMISSIONS.ANDROID.BLUETOOTH_SCAN,
     ]
   : [
-      PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL,
+      // PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL,
       PERMISSIONS.IOS.CAMERA,
       PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
     ];
+
+export const alwaysLocationPermission = isAndroid
+  ? PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION
+  : PERMISSIONS.IOS.LOCATION_ALWAYS;
+
+export const requiredPermissions = [
+  ...requestPermissions,
+  alwaysLocationPermission,
+];
 
 export const Permission: React.FC = () => {
   const navigation = useNavigation();
   const onClick = async () => {
     await requestNotifications(['alert', 'sound']);
-    const permissions = await requestMultiple(requiredPermissions);
+    const permissions = await requestMultiple(requestPermissions);
     if (Object.values(permissions).find(p => p !== 'granted')) {
+      console.log(permissions);
       return Alert.alert(
-        '권한 필요!',
+        '권한이 필요합니다.',
         '설정에 접근하여 모든 권한을 허용해주세요.',
+        [{text: '확인', onPress: openSettings}],
+      );
+    }
+
+    const hasAlwaysLocation = await check(alwaysLocationPermission);
+    if (hasAlwaysLocation !== 'granted') {
+      return Alert.alert(
+        '백그라운드 위치 권한을 허용해주세요.',
+        isAndroid
+          ? '권한에서 위치를 "항상 허용"으로 변경해주세요.'
+          : '위치를 "항상"으로 변경해주세요.',
         [{text: '확인', onPress: openSettings}],
       );
     }
