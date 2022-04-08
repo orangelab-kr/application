@@ -4,6 +4,7 @@ import {createClient} from './client';
 export interface RequestRideGetNearKickboard {
   lat: number;
   lng: number;
+  radius?: number;
 }
 
 export interface RideRegionPricing {

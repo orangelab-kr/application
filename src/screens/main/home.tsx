@@ -15,7 +15,7 @@ import {CameraLoc} from '../../models/cameraLoc';
 export const Home: React.FC = () => {
   const mapRef = createRef<NaverMapView>();
   const [unstableCameraLoc, setCameraLoc] = useState<CameraLoc>();
-  const [cameraLoc] = useDebounce(unstableCameraLoc, 1500);
+  const [cameraLoc] = useDebounce(unstableCameraLoc, 500);
 
   useEffect(() => {
     mapRef.current?.setLocationTrackingMode(TrackingMode.Follow);
