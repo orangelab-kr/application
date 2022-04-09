@@ -35,6 +35,12 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({
     mapRef.current?.setLayerGroupEnabled(LayerGroup.LAYER_GROUP_BICYCLE, true);
   }, []);
 
+  useEffect(() => {
+    if (!selectedKickboard) return;
+    const {gps} = selectedKickboard.status;
+    mapRef.current?.animateToCoordinate(gps);
+  }, [selectedKickboard]);
+
   return (
     <NaverMapView
       ref={mapRef}

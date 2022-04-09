@@ -9,7 +9,7 @@ import {CameraLoc} from '../../models/cameraLoc';
 export const Home: React.FC = () => {
   const [mode, setMode] = useState<string>('welcome');
   const [unstableCameraLoc, setCameraLoc] = useState<CameraLoc>();
-  const [cameraLoc] = useDebounce(unstableCameraLoc, 500);
+  const [cameraLoc] = useDebounce(unstableCameraLoc, 800);
   const [selectedKickboard, setSelectedKickboard] = useState<RideKickboard>();
 
   return (
