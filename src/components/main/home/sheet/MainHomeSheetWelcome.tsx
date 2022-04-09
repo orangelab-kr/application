@@ -8,20 +8,14 @@ export const MainHomeSheetWelcome: React.FC = () => {
   const user = useUser({cache: true});
   if (!user) return <></>;
   return (
-    <Container>
-      <Title>
-        <Bold>{user.realname}</Bold>님{'\n'}라이드를 시작해볼까요?
-      </Title>
-    </Container>
+    <Title>
+      <Bold>{user.realname}</Bold>님{'\n'}라이드를 시작해볼까요?
+    </Title>
   );
 };
 
-const Container = styled(View)`
-  padding: 20px 30px 20px 30px;
-`;
-
 const Title = styled(Text)`
-  font-size: ${screenHeight / 33}px;
+  font-size: ${screenHeight / 38}px;
   font-weight: 300,
   color: #000
 `;
