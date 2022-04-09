@@ -12,6 +12,7 @@ export const useKickboards = (
   useEffect(() => {
     if (!cameraLoc) return;
     if (previousCameraLoc) {
+      const level = cameraLoc.zoom - previousCameraLoc.zoom;
       const meter = distance(
         cameraLoc.latitude,
         cameraLoc.longitude,
@@ -19,8 +20,11 @@ export const useKickboards = (
         previousCameraLoc.longitude,
       );
 
-      if (meter <= 150) {
-        console.log(`Moved to close. not requesting api (${meter}m)`);
+      if (meter <= 150 && level >= 0) {
+        console.log(
+          `Moved to close. not requesting api (Distance: ${meter}m, Level: ${level})`,
+        );
+
         return;
       }
     }
