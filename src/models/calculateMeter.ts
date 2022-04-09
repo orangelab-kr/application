@@ -9,11 +9,16 @@ export function calculateMeter(cameraLoc: CameraLoc) {
     bottomRight.longitude,
   );
 
-  return meter * 950;
+  return meter;
 }
 
 // Ref: https://www.htmlgoodies.com/javascript/calculate-the-distance-between-two-points-in-your-web-apps/
-function distance(lat1: number, lon1: number, lat2: number, lon2: number) {
+export function distance(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+) {
   var radlat1 = (Math.PI * lat1) / 180;
   var radlat2 = (Math.PI * lat2) / 180;
   var radlon1 = (Math.PI * lon1) / 180;
@@ -26,5 +31,5 @@ function distance(lat1: number, lon1: number, lat2: number, lon2: number) {
   dist = Math.acos(dist);
   dist = (dist * 180) / Math.PI;
   dist = dist * 60 * 1.1515;
-  return dist;
+  return dist * 1000;
 }
