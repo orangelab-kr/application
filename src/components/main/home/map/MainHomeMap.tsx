@@ -1,21 +1,32 @@
+import React, {createRef, useEffect} from 'react';
 import NaverMapView, {
   LayerGroup,
   MapType,
   TrackingMode,
 } from 'react-native-nmap';
+import {RideKickboard} from '../../../../api/ride';
+import {CameraLoc} from '../../../../models/cameraLoc';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
 import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
-import React, {createRef, useEffect} from 'react';
-import {CameraLoc} from '../../../../models/cameraLoc';
 
 export interface MainHomeMap {
   cameraLoc?: CameraLoc;
   setCameraLoc: React.Dispatch<React.SetStateAction<CameraLoc | undefined>>;
+  selectedKickboard?: RideKickboard;
+  setSelectedKickboard: React.Dispatch<
+    React.SetStateAction<RideKickboard | undefined>
+  >;
+  mode: string;
+  setMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const MainHomeMap: React.FC<MainHomeMap> = ({
   cameraLoc,
   setCameraLoc,
+  selectedKickboard,
+  setSelectedKickboard,
+  mode,
+  setMode,
 }) => {
   const mapRef = createRef<NaverMapView>();
   useEffect(() => {
@@ -36,7 +47,16 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({
       onCameraChange={setCameraLoc}
       useTextureView>
       <MainHomeMapRegionBulk />
-      <MainHomeMapKickboard cameraLoc={cameraLoc} />
+      <MainHomeMapKickboard
+        // Camera Loc
+        cameraLoc={cameraLoc}
+        // Selected Kickboard
+        selectedKickboard={selectedKickboard}
+        setSelectedKickboard={setSelectedKickboard}
+        // Mode
+        mode={mode}
+        setMode={setMode}
+      />
     </NaverMapView>
   );
 };
