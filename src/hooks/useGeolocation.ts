@@ -1,14 +1,15 @@
 import {useEffect, useState} from 'react';
 import Geolocation from '@react-native-community/geolocation';
 import _ from 'lodash';
+import {HookResult} from '../models/hookResult';
 
 interface LocationCoord {
   latitude: number;
   longitude: number;
 }
 
-export default function useGeolocation() {
-  const [coords, setCoords] = useState<LocationCoord>();
+export const useGeolocation = (): HookResult<LocationCoord> => {
+  const [coords, setCoords] = useState<LocationCoord | null>();
 
   useEffect(
     () =>
@@ -18,5 +19,5 @@ export default function useGeolocation() {
     [],
   );
 
-  return coords;
-}
+  return [coords, setCoords];
+};

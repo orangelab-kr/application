@@ -1,7 +1,11 @@
-import React from 'react';
+import {faPersonWalking, faRoute} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import React, {useEffect, useMemo} from 'react';
 import {Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
+import {useGeolocation} from '../../../../hooks/useGeolocation';
+import {distance} from '../../../../models/calculateMeter';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
@@ -9,20 +13,51 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
   setMode,
   selectedKickboard,
 }) => {
-  if (!selectedKickboard) {
+  const [coords] = useGeolocation();
+  useEffect(() => {
+    if (selectedKickboard) return;
     setMode('welcome');
-    return <></>;
-  }
+  }, [selectedKickboard]);
 
+  if (!selectedKickboard) return <></>;
   const {kickboardCode, status} = selectedKickboard;
+  const meter = useMemo(
+    () =>
+      coords
+        ? Math.round(
+            distance(
+              coords.latitude,
+              coords.longitude,
+              status.gps.latitude,
+              status.gps.longitude,
+            ),
+          )
+        : 0,
+    [status, coords],
+  );
+
+  const walkTime = useMemo(
+    () => Math.round(meter / ((5 * 1000) / 3600) / 60),
+    [meter],
+  );
+
   return (
-    <View>
-      <KickboardCode>{kickboardCode}</KickboardCode>
-      <Title>10M 이내에 있습니다.</Title>
-      <KickboardBatteryStatus battery={status.power.scooter.battery} />
-    </View>
+    <Container>
+      <View style={{paddingRight: 10}}>
+        <KickboardCode>{kickboardCode}</KickboardCode>
+        <Title>
+          <FontAwesomeIcon icon={faPersonWalking} /> <Bold>{walkTime}</Bold>분 /{' '}
+          <FontAwesomeIcon icon={faRoute} /> <Bold>{meter}</Bold>M
+        </Title>
+        <KickboardBatteryStatus battery={status.power.scooter.battery} />
+      </View>
+    </Container>
   );
 };
+
+const Container = styled(View)`
+  flex-direction: row;
+`;
 
 const KickboardCode = styled(Text)`
   color: #999;

@@ -43,8 +43,9 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
     },
   };
 
-  const Mode = MainHomeSheetComponents[mode];
+  const Mode = useMemo(() => MainHomeSheetComponents[mode], [mode]);
   if (!Mode) return <></>;
+
   return (
     <BottomSheet
       enableHandlePanningGesture={false}
