@@ -8,6 +8,7 @@ import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {distance} from '../../../../models/calculateMeter';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
+import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
 
 export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
   setMode,
@@ -43,7 +44,7 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
 
   return (
     <Container>
-      <View style={{paddingRight: 10}}>
+      <View style={{marginRight: 10}}>
         <KickboardCode>{kickboardCode}</KickboardCode>
         <Title>
           <FontAwesomeIcon icon={faPersonWalking} /> <Bold>{walkTime}</Bold>분 /{' '}
@@ -51,6 +52,7 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
         </Title>
         <KickboardBatteryStatus battery={status.power.scooter.battery} />
       </View>
+      <MainHomeSheetRouteButton />
     </Container>
   );
 };
