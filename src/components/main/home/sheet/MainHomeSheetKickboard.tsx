@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
+import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
 export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
@@ -13,11 +14,12 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
     return <></>;
   }
 
-  const {kickboardCode} = selectedKickboard;
+  const {kickboardCode, status} = selectedKickboard;
   return (
     <View>
       <KickboardCode>{kickboardCode}</KickboardCode>
       <Title>10M 이내에 있습니다.</Title>
+      <KickboardBatteryStatus battery={status.power.scooter.battery} />
     </View>
   );
 };

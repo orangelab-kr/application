@@ -1,5 +1,5 @@
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, {Component, useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components/native';
 import {RideKickboard} from '../../../../api/ride';
@@ -12,21 +12,6 @@ export interface MainHomeSheetComponentInfo {
   snapPoints: string[];
   withStartButton: boolean;
 }
-
-export const MainHomeSheetComponents: {
-  [key: string]: MainHomeSheetComponentInfo;
-} = {
-  welcome: {
-    component: MainHomeSheetWelcome,
-    snapPoints: ['11.5%'],
-    withStartButton: true,
-  },
-  kickboard: {
-    component: MainHomeSheetKickboard,
-    snapPoints: ['11.0%'],
-    withStartButton: true,
-  },
-};
 
 export interface MainHomeSheetCommonProps {
   mode: string;
@@ -43,9 +28,23 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
   selectedKickboard,
   setSelectedKickboard,
 }) => {
-  const Mode = useMemo(() => MainHomeSheetComponents[mode], [mode]);
-  if (!Mode) return <></>;
+  const MainHomeSheetComponents: {
+    [key: string]: MainHomeSheetComponentInfo;
+  } = {
+    welcome: {
+      component: MainHomeSheetWelcome,
+      snapPoints: ['11.5%'],
+      withStartButton: true,
+    },
+    kickboard: {
+      component: MainHomeSheetKickboard,
+      snapPoints: ['15%'],
+      withStartButton: true,
+    },
+  };
 
+  const Mode = MainHomeSheetComponents[mode];
+  if (!Mode) return <></>;
   return (
     <BottomSheet
       enableHandlePanningGesture={false}
