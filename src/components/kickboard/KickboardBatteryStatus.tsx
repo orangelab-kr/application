@@ -45,5 +45,5 @@ const Container = styled(View)`
 const Percent = styled(Text)`
   color: #999;
   margin-left: 5px;
-  font-size: ${screenHeight / 65}px;
+  font-size: ${screenHeight / 52}px;
 `;

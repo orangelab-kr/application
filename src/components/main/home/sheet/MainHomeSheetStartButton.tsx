@@ -20,6 +20,7 @@ const Button = styled(TouchableOpacity)`
   border-radius: 10px;
   padding: 15px;
   flex-direction: row;
+  margin: 2px 0;
 `;
 
 const ButtonText = styled(Text)`

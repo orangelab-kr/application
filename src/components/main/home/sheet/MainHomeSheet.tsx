@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import styled from 'styled-components/native';
 import {RideKickboard} from '../../../../api/ride';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
+import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
 import {MainHomeSheetStartButton} from './MainHomeSheetStartButton';
 import {MainHomeSheetWelcome} from './MainHomeSheetWelcome';
 
@@ -11,6 +12,7 @@ export interface MainHomeSheetComponentInfo {
   component: React.FC<MainHomeSheetCommonProps>;
   snapPoints: string[];
   withStartButton: boolean;
+  withRouteButton: boolean;
 }
 
 export interface MainHomeSheetCommonProps {
@@ -35,11 +37,13 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       component: MainHomeSheetWelcome,
       snapPoints: ['11.5%'],
       withStartButton: true,
+      withRouteButton: false,
     },
     kickboard: {
       component: MainHomeSheetKickboard,
-      snapPoints: ['15%'],
+      snapPoints: ['18%'],
       withStartButton: true,
+      withRouteButton: true,
     },
   };
 
@@ -60,7 +64,10 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
           setSelectedKickboard={setSelectedKickboard}
         />
 
-        {Mode.withStartButton && <MainHomeSheetStartButton />}
+        <View>
+          {Mode.withStartButton && <MainHomeSheetStartButton />}
+          {Mode.withRouteButton && <MainHomeSheetRouteButton />}
+        </View>
       </Container>
     </BottomSheet>
   );

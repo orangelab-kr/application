@@ -6,6 +6,10 @@ import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {distance} from '../../../../models/calculateMeter';
+import {
+  onDistanceFormatter,
+  onTimeFormatter,
+} from '../../../../tools/formatter';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
@@ -47,12 +51,15 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
       <View style={{marginRight: 10}}>
         <KickboardCode>{kickboardCode}</KickboardCode>
         <Title>
-          <FontAwesomeIcon icon={faPersonWalking} /> <Bold>{walkTime}</Bold>분 /{' '}
-          <FontAwesomeIcon icon={faRoute} /> <Bold>{meter}</Bold>M
+          <FontAwesomeIcon icon={faPersonWalking} size={25} />{' '}
+          <Bold>{onTimeFormatter(walkTime)}</Bold>
+          <Distance>
+            (<FontAwesomeIcon icon={faRoute} size={20} />{' '}
+            {onDistanceFormatter(meter)})
+          </Distance>
         </Title>
         <KickboardBatteryStatus battery={status.power.scooter.battery} />
       </View>
-      <MainHomeSheetRouteButton />
     </Container>
   );
 };
@@ -61,14 +68,19 @@ const Container = styled(View)`
   flex-direction: row;
 `;
 
+const Distance = styled(Text)`
+  color: #000;
+  font-size: ${screenHeight / 36}px;
+`;
+
 const KickboardCode = styled(Text)`
   color: #999;
   font-weight: 600;
-  font-size: ${screenHeight / 60}px;
+  font-size: ${screenHeight / 45}px;
 `;
 
 const Title = styled(Text)`
-  font-size: ${screenHeight / 38}px;
+  font-size: ${screenHeight / 30}px;
   font-weight: 300,
   color: #000
 `;
