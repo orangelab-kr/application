@@ -2,6 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {RootNavigatorRouteParams} from '../models/navigation';
 import {Permission} from '../screens/permission';
+import {Qrcode} from '../screens/qrcode';
 import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
 import {AuthNavigator} from './auth';
@@ -35,6 +36,7 @@ export const RootNavigator: React.FC = () => {
         component={AuthNavigator}
         options={{animation: 'fade_from_bottom'}}
       />
+      <Stack.Screen name="Qrcode" component={Qrcode} />
     </Stack.Navigator>
   );
 };

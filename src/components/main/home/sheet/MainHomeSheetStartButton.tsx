@@ -1,5 +1,6 @@
 import {faBolt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -7,8 +8,10 @@ import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 
 export const MainHomeSheetStartButton: React.FC = () => {
+  const navigation = useNavigation();
+
   return (
-    <Button>
+    <Button onPress={() => navigation.navigate('Qrcode')}>
       <FontAwesomeIcon icon={faBolt} color="#fff" />
       <ButtonText>시작</ButtonText>
     </Button>

@@ -11,6 +11,7 @@ export type RootNavigatorRouteParams = {
   Permission: undefined;
   Main: undefined | SubNavigator<MainNavigatorRouteParams>;
   Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
+  Qrcode: undefined;
 };
 
 export type AuthNavigatorRouteParams = {
