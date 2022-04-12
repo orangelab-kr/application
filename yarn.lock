@@ -6408,6 +6408,13 @@ react-is@^16.13.0, react-is@^16.13.1, react-is@^16.7.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-animatable@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
+  integrity sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-camera@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-4.2.1.tgz#caf74081f055e89d7e9b0cd5108965d808c60e90"
@@ -6465,6 +6472,22 @@ react-native-inappbrowser-reborn@^3.6.3:
   dependencies:
     invariant "^2.2.4"
     opencollective-postinstall "^2.0.2"
+
+react-native-map-link@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-map-link/-/react-native-map-link-2.9.1.tgz#e225bd856f6e28a6006fdc29cad2725b20a45045"
+  integrity sha512-+6r5PGqSbwGoC+45n2gA7ACys8skRsphVaOrlvRe4zjowecFxP2jMalNFuZ7u2AFbO3w88OJ0pbckISB+JC4lA==
+  dependencies:
+    prop-types "^15.8.1"
+    react-native-modal "^13.0.1"
+
+react-native-modal@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.1.tgz#691f1e646abb96fa82c1788bf18a16d585da37cd"
+  integrity sha512-UB+mjmUtf+miaG/sDhOikRfBOv0gJdBU2ZE1HtFWp6UixW9jCk/bhGdHUgmZljbPpp0RaO/6YiMmQSSK3kkMaw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
 
 react-native-nmap@^0.0.66:
   version "0.0.66"
