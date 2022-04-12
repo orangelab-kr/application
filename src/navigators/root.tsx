@@ -36,7 +36,11 @@ export const RootNavigator: React.FC = () => {
         component={AuthNavigator}
         options={{animation: 'fade_from_bottom'}}
       />
-      <Stack.Screen name="Qrcode" component={Qrcode} />
+      <Stack.Screen
+        name="Qrcode"
+        component={Qrcode}
+        options={{animation: 'fade_from_bottom'}}
+      />
     </Stack.Navigator>
   );
 };

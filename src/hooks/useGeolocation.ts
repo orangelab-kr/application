@@ -11,13 +11,11 @@ interface LocationCoord {
 export const useGeolocation = (): HookResult<LocationCoord> => {
   const [coords, setCoords] = useState<LocationCoord | null>();
 
-  useEffect(
-    () =>
-      Geolocation.getCurrentPosition(position =>
-        setCoords(_.pick(position.coords, 'latitude', 'longitude')),
-      ),
-    [],
-  );
+  useEffect(() => {
+    Geolocation.getCurrentPosition(position =>
+      setCoords(_.pick(position.coords, 'latitude', 'longitude')),
+    );
+  }, []);
 
   return [coords, setCoords];
 };

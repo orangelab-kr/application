@@ -22,7 +22,7 @@ export const useKickboards = (
 
       if (meter <= 150 && level >= 0) {
         console.log(
-          `Moved to close. not requesting api (Distance: ${meter}m, Level: ${level})`,
+          `Moved too close. not requesting api (Distance: ${meter}m, Level: ${level})`,
         );
 
         return;
