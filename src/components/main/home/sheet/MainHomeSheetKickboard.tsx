@@ -53,10 +53,12 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
         <Title>
           <FontAwesomeIcon icon={faPersonWalking} size={25} />{' '}
           <Bold>{onTimeFormatter(walkTime)}</Bold>
-          <Distance>
-            (<FontAwesomeIcon icon={faRoute} size={20} />{' '}
-            {onDistanceFormatter(meter)})
-          </Distance>
+          {meter < 1000000 && (
+            <Distance>
+              (<FontAwesomeIcon icon={faRoute} size={20} />{' '}
+              {onDistanceFormatter(meter)})
+            </Distance>
+          )}
         </Title>
         <KickboardBatteryStatus battery={status.power.scooter.battery} />
       </View>
@@ -70,6 +72,7 @@ const Container = styled(View)`
 
 const Distance = styled(Text)`
   color: #000;
+  margin-left: 10px;
   font-size: ${screenHeight / 36}px;
 `;
 
