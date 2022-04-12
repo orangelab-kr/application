@@ -7,6 +7,12 @@ export const onPhoneFormatter = (value: string): string => {
     .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
 };
 
+export const onKickboardCodeFormatter = (value: string): string =>
+  value
+    .toUpperCase()
+    .substring(0, 6)
+    .replace(/[\W_]+/g, '');
+
 export const onDistanceFormatter = (distance: number): string => {
   if (distance < 1000) return `${distance}M`;
   return `${Math.round(distance / 100) / 10}KM`;

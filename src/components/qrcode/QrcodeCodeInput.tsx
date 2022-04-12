@@ -1,9 +1,10 @@
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../constants/screenSize';
 import {GetKickboardCodeEvent} from '../../screens/qrcode';
+import {onKickboardCodeFormatter} from '../../tools/formatter';
 import {FormatterInput} from '../FormatterInput';
 import {TransparentButton} from '../TransparentButton';
 
@@ -11,11 +12,29 @@ interface QrcodeCodeInputProps {
   onKickboardCode: GetKickboardCodeEvent;
 }
 
-export const QrcodeCodeInput: React.FC<QrcodeCodeInputProps> = ({onKickboardCode}) => {
+export const QrcodeCodeInput: React.FC<QrcodeCodeInputProps> = ({
+  onKickboardCode,
+}) => {
+  const [kickboardCode, setKickboardCode] = useState('');
+
   return (
     <Container>
-      <Input placeholder="킥보드 코드" maxLength={6} />
-      <TransparentButton icon={faAngleRight}>이용</TransparentButton>
+      <Input
+        placeholder="킥보드 코드"
+        onFormat={onKickboardCodeFormatter}
+        onChangeText={setKickboardCode}
+        value={kickboardCode}
+        maxLength={6}
+      />
+
+      {kickboardCode.length >= 6 && (
+        <TransparentButton
+          size={12}
+          icon={faAngleRight}
+          onPress={() => onKickboardCode(kickboardCode)}>
+          다음
+        </TransparentButton>
+      )}
     </Container>
   );
 };
@@ -33,5 +52,5 @@ const Input = styled(FormatterInput)`
   font-weight: 600;
   font-size: 32px;
   color: #fff;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 `;

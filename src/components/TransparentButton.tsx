@@ -5,18 +5,20 @@ import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
 
 interface TransparentButtonProps extends TouchableOpacityProps {
+  size?: number;
   icon?: IconProp;
 }
 
 export const TransparentButton: React.FC<TransparentButtonProps> = ({
   icon,
+  size = 18,
   children,
   ...props
 }) => {
   return (
     <Button {...props}>
-      {icon && <Icon icon={icon} size={20} color="#fff" />}
-      <Label>{children}</Label>
+      {icon && <Icon icon={icon} size={size + 2} color="#fff" />}
+      <Label size={size}>{children}</Label>
     </Button>
   );
 };
@@ -30,7 +32,7 @@ const Button = styled(TouchableOpacity)`
   background-color: transparent;
   border-color: #fff;
   border-width: 2px;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 12px;  
   shadow-color: #999;
   shadow-opacity: 0.6;
@@ -39,8 +41,8 @@ const Button = styled(TouchableOpacity)`
   shadow-offset: {width: 3px, height: 3px};
 `;
 
-const Label = styled(Text)`
-  font-size: 18px;
+const Label = styled(Text)<{size: number}>`
+  font-size: ${({size}) => size}px;
   font-weight: 500;
   color: #fff;
 `;
