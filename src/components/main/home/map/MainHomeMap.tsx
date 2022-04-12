@@ -6,18 +6,20 @@ import NaverMapView, {
 } from 'react-native-nmap';
 import {RideKickboard} from '../../../../api/ride';
 import {CameraLoc} from '../../../../models/cameraLoc';
+import {
+  HookResultSetValue,
+  HookResultValue,
+} from '../../../../models/hookResult';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
 import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
 
 export interface MainHomeMap {
-  cameraLoc?: CameraLoc;
-  setCameraLoc: React.Dispatch<React.SetStateAction<CameraLoc | undefined>>;
-  selectedKickboard?: RideKickboard;
-  setSelectedKickboard: React.Dispatch<
-    React.SetStateAction<RideKickboard | undefined>
-  >;
-  mode: string;
-  setMode: React.Dispatch<React.SetStateAction<string>>;
+  cameraLoc?: HookResultValue<CameraLoc>;
+  setCameraLoc: HookResultSetValue<CameraLoc>;
+  selectedKickboard?: HookResultValue<RideKickboard>;
+  setSelectedKickboard: HookResultSetValue<RideKickboard>;
+  mode: HookResultValue<string, never>;
+  setMode: HookResultSetValue<string, never>;
 }
 
 export const MainHomeMap: React.FC<MainHomeMap> = ({

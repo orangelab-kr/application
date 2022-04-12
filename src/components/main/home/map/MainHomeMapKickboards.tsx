@@ -3,15 +3,17 @@ import {Marker} from 'react-native-nmap';
 import {RideKickboard} from '../../../../api/ride';
 import {useKickboards} from '../../../../hooks/useKickboards';
 import {CameraLoc} from '../../../../models/cameraLoc';
+import {
+  HookResultSetValue,
+  HookResultValue,
+} from '../../../../models/hookResult';
 
 interface MainHomeMapKickboardProps {
-  cameraLoc?: CameraLoc;
-  selectedKickboard?: RideKickboard;
-  setSelectedKickboard: React.Dispatch<
-    React.SetStateAction<RideKickboard | undefined>
-  >;
-  mode: string;
-  setMode: React.Dispatch<React.SetStateAction<string>>;
+  cameraLoc?: HookResultValue<CameraLoc>;
+  selectedKickboard?: HookResultValue<RideKickboard>;
+  setSelectedKickboard: HookResultSetValue<RideKickboard>;
+  mode: HookResultValue<string>;
+  setMode: HookResultSetValue<string, never>;
 }
 
 export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
@@ -21,6 +23,7 @@ export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
   mode,
   setMode,
 }) => {
+  if (!cameraLoc) return <></>;
   const [kickboards] = useKickboards(cameraLoc);
   if (!kickboards) return <></>;
 
