@@ -12,7 +12,6 @@ import {
 } from '../../../../tools/formatter';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
-import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
 
 export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
   setMode,

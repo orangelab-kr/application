@@ -3,7 +3,12 @@ import React, {useMemo} from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components/native';
 import {RideKickboard} from '../../../../api/ride';
+import {
+  HookResultSetValue,
+  HookResultValue,
+} from '../../../../models/hookResult';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
+import {MainHomeSheetRiding} from './MainHomeSheetRiding';
 import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
 import {MainHomeSheetStartButton} from './MainHomeSheetStartButton';
 import {MainHomeSheetWelcome} from './MainHomeSheetWelcome';
@@ -16,12 +21,10 @@ export interface MainHomeSheetComponentInfo {
 }
 
 export interface MainHomeSheetCommonProps {
-  mode: string;
-  setMode: React.Dispatch<React.SetStateAction<string>>;
-  selectedKickboard?: RideKickboard;
-  setSelectedKickboard: React.Dispatch<
-    React.SetStateAction<RideKickboard | undefined>
-  >;
+  mode: HookResultValue<string, never>;
+  setMode: HookResultSetValue<string, never>;
+  selectedKickboard?: HookResultValue<RideKickboard>;
+  setSelectedKickboard: HookResultSetValue<RideKickboard>;
 }
 
 export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
@@ -45,6 +48,12 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       withStartButton: true,
       withRouteButton: true,
     },
+    riding: {
+      component: MainHomeSheetRiding,
+      snapPoints: ['18%'],
+      withStartButton: false,
+      withRouteButton: false,
+    },
   };
 
   const Mode = useMemo(() => MainHomeSheetComponents[mode], [mode]);
@@ -66,7 +75,9 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
 
         <View>
           {Mode.withStartButton && <MainHomeSheetStartButton />}
-          {Mode.withRouteButton && <MainHomeSheetRouteButton />}
+          {Mode.withRouteButton && (
+            <MainHomeSheetRouteButton kickboard={selectedKickboard} />
+          )}
         </View>
       </Container>
     </BottomSheet>
