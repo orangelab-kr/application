@@ -1,68 +1,14 @@
-import {
-  faGear,
-  faHistory,
-  faStreetView,
-} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {Text, View} from 'react-native';
 import {MainNavigatorRouteParams} from '../models/navigation';
 import {Home} from '../screens/main/home';
 
 export const MainNavigator: React.FC = () => {
-  const Tab = createBottomTabNavigator<MainNavigatorRouteParams>();
+  const Tab = createNativeStackNavigator<MainNavigatorRouteParams>();
 
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          borderTopWidth: 0,
-          elevation: 0,
-          marginTop: 10,
-          marginBottom: 10,
-        },
-      }}>
-      <Tab.Screen
-        name="History"
-        component={() => (
-          <View>
-            <Text>asdasd</Text>
-          </View>
-        )}
-        options={{
-          tabBarIcon: ({focused, color, size}: any) => (
-            <FontAwesomeIcon icon={faHistory} />
-          ),
-          tabBarLabel: '이용 기록',
-        }}
-      />
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarIcon: ({focused, color, size}: any) => (
-            <FontAwesomeIcon icon={faStreetView} />
-          ),
-          tabBarLabel: '홈',
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={() => (
-          <View>
-            <Text>asdasd</Text>
-          </View>
-        )}
-        options={{
-          tabBarIcon: ({focused, color, size}: any) => (
-            <FontAwesomeIcon icon={faGear} />
-          ),
-          tabBarLabel: '설정',
-        }}
-      />
+    <Tab.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+      <Tab.Screen name="Home" component={Home} />
     </Tab.Navigator>
   );
 };

@@ -1,12 +1,13 @@
 import BottomSheet from '@gorhom/bottom-sheet';
 import React, {useMemo} from 'react';
-import {View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import styled from 'styled-components/native';
 import {RideKickboard} from '../../../../api/ride';
 import {
   HookResultSetValue,
   HookResultValue,
 } from '../../../../models/hookResult';
+import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
 import {MainHomeSheetRiding} from './MainHomeSheetRiding';
 import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
@@ -38,19 +39,19 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
   } = {
     welcome: {
       component: MainHomeSheetWelcome,
-      snapPoints: ['11.5%'],
+      snapPoints: ['13.5%', '113.5%'],
       withStartButton: true,
       withRouteButton: false,
     },
     kickboard: {
       component: MainHomeSheetKickboard,
-      snapPoints: ['18%'],
+      snapPoints: ['20%', '120%'],
       withStartButton: true,
       withRouteButton: true,
     },
     riding: {
       component: MainHomeSheetRiding,
-      snapPoints: ['18%'],
+      snapPoints: ['20%', '100%'],
       withStartButton: false,
       withRouteButton: false,
     },
@@ -63,23 +64,26 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
     <BottomSheet
       enableHandlePanningGesture={false}
       snapPoints={Mode.snapPoints}>
-      <Container>
-        <Mode.component
-          // Mode
-          mode={mode}
-          setMode={setMode}
-          // Selected Kickboard
-          selectedKickboard={selectedKickboard}
-          setSelectedKickboard={setSelectedKickboard}
-        />
+      <SafeAreaView>
+        <Container>
+          <Mode.component
+            // Mode
+            mode={mode}
+            setMode={setMode}
+            // Selected Kickboard
+            selectedKickboard={selectedKickboard}
+            setSelectedKickboard={setSelectedKickboard}
+          />
 
-        <View>
-          {Mode.withStartButton && <MainHomeSheetStartButton />}
-          {Mode.withRouteButton && (
-            <MainHomeSheetRouteButton kickboard={selectedKickboard} />
-          )}
-        </View>
-      </Container>
+          <View>
+            {Mode.withStartButton && <MainHomeSheetStartButton />}
+            {Mode.withRouteButton && (
+              <MainHomeSheetRouteButton kickboard={selectedKickboard} />
+            )}
+          </View>
+        </Container>
+      </SafeAreaView>
+      <BottomBar />
     </BottomSheet>
   );
 };
