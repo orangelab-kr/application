@@ -5,12 +5,15 @@ import {RideKickboard} from '../../api/ride';
 import {MainHomeMap} from '../../components/main/home/map/MainHomeMap';
 import {MainHomeSheet} from '../../components/main/home/sheet/MainHomeSheet';
 import {CameraLoc} from '../../models/cameraLoc';
+import {HookResultValue} from '../../models/hookResult';
 
 export const Home: React.FC = () => {
   const [mode, setMode] = useState<string>('welcome');
-  const [unstableCameraLoc, setCameraLoc] = useState<CameraLoc>();
+  const [unstableCameraLoc, setCameraLoc] =
+    useState<HookResultValue<CameraLoc>>();
   const [cameraLoc] = useDebounce(unstableCameraLoc, 800);
-  const [selectedKickboard, setSelectedKickboard] = useState<RideKickboard>();
+  const [selectedKickboard, setSelectedKickboard] =
+    useState<HookResultValue<RideKickboard>>();
 
   return (
     <View>
