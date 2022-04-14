@@ -19,6 +19,7 @@ import {
   check,
   openSettings,
   PERMISSIONS,
+  request,
   requestMultiple,
   requestNotifications,
 } from 'react-native-permissions';
@@ -33,9 +34,9 @@ export const requestPermissions = isAndroid
       PERMISSIONS.ANDROID.CAMERA,
       PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
       PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
-      PERMISSIONS.ANDROID.BLUETOOTH_ADVERTISE,
-      PERMISSIONS.ANDROID.BLUETOOTH_CONNECT,
-      PERMISSIONS.ANDROID.BLUETOOTH_SCAN,
+      // PERMISSIONS.ANDROID.BLUETOOTH_ADVERTISE,
+      // PERMISSIONS.ANDROID.BLUETOOTH_CONNECT,
+      // PERMISSIONS.ANDROID.BLUETOOTH_SCAN,
     ]
   : [
       // PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL,
@@ -67,13 +68,15 @@ export const Permission: React.FC = () => {
     }
 
     const hasAlwaysLocation = await check(alwaysLocationPermission);
-    if (hasAlwaysLocation !== 'granted') {
+    if (!['granted', 'unavailable'].includes(hasAlwaysLocation)) {
+      const onPress = () =>
+        isAndroid ? request(alwaysLocationPermission) : openSettings();
       return Alert.alert(
         '백그라운드 위치 권한을 허용해주세요.',
         isAndroid
           ? '권한에서 위치를 "항상 허용"으로 변경해주세요.'
           : '위치를 "항상"으로 변경해주세요.',
-        [{text: '확인', onPress: openSettings}],
+        [{text: '확인', onPress}],
       );
     }
 

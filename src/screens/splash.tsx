@@ -14,7 +14,8 @@ export const Splash: React.FC = () => {
 
   useEffect(() => {
     checkMultiple(requiredPermissions).then(permissions => {
-      if (Object.values(permissions).find(p => p !== 'granted')) {
+      const isAllow = (p: string) => !['granted', 'unavailable'].includes(p);
+      if (Object.values(permissions).find(isAllow)) {
         return navigation.navigate('Permission');
       }
 
