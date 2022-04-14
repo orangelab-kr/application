@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>킥보드 잠금해제와 헬멧 잠금해제 통신할때에 사용합니다.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ko_KR</string>
 	<key>CFBundleDisplayName</key>
@@ -22,10 +20,47 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
+			<key>CFBundleURLName</key>
+			<string>hikick</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hikick</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>23</string>
 	<key>CodePushDeploymentKey</key>
 	<string>s8-zISvTY5CvCaVq3frBKjeee6UjKq-G7DZNs</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>citymapper</string>
+		<string>uber</string>
+		<string>lyft</string>
+		<string>transit</string>
+		<string>truckmap</string>
+		<string>waze</string>
+		<string>yandexnavi</string>
+		<string>moovit</string>
+		<string>yandextaxi</string>
+		<string>yandexmaps</string>
+		<string>kakaomap</string>
+		<string>szn-mapy</string>
+		<string>mapsme</string>
+		<string>osmandmaps</string>
+		<string>gett</string>
+		<string>nmap</string>
+		<string>dgis</string>
+		<string>lftgpas</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NMFClientId</key>
@@ -41,6 +76,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>킥보드 잠금해제와 헬멧 잠금해제 통신할때에 사용합니다.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>킥보드 잠금해제와 헬멧 잠금해제 통신할때에 사용합니다.</string>
 	<key>NSCameraUsageDescription</key>
@@ -71,27 +108,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-      <string>comgooglemaps</string>
-      <string>citymapper</string>
-      <string>uber</string>
-      <string>lyft</string>
-      <string>transit</string>
-      <string>truckmap</string>
-      <string>waze</string>
-      <string>yandexnavi</string>
-      <string>moovit</string>
-      <string>yandextaxi</string>
-      <string>yandexmaps</string>
-      <string>kakaomap</string>
-      <string>szn-mapy</string>
-      <string>mapsme</string>
-      <string>osmandmaps</string>
-      <string>gett</string>
-      <string>nmap</string>
-      <string>dgis</string>
-      <string>lftgpas</string>
-  </array>
 </dict>
 </plist>

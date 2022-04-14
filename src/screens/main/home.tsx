@@ -6,8 +6,10 @@ import {MainHomeMap} from '../../components/main/home/map/MainHomeMap';
 import {MainHomeSheet} from '../../components/main/home/sheet/MainHomeSheet';
 import {CameraLoc} from '../../models/cameraLoc';
 import {HookResultValue} from '../../models/hookResult';
+import {onSchemeInitalize} from '../../tools/scheme';
 
 export const Home: React.FC = () => {
+  onSchemeInitalize();
   const [mode, setMode] = useState<string>('welcome');
   const [unstableCameraLoc, setCameraLoc] =
     useState<HookResultValue<CameraLoc>>();
