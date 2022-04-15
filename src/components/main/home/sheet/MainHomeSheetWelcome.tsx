@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useUser} from '../../../../hooks/useUser';

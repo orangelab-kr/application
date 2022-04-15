@@ -39,7 +39,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
   } = {
     welcome: {
       component: MainHomeSheetWelcome,
-      snapPoints: ['13.5%', '113.5%'],
+      snapPoints: ['20.3%', '80%'],
       withStartButton: true,
       withRouteButton: false,
     },
