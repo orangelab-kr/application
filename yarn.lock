@@ -1456,6 +1456,11 @@
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-1.1.2.tgz"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
+"@types/ale-url-parser@^0.13.1":
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/@types/ale-url-parser/-/ale-url-parser-0.13.1.tgz#256925fa21fd265600de9050529b1e2d134390db"
+  integrity sha512-mO97zo3Ok1F3OD6cJXvhsae9EcNYsyJsxSG+QlVR49IW5gPX8msLdBG2RnX9zSPGWONM0FG8djyD9aNLmxfp4Q==
+
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.14":
   version "7.1.18"
   resolved "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.1.18.tgz"
@@ -1789,6 +1794,11 @@ ajv@^6.10.0, ajv@^6.12.4:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+ale-url-parser@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/ale-url-parser/-/ale-url-parser-0.13.0.tgz#a9f5e89ca61fb8ab77f9ffc5d2b9799dd8979db1"
+  integrity sha512-ADoU/jUlb9lsS0m/OyBuCYP/B86R7Q0v4u2u3WNeQ7ncUBF2eppDLs/8L/3Jf66IfFk1fyTjglwSEwCJ+F30WA==
 
 anser@^1.4.9:
   version "1.4.10"

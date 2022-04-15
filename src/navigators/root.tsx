@@ -5,6 +5,7 @@ import {Permission} from '../screens/permission';
 import {Qrcode} from '../screens/qrcode';
 import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
+import {Weblink} from '../screens/weblink';
 import {AuthNavigator} from './auth';
 import {MainNavigator} from './main';
 
@@ -41,6 +42,7 @@ export const RootNavigator: React.FC = () => {
         component={Qrcode}
         options={{animation: 'fade_from_bottom'}}
       />
+      <Stack.Screen name="Weblink" component={Weblink} />
     </Stack.Navigator>
   );
 };
