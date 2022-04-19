@@ -23,7 +23,7 @@ export const BottomBar: React.FC = () => {
       <WebView
         incognito
         style={{height: '100%', width: '100%'}}
-        source={{uri: `https://weblink.hikick.kr/sidebar`}}
+        source={{uri: `https://weblink.hikick.kr/bottombar`}}
         injectedJavaScriptBeforeContentLoaded={injectAccessToken}
         javascriptEnabled
         startInLoadingState
