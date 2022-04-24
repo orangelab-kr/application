@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "342895550643",
+    "project_id": "hikick-coreservice",
+    "storage_bucket": "hikick-coreservice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342895550643:android:7323fac3cb993ae511d0c6",
+        "android_client_info": {
+          "package_name": "kr.hikick.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342895550643-cs3em0ef1mfbo7l3kn9nn4okdeof8u89.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl4UYzQkV-146U826CYrbSHIXn0jUZ-Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342895550643-cs3em0ef1mfbo7l3kn9nn4okdeof8u89.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "342895550643-b99rv4gacapsmu5mjnhc9lfmquv09je2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kr.hikick.application"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
