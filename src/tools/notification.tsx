@@ -36,4 +36,5 @@ export const onRegisterFCM = async () => {
 
   const token = await fcm.getToken();
   console.log('Get FCM Token:', token);
+  await AccountsClient.registerMessaging(token);
 };

@@ -83,4 +83,8 @@ export class AccountsClient {
   ): Promise<ResponseAccountsAuthLogin> {
     return this.client.post(`/auth/signup`, payload).then(r => r.data);
   }
+
+  static async registerMessaging(token: string): Promise<void> {
+    return this.client.get('/auth/messaging', {params: {token}});
+  }
 }
