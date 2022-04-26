@@ -14,11 +14,10 @@ export const App: React.FC = () => {
     duration: 5000,
     showAnimationDuration: 800,
     hideOnPress: true,
-    showEasing: Easing.bounce,
     componentProps: {
       containerStyle: {borderRadius: 12},
-      titleStyle: {color: '#000', fontWeight: '700'},
-      descriptionStyle: {color: '#000', fontWeight: '300'},
+      titleStyle: {color: '#000', fontWeight: '800'},
+      descriptionStyle: {color: '#000', fontWeight: '400'},
     },
   };
 

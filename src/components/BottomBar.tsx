@@ -22,7 +22,7 @@ export const BottomBar: React.FC = () => {
     <SafeAreaView style={{flex: 1}}>
       <WebView
         incognito
-        style={{height: '100%', width: '100%'}}
+        style={{height: '100%', width: '100%', opacity: 0.99, minHeight: 1}}
         source={{uri: `https://weblink.hikick.kr/bottombar`}}
         injectedJavaScriptBeforeContentLoaded={injectAccessToken}
         javascriptEnabled

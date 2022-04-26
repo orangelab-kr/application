@@ -26,7 +26,7 @@ export const Weblink: React.FC = () => {
     <SafeAreaView style={{flex: 1}}>
       <Depth />
       <WebView
-        style={{height: '100%', width: '100%'}}
+        style={{height: '100%', width: '100%', opacity: 0.99, minHeight: 1}}
         source={{uri: `https://weblink.hikick.kr/${params.page}`}}
         injectedJavaScriptBeforeContentLoaded={injectAccessToken}
         javascriptEnabled
