@@ -32,6 +32,7 @@ export const onRegisterFCM = async () => {
     const action = message.data?.url || null;
     const onPress = () => onSchemeAction(action);
     console.log(`New notification: ${title} ${description} ${action}`);
+    Notifier.showNotification({title, description, onPress});
   });
 
   const token = await fcm.getToken();

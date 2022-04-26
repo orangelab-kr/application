@@ -6671,6 +6671,11 @@ react-native-nmap@^0.0.66:
   resolved "https://registry.npmjs.org/react-native-nmap/-/react-native-nmap-0.0.66.tgz"
   integrity sha512-+XMJOqn4zZ6PWO0UH478yj0b9PjYGHQcLUd0W5gJQ3DqGeJEb3vvWVDMbkzcuHsh59hkhGPsE9Q6pZkXxKsYtQ==
 
+react-native-notifier@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-notifier/-/react-native-notifier-1.7.1.tgz#3dd214ad3ab6cdc4eec7b65cadffafa062399565"
+  integrity sha512-mhMVScuJILuljOn/S8uclwe4gbymMmVD8QvdYW+ir7G3CakjHNERIh41nAJeAtvoFdh69PYLqXdnOnXGRYuY8w==
+
 react-native-permissions@^2.0.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-2.2.2.tgz#3d2a63f6b7d6be52fc86e30f77412a9566283028"
