@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Marker} from 'react-native-nmap';
 import {RideKickboard} from '../../../../api/ride';
 import {useKickboards} from '../../../../hooks/useKickboards';
@@ -24,7 +24,7 @@ export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
   setMode,
 }) => {
   if (!cameraLoc) return <></>;
-  const [kickboards] = useKickboards(cameraLoc);
+  const [kickboards, setKickboards] = useKickboards(cameraLoc);
   if (!kickboards) return <></>;
 
   const onKickboardClick = (kickboard: RideKickboard) => () => {
@@ -32,9 +32,19 @@ export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
     setSelectedKickboard(kickboard);
   };
 
+  useEffect(
+    () =>
+      setKickboards(kickboards => {
+        if (!selectedKickboard) return kickboards;
+        kickboards[selectedKickboard.kickboardCode] = selectedKickboard;
+        return kickboards;
+      }),
+    [selectedKickboard],
+  );
+
   return (
     <>
-      {kickboards.map(kickboard => (
+      {Object.values(kickboards).map(kickboard => (
         <Marker
           width={35}
           height={50}

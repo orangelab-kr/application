@@ -6,9 +6,12 @@ import {HookResult} from '../models/hookResult';
 
 export const useKickboards = (
   cameraLoc?: CameraLoc,
-): HookResult<RideKickboard[]> => {
+): HookResult<{[key: string]: RideKickboard}, never> => {
   const [previousCameraLoc, setPreviousCameraLoc] = useState<CameraLoc>();
-  const [kickboards, setKickboards] = useState<RideKickboard[] | null>();
+  const [kickboards, setKickboards] = useState<{
+    [key: string]: RideKickboard;
+  }>({});
+
   useEffect(() => {
     if (!cameraLoc) return;
     if (previousCameraLoc) {
@@ -36,9 +39,16 @@ export const useKickboards = (
     };
 
     setPreviousCameraLoc(cameraLoc);
-    RideClient.getNearKickboards(props)
-      .then(({kickboards}) => setKickboards(kickboards))
-      .catch(() => setKickboards(null));
+    RideClient.getNearKickboards(props).then(({kickboards}) =>
+      setKickboards(beforeKickboards => {
+        kickboards.forEach(kickboard => {
+          if (!kickboard) return;
+          beforeKickboards[kickboard.kickboardCode] = kickboard;
+        });
+
+        return beforeKickboards;
+      }),
+    );
   }, [cameraLoc]);
 
   return [kickboards, setKickboards];
