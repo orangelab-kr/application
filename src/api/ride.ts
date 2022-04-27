@@ -157,7 +157,7 @@ export class RideClient {
   }
 
   static async start(params: RequestRideStart): Promise<ResponseRideGetRide> {
-    return this.client.get('/current', {params}).then(r => r.data);
+    return this.client.post('/current', {params}).then(r => r.data);
   }
 
   static async terminate(
@@ -168,5 +168,11 @@ export class RideClient {
 
   static async getCurrentRide(): Promise<ResponseRideGetRide> {
     return this.client.get('/current').then(r => r.data);
+  }
+
+  static async getKickboardCodeByQrcode(url: string): Promise<string> {
+    return this.client
+      .post('/kickboards/qrcode', {url})
+      .then(r => r.data.kickboardCode);
   }
 }

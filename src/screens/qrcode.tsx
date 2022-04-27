@@ -6,9 +6,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {RNCamera} from 'react-native-camera';
+import {BarCodeReadEvent, RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {RideClient} from '../api/ride';
 import {Depth} from '../components/Depth';
 import {QrcodeCodeInput} from '../components/qrcode/QrcodeCodeInput';
 import {QrcodeFlashButton} from '../components/qrcode/QrcodeFlashButton';
@@ -30,12 +31,18 @@ export const Qrcode: React.FC = () => {
     navigation.navigate('Main', {screen: 'Home', params});
   };
 
+  const onReadByScanner = async (e: BarCodeReadEvent) => {
+    console.log(`Kickboard Url: ${e.data}`);
+    const kickboardCode = await RideClient.getKickboardCodeByQrcode(e.data);
+    return onKickboardCode(kickboardCode);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
         <StatusBar barStyle="light-content" />
         <QRCodeScanner
-          onRead={console.log}
+          onRead={onReadByScanner}
           cameraStyle={{height: screenHeight}}
           flashMode={
             flash

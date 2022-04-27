@@ -5,6 +5,7 @@ import {useDebounce} from 'use-debounce';
 import {RideClient, RideKickboard} from '../../api/ride';
 import {MainHomeMap} from '../../components/main/home/map/MainHomeMap';
 import {MainHomeSheet} from '../../components/main/home/sheet/MainHomeSheet';
+import {useCurrentRide} from '../../hooks/useCurrentRide';
 import {CameraLoc} from '../../models/cameraLoc';
 import {HookResultValue} from '../../models/hookResult';
 import {MainNavigatorRouteParams} from '../../models/navigation';
@@ -12,6 +13,7 @@ import {onRegisterFCM} from '../../tools/notification';
 import {onSchemeInitalize} from '../../tools/scheme';
 
 export const Home: React.FC = () => {
+  const [currentRide] = useCurrentRide();
   const {params} = useRoute<RouteProp<MainNavigatorRouteParams, 'Home'>>();
   const [mode, setMode] = useState<string>('welcome');
   const [unstableCameraLoc, setCameraLoc] =
@@ -24,6 +26,13 @@ export const Home: React.FC = () => {
     onSchemeInitalize();
     onRegisterFCM();
   });
+
+  useEffect(() => {
+    if (mode === 'riding') return;
+    if (!currentRide) return;
+    console.log(currentRide);
+    setMode('riding');
+  }, [currentRide, mode]);
 
   useEffect(() => {
     if (!params?.kickboardCode) return;
