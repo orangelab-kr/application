@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   Keyboard,
@@ -19,11 +20,14 @@ export type GetKickboardCodeEvent = (
 
 export const Qrcode: React.FC = () => {
   const [flash, setFlash] = useState(false);
+  const navigation = useNavigation();
 
   const onKickboardCode: GetKickboardCodeEvent = async (
     kickboardCode: string,
   ) => {
-    console.log(kickboardCode);
+    console.log(`Kickboard Code: ${kickboardCode}`);
+    const params = {kickboardCode, confirm: true};
+    navigation.navigate('Main', {screen: 'Home', params});
   };
 
   return (

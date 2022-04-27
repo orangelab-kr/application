@@ -1,15 +1,18 @@
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {useDebounce} from 'use-debounce';
-import {RideKickboard} from '../../api/ride';
+import {RideClient, RideKickboard} from '../../api/ride';
 import {MainHomeMap} from '../../components/main/home/map/MainHomeMap';
 import {MainHomeSheet} from '../../components/main/home/sheet/MainHomeSheet';
 import {CameraLoc} from '../../models/cameraLoc';
 import {HookResultValue} from '../../models/hookResult';
+import {MainNavigatorRouteParams} from '../../models/navigation';
 import {onRegisterFCM} from '../../tools/notification';
 import {onSchemeInitalize} from '../../tools/scheme';
 
 export const Home: React.FC = () => {
+  const {params} = useRoute<RouteProp<MainNavigatorRouteParams, 'Home'>>();
   const [mode, setMode] = useState<string>('welcome');
   const [unstableCameraLoc, setCameraLoc] =
     useState<HookResultValue<CameraLoc>>();
@@ -20,7 +23,14 @@ export const Home: React.FC = () => {
   useEffect(() => {
     onSchemeInitalize();
     onRegisterFCM();
-  }, []);
+  });
+
+  useEffect(() => {
+    if (!params?.kickboardCode) return;
+    RideClient.getKickboard(params?.kickboardCode).then(res =>
+      setSelectedKickboard(res.kickboard),
+    );
+  }, [params]);
 
   return (
     <View>
