@@ -85,6 +85,19 @@ export interface RideKickboard {
   helmetId: string | null;
 }
 
+export interface RequestRideTerminate {
+  latitude?: number;
+  longitude?: number;
+}
+
+export interface RequestRideStart {
+  kickboardCode: string;
+  latitude: number;
+  longitude: number;
+  couponId?: string;
+  debug?: boolean;
+}
+
 export type ResponseRideGetAllRegions = CommonResponse<{
   regions: RideRegion[];
 }>;
@@ -92,6 +105,37 @@ export type ResponseRideGetAllRegions = CommonResponse<{
 export type ResponseRideGetNearKickboards = CommonResponse<{
   kickboards: RideKickboard[];
 }>;
+
+export type ResponseRideGetKickboard = CommonResponse<{
+  kickboard: RideKickboard;
+}>;
+
+export interface RideOpenApi {
+  rideId: string;
+}
+
+export interface RideProperties {
+  openapi: RideOpenApi;
+}
+
+export interface RideRide {
+  rideId: string;
+  userId: string;
+  kickboardCode: string;
+  photo?: any;
+  couponId?: any;
+  properties: RideProperties;
+  price: number;
+  isLocked: boolean;
+  isLightsOn: boolean;
+  maxSpeed: number;
+  endedAt?: any;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt?: any;
+}
+
+export type ResponseRideGetRide = CommonResponse<{ride: RideRide}>;
 
 export class RideClient {
   private static client = createClient('ride');
@@ -104,5 +148,25 @@ export class RideClient {
     params: RequestRideGetNearKickboard,
   ): Promise<ResponseRideGetNearKickboards> {
     return this.client.get('/kickboards', {params}).then(r => r.data);
+  }
+
+  static async getKickboard(
+    kickboardCode: string,
+  ): Promise<ResponseRideGetKickboard> {
+    return this.client.get(`/kickboards/${kickboardCode}`).then(r => r.data);
+  }
+
+  static async start(params: RequestRideStart): Promise<ResponseRideGetRide> {
+    return this.client.get('/current', {params}).then(r => r.data);
+  }
+
+  static async terminate(
+    params: RequestRideTerminate,
+  ): Promise<CommonResponse> {
+    return this.client.delete('/current', {params}).then(r => r.data);
+  }
+
+  static async getCurrentRide(): Promise<ResponseRideGetRide> {
+    return this.client.get('/current').then(r => r.data);
   }
 }

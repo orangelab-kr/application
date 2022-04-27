@@ -1,4 +1,4 @@
-export type CommonResponse<T> =
+export type CommonResponse<T = {}> =
   | (T & CommonSuccessResponse)
   | (T & CommonFailureResponse);
 
