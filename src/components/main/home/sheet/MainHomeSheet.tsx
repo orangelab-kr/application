@@ -8,6 +8,7 @@ import {
   HookResultValue,
 } from '../../../../models/hookResult';
 import {BottomBar} from '../../../BottomBar';
+import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
 import {MainHomeSheetRiding} from './MainHomeSheetRiding';
 import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
@@ -26,6 +27,7 @@ export interface MainHomeSheetCommonProps {
   setMode: HookResultSetValue<string, never>;
   selectedKickboard?: HookResultValue<RideKickboard>;
   setSelectedKickboard: HookResultSetValue<RideKickboard>;
+  confirm?: boolean;
 }
 
 export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
@@ -33,6 +35,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
   setMode,
   selectedKickboard,
   setSelectedKickboard,
+  confirm,
 }) => {
   const MainHomeSheetComponents: {
     [key: string]: MainHomeSheetComponentInfo;
@@ -76,8 +79,9 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
           />
 
           <View>
-            {Mode.withStartButton && <MainHomeSheetStartButton />}
-            {Mode.withRouteButton && (
+            {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
+            {Mode.withStartButton && !confirm && <MainHomeSheetStartButton />}
+            {Mode.withRouteButton && !confirm && (
               <MainHomeSheetRouteButton kickboard={selectedKickboard} />
             )}
           </View>

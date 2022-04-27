@@ -52,6 +52,7 @@ export const Home: React.FC = () => {
         // Selected Kickboard
         selectedKickboard={selectedKickboard}
         setSelectedKickboard={setSelectedKickboard}
+        confirm={params?.confirm}
       />
     </View>
   );

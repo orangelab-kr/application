@@ -38,7 +38,11 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({
   }, []);
 
   useEffect(() => {
-    if (!selectedKickboard) return;
+    if (!selectedKickboard) {
+      return setMode('welcome');
+    }
+
+    setMode('kickboard');
     const {gps} = selectedKickboard.status;
     mapRef.current?.animateToCoordinate(gps);
   }, [selectedKickboard]);
