@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios, {AxiosInstance} from 'axios';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
 
 export const createClient = (service: string, auth = true): AxiosInstance => {
   const debug = true;
@@ -44,6 +45,16 @@ export const createClient = (service: string, auth = true): AxiosInstance => {
     const {response} = error;
     if (response?.data) {
       console.log(`Error API Body: ${JSON.stringify(response.data)}`);
+      if (response.data.message) {
+        Notifier.showNotification({
+          Component: NotifierComponents.Alert,
+          title: response.data.message,
+          componentProps: {
+            alertType: 'warn',
+            titleStyle: {color: '#fff'},
+          },
+        });
+      }
     }
 
     return Promise.reject(error);
