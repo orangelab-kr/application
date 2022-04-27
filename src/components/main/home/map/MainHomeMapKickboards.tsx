@@ -27,10 +27,8 @@ export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
   const [kickboards, setKickboards] = useKickboards(cameraLoc);
   if (!kickboards) return <></>;
 
-  const onKickboardClick = (kickboard: RideKickboard) => () => {
-    setMode('kickboard');
+  const onKickboardClick = (kickboard: RideKickboard) => () =>
     setSelectedKickboard(kickboard);
-  };
 
   useEffect(
     () =>

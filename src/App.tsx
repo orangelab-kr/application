@@ -1,10 +1,10 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {LogBox, StatusBar, StyleSheet} from 'react-native';
 import {NotifierWrapper} from 'react-native-notifier';
 import {ShowNotificationParams} from 'react-native-notifier/lib/typescript/types';
-import {Easing} from 'react-native-reanimated';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {RecoilRoot} from 'recoil';
 import {navigationRef} from './navigators/navigation';
 import {RootNavigator} from './navigators/root';
 
@@ -22,16 +22,18 @@ export const App: React.FC = () => {
   };
 
   return (
-    <NotifierWrapper {...notifierProps}>
-      <SafeAreaProvider style={styles.container}>
-        <StatusBar barStyle="dark-content" />
-        <NavigationContainer
-          ref={navigationRef}
-          theme={{colors: {background: '#fff'}} as any}>
-          <RootNavigator />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </NotifierWrapper>
+    <RecoilRoot>
+      <NotifierWrapper {...notifierProps}>
+        <SafeAreaProvider style={styles.container}>
+          <StatusBar barStyle="dark-content" />
+          <NavigationContainer
+            ref={navigationRef}
+            theme={{colors: {background: '#fff'}} as any}>
+            <RootNavigator />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </NotifierWrapper>
+    </RecoilRoot>
   );
 };
 

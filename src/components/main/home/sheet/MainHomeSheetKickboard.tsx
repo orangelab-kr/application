@@ -19,8 +19,8 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
 }) => {
   const [coords] = useGeolocation();
   useEffect(() => {
-    if (selectedKickboard) return;
-    setMode('welcome');
+    if (!selectedKickboard) return;
+    setMode('kickboard');
   }, [selectedKickboard]);
 
   if (!selectedKickboard) return <></>;
@@ -52,7 +52,7 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
         <Title>
           <FontAwesomeIcon icon={faPersonWalking} size={25} />{' '}
           <Bold>{onTimeFormatter(walkTime)}</Bold>
-          {meter < 1000000 && (
+          {meter < 100000 && (
             <Distance>
               (<FontAwesomeIcon icon={faRoute} size={20} />{' '}
               {onDistanceFormatter(meter)})
