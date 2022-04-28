@@ -1,34 +1,29 @@
 import React, {useEffect} from 'react';
 import {Marker} from 'react-native-nmap';
+import {useSetRecoilState} from 'recoil';
 import {RideKickboard} from '../../../../api/ride';
 import {useKickboards} from '../../../../hooks/useKickboards';
 import {CameraLoc} from '../../../../models/cameraLoc';
-import {
-  HookResultSetValue,
-  HookResultValue,
-} from '../../../../models/hookResult';
+import {HookResultValue} from '../../../../models/hookResult';
+import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
+import {useRecoilValueMaybe} from '../../../../tools/recoil';
 
 interface MainHomeMapKickboardProps {
   cameraLoc?: HookResultValue<CameraLoc>;
-  selectedKickboard?: HookResultValue<RideKickboard>;
-  setSelectedKickboard: HookResultSetValue<RideKickboard>;
-  mode: HookResultValue<string>;
-  setMode: HookResultSetValue<string, never>;
 }
 
 export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
   cameraLoc,
-  setSelectedKickboard,
-  selectedKickboard,
-  mode,
-  setMode,
 }) => {
   if (!cameraLoc) return <></>;
   const [kickboards, setKickboards] = useKickboards(cameraLoc);
+  const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
+  const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   if (!kickboards) return <></>;
 
   const onKickboardClick = (kickboard: RideKickboard) => () =>
-    setSelectedKickboard(kickboard);
+    setSelectedKickboard(kickboard.kickboardCode);
 
   useEffect(
     () =>

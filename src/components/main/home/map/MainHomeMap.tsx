@@ -4,33 +4,28 @@ import NaverMapView, {
   MapType,
   TrackingMode,
 } from 'react-native-nmap';
-import {RideKickboard} from '../../../../api/ride';
 import {CameraLoc} from '../../../../models/cameraLoc';
 import {
   HookResultSetValue,
   HookResultValue,
 } from '../../../../models/hookResult';
+import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
 import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
 
 export interface MainHomeMap {
   cameraLoc?: HookResultValue<CameraLoc>;
   setCameraLoc: HookResultSetValue<CameraLoc>;
-  selectedKickboard?: HookResultValue<RideKickboard>;
-  setSelectedKickboard: HookResultSetValue<RideKickboard>;
-  mode: HookResultValue<string, never>;
-  setMode: HookResultSetValue<string, never>;
 }
 
 export const MainHomeMap: React.FC<MainHomeMap> = ({
   cameraLoc,
   setCameraLoc,
-  selectedKickboard,
-  setSelectedKickboard,
-  mode,
-  setMode,
 }) => {
   const mapRef = createRef<NaverMapView>();
+  const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
+
   useEffect(() => {
     mapRef.current?.setLocationTrackingMode(TrackingMode.Follow);
     mapRef.current?.setLayerGroupEnabled(LayerGroup.LAYER_GROUP_BUILDING, true);
@@ -38,11 +33,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({
   }, []);
 
   useEffect(() => {
-    if (!selectedKickboard) {
-      return setMode('welcome');
-    }
-
-    setMode('kickboard');
+    if (!selectedKickboard) return;
     const {gps} = selectedKickboard.status;
     mapRef.current?.animateToCoordinate(gps);
   }, [selectedKickboard]);
@@ -59,16 +50,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({
       onCameraChange={setCameraLoc}
       useTextureView>
       <MainHomeMapRegionBulk />
-      <MainHomeMapKickboard
-        // Camera Loc
-        cameraLoc={cameraLoc}
-        // Selected Kickboard
-        selectedKickboard={selectedKickboard}
-        setSelectedKickboard={setSelectedKickboard}
-        // Mode
-        mode={mode}
-        setMode={setMode}
-      />
+      <MainHomeMapKickboard cameraLoc={cameraLoc} />
     </NaverMapView>
   );
 };
