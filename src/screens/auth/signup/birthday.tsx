@@ -1,6 +1,6 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Formik} from 'formik';
-import React, {useState} from 'react';
+import React from 'react';
 import {
   KeyboardAvoidingView,
   SafeAreaView,
@@ -12,11 +12,11 @@ import {
 import DatePicker from 'react-native-date-picker';
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
+import * as Yup from 'yup';
 import {Depth} from '../../../components/Depth';
+import {ValidateMessage} from '../../../components/ValidateMessage';
 import {screenHeight} from '../../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../../models/navigation';
-import * as Yup from 'yup';
-import {ValidateMessage} from '../../../components/ValidateMessage';
 
 export interface AuthSignupBirthdayForm {
   birthday: Date;

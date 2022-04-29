@@ -12,11 +12,6 @@ export const onRegisterFCM = async () => {
   initalized = true;
 
   const fcm = messaging();
-  if (!fcm.isDeviceRegisteredForRemoteMessages) {
-    console.log('Registering fcm.');
-    await fcm.registerDeviceForRemoteMessages();
-  }
-
   const onMessage = (
     notification: FirebaseMessagingTypes.RemoteMessage | null,
   ) => {

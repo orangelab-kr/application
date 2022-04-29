@@ -1,4 +1,3 @@
-import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {atom} from 'recoil';
 import {RideClient, RideRide} from '../api/ride';
 

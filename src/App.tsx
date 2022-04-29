@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {LogBox, StatusBar, StyleSheet} from 'react-native';
 import {NotifierWrapper} from 'react-native-notifier';
 import {ShowNotificationParams} from 'react-native-notifier/lib/typescript/types';
