@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components/native';
@@ -7,16 +7,8 @@ import {currentRideState} from '../../../../recoils/currentRide';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
-export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({
-  setMode,
-  selectedKickboard,
-}) => {
+export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
   const [currentRide] = useRecoilState(currentRideState);
-  console.log(currentRide);
-  useEffect(() => {
-    if (currentRide) return;
-    setMode('welcome');
-  }, [currentRide]);
 
   if (!currentRide) return <></>;
   return (

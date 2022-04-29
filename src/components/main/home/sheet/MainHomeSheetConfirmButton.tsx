@@ -1,27 +1,22 @@
 import {faBolt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {RideClient, RideKickboard} from '../../../../api/ride';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
-import {
-  HookResultSetValue,
-  HookResultValue,
-} from '../../../../models/hookResult';
+import {HookResultValue} from '../../../../models/hookResult';
 import {currentRideState} from '../../../../recoils/currentRide';
 
 export interface MainHomeSheetConfirmButtonProps {
-  mode: HookResultValue<string, never>;
-  setMode: HookResultSetValue<string, never>;
   selectedKickboard?: HookResultValue<RideKickboard>;
 }
 
 export const MainHomeSheetConfirmButton: React.FC<
   MainHomeSheetConfirmButtonProps
-> = ({selectedKickboard, mode, setMode}) => {
+> = ({selectedKickboard}) => {
   const [coords] = useGeolocation();
   const [, setCurrentRide] = useRecoilState(currentRideState);
 
@@ -33,11 +28,6 @@ export const MainHomeSheetConfirmButton: React.FC<
     const {ride} = await RideClient.start(props);
     setCurrentRide(ride);
   };
-
-  useEffect(() => {
-    if (selectedKickboard) return;
-    setMode('welcome');
-  }, [selectedKickboard]);
 
   return (
     <Button onPress={onClick}>

@@ -1,12 +1,9 @@
 import BottomSheet from '@gorhom/bottom-sheet';
 import React, {useMemo} from 'react';
 import {SafeAreaView, View} from 'react-native';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
-import {RideKickboard} from '../../../../api/ride';
-import {
-  HookResultSetValue,
-  HookResultValue,
-} from '../../../../models/hookResult';
+import {modeState} from '../../../../recoils/mode';
 import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
@@ -23,20 +20,13 @@ export interface MainHomeSheetComponentInfo {
 }
 
 export interface MainHomeSheetCommonProps {
-  mode: HookResultValue<string, never>;
-  setMode: HookResultSetValue<string, never>;
-  selectedKickboard?: HookResultValue<RideKickboard>;
-  setSelectedKickboard: HookResultSetValue<RideKickboard>;
   confirm?: boolean;
 }
 
 export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
-  mode,
-  setMode,
-  selectedKickboard,
-  setSelectedKickboard,
   confirm,
 }) => {
+  const mode = useRecoilValue(modeState);
   const MainHomeSheetComponents: {
     [key: string]: MainHomeSheetComponentInfo;
   } = {
@@ -69,28 +59,11 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       snapPoints={Mode.snapPoints}>
       <SafeAreaView>
         <Container>
-          <Mode.component
-            // Mode
-            mode={mode}
-            setMode={setMode}
-            // Selected Kickboard
-            selectedKickboard={selectedKickboard}
-            setSelectedKickboard={setSelectedKickboard}
-          />
-
+          <Mode.component />
           <View>
-            {Mode.withStartButton && confirm && (
-              <MainHomeSheetConfirmButton
-                mode={mode}
-                setMode={setMode}
-                selectedKickboard={selectedKickboard}
-              />
-            )}
-
+            {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
             {Mode.withStartButton && !confirm && <MainHomeSheetStartButton />}
-            {Mode.withRouteButton && !confirm && (
-              <MainHomeSheetRouteButton kickboard={selectedKickboard} />
-            )}
+            {Mode.withRouteButton && !confirm && <MainHomeSheetRouteButton />}
           </View>
         </Container>
       </SafeAreaView>

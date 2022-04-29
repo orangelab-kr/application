@@ -1,43 +1,39 @@
 import {faPersonWalking, faRoute} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React, {useEffect, useMemo} from 'react';
+import React, {useMemo} from 'react';
 import {Text, View} from 'react-native';
+import {useRecoilValueLoadable} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {distance} from '../../../../models/calculateMeter';
+import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {
   onDistanceFormatter,
   onTimeFormatter,
 } from '../../../../tools/formatter';
+import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
-export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
-  setMode,
-  selectedKickboard,
-}) => {
+export const MainHomeSheetKickboard: React.FC<
+  MainHomeSheetCommonProps
+> = ({}) => {
   const [coords] = useGeolocation();
-  useEffect(() => {
-    if (!selectedKickboard) return;
-    setMode('kickboard');
-  }, [selectedKickboard]);
-
-  if (!selectedKickboard) return <></>;
-  const {kickboardCode, status} = selectedKickboard;
+  const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const meter = useMemo(
     () =>
-      coords
+      selectedKickboard && coords
         ? Math.round(
             distance(
               coords.latitude,
               coords.longitude,
-              status.gps.latitude,
-              status.gps.longitude,
+              selectedKickboard.status.gps.latitude,
+              selectedKickboard.status.gps.longitude,
             ),
           )
         : 0,
-    [status, coords],
+    [selectedKickboard, coords],
   );
 
   const walkTime = useMemo(
@@ -45,6 +41,8 @@ export const MainHomeSheetKickboard: React.FC<MainHomeSheetCommonProps> = ({
     [meter],
   );
 
+  if (!selectedKickboard) return <></>;
+  const {kickboardCode, status} = selectedKickboard;
   return (
     <Container>
       <View style={{marginRight: 10}}>
