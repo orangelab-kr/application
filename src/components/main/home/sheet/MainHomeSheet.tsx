@@ -38,13 +38,13 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
     },
     kickboard: {
       component: MainHomeSheetKickboard,
-      snapPoints: ['16.5%', '80%'],
+      snapPoints: ['16%', '80%'],
       withStartButton: true,
       withRouteButton: true,
     },
     riding: {
       component: MainHomeSheetRiding,
-      snapPoints: ['15.5%', '80%'],
+      snapPoints: ['16%', '80%'],
       withStartButton: false,
       withRouteButton: false,
     },

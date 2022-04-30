@@ -10,8 +10,8 @@ export const modeState = selector({
     let mode: Modes = 'welcome';
     const selectedKickboard = get(selectedKickboardCodeState);
     const currentRide = get(currentRideState);
-    if (currentRide) mode = 'riding';
     if (selectedKickboard) mode = 'kickboard';
+    if (currentRide) mode = 'riding';
     console.log(mode);
     return mode;
   },

@@ -1,19 +1,22 @@
 import {useEffect, useState} from 'react';
+import {useRecoilState} from 'recoil';
 import {RideClient, RideKickboard} from '../api/ride';
 import {calculateMeter, distance} from '../models/calculateMeter';
 import {CameraLoc} from '../models/cameraLoc';
 import {HookResult} from '../models/hookResult';
+import {currentRideState} from '../recoils/currentRide';
 
 export const useKickboards = (
   cameraLoc?: CameraLoc,
 ): HookResult<{[key: string]: RideKickboard}, never> => {
+  const currentRide = useRecoilState(currentRideState);
   const [previousCameraLoc, setPreviousCameraLoc] = useState<CameraLoc>();
   const [kickboards, setKickboards] = useState<{
     [key: string]: RideKickboard;
   }>({});
 
   useEffect(() => {
-    if (!cameraLoc) return;
+    if (!cameraLoc || currentRide) return;
     if (previousCameraLoc) {
       const level = cameraLoc.zoom - previousCameraLoc.zoom;
       const meter = distance(
