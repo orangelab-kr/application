@@ -1,22 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
+import {useInterval} from '../../../../hooks/useInterval';
 import {currentRideState} from '../../../../recoils/currentRide';
+import {djs} from '../../../../tools/dayjs';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
 export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
   const [currentRide] = useRecoilState(currentRideState);
+  const [elapsedTime, setElapsedTime] = useState<string>('0초');
+  useInterval(
+    () => {
+      if (!currentRide) return;
+      let result = '';
+
+      const startedAt = djs(currentRide.createdAt).subtract(10, 'hours');
+      const duration = djs.duration(djs().diff(startedAt));
+
+      const months = Math.floor(duration.asMonths());
+      const days = Math.floor(duration.asDays() % 30);
+      const hours = Math.floor(duration.asHours() % 24);
+      const minutes = Math.floor(duration.asMinutes() % 60);
+      const seconds = Math.floor(duration.asSeconds() % 60);
+
+      if (months > 0) result += `${months}개월 `;
+      if (days > 0) result += `${days}일 `;
+      if (months <= 0) {
+        if (hours > 0) result += `${hours}시간 `;
+        if (days <= 0) {
+          if (minutes > 0) result += `${minutes}분 `;
+          if (seconds > 0) result += `${seconds}초`;
+        }
+      }
+
+      setElapsedTime(result);
+    },
+    currentRide ? 1000 : 0,
+  );
 
   if (!currentRide) return <></>;
   return (
     <Container>
       <View style={{marginRight: 10}}>
         <KickboardCode>{currentRide.kickboardCode}</KickboardCode>
-        <Title>10분 30초 이용 중... </Title>
-        <KickboardBatteryStatus battery={66} />
+        <Title>{elapsedTime}</Title>
+        <KickboardBatteryStatus battery={50} />
       </View>
     </Container>
   );
@@ -24,11 +55,6 @@ export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
 
 const Container = styled(View)`
   flex-direction: row;
-`;
-
-const Distance = styled(Text)`
-  color: #000;
-  font-size: ${screenHeight / 36}px;
 `;
 
 const KickboardCode = styled(Text)`
@@ -39,7 +65,7 @@ const KickboardCode = styled(Text)`
 
 const Title = styled(Text)`
   font-size: ${screenHeight / 30}px;
-  font-weight: 300,
+  font-weight: 500,
   color: #000
 `;
 
