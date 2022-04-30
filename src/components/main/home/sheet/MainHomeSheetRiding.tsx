@@ -5,19 +5,22 @@ import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useInterval} from '../../../../hooks/useInterval';
 import {currentRideState} from '../../../../recoils/currentRide';
+import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {djs} from '../../../../tools/dayjs';
+import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
 export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
   const [currentRide] = useRecoilState(currentRideState);
+  const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const [elapsedTime, setElapsedTime] = useState<string>('0초');
   useInterval(
     () => {
       if (!currentRide) return;
       let result = '';
 
-      const startedAt = djs(currentRide.createdAt).subtract(10, 'hours');
+      const startedAt = djs(currentRide.createdAt);
       const duration = djs.duration(djs().diff(startedAt));
 
       const months = Math.floor(duration.asMonths());
@@ -47,7 +50,9 @@ export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
       <View style={{marginRight: 10}}>
         <KickboardCode>{currentRide.kickboardCode}</KickboardCode>
         <Title>{elapsedTime}</Title>
-        <KickboardBatteryStatus battery={50} />
+        <KickboardBatteryStatus
+          battery={selectedKickboard?.status.power.scooter.battery || 100}
+        />
       </View>
     </Container>
   );
