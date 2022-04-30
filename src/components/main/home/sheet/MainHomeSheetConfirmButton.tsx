@@ -2,23 +2,23 @@ import {faBolt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import {useRecoilState} from 'recoil';
+import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
-import {RideClient, RideKickboard} from '../../../../api/ride';
+import {RideClient} from '../../../../api/ride';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
-import {HookResultValue} from '../../../../models/hookResult';
 import {currentRideState} from '../../../../recoils/currentRide';
+import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {useRecoilValueMaybe} from '../../../../tools/recoil';
 
-export interface MainHomeSheetConfirmButtonProps {
-  selectedKickboard?: HookResultValue<RideKickboard>;
-}
+export interface MainHomeSheetConfirmButtonProps {}
 
 export const MainHomeSheetConfirmButton: React.FC<
   MainHomeSheetConfirmButtonProps
-> = ({selectedKickboard}) => {
+> = () => {
   const [coords] = useGeolocation();
-  const [, setCurrentRide] = useRecoilState(currentRideState);
+  const setCurrentRide = useSetRecoilState(currentRideState);
+  const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
 
   const onClick = async () => {
     if (!coords || !selectedKickboard) return;
@@ -31,8 +31,8 @@ export const MainHomeSheetConfirmButton: React.FC<
 
   return (
     <Button onPress={onClick}>
-      <FontAwesomeIcon icon={faBolt} color="#fff" size={screenHeight / 54} />
       <ButtonText>라이드{'\n'}시작하기</ButtonText>
+      <FontAwesomeIcon icon={faBolt} color="#fff" size={screenHeight / 54} />
     </Button>
   );
 };
@@ -51,6 +51,6 @@ const Button = styled(TouchableOpacity)`
 const ButtonText = styled(Text)`
   color: #fff;
   text-align: center;
-  font-size: ${screenHeight / 56}px;
-  margin-top: 6px;
+  font-size: ${screenHeight / 57}px;
+  margin-bottom: 6px;
 `;

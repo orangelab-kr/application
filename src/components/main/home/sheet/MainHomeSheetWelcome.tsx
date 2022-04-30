@@ -6,10 +6,14 @@ import {useUser} from '../../../../hooks/useUser';
 
 export const MainHomeSheetWelcome: React.FC = () => {
   const user = useUser({cache: true});
-  if (!user) return <></>;
   return (
     <Title>
-      <Bold>{user.realname}</Bold>님{'\n'}라이드를 시작해볼까요?
+      {user && (
+        <>
+          <Bold>{user?.realname}</Bold>님{'\n'}{' '}
+        </>
+      )}
+      라이드를 시작해볼까요?
     </Title>
   );
 };

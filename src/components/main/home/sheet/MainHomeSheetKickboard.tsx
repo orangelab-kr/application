@@ -41,12 +41,12 @@ export const MainHomeSheetKickboard: React.FC<
     [meter],
   );
 
-  if (!selectedKickboard) return <></>;
-  const {kickboardCode, status} = selectedKickboard;
   return (
     <Container>
       <View style={{marginRight: 10}}>
-        <KickboardCode>{kickboardCode}</KickboardCode>
+        <KickboardCode>
+          {selectedKickboard?.kickboardCode || '로드 중...'}
+        </KickboardCode>
         <Title>
           <FontAwesomeIcon icon={faPersonWalking} size={25} />{' '}
           <Bold>{onTimeFormatter(walkTime)}</Bold>
@@ -57,7 +57,9 @@ export const MainHomeSheetKickboard: React.FC<
             </Distance>
           )}
         </Title>
-        <KickboardBatteryStatus battery={status.power.scooter.battery} />
+        <KickboardBatteryStatus
+          battery={selectedKickboard?.status.power.scooter.battery || 100}
+        />
       </View>
     </Container>
   );

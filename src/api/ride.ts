@@ -157,7 +157,7 @@ export class RideClient {
   }
 
   static async start(params: RequestRideStart): Promise<ResponseRideGetRide> {
-    return this.client.post('/current', {params}).then(r => r.data);
+    return this.client.post('/current', {}, {params}).then(r => r.data);
   }
 
   static async terminate(
