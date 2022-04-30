@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useInterval} from '../../../../hooks/useInterval';
 import {currentRideState} from '../../../../recoils/currentRide';
-import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {
+  resetSelectedKickboardState,
+  selectedKickboardState,
+} from '../../../../recoils/selectedKickboard';
 import {djs} from '../../../../tools/dayjs';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
@@ -14,7 +17,9 @@ import {MainHomeSheetCommonProps} from './MainHomeSheet';
 export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
   const [currentRide] = useRecoilState(currentRideState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
+  const resetSelectedKickboard = useSetRecoilState(resetSelectedKickboardState);
   const [elapsedTime, setElapsedTime] = useState<string>('0초');
+  useInterval(() => resetSelectedKickboard(e => !e), currentRide ? 30000 : 0);
   useInterval(
     () => {
       if (!currentRide) return;
