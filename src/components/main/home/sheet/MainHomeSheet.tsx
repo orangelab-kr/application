@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 import {modeState} from '../../../../recoils/mode';
 import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
+import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
 import {MainHomeSheetRiding} from './MainHomeSheetRiding';
 import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
@@ -17,6 +18,7 @@ export interface MainHomeSheetComponentInfo {
   snapPoints: string[];
   withStartButton: boolean;
   withRouteButton: boolean;
+  withControlButton: boolean;
 }
 
 export interface MainHomeSheetCommonProps {
@@ -35,18 +37,21 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       snapPoints: ['20.3%', '80%'],
       withStartButton: true,
       withRouteButton: false,
+      withControlButton: false,
     },
     kickboard: {
       component: MainHomeSheetKickboard,
       snapPoints: ['16%', '80%'],
       withStartButton: true,
       withRouteButton: true,
+      withControlButton: false,
     },
     riding: {
       component: MainHomeSheetRiding,
       snapPoints: ['16%', '80%'],
       withStartButton: false,
       withRouteButton: false,
+      withControlButton: true,
     },
   };
 
@@ -60,10 +65,11 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       <SafeAreaView>
         <Container>
           <Mode.component />
-          <View>
+          <View style={{justifyContent: 'center'}}>
             {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
             {Mode.withStartButton && !confirm && <MainHomeSheetStartButton />}
             {Mode.withRouteButton && !confirm && <MainHomeSheetRouteButton />}
+            {Mode.withControlButton && <MainHomeSheetControlButton />}
           </View>
         </Container>
       </SafeAreaView>
