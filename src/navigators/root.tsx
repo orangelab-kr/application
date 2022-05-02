@@ -3,6 +3,7 @@ import React from 'react';
 import {RootNavigatorRouteParams} from '../models/navigation';
 import {Permission} from '../screens/permission';
 import {Qrcode} from '../screens/qrcode';
+import {ReturnedPhoto} from '../screens/returnedPhoto';
 import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
 import {Weblink} from '../screens/weblink';
@@ -40,6 +41,11 @@ export const RootNavigator: React.FC = () => {
       <Stack.Screen
         name="Qrcode"
         component={Qrcode}
+        options={{animation: 'fade_from_bottom'}}
+      />
+      <Stack.Screen
+        name="ReturnedPhoto"
+        component={ReturnedPhoto}
         options={{animation: 'fade_from_bottom'}}
       />
       <Stack.Screen name="Weblink" component={Weblink} />

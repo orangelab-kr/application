@@ -13,6 +13,7 @@ export type RootNavigatorRouteParams = {
   Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
   Weblink: {page: string};
   Qrcode: undefined;
+  ReturnedPhoto: undefined;
 };
 
 export type AuthNavigatorRouteParams = {
