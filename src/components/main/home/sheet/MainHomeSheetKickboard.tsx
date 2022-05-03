@@ -2,12 +2,11 @@ import {faPersonWalking, faRoute} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React, {useMemo} from 'react';
 import {Text, View} from 'react-native';
-import {useRecoilValueLoadable} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
-import {distance} from '../../../../models/calculateMeter';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {distance} from '../../../../tools/calculateMeter';
 import {
   onDistanceFormatter,
   onTimeFormatter,

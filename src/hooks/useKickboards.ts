@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 import {RideClient, RideKickboard} from '../api/ride';
-import {calculateMeter, distance} from '../models/calculateMeter';
+import {calculateMeter, distance} from '../tools/calculateMeter';
 import {CameraLoc} from '../models/cameraLoc';
 import {HookResult} from '../models/hookResult';
 import {currentRideState} from '../recoils/currentRide';

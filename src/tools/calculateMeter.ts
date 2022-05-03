@@ -1,4 +1,4 @@
-import {CameraLoc} from './cameraLoc';
+import {CameraLoc} from '../models/cameraLoc';
 
 export function calculateMeter(cameraLoc: CameraLoc) {
   const [, topLeft, , bottomRight] = cameraLoc.coveringRegion;
@@ -21,8 +21,6 @@ export function distance(
 ) {
   var radlat1 = (Math.PI * lat1) / 180;
   var radlat2 = (Math.PI * lat2) / 180;
-  var radlon1 = (Math.PI * lon1) / 180;
-  var radlon2 = (Math.PI * lon2) / 180;
   var theta = lon1 - lon2;
   var radtheta = (Math.PI * theta) / 180;
   var dist =
