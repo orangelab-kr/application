@@ -24,22 +24,39 @@ export const PhotoConfirm: React.FC = () => {
   const {params} =
     useRoute<RouteProp<RootNavigatorRouteParams, 'PhotoConfirm'>>();
 
-  const onPress = async () => {
-    if (!resizedImage) return;
-
-    setLoading(true);
-    await ImagesClient.upload(resizedImage);
-    setLoading(false);
-
-    navigation.navigate('Main', {screen: 'Home'});
+  const onError = () => {
+    const {rideId} = params;
+    navigation.navigate('ReturnedPhoto', {rideId});
     Notifier.showNotification({
-      title: '반납 사진을 제공해주셔서 감사합니다. :)',
+      title: '죄송합니다. 다시 촬영해주세요.',
       Component: NotifierComponents.Alert,
       componentProps: {
         alertType: 'warn',
         titleStyle: {color: '#fff'},
       },
     });
+  };
+
+  const onPress = async () => {
+    if (!resizedImage) return;
+
+    try {
+      setLoading(true);
+      await ImagesClient.upload(resizedImage);
+      setLoading(false);
+
+      navigation.navigate('Main', {screen: 'Home'});
+      Notifier.showNotification({
+        title: '반납 사진을 제공해주셔서 감사합니다. :)',
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'success',
+          titleStyle: {color: '#fff'},
+        },
+      });
+    } catch (err) {
+      onError();
+    }
   };
 
   useEffect(() => {
@@ -52,7 +69,9 @@ export const PhotoConfirm: React.FC = () => {
       0,
       undefined,
       true,
-    ).then(setResizedImage);
+    )
+      .then(setResizedImage)
+      .catch(onError);
   }, [params]);
 
   return (
@@ -61,7 +80,7 @@ export const PhotoConfirm: React.FC = () => {
       <FastImage
         style={{height: screenHeight, width: screenWidth}}
         source={{
-          uri: params.photo.uri,
+          uri: resizedImage?.uri || params.photo.uri,
           priority: FastImage.priority.high,
         }}>
         <SafeAreaView>
