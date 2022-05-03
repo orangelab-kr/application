@@ -28,6 +28,10 @@ export const PhotoConfirm: React.FC = () => {
   const onPress = async () => {
     if (!resizedImage) return;
 
+    setLoading(true);
+    await ImagesClient.upload(resizedImage);
+    setLoading(false);
+
     navigation.navigate('Main', {screen: 'Home'});
     Notifier.showNotification({
       title: '반납 사진을 제공해주셔서 감사합니다. :)',
