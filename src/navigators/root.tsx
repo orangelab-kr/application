@@ -2,6 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {RootNavigatorRouteParams} from '../models/navigation';
 import {Permission} from '../screens/permission';
+import {PhotoConfirm} from '../screens/photoConfirm';
 import {Qrcode} from '../screens/qrcode';
 import {ReturnedPhoto} from '../screens/returnedPhoto';
 import {Splash} from '../screens/splash';
@@ -47,6 +48,11 @@ export const RootNavigator: React.FC = () => {
         name="ReturnedPhoto"
         component={ReturnedPhoto}
         options={{animation: 'fade_from_bottom'}}
+      />
+      <Stack.Screen
+        name="PhotoConfirm"
+        component={PhotoConfirm}
+        options={{animation: 'fade'}}
       />
       <Stack.Screen name="Weblink" component={Weblink} />
     </Stack.Navigator>

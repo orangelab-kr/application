@@ -47,8 +47,8 @@ export const createClient = (service: string, auth = true): AxiosInstance => {
       console.log(`Error API Body: ${JSON.stringify(response.data)}`);
       if (response.data.message) {
         Notifier.showNotification({
-          Component: NotifierComponents.Alert,
           title: response.data.message,
+          Component: NotifierComponents.Alert,
           componentProps: {
             alertType: 'warn',
             titleStyle: {color: '#fff'},

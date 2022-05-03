@@ -1,4 +1,5 @@
 import {ParamListBase} from '@react-navigation/native';
+import { TakePictureResponse } from 'react-native-camera';
 import {AuthVerifyPhone} from '../api/accounts';
 
 type SubNavigator<T extends ParamListBase> = {
@@ -14,6 +15,7 @@ export type RootNavigatorRouteParams = {
   Weblink: {page: string};
   Qrcode: undefined;
   ReturnedPhoto: undefined;
+  PhotoConfirm: {photo: TakePictureResponse};
 };
 
 export type AuthNavigatorRouteParams = {

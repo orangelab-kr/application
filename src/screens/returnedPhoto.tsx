@@ -22,7 +22,7 @@ export const ReturnedPhoto: React.FC = () => {
     if (!cameraRef.current) return;
     const options = {quality: 1, exif: true, base64: false};
     const photo = await cameraRef.current.takePictureAsync(options);
-    // todo: navgiation confirm
+    navigation.navigate('PhotoConfirm', {photo});
   };
 
   return (
