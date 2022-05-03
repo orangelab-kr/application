@@ -24,7 +24,6 @@ export const PhotoConfirm: React.FC = () => {
   const {params} =
     useRoute<RouteProp<RootNavigatorRouteParams, 'PhotoConfirm'>>();
 
-  console.log(resizedImage);
   const onPress = async () => {
     if (!resizedImage) return;
 
