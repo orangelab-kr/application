@@ -11,22 +11,25 @@ import {
 import {RNCamera} from 'react-native-camera';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {TransparentButton} from '../components/TransparentButton';
-import {screenHeight} from '../constants/screenSize';
-import {RootNavigatorRouteParams} from '../models/navigation';
+import {TransparentButton} from '../../components/TransparentButton';
+import {screenHeight} from '../../constants/screenSize';
+import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
 
-export const ReturnedPhoto: React.FC = () => {
+export const ReturnedPhotoCamera: React.FC = () => {
   const navigation = useNavigation();
   const cameraRef = React.createRef<RNCamera>();
   const {params} =
-    useRoute<RouteProp<RootNavigatorRouteParams, 'ReturnedPhoto'>>();
+    useRoute<RouteProp<ReturnedPhotoNavigatorRouteParams, 'Camera'>>();
 
   const onTakePhoto = async () => {
     const {rideId} = params;
     if (!rideId || !cameraRef.current) return;
     const options = {quality: 1, exif: true, base64: false};
     const photo = await cameraRef.current.takePictureAsync(options);
-    navigation.navigate('PhotoConfirm', {photo, rideId});
+    navigation.navigate('ReturnedPhoto', {
+      screen: 'Confirm',
+      params: {rideId, photo},
+    });
   };
 
   return (

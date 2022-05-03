@@ -3,12 +3,14 @@ import {NavigationContainerRef} from '@react-navigation/native';
 import * as React from 'react';
 import {
   AuthNavigatorRouteParams,
+  ReturnedPhotoNavigatorRouteParams,
   RootNavigatorRouteParams,
 } from '../models/navigation';
 
 export interface RootParamList
   extends RootNavigatorRouteParams,
-    AuthNavigatorRouteParams {}
+    AuthNavigatorRouteParams,
+    ReturnedPhotoNavigatorRouteParams {}
 
 export const navigationRef =
   React.createRef<NavigationContainerRef<RootParamList>>();

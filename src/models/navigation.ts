@@ -12,10 +12,14 @@ export type RootNavigatorRouteParams = {
   Permission: undefined;
   Main: undefined | SubNavigator<MainNavigatorRouteParams>;
   Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
+  ReturnedPhoto: SubNavigator<ReturnedPhotoNavigatorRouteParams>;
   Weblink: {page: string};
   Qrcode: undefined;
-  ReturnedPhoto: {rideId: string};
-  PhotoConfirm: RootNavigatorRouteParams['ReturnedPhoto'] & {
+};
+
+export type ReturnedPhotoNavigatorRouteParams = {
+  Camera: {rideId: string};
+  Confirm: ReturnedPhotoNavigatorRouteParams['Camera'] & {
     photo: TakePictureResponse;
   };
 };

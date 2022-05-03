@@ -11,22 +11,22 @@ import ImageResizer, {Response} from 'react-native-image-resizer';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {ImagesClient} from '../api/images';
-import {Depth} from '../components/Depth';
-import {TransparentButton} from '../components/TransparentButton';
-import {screenHeight, screenWidth} from '../constants/screenSize';
-import {RootNavigatorRouteParams} from '../models/navigation';
+import {ImagesClient} from '../../api/images';
+import {Depth} from '../../components/Depth';
+import {TransparentButton} from '../../components/TransparentButton';
+import {screenHeight, screenWidth} from '../../constants/screenSize';
+import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
 
-export const PhotoConfirm: React.FC = () => {
+export const ReturnedPhotoConfirm: React.FC = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [resizedImage, setResizedImage] = useState<Response>();
   const {params} =
-    useRoute<RouteProp<RootNavigatorRouteParams, 'PhotoConfirm'>>();
+    useRoute<RouteProp<ReturnedPhotoNavigatorRouteParams, 'Confirm'>>();
 
   const onError = () => {
     const {rideId} = params;
-    navigation.navigate('ReturnedPhoto', {rideId});
+    navigation.navigate('ReturnedPhoto', {screen: 'Camera', params: {rideId}});
     Notifier.showNotification({
       title: '죄송합니다. 다시 촬영해주세요.',
       Component: NotifierComponents.Alert,

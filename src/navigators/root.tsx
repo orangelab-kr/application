@@ -2,21 +2,20 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {RootNavigatorRouteParams} from '../models/navigation';
 import {Permission} from '../screens/permission';
-import {PhotoConfirm} from '../screens/photoConfirm';
 import {Qrcode} from '../screens/qrcode';
-import {ReturnedPhoto} from '../screens/returnedPhoto';
 import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
 import {Weblink} from '../screens/weblink';
 import {AuthNavigator} from './auth';
 import {MainNavigator} from './main';
+import {ReturnedPhotoNavigator} from './returnedPhoto';
 
 export const RootNavigator: React.FC = () => {
   const Stack = createNativeStackNavigator<RootNavigatorRouteParams>();
 
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="ReturnedPhoto"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Splash"
@@ -26,6 +25,11 @@ export const RootNavigator: React.FC = () => {
       <Stack.Screen
         name="Main"
         component={MainNavigator}
+        options={{gestureEnabled: false}}
+      />
+      <Stack.Screen
+        name="ReturnedPhoto"
+        component={ReturnedPhotoNavigator}
         options={{gestureEnabled: false}}
       />
       <Stack.Screen
@@ -43,16 +47,6 @@ export const RootNavigator: React.FC = () => {
         name="Qrcode"
         component={Qrcode}
         options={{animation: 'fade_from_bottom'}}
-      />
-      <Stack.Screen
-        name="ReturnedPhoto"
-        component={ReturnedPhoto}
-        options={{animation: 'fade_from_bottom'}}
-      />
-      <Stack.Screen
-        name="PhotoConfirm"
-        component={PhotoConfirm}
-        options={{animation: 'fade'}}
       />
       <Stack.Screen name="Weblink" component={Weblink} />
     </Stack.Navigator>
