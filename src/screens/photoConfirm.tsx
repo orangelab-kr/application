@@ -1,20 +1,21 @@
 import {
   faCheck,
   faMicrochip,
-  faUpload
+  faUpload,
 } from '@fortawesome/free-solid-svg-icons';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { StatusBar, Text, View } from 'react-native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {StatusBar, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { Response } from 'react-native-image-resizer';
-import { Notifier, NotifierComponents } from 'react-native-notifier';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import ImageResizer, {Response} from 'react-native-image-resizer';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { Depth } from '../components/Depth';
-import { TransparentButton } from '../components/TransparentButton';
-import { screenHeight, screenWidth } from '../constants/screenSize';
-import { RootNavigatorRouteParams } from '../models/navigation';
+import {ImagesClient} from '../api/images';
+import {Depth} from '../components/Depth';
+import {TransparentButton} from '../components/TransparentButton';
+import {screenHeight, screenWidth} from '../constants/screenSize';
+import {RootNavigatorRouteParams} from '../models/navigation';
 
 export const PhotoConfirm: React.FC = () => {
   const navigation = useNavigation();
@@ -37,6 +38,19 @@ export const PhotoConfirm: React.FC = () => {
       },
     });
   };
+
+  useEffect(() => {
+    ImageResizer.createResizedImage(
+      params.photo.uri,
+      720,
+      1280,
+      'JPEG',
+      100,
+      0,
+      undefined,
+      true,
+    ).then(setResizedImage);
+  }, [params]);
 
   return (
     <View>
