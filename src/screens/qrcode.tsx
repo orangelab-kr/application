@@ -9,11 +9,13 @@ import {
 import {BarCodeReadEvent, RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useSetRecoilState} from 'recoil';
 import {RideClient} from '../api/ride';
 import {Depth} from '../components/Depth';
 import {QrcodeCodeInput} from '../components/qrcode/QrcodeCodeInput';
 import {QrcodeFlashButton} from '../components/qrcode/QrcodeFlashButton';
 import {screenHeight} from '../constants/screenSize';
+import {selectedKickboardCodeState} from '../recoils/selectedKickboardCode';
 
 export type GetKickboardCodeEvent = (
   kickboardCode: string,
@@ -21,14 +23,15 @@ export type GetKickboardCodeEvent = (
 
 export const Qrcode: React.FC = () => {
   const [flash, setFlash] = useState(false);
+  const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const navigation = useNavigation();
 
   const onKickboardCode: GetKickboardCodeEvent = async (
     kickboardCode: string,
   ) => {
     console.log(`Kickboard Code: ${kickboardCode}`);
-    const params = {kickboardCode, confirm: true};
-    navigation.navigate('Main', {screen: 'Home', params});
+    setSelectedKickboard(kickboardCode);
+    navigation.navigate('Main', {screen: 'Home', params: {confirm: true}});
   };
 
   const onReadByScanner = async (e: BarCodeReadEvent) => {

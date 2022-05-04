@@ -32,5 +32,5 @@ export type AuthNavigatorRouteParams = {
 };
 
 export type MainNavigatorRouteParams = {
-  Home: {kickboardCode?: string; confirm?: boolean};
+  Home: {confirm?: boolean};
 };
