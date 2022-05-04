@@ -4,27 +4,19 @@ import NaverMapView, {
   MapType,
   TrackingMode,
 } from 'react-native-nmap';
-import {CameraLoc} from '../../../../models/cameraLoc';
-import {
-  HookResultSetValue,
-  HookResultValue,
-} from '../../../../models/hookResult';
+import {useRecoilValueDebounce} from '../../../../hooks/useRecoilValueDebounce';
+import {cameraLocState} from '../../../../recoils/cameraLoc';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
 import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
 
-export interface MainHomeMap {
-  cameraLoc?: HookResultValue<CameraLoc>;
-  setCameraLoc: HookResultSetValue<CameraLoc>;
-}
+export interface MainHomeMap {}
 
-export const MainHomeMap: React.FC<MainHomeMap> = ({
-  cameraLoc,
-  setCameraLoc,
-}) => {
+export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
   const mapRef = createRef<NaverMapView>();
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
+  const [, setCameraLoc] = useRecoilValueDebounce(cameraLocState, 800);
 
   useEffect(() => {
     mapRef.current?.setLocationTrackingMode(TrackingMode.Follow);
@@ -50,7 +42,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({
       onCameraChange={setCameraLoc}
       useTextureView>
       <MainHomeMapRegionBulk />
-      <MainHomeMapKickboard cameraLoc={cameraLoc} />
+      <MainHomeMapKickboard />
     </NaverMapView>
   );
 };

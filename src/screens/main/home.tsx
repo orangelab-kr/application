@@ -9,10 +9,6 @@ import {onRegisterFCM} from '../../tools/notification';
 import {onSchemeInitalize} from '../../tools/scheme';
 
 export const Home: React.FC = () => {
-  const [unstableCameraLoc, setCameraLoc] =
-    useState<HookResultValue<CameraLoc>>();
-  const [cameraLoc] = useDebounce(unstableCameraLoc, 800);
-
   useEffect(() => {
     onSchemeInitalize();
     onRegisterFCM();
@@ -20,11 +16,7 @@ export const Home: React.FC = () => {
 
   return (
     <View>
-      <MainHomeMap
-        // Camera Loc
-        setCameraLoc={setCameraLoc}
-        cameraLoc={cameraLoc}
-      />
+      <MainHomeMap />
       <MainHomeSheet />
     </View>
   );
