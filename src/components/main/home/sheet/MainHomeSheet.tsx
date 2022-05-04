@@ -4,6 +4,7 @@ import {SafeAreaView, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
 import {modeState} from '../../../../recoils/mode';
+import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
 import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
@@ -19,6 +20,7 @@ export interface MainHomeSheetComponentInfo {
   withStartButton: boolean;
   withRouteButton: boolean;
   withControlButton: boolean;
+  withBottomBar: boolean;
 }
 
 export interface MainHomeSheetCommonProps {
@@ -28,6 +30,8 @@ export interface MainHomeSheetCommonProps {
 export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
   confirm,
 }) => {
+  const selectedKickboard = useRecoilValue(selectedKickboardCodeState);
+  const showConfirm = selectedKickboard && confirm;
   const mode = useRecoilValue(modeState);
   const MainHomeSheetComponents: {
     [key: string]: MainHomeSheetComponentInfo;
@@ -38,6 +42,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       withStartButton: true,
       withRouteButton: false,
       withControlButton: false,
+      withBottomBar: true,
     },
     kickboard: {
       component: MainHomeSheetKickboard,
@@ -45,6 +50,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       withStartButton: true,
       withRouteButton: true,
       withControlButton: false,
+      withBottomBar: false,
     },
     riding: {
       component: MainHomeSheetRiding,
@@ -52,6 +58,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
       withStartButton: false,
       withRouteButton: false,
       withControlButton: true,
+      withBottomBar: false,
     },
   };
 
@@ -66,14 +73,23 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
         <Container>
           <Mode.component />
           <View style={{justifyContent: 'center'}}>
-            {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
-            {Mode.withStartButton && !confirm && <MainHomeSheetStartButton />}
-            {Mode.withRouteButton && !confirm && <MainHomeSheetRouteButton />}
+            {Mode.withStartButton && showConfirm && (
+              <MainHomeSheetConfirmButton />
+            )}
+
+            {Mode.withStartButton && !showConfirm && (
+              <MainHomeSheetStartButton />
+            )}
+
+            {Mode.withRouteButton && !showConfirm && (
+              <MainHomeSheetRouteButton />
+            )}
+
             {Mode.withControlButton && <MainHomeSheetControlButton />}
           </View>
         </Container>
       </SafeAreaView>
-      <BottomBar />
+      {Mode.withBottomBar && <BottomBar />}
     </BottomSheet>
   );
 };
