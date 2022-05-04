@@ -10,6 +10,8 @@ import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 
+const marker = require('../../../../assets/pin-ride.png');
+
 interface MainHomeMapKickboardProps {
   cameraLoc?: HookResultValue<CameraLoc>;
 }
@@ -17,7 +19,6 @@ interface MainHomeMapKickboardProps {
 export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
   cameraLoc,
 }) => {
-  if (!cameraLoc) return <></>;
   const currentRide = useRecoilValue(currentRideState);
   const [kickboards, setKickboards] = useKickboards(cameraLoc);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
@@ -25,7 +26,6 @@ export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
     selectedKickboardCodeState,
   );
 
-  if (!kickboards) return <></>;
   const onKickboardClick = (kickboard: RideKickboard) => () =>
     setSelectedKickboard(kickboard.kickboardCode);
 
@@ -58,7 +58,7 @@ export const MainHomeMapKickboard: React.FC<MainHomeMapKickboardProps> = ({
           <Marker
             width={35}
             height={50}
-            image={require('../../../../assets/pin-ride.png')}
+            image={marker}
             coordinate={kickboard.status.gps}
             key={kickboard.kickboardCode}
             onClick={onKickboardClick(kickboard)}

@@ -1,22 +1,20 @@
+import _ from 'lodash';
 import {useEffect, useState} from 'react';
-import {useRecoilState} from 'recoil';
 import {RideClient, RideKickboard} from '../api/ride';
-import {calculateMeter, distance} from '../tools/calculateMeter';
 import {CameraLoc} from '../models/cameraLoc';
 import {HookResult} from '../models/hookResult';
-import {currentRideState} from '../recoils/currentRide';
+import {calculateMeter, distance} from '../tools/calculateMeter';
 
 export const useKickboards = (
-  cameraLoc?: CameraLoc,
+  cameraLoc?: CameraLoc | null,
 ): HookResult<{[key: string]: RideKickboard}, never> => {
-  const currentRide = useRecoilState(currentRideState);
   const [previousCameraLoc, setPreviousCameraLoc] = useState<CameraLoc>();
   const [kickboards, setKickboards] = useState<{
     [key: string]: RideKickboard;
   }>({});
 
   useEffect(() => {
-    if (!cameraLoc || currentRide) return;
+    if (!cameraLoc) return;
     if (previousCameraLoc) {
       const level = cameraLoc.zoom - previousCameraLoc.zoom;
       const meter = distance(
@@ -44,12 +42,8 @@ export const useKickboards = (
     setPreviousCameraLoc(cameraLoc);
     RideClient.getNearKickboards(props).then(({kickboards}) =>
       setKickboards(beforeKickboards => {
-        kickboards.forEach(kickboard => {
-          if (!kickboard) return;
-          beforeKickboards[kickboard.kickboardCode] = kickboard;
-        });
-
-        return beforeKickboards;
+        const updatedKickboards = _.keyBy(kickboards, 'kickboardCode');
+        return {...beforeKickboards, ...updatedKickboards};
       }),
     );
   }, [cameraLoc]);
