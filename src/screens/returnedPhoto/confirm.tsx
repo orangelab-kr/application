@@ -12,6 +12,7 @@ import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {ImagesClient} from '../../api/images';
+import {RideClient} from '../../api/ride';
 import {Depth} from '../../components/Depth';
 import {TransparentButton} from '../../components/TransparentButton';
 import {screenHeight, screenWidth} from '../../constants/screenSize';
@@ -42,7 +43,9 @@ export const ReturnedPhotoConfirm: React.FC = () => {
 
     try {
       setLoading(true);
-      await ImagesClient.upload(resizedImage);
+      const {rideId} = params;
+      const {url} = await ImagesClient.upload(resizedImage);
+      await RideClient.setReturnedPhotoInRide(rideId, url);
       setLoading(false);
 
       navigation.navigate('Main', {screen: 'Home'});

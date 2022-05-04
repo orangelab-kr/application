@@ -175,4 +175,11 @@ export class RideClient {
       .post('/kickboards/qrcode', {url})
       .then(r => r.data.kickboardCode);
   }
+
+  static async setReturnedPhotoInRide(
+    rideId: string,
+    photo: string,
+  ): Promise<void> {
+    return this.client.post(`/histories/${rideId}/photo`, {photo});
+  }
 }
