@@ -32,5 +32,5 @@ export type AuthNavigatorRouteParams = {
 };
 
 export type MainNavigatorRouteParams = {
-  Home: {confirm?: boolean};
+  Home: undefined;
 };

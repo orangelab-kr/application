@@ -6,6 +6,7 @@ import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
+import {confirmState} from '../../../../recoils/confirm';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {distance} from '../../../../tools/calculateMeter';
@@ -21,6 +22,7 @@ export const MainHomeSheetKickboard: React.FC<
   MainHomeSheetCommonProps
 > = ({}) => {
   const [coords] = useGeolocation();
+  const setConfirm = useSetRecoilState(confirmState);
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const meter = useMemo(
@@ -44,6 +46,7 @@ export const MainHomeSheetKickboard: React.FC<
   );
 
   useEffect(() => {
+    setConfirm(false);
     if (selectedKickboard !== null) return;
     setSelectedKickboard(null);
   }, [selectedKickboard]);

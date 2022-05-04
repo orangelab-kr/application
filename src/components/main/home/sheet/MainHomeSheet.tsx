@@ -3,8 +3,8 @@ import React, {useMemo} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
+import {confirmState} from '../../../../recoils/confirm';
 import {modeState} from '../../../../recoils/mode';
-import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
 import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
@@ -23,15 +23,10 @@ export interface MainHomeSheetComponentInfo {
   withBottomBar: boolean;
 }
 
-export interface MainHomeSheetCommonProps {
-  confirm?: boolean;
-}
+export interface MainHomeSheetCommonProps {}
 
-export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
-  confirm,
-}) => {
-  const selectedKickboard = useRecoilValue(selectedKickboardCodeState);
-  const showConfirm = selectedKickboard && confirm;
+export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
+  const confirm = useRecoilValue(confirmState);
   const mode = useRecoilValue(modeState);
   const MainHomeSheetComponents: {
     [key: string]: MainHomeSheetComponentInfo;
@@ -73,18 +68,9 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = ({
         <Container>
           <Mode.component />
           <View style={{justifyContent: 'center'}}>
-            {Mode.withStartButton && showConfirm && (
-              <MainHomeSheetConfirmButton />
-            )}
-
-            {Mode.withStartButton && !showConfirm && (
-              <MainHomeSheetStartButton />
-            )}
-
-            {Mode.withRouteButton && !showConfirm && (
-              <MainHomeSheetRouteButton />
-            )}
-
+            {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
+            {Mode.withStartButton && !confirm && <MainHomeSheetStartButton />}
+            {Mode.withRouteButton && !confirm && <MainHomeSheetRouteButton />}
             {Mode.withControlButton && <MainHomeSheetControlButton />}
           </View>
         </Container>

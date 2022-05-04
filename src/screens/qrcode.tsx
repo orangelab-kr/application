@@ -15,6 +15,7 @@ import {Depth} from '../components/Depth';
 import {QrcodeCodeInput} from '../components/qrcode/QrcodeCodeInput';
 import {QrcodeFlashButton} from '../components/qrcode/QrcodeFlashButton';
 import {screenHeight} from '../constants/screenSize';
+import {confirmState} from '../recoils/confirm';
 import {selectedKickboardCodeState} from '../recoils/selectedKickboardCode';
 
 export type GetKickboardCodeEvent = (
@@ -24,14 +25,16 @@ export type GetKickboardCodeEvent = (
 export const Qrcode: React.FC = () => {
   const [flash, setFlash] = useState(false);
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
+  const setConfirm = useSetRecoilState(confirmState);
   const navigation = useNavigation();
 
   const onKickboardCode: GetKickboardCodeEvent = async (
     kickboardCode: string,
   ) => {
-    console.log(`Kickboard Code: ${kickboardCode}`);
+    setConfirm(true);
     setSelectedKickboard(kickboardCode);
-    navigation.navigate('Main', {screen: 'Home', params: {confirm: true}});
+    console.log(`Kickboard Code: ${kickboardCode}`);
+    navigation.navigate('Main', {screen: 'Home'});
   };
 
   const onReadByScanner = async (e: BarCodeReadEvent) => {
