@@ -1,11 +1,13 @@
 import {faPersonWalking, faRoute} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {Text, View} from 'react-native';
+import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {distance} from '../../../../tools/calculateMeter';
 import {
   onDistanceFormatter,
@@ -19,6 +21,7 @@ export const MainHomeSheetKickboard: React.FC<
   MainHomeSheetCommonProps
 > = ({}) => {
   const [coords] = useGeolocation();
+  const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const meter = useMemo(
     () =>
@@ -39,6 +42,11 @@ export const MainHomeSheetKickboard: React.FC<
     () => Math.round(meter / ((5 * 1000) / 3600) / 60),
     [meter],
   );
+
+  useEffect(() => {
+    if (selectedKickboard !== null) return;
+    setSelectedKickboard(null);
+  }, [selectedKickboard]);
 
   return (
     <Container>

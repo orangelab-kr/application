@@ -15,7 +15,7 @@ export const RootNavigator: React.FC = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="ReturnedPhoto"
+      initialRouteName="Splash"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Splash"

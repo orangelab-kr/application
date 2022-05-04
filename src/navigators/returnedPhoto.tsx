@@ -13,7 +13,6 @@ export const ReturnedPhotoNavigator: React.FC = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Camera"
-        initialParams={{rideId: 'asd'}}
         component={ReturnedPhotoCamera}
         options={{animation: 'fade_from_bottom'}}
       />

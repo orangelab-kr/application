@@ -7,14 +7,20 @@ export const resetSelectedKickboardState = atom({
   default: false,
 });
 
-export const selectedKickboardState = selector<RideKickboard | undefined>({
+export const selectedKickboardState = selector<
+  RideKickboard | undefined | null
+>({
   key: 'selectedKickboard',
   get: async ({get}) => {
-    get(resetSelectedKickboardState);
-    const kickboardCode = get(selectedKickboardCodeState);
-    if (!kickboardCode) return undefined;
+    try {
+      get(resetSelectedKickboardState);
+      const kickboardCode = get(selectedKickboardCodeState);
+      if (!kickboardCode) return undefined;
 
-    const {kickboard} = await RideClient.getKickboard(kickboardCode);
-    return kickboard;
+      const {kickboard} = await RideClient.getKickboard(kickboardCode);
+      return kickboard;
+    } catch (err) {
+      return null;
+    }
   },
 });
