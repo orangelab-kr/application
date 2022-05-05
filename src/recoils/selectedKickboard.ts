@@ -3,7 +3,7 @@ import {RideClient, RideKickboard} from '../api/ride';
 import {selectedKickboardCodeState} from './selectedKickboardCode';
 
 export const resetSelectedKickboardState = atom({
-  key: 'resetSelectedKickboardState',
+  key: 'resetSelectedKickboard',
   default: false,
 });
 

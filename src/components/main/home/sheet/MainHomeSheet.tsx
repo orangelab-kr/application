@@ -9,6 +9,7 @@ import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
 import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
+import {MainHomeSheetRegion} from './MainHomeSheetRegion';
 import {MainHomeSheetRiding} from './MainHomeSheetRiding';
 import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
 import {MainHomeSheetStartButton} from './MainHomeSheetStartButton';
@@ -49,10 +50,18 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     riding: {
       component: MainHomeSheetRiding,
-      snapPoints: ['16%', '80%'],
+      snapPoints: ['18%', '80%'],
       withStartButton: false,
       withRouteButton: false,
       withControlButton: true,
+      withBottomBar: false,
+    },
+    region: {
+      component: MainHomeSheetRegion,
+      snapPoints: ['15%'],
+      withStartButton: true,
+      withRouteButton: false,
+      withControlButton: false,
       withBottomBar: false,
     },
   };
