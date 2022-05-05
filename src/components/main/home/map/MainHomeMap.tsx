@@ -4,9 +4,12 @@ import NaverMapView, {
   MapType,
   TrackingMode,
 } from 'react-native-nmap';
+import {useSetRecoilState} from 'recoil';
 import {useRecoilValueDebounce} from '../../../../hooks/useRecoilValueDebounce';
 import {cameraLocState} from '../../../../recoils/cameraLoc';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
+import {selectedRegionState} from '../../../../recoils/selectedRegion';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
 import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
@@ -16,7 +19,17 @@ export interface MainHomeMap {}
 export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
   const mapRef = createRef<NaverMapView>();
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
+  const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const [, setCameraLoc] = useRecoilValueDebounce(cameraLocState, 800);
+  const setSelectedRegion = useSetRecoilState(selectedRegionState);
+  const onMapClick = () => {
+    if (selectedKickboard) {
+      setSelectedKickboard(undefined);
+      return;
+    }
+
+    setSelectedRegion(undefined);
+  };
 
   useEffect(() => {
     mapRef.current?.setLocationTrackingMode(TrackingMode.Follow);
@@ -40,6 +53,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
       mapType={MapType.Basic}
       // minZoomLevel={12}
       onCameraChange={setCameraLoc}
+      onMapClick={onMapClick}
       useTextureView>
       <MainHomeMapRegionBulk />
       <MainHomeMapKickboard />
