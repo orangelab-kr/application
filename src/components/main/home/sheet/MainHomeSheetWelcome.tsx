@@ -2,15 +2,18 @@ import React from 'react';
 import {Text} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
-import {useUser} from '../../../../hooks/useUser';
+import {loginedUserState} from '../../../../recoils/loginedUser';
+import {useRecoilValueMaybe} from '../../../../tools/recoil';
 
 export const MainHomeSheetWelcome: React.FC = () => {
-  const user = useUser({cache: true});
+  const user = useRecoilValueMaybe(loginedUserState);
+
   return (
     <Title>
       {user && (
         <>
-          <Bold>{user?.realname}</Bold>님{'\n'}{' '}
+          <Bold>{user?.realname}</Bold>
+          {'님\n '}
         </>
       )}
       라이드를 시작해볼까요?

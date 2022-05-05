@@ -1,16 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
-import _ from 'lodash';
 import React, {useEffect} from 'react';
 import {Image, Text, View} from 'react-native';
 import {checkMultiple} from 'react-native-permissions';
 import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../constants/screenSize';
-import {useUser} from '../hooks/useUser';
+import {loginedUserState} from '../recoils/loginedUser';
+import {useRecoilValueMaybe} from '../tools/recoil';
 import {requiredPermissions} from './permission';
 
 export const Splash: React.FC = () => {
   const navigation = useNavigation();
-  const user = useUser({cache: true});
+  const user = useRecoilValueMaybe(loginedUserState);
 
   useEffect(() => {
     checkMultiple(requiredPermissions).then(permissions => {
