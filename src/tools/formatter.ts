@@ -38,7 +38,7 @@ export const onCardNumberFormatter = (cardNumber: string) => {
 };
 
 export const onExpiryFormatter = (expiry: string) => {
-  expiry = expiry.replace(/\//, '');
+  expiry = expiry.replace(/\//g, '');
   if (expiry.length < 4) return expiry;
-  return `${expiry.substring(0, 2)}/${expiry.substring(2, 4)}`;
+  return `${expiry.substring(0, 4)}/${expiry.substring(4, 6)}`;
 };

@@ -1,24 +1,22 @@
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Formik, FormikProps} from 'formik';
-import React, {FC, useRef} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {KeyboardAvoidingView, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
+import {PaymentsClient, RequestPaymentsRegisterCard} from '../../api/payments';
 import {BottomButton} from '../../components/BottomButton';
 import {Depth} from '../../components/Depth';
 import {ShadowInput} from '../../components/ShadowInput';
 import {ValidateMessage} from '../../components/ValidateMessage';
 import {screenHeight} from '../../constants/screenSize';
+import {PaymentsNavigatorRouteParams} from '../../models/navigation';
 import {onCardNumberFormatter, onExpiryFormatter} from '../../tools/formatter';
 
-export interface PaymentRegisterForm {
-  cardNumber: string;
-  expiry: string;
-  birthday: string;
-  password: string;
-}
-
+export type PaymentRegisterForm = RequestPaymentsRegisterCard;
 const PaymentRegisterScheme: Yup.SchemaOf<PaymentRegisterForm> =
   Yup.object().shape({
     cardNumber: Yup.string().required('카드 번호를 입력해주세요.'),
@@ -30,12 +28,43 @@ const PaymentRegisterScheme: Yup.SchemaOf<PaymentRegisterForm> =
   });
 
 export const PaymentRegister: FC = () => {
-  const formRef = useRef<FormikProps<PaymentRegisterForm>>();
+  const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
+  const [rerender, setRerender] = useState(false);
+  const formRef = useRef<FormikProps<PaymentRegisterForm>>(null);
+  const {params} =
+    useRoute<RouteProp<PaymentsNavigatorRouteParams, 'Register'>>();
   const initialValues: PaymentRegisterForm = {
     cardNumber: '',
     expiry: '',
     birthday: '',
     password: '',
+    ...params,
+  };
+
+  useEffect(() => setRerender(!rerender), []);
+  const onRegister = async (body: PaymentRegisterForm) => {
+    try {
+      setLoading(true);
+      const {card} = await PaymentsClient.registerCard({
+        ...body,
+        cardNumber: body.cardNumber.replace(/-/g, ''),
+        expiry: body.expiry.replace(/\//, ''),
+      });
+
+      Notifier.showNotification({
+        title: `${card.cardName} 카드를 등록하였습니다.`,
+        Component: NotifierComponents.Alert,
+        componentProps: {
+          alertType: 'success',
+          titleStyle: {color: '#fff'},
+        },
+      });
+
+      navigation.goBack();
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,18 +74,18 @@ export const PaymentRegister: FC = () => {
         <ScrollView>
           <Container>
             <Title>카드 등록</Title>
-            <Description>국제표준으로 안전하게, 🔒</Description>
-            <Description>사용한 만큼만 스마트하게! ✅</Description>
+            <Description>자동 결제로 간편하게 결제하세요. ✅</Description>
             <Formik
-              ref={formRef}
+              innerRef={formRef}
               validateOnChange={false}
               validateOnBlur={false}
-              onSubmit={console.log}
+              onSubmit={onRegister}
               validationSchema={PaymentRegisterScheme}
               initialValues={initialValues}>
               {({handleChange, handleBlur, values, errors}) => (
                 <View>
                   <ShadowInput
+                    editable={!loading}
                     value={values.cardNumber}
                     onChangeText={handleChange('cardNumber')}
                     onBlur={handleBlur('cardNumber')}
@@ -68,17 +97,19 @@ export const PaymentRegister: FC = () => {
                   <ValidateMessage message={errors.cardNumber} />
 
                   <ShadowInput
-                    maxLength={5}
+                    editable={!loading}
+                    maxLength={7}
                     value={values.expiry}
                     onChangeText={handleChange('expiry')}
                     onBlur={handleBlur('expiry')}
                     onFormat={onExpiryFormatter}
-                    placeholder="만료일(MM/YY)"
+                    placeholder="만료일(YYYY/MM)"
                     keyboardType="phone-pad"
                   />
                   <ValidateMessage message={errors.expiry} />
 
                   <ShadowInput
+                    editable={!loading}
                     maxLength={10}
                     value={values.birthday}
                     onChangeText={handleChange('birthday')}
@@ -89,6 +120,7 @@ export const PaymentRegister: FC = () => {
                   <ValidateMessage message={errors.birthday} />
 
                   <ShadowInput
+                    editable={!loading}
                     maxLength={2}
                     value={values.password}
                     onChangeText={handleChange('password')}
@@ -104,7 +136,7 @@ export const PaymentRegister: FC = () => {
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
-      <BottomButton onPress={formRef.current?.submitForm}>등록</BottomButton>
+      <BottomButton onPress={formRef.current?.submitForm}>확인</BottomButton>
     </SafeAreaView>
   );
 };
