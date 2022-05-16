@@ -8,6 +8,7 @@ import {Start} from '../screens/start';
 import {Weblink} from '../screens/weblink';
 import {AuthNavigator} from './auth';
 import {MainNavigator} from './main';
+import {PaymentNavigator} from './payment';
 import {ReturnedPhotoNavigator} from './returnedPhoto';
 
 export const RootNavigator: React.FC = () => {
@@ -48,6 +49,7 @@ export const RootNavigator: React.FC = () => {
         component={Qrcode}
         options={{animation: 'fade_from_bottom'}}
       />
+      <Stack.Screen name="Payment" component={PaymentNavigator} />
       <Stack.Screen name="Weblink" component={Weblink} />
     </Stack.Navigator>
   );

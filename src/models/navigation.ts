@@ -13,6 +13,7 @@ export type RootNavigatorRouteParams = {
   Main: undefined | SubNavigator<MainNavigatorRouteParams>;
   Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
   ReturnedPhoto: SubNavigator<ReturnedPhotoNavigatorRouteParams>;
+  Payment: undefined | PaymentsNavigatorRouteParams;
   Weblink: {page: string};
   Qrcode: undefined;
 };
@@ -21,6 +22,15 @@ export type ReturnedPhotoNavigatorRouteParams = {
   Camera: {rideId: string};
   Confirm: ReturnedPhotoNavigatorRouteParams['Camera'] & {
     photo: TakePictureResponse;
+  };
+};
+
+export type PaymentsNavigatorRouteParams = {
+  Register: {
+    cardNumber?: string;
+    expiry?: string;
+    password?: string;
+    birthday?: string;
   };
 };
 
