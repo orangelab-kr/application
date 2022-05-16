@@ -41,7 +41,9 @@ export const ShadowInput: React.FC<ShadowInputProps> = ({
     <View
       style={{
         marginTop: 25,
-        borderRadius: 2,
+        borderRadius: 5,
+        marginLeft: 1,
+        marginRight: 1,
         backgroundColor: '#fff',
         shadowColor: '#999',
         shadowOpacity: 0.3,
@@ -59,7 +61,7 @@ export const ShadowInput: React.FC<ShadowInputProps> = ({
         value={value}
         onChangeText={onChangeTextByInput}
         placeholderTextColor="#999"
-        multiline={true}
+        multiline={!onKeyPress}
         onKeyPress={onKeyPress}
         {...props}
       />
