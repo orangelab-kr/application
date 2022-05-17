@@ -2,6 +2,7 @@ import {CommonResponse} from '../models/common';
 import {createClient} from './client';
 
 export type ResponsePaymentsCard = CommonResponse<{card: PaymentsCard}>;
+export type ResponsePaymentsCards = CommonResponse<{cards: PaymentsCard[]}>;
 
 export interface RequestPaymentsRegisterCard {
   cardNumber: string;
@@ -27,5 +28,13 @@ export class PaymentsClient {
     body: RequestPaymentsRegisterCard,
   ): Promise<ResponsePaymentsCard> {
     return this.client.post('/cards', body).then(r => r.data);
+  }
+
+  public static async getCards(): Promise<ResponsePaymentsCards> {
+    return this.client.get('/cards').then(r => r.data);
+  }
+
+  public static async setCardOrders(cardIds: string[]): Promise<void> {
+    return this.client.post('/cards/orderBy', cardIds).then(r => r.data);
   }
 }
