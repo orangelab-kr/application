@@ -1657,6 +1657,13 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
+"@types/react-native-draggable-flatlist@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-draggable-flatlist/-/react-native-draggable-flatlist-2.0.0.tgz#ca30dfdf4e0f7a85a50b606bbf7188f60109ed42"
+  integrity sha512-kDslVYavmmueKoQ6UmsjL/QJlN6MlLjiCjHxoNAv0ke1q7ClnP7hBic7IiJ3CAdryyaaT9YKRZAHguKzg3xphA==
+  dependencies:
+    react-native-draggable-flatlist "*"
+
 "@types/react-native@^0.65":
   version "0.65.21"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.65.21.tgz#f731b172765f17e4866473de41e1d3a4890ae536"
@@ -6634,6 +6641,11 @@ react-native-date-picker@^4.2.0:
   resolved "https://registry.npmjs.org/react-native-date-picker/-/react-native-date-picker-4.2.0.tgz"
   integrity sha512-IfbK7Eh5By8rdjiu/pvqLF8NkFX9pVsY7Vn6+MkLSiFcLIGFd7NaENRJKl75/xNZuY5CkIiRVksS9abEl/II8g==
 
+react-native-draggable-flatlist@*, react-native-draggable-flatlist@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-draggable-flatlist/-/react-native-draggable-flatlist-3.1.1.tgz#b27009035153ed8d897217392447fb3c98316aea"
+  integrity sha512-hvzfMgG+HPIYCpoYy+R+FaoylRc4HbcP+gvghG0ISGwsU8HETcM8WmUEAaDTr7EeKmnG1BbV43MMExMjIQXRmA==
+
 react-native-fast-image@^8.5.11:
   version "8.5.11"
   resolved "https://registry.npmjs.org/react-native-fast-image/-/react-native-fast-image-8.5.11.tgz"
@@ -6750,6 +6762,11 @@ react-native-svg@^12.3.0:
   dependencies:
     css-select "^4.2.1"
     css-tree "^1.0.0-alpha.39"
+
+react-native-swipeable-item@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-swipeable-item/-/react-native-swipeable-item-2.0.2.tgz#5cb31abb544f60ac654ea874dc1f06e3b8f5853b"
+  integrity sha512-xuDkCQm3BZQV+iaMnlmQHG7YeZnxY85Zenoj4nuf90TnuuBIhlPYlzi8J81qoQbt5m4IcmoB+VTC9zJRYIm9vg==
 
 react-native-webview@^11.18.1:
   version "11.18.1"

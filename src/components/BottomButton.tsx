@@ -17,6 +17,7 @@ const ButtonText = styled(Text)`
   color: #fff;
   font-weight: 600;
   font-size: ${screenHeight / 40}px;
+  margin-bottom: ${screenHeight * 0.015}px;
 `;
 
 const Button = styled(TouchableOpacity)`

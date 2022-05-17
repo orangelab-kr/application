@@ -20,6 +20,7 @@ export const ShadowInput: React.FC<ShadowInputProps> = ({
   buttonName,
   onPress,
   onChangeText,
+  secureTextEntry,
   ...props
 }) => {
   const [value, setValue] = useState(props.defaultValue);
@@ -61,8 +62,9 @@ export const ShadowInput: React.FC<ShadowInputProps> = ({
         value={value}
         onChangeText={onChangeTextByInput}
         placeholderTextColor="#999"
-        multiline={!onKeyPress}
+        multiline={!secureTextEntry}
         onKeyPress={onKeyPress}
+        secureTextEntry={secureTextEntry}
         {...props}
       />
       {!hideButton && buttonName && (

@@ -1,0 +1,69 @@
+import {faAngleRight, faEllipsisV} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import dayjs from 'dayjs';
+import React, {FC} from 'react';
+import {Text, View} from 'react-native';
+import {
+  RenderItemParams,
+  ScaleDecorator,
+} from 'react-native-draggable-flatlist';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import styled from 'styled-components/native';
+import {PaymentsCard} from '../../api/payments';
+
+export const PaymentItem: FC<RenderItemParams<PaymentsCard>> = ({
+  drag,
+  item,
+}) => {
+  console.log(item.cardName);
+  return (
+    <ScaleDecorator>
+      <Container>
+        <TouchableCard onPressIn={drag}>
+          <FontAwesomeIcon icon={faEllipsisV} color="#999" size={23} />
+          <CardLabel>
+            <CardName>{item.cardName}</CardName>
+            <CardDate>
+              {dayjs(item.createdAt).format('YYYY년 MM월 DD일 등록')}
+            </CardDate>
+          </CardLabel>
+        </TouchableCard>
+        <TouchableRight>
+          <FontAwesomeIcon icon={faAngleRight} color="#999" size={23} />
+        </TouchableRight>
+      </Container>
+    </ScaleDecorator>
+  );
+};
+
+const Container = styled(View)`
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: #eee;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TouchableCard = styled(TouchableOpacity)`
+  flex-direction: row;
+  align-items: center;
+  padding: 18px 0 18px 18px;
+`;
+
+const CardLabel = styled(View)`
+  margin-left: 15px;
+`;
+
+const CardName = styled(Text)`
+  font-weight: 600;
+  font-size: 25px;
+`;
+
+const CardDate = styled(Text)`
+  font-size: 15px;
+`;
+
+const TouchableRight = styled(TouchableOpacity)`
+  padding: 18px;
+`;
