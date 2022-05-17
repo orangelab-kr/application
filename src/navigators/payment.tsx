@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {PaymentsNavigatorRouteParams} from '../models/navigation';
+import {PaymentList} from '../screens/payment/list';
 import {PaymentRegister} from '../screens/payment/register';
 
 export const PaymentNavigator: React.FC = () => {
@@ -8,9 +9,14 @@ export const PaymentNavigator: React.FC = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="Register"
+      initialRouteName="List"
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Register" component={PaymentRegister} />
+      <Stack.Screen name="List" component={PaymentList} />
+      <Stack.Screen
+        name="Register"
+        component={PaymentRegister}
+        options={{animation: 'fade'}}
+      />
     </Stack.Navigator>
   );
 };

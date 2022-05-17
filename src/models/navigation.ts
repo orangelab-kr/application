@@ -13,7 +13,7 @@ export type RootNavigatorRouteParams = {
   Main: undefined | SubNavigator<MainNavigatorRouteParams>;
   Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
   ReturnedPhoto: SubNavigator<ReturnedPhotoNavigatorRouteParams>;
-  Payment: undefined | PaymentsNavigatorRouteParams;
+  Payment: undefined | SubNavigator<PaymentsNavigatorRouteParams>;
   Weblink: {page: string};
   Qrcode: undefined;
 };
@@ -26,6 +26,7 @@ export type ReturnedPhotoNavigatorRouteParams = {
 };
 
 export type PaymentsNavigatorRouteParams = {
+  List: undefined;
   Register: {
     cardNumber?: string;
     expiry?: string;
