@@ -1,12 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {Depth} from '../components/Depth';
 import {RootNavigatorRouteParams} from '../models/navigation';
 
-export const Weblink: React.FC = () => {
+interface WeblinkProps {
+  isPopup: boolean;
+}
+
+export const Weblink: React.FC<WeblinkProps> = ({isPopup}) => {
   const [accessToken, setAccessToken] = useState<string | null>();
   const {params} = useRoute<RouteProp<RootNavigatorRouteParams, 'Weblink'>>();
   useEffect(() => {
@@ -21,18 +25,28 @@ export const Weblink: React.FC = () => {
       }
     })();`;
 
+  const style = isPopup
+    ? {borderRadius: 15}
+    : {
+        height: '100%',
+        width: '100%',
+        opacity: 0.99,
+        minHeight: 1,
+      };
+
+  const page = params?.page || 'bottombar';
   if (!accessToken) return <></>;
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Depth />
+    <View style={{flex: 1}}>
+      {!isPopup && <Depth />}
       <WebView
-        style={{height: '100%', width: '100%', opacity: 0.99, minHeight: 1}}
-        source={{uri: `https://weblink.hikick.kr/${params.page}`}}
+        style={style}
+        source={{uri: `https://weblink.hikick.kr/${page}`}}
         injectedJavaScriptBeforeContentLoaded={injectAccessToken}
         javascriptEnabled
         startInLoadingState
         scalesPageToFit
       />
-    </SafeAreaView>
+    </View>
   );
 };
