@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import RNShake from 'react-native-shake';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {currentRideState} from '../../../../recoils/currentRide';
 import {menuPopupState} from '../../../../recoils/MenuPopup';
@@ -13,6 +14,15 @@ export const MainHomeMenu: React.FC = () => {
     if (mode === 'welcome') return;
     setMenuPopup(false);
   }, [mode]);
+
+  useEffect(() => {
+    const subscription = RNShake.addListener(() => {
+      if (mode === 'welcome') return;
+      setMenuPopup(true);
+    });
+
+    return () => subscription.remove();
+  });
 
   return (
     <>

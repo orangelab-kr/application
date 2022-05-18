@@ -37,7 +37,7 @@ export const Weblink: React.FC<WeblinkProps> = ({isPopup}) => {
   const page = params?.page || 'bottombar';
   if (!accessToken) return <></>;
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       {!isPopup && <Depth />}
       <WebView
         style={style}
@@ -47,6 +47,6 @@ export const Weblink: React.FC<WeblinkProps> = ({isPopup}) => {
         startInLoadingState
         scalesPageToFit
       />
-    </View>
+    </SafeAreaView>
   );
 };
