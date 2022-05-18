@@ -15,6 +15,7 @@ export type RootNavigatorRouteParams = {
   ReturnedPhoto: SubNavigator<ReturnedPhotoNavigatorRouteParams>;
   Payment: undefined | SubNavigator<PaymentsNavigatorRouteParams>;
   Weblink: {page: string};
+  Notice: undefined;
   Qrcode: undefined;
 };
 

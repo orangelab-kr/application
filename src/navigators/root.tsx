@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {RootNavigatorRouteParams} from '../models/navigation';
+import {Notice} from '../screens/notice';
 import {Permission} from '../screens/permission';
 import {Qrcode} from '../screens/qrcode';
 import {Splash} from '../screens/splash';
@@ -51,6 +52,7 @@ export const RootNavigator: React.FC = () => {
       />
       <Stack.Screen name="Payment" component={PaymentNavigator} />
       <Stack.Screen name="Weblink" component={Weblink} />
+      <Stack.Screen name="Notice" component={Notice} />
     </Stack.Navigator>
   );
 };

@@ -9,6 +9,7 @@ export const routes: {
   home: () => navigationRef.current?.navigate('Main', {screen: 'Home'}),
   weblink: ([], {page}) => navigationRef.current?.navigate('Weblink', {page}),
   payments: () => navigationRef.current?.navigate('Payment'),
+  notices: () => navigationRef.current?.navigate('Notice'),
 };
 
 export const onSchemeInitalize = async () => {
