@@ -8,30 +8,54 @@ import {
   ScaleDecorator,
 } from 'react-native-draggable-flatlist';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import SwipeableItem from 'react-native-swipeable-item';
 import styled from 'styled-components/native';
 import {PaymentsCard} from '../../api/payments';
+import {UnderlayRight} from '../UnderlayRight';
 
-export const PaymentItem: FC<RenderItemParams<PaymentsCard>> = ({
-  drag,
-  item,
-}) => {
-  console.log(item.cardName);
+export interface PaymentItemProps extends RenderItemParams<PaymentsCard> {
+  itemRefs: React.MutableRefObject<Map<any, any>>;
+  onDelete: () => void | Promise<void>;
+}
+
+export const PaymentItem: FC<PaymentItemProps> = props => {
+  const {drag, item, itemRefs, onDelete} = props;
+
   return (
     <ScaleDecorator>
-      <Container>
-        <TouchableCard onPressIn={drag}>
-          <FontAwesomeIcon icon={faEllipsisV} color="#999" size={23} />
-          <CardLabel>
-            <CardName>{item.cardName}</CardName>
-            <CardDate>
-              {dayjs(item.createdAt).format('YYYY년 MM월 DD일 등록')}
-            </CardDate>
-          </CardLabel>
-        </TouchableCard>
-        <TouchableRight>
-          <FontAwesomeIcon icon={faAngleRight} color="#999" size={23} />
-        </TouchableRight>
-      </Container>
+      <SwipeableItem
+        key={item.cardId}
+        item={item}
+        overSwipe={20}
+        snapPointsRight={[75]}
+        renderUnderlayRight={() => (
+          <UnderlayRight {...props} onPress={onDelete} />
+        )}
+        ref={ref => {
+          if (!ref || itemRefs.current.get(item.cardId)) return;
+          itemRefs.current.set(item.cardId, ref);
+        }}
+        onChange={({open}) => {
+          if (!open) return;
+          [...itemRefs.current.entries()].forEach(([key, ref]) => {
+            if (key !== item.cardId && ref) ref.close();
+          });
+        }}>
+        <Container>
+          <TouchableCard onPressIn={drag}>
+            <FontAwesomeIcon icon={faEllipsisV} color="#999" size={23} />
+            <CardLabel>
+              <CardName>{item.cardName}</CardName>
+              <CardDate>
+                {dayjs(item.createdAt).format('YYYY년 MM월 DD일 등록')}
+              </CardDate>
+            </CardLabel>
+          </TouchableCard>
+          <TouchableRight>
+            <FontAwesomeIcon icon={faAngleRight} color="#999" size={23} />
+          </TouchableRight>
+        </Container>
+      </SwipeableItem>
     </ScaleDecorator>
   );
 };

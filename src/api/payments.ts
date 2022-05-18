@@ -37,4 +37,8 @@ export class PaymentsClient {
   public static async setCardOrders(cardIds: string[]): Promise<void> {
     return this.client.post('/cards/orderBy', cardIds).then(r => r.data);
   }
+
+  public static async deleteCard(cardId: string): Promise<void> {
+    return this.client.delete(`/cards/${cardId}`).then(r => r.data);
+  }
 }
