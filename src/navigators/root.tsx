@@ -8,6 +8,7 @@ import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
 import {Weblink} from '../screens/weblink';
 import {AuthNavigator} from './auth';
+import {CouponNavigator} from './coupon';
 import {MainNavigator} from './main';
 import {PaymentNavigator} from './payment';
 import {ReturnedPhotoNavigator} from './returnedPhoto';
@@ -51,6 +52,7 @@ export const RootNavigator: React.FC = () => {
         options={{animation: 'fade_from_bottom'}}
       />
       <Stack.Screen name="Payment" component={PaymentNavigator} />
+      <Stack.Screen name="Coupon" component={CouponNavigator} />
       <Stack.Screen name="Weblink" component={Weblink} />
       <Stack.Screen name="Notice" component={Notice} />
     </Stack.Navigator>
