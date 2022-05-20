@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {FC, useEffect, useRef, useState} from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import styled from 'styled-components/native';
@@ -60,14 +60,22 @@ export const PaymentFlatlist: FC = () => {
       )}
     />
   ) : (
-    <NoCard>아직 카드가 없습니다.{'\n'}결제 수단을 등록해볼까요?</NoCard>
+    <NoCardContainer>
+      <NoCard>🧐 아직 카드가 없습니다.{'\n'}결제 수단을 등록해볼까요?</NoCard>
+    </NoCardContainer>
   );
 };
 
 const NoCard = styled(Text)`
+  font-size: ${screenWidth / 23}px;
   width: 100%;
   text-align: center;
-  font-weight: 300;
+  font-weight: 600;
+  padding: 10px;
+`;
+
+const NoCardContainer = styled(View)`
+  border-radius: 5px;
+  background-color: #eee;
   margin-top: ${screenWidth * 0.05}px;
-  font-size: ${screenWidth / 15}px;
 `;

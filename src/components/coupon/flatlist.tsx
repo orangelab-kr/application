@@ -24,7 +24,7 @@ export const CouponFlatlist: FC = () => {
   const onDelete = (coupon: PaymentsCoupon) => async () => {
     const {couponId, couponGroup} = coupon;
     Notifier.showNotification({
-      title: `${couponGroup.name} 카드를 삭제하였습니다.`,
+      title: `${couponGroup.name} 쿠폰을 삭제하였습니다.`,
       Component: NotifierComponents.Alert,
       componentProps: {
         alertType: 'error',
@@ -32,7 +32,7 @@ export const CouponFlatlist: FC = () => {
       },
     });
 
-    await PaymentsClient.deleteCard(couponId).then(loadCoupons);
+    await PaymentsClient.deleteCoupon(couponId).then(loadCoupons);
   };
 
   return coupons.length > 0 ? (

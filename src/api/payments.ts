@@ -85,6 +85,10 @@ export class PaymentsClient {
     return this.client.delete(`/cards/${cardId}`).then(r => r.data);
   }
 
+  public static async deleteCoupon(couponId: string): Promise<void> {
+    return this.client.delete(`/coupons/${couponId}`).then(r => r.data);
+  }
+
   public static async getCoupons(
     params: RequestPaymentsGetCoupons,
   ): Promise<ResponsePaymentsCoupons> {

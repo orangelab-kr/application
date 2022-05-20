@@ -94,7 +94,7 @@ const CouponDescription = styled(Text)`
 `;
 
 const CouponLabelDivider = styled(View)`
-  border-width: 0.3px;
+  border-width: 0.5px;
   border-color: #000;
   margin: 3px 0;
 `;
