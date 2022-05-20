@@ -22,7 +22,6 @@ export const MainHomeSheetKickboard: React.FC<
   MainHomeSheetCommonProps
 > = ({}) => {
   const [coords] = useGeolocation();
-  const setConfirm = useSetRecoilState(confirmState);
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const meter = useMemo(
@@ -46,7 +45,6 @@ export const MainHomeSheetKickboard: React.FC<
   );
 
   useEffect(() => {
-    setConfirm(false);
     if (selectedKickboard !== null) return;
     setSelectedKickboard(null);
   }, [selectedKickboard]);

@@ -7,6 +7,7 @@ import NaverMapView, {
 import {useSetRecoilState} from 'recoil';
 import {useRecoilValueDebounce} from '../../../../hooks/useRecoilValueDebounce';
 import {cameraLocState} from '../../../../recoils/cameraLoc';
+import {confirmState} from '../../../../recoils/confirm';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {selectedRegionState} from '../../../../recoils/selectedRegion';
@@ -20,9 +21,11 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
   const mapRef = createRef<NaverMapView>();
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
+  const setConfirm = useSetRecoilState(confirmState);
   const [, setCameraLoc] = useRecoilValueDebounce(cameraLocState, 800);
   const setSelectedRegion = useSetRecoilState(selectedRegionState);
   const onMapClick = () => {
+    setConfirm(false);
     if (selectedKickboard) {
       setSelectedKickboard(undefined);
       return;

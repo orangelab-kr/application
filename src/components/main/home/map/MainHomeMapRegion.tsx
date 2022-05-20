@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {Coord, Polygon} from 'react-native-nmap';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 import {RideRegion, RideRegionGeofence} from '../../../../api/ride';
+import {confirmState} from '../../../../recoils/confirm';
 import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {selectedRegionState} from '../../../../recoils/selectedRegion';
 
@@ -13,6 +14,7 @@ export const MainHomeMapRegion: React.FC<MainHomeMapRegionProps> = ({
   region,
 }) => {
   const {geofences} = region;
+  const setConfirm = useSetRecoilState(confirmState);
   const [selectedKickboardCode, setSelectedKickboard] = useRecoilState(
     selectedKickboardCodeState,
   );
@@ -33,6 +35,7 @@ export const MainHomeMapRegion: React.FC<MainHomeMapRegionProps> = ({
 
   const onClick = (geofence: RideRegionGeofence) => () => {
     if (selectedKickboardCode) {
+      setConfirm(false);
       setSelectedKickboard(undefined);
       return;
     }
