@@ -1,11 +1,11 @@
 import {faBolt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {RideClient} from '../../../../api/ride';
-import {screenHeight} from '../../../../constants/screenSize';
+import {screenHeight, screenWidth} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {currentRideState} from '../../../../recoils/currentRide';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
@@ -30,27 +30,39 @@ export const MainHomeSheetConfirmButton: React.FC<
   };
 
   return (
-    <Button onPress={onClick}>
-      <ButtonText>라이드{'\n'}시작하기</ButtonText>
-      <FontAwesomeIcon icon={faBolt} color="#fff" size={screenHeight / 54} />
-    </Button>
+    <CenterContainer>
+      <Button onPress={onClick}>
+        <ButtonText>
+          라이드 시작하기
+          <FontAwesomeIcon
+            icon={faBolt}
+            color="#fff"
+            style={{marginRight: 5}}
+            size={screenHeight / 44}
+          />
+        </ButtonText>
+      </Button>
+    </CenterContainer>
   );
 };
 
-const Button = styled(TouchableOpacity)`
-  background-color: #000;
-  border-radius: 25px;
-  padding: 15px;
-  height: 80px;
-  width: 80px;
+const CenterContainer = styled(View)`
   align-items: center;
   justify-content: center;
+`;
+
+const Button = styled(TouchableOpacity)`
+  width: ${screenWidth * 0.9}px;
+  height: ${screenHeight * 0.065}px;
+  background-color: #000;
+  border-radius: 20px;
+  padding: 15px;
   margin: 2px 0;
 `;
 
 const ButtonText = styled(Text)`
   color: #fff;
+  width: 100%;
   text-align: center;
-  font-size: ${screenHeight / 57}px;
-  margin-bottom: 6px;
+  font-size: ${screenHeight / 44}px;
 `;

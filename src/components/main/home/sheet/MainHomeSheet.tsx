@@ -42,7 +42,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     kickboard: {
       component: MainHomeSheetKickboard,
-      snapPoints: ['16%', '80%'],
+      snapPoints: [confirm ? '25%' : '16%'],
       withStartButton: true,
       withRouteButton: true,
       withControlButton: false,
@@ -77,12 +77,12 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
         <Container>
           <Mode.component />
           <View style={{justifyContent: 'center'}}>
-            {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
             {Mode.withStartButton && !confirm && <MainHomeSheetStartButton />}
             {Mode.withRouteButton && !confirm && <MainHomeSheetRouteButton />}
             {Mode.withControlButton && <MainHomeSheetControlButton />}
           </View>
         </Container>
+        {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
       </SafeAreaView>
       {Mode.withBottomBar && <BottomBar />}
     </BottomSheet>
