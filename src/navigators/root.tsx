@@ -9,6 +9,7 @@ import {Start} from '../screens/start';
 import {Weblink} from '../screens/weblink';
 import {AuthNavigator} from './auth';
 import {CouponNavigator} from './coupon';
+import {DebugNavigator} from './debug';
 import {MainNavigator} from './main';
 import {PaymentNavigator} from './payment';
 import {ReturnedPhotoNavigator} from './returnedPhoto';
@@ -53,6 +54,7 @@ export const RootNavigator: React.FC = () => {
       />
       <Stack.Screen name="Payment" component={PaymentNavigator} />
       <Stack.Screen name="Coupon" component={CouponNavigator} />
+      <Stack.Screen name="Debug" component={DebugNavigator} />
       <Stack.Screen name="Weblink" component={Weblink} />
       <Stack.Screen name="Notice" component={Notice} />
     </Stack.Navigator>

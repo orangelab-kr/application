@@ -14,6 +14,7 @@ export const routes: {
   coupons: () => navigationRef.current?.navigate('Coupon', {screen: 'List'}),
   register_coupon: ([], params) =>
     navigationRef.current?.navigate('Coupon', {screen: 'Register', params}),
+  debug: () => navigationRef.current?.navigate('Debug'),
 };
 
 export const onSchemeInitalize = async () => {

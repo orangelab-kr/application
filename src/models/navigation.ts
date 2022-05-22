@@ -15,6 +15,7 @@ export type RootNavigatorRouteParams = {
   ReturnedPhoto: SubNavigator<ReturnedPhotoNavigatorRouteParams>;
   Payment: undefined | SubNavigator<PaymentsNavigatorRouteParams>;
   Coupon: undefined | SubNavigator<CouponsNavigatorRouteParams>;
+  Debug: undefined | SubNavigator<DebugNavigatorRouteParams>;
   Weblink: {page: string};
   Notice: undefined;
   Qrcode: undefined;
@@ -35,6 +36,10 @@ export type PaymentsNavigatorRouteParams = {
     password?: string;
     birthday?: string;
   };
+};
+
+export type DebugNavigatorRouteParams = {
+  Bluetooth: undefined;
 };
 
 export type CouponsNavigatorRouteParams = {
