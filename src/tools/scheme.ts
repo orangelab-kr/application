@@ -1,40 +1,98 @@
-import {parse} from 'ale-url-parser';
+import {parse, UrlObject} from 'ale-url-parser';
+import _ from 'lodash';
 import {Linking} from 'react-native';
 import {navigationRef} from '../navigators/navigation';
 
-export let initalized = false;
+let initalized = false;
 export const routes: {
-  [key: string]: (params: string[], query?: any) => void;
-} = {
-  home: () => navigationRef.current?.navigate('Main', {screen: 'Home'}),
-  weblink: ([], {page}) => navigationRef.current?.navigate('Weblink', {page}),
-  payments: () => navigationRef.current?.navigate('Payment'),
-  add_payments: () => navigationRef.current?.navigate('Payment'),
-  notices: () => navigationRef.current?.navigate('Notice'),
-  coupons: () => navigationRef.current?.navigate('Coupon', {screen: 'List'}),
-  register_coupon: ([], params) =>
-    navigationRef.current?.navigate('Coupon', {screen: 'Register', params}),
-  debug: () => navigationRef.current?.navigate('Debug'),
-};
+  path: string;
+  children?: boolean;
+  action: (url: UrlObject) => any;
+}[] = [];
 
 export const onSchemeInitalize = async () => {
-  if (initalized) return;
+  if (initalized || !navigationRef.current) return;
   initalized = true;
+
+  routes.push({
+    path: 'home',
+    action: () => navigationRef.current?.navigate('Main', {screen: 'Home'}),
+  });
+
+  routes.push({
+    path: 'weblink',
+    children: true,
+    action: url => {
+      const {path, query} = url;
+      if (!path) return;
+
+      const rawQuery = new URLSearchParams(query).toString();
+      let page = `${path.join('/')}`;
+      if (rawQuery) page += `?${rawQuery}`;
+      navigationRef.current?.navigate('Weblink', {page});
+    },
+  });
+
+  routes.push({
+    path: 'payments',
+    action: () => navigationRef.current?.navigate('Payment', {screen: 'List'}),
+  });
+
+  routes.push({
+    path: 'payments/register',
+    action: ({query: params}) =>
+      navigationRef.current?.navigate('Payment', {screen: 'Register', params}),
+  });
+
+  routes.push({
+    path: 'notices',
+    children: true,
+    action: url => {
+      const page = url.path?.join('/');
+      navigationRef.current?.navigate('Notice', {page});
+    },
+  });
+
+  routes.push({
+    path: 'coupons',
+    action: () => navigationRef.current?.navigate('Coupon', {screen: 'List'}),
+  });
+
+  routes.push({
+    path: 'coupons/register',
+    action: ({query: params}) =>
+      navigationRef.current?.navigate('Coupon', {screen: 'Register', params}),
+  });
+
+  routes.push({
+    path: 'debug',
+    action: ({path}) => {
+      const screen: any = _.camelCase(path?.join('/'));
+      navigationRef.current?.navigate('Debug', {screen});
+    },
+  });
 
   await Linking.getInitialURL().then(onSchemeAction);
   Linking.addEventListener('url', ({url}) => onSchemeAction(url));
 };
 
 export const onSchemeAction = async (url: string | null) => {
-  console.log(`Intent url: ${url}`);
+  console.log(`Opening url: ${url}`);
   if (!url || !url.startsWith('hikick')) return;
-  const {host, path = [], query = {}} = parse(url);
-  const route = Object.keys(routes).find(key => key === host);
-  if (!route) return;
+  const parsedUrl = parse(url);
+  const {host, path} = parsedUrl;
 
-  try {
-    routes[route](path, query);
-  } catch (err) {
-    console.log(err);
+  let rawPath = host;
+  if (path && path.length > 0) rawPath += `/${path.join('/')}`;
+  const route = routes.reverse().find(route => {
+    const matchPath = route.children ? host : rawPath;
+    return route.path === matchPath;
+  });
+
+  if (!route) {
+    console.log(`Cannot find route for ${rawPath}`);
+    return;
   }
+
+  route.action(parsedUrl);
 };
