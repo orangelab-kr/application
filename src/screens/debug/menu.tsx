@@ -9,6 +9,7 @@ import {screenHeight} from '../../constants/screenSize';
 export const DebugMenu: React.FC = () => {
   const navigation = useNavigation();
   const menus: {name: string; screen: any}[] = [
+    {name: '스킴', screen: 'Scheme'},
     {name: '블루투스', screen: 'Bluetooth'},
   ];
 
