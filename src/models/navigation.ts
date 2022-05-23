@@ -16,8 +16,8 @@ export type RootNavigatorRouteParams = {
   Payment: undefined | SubNavigator<PaymentsNavigatorRouteParams>;
   Coupon: undefined | SubNavigator<CouponsNavigatorRouteParams>;
   Debug: undefined | SubNavigator<DebugNavigatorRouteParams>;
+  Notice: undefined | {page?: string};
   Weblink: {page: string};
-  Notice: undefined;
   Qrcode: undefined;
 };
 
