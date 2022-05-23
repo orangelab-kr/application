@@ -39,6 +39,7 @@ export type PaymentsNavigatorRouteParams = {
 };
 
 export type DebugNavigatorRouteParams = {
+  Menu: undefined;
   Bluetooth: undefined;
 };
 
