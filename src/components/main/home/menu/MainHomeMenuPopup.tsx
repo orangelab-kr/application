@@ -32,7 +32,7 @@ export const MainHomeMenuPopup: React.FC = () => {
 
 const Container = styled(View)`
   flex: 1;
-  margin: ${screenHeight * 0.15}px ${screenWidth * 0.1}px ${
+  margin: ${screenHeight * 0.11}px ${screenWidth * 0.08}px ${
   screenHeight * 0.2
 }px;
   shadow-color: #999;
