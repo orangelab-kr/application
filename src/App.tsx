@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {LogBox, StatusBar, StyleSheet} from 'react-native';
 import {NotifierWrapper} from 'react-native-notifier';
 import {ShowNotificationParams} from 'react-native-notifier/lib/typescript/types';
@@ -7,9 +7,14 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {RecoilRoot} from 'recoil';
 import {navigationRef} from './navigators/navigation';
 import {RootNavigator} from './navigators/root';
+import {onRemoteConfigInitalize} from './tools/remoteConfig';
 
 const styles = StyleSheet.create({container: {flex: 1}});
 export const App: React.FC = () => {
+  useEffect(() => {
+    onRemoteConfigInitalize();
+  }, []);
+
   const notifierProps: ShowNotificationParams = {
     duration: 5000,
     showAnimationDuration: 800,
