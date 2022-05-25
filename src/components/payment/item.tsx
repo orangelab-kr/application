@@ -51,9 +51,9 @@ export const PaymentItem: FC<PaymentItemProps> = props => {
               </CardDate>
             </CardLabel>
           </TouchableCard>
-          <TouchableRight>
+          {/* <TouchableRight>
             <FontAwesomeIcon icon={faAngleRight} color="#999" size={23} />
-          </TouchableRight>
+          </TouchableRight> */}
         </Container>
       </SwipeableItem>
     </ScaleDecorator>
