@@ -37,7 +37,7 @@ export const MainHomeSheetConfirmButton: React.FC<
           <FontAwesomeIcon
             icon={faBolt}
             color="#fff"
-            style={{marginRight: 5}}
+            style={{marginLeft: 5}}
             size={screenHeight / 44}
           />
         </ButtonText>
@@ -52,7 +52,7 @@ const CenterContainer = styled(View)`
 `;
 
 const Button = styled(TouchableOpacity)`
-  width: ${screenWidth * 0.9}px;
+  width: 100%;
   height: ${screenHeight * 0.065}px;
   background-color: #000;
   border-radius: 20px;

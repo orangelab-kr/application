@@ -3,10 +3,9 @@ import React, {useMemo} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
-import {confirmState} from '../../../../recoils/confirm';
 import {modeState} from '../../../../recoils/mode';
 import {BottomBar} from '../../../BottomBar';
-import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
+import {MainHomeSheetConfirm} from './MainHomeSheetConfirm';
 import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
 import {MainHomeSheetRegion} from './MainHomeSheetRegion';
@@ -27,7 +26,6 @@ export interface MainHomeSheetComponentInfo {
 export interface MainHomeSheetCommonProps {}
 
 export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
-  const confirm = useRecoilValue(confirmState);
   const mode = useRecoilValue(modeState);
   const MainHomeSheetComponents: {
     [key: string]: MainHomeSheetComponentInfo;
@@ -42,7 +40,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     kickboard: {
       component: MainHomeSheetKickboard,
-      snapPoints: [confirm ? '25%' : '16%'],
+      snapPoints: ['16%'],
       withStartButton: true,
       withRouteButton: true,
       withControlButton: false,
@@ -64,10 +62,20 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
       withControlButton: false,
       withBottomBar: false,
     },
+    confirm: {
+      component: MainHomeSheetConfirm,
+      snapPoints: ['25%'],
+      withStartButton: false,
+      withRouteButton: false,
+      withControlButton: false,
+      withBottomBar: false,
+    },
   };
 
   const Mode = useMemo(() => MainHomeSheetComponents[mode], [mode]);
   if (!Mode) return <></>;
+  const withButtons =
+    Mode.withBottomBar || Mode.withRouteButton || Mode.withControlButton;
 
   return (
     <BottomSheet
@@ -76,13 +84,14 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
       <SafeAreaView>
         <Container>
           <Mode.component />
-          <View style={{justifyContent: 'center'}}>
-            {Mode.withStartButton && !confirm && <MainHomeSheetStartButton />}
-            {Mode.withRouteButton && !confirm && <MainHomeSheetRouteButton />}
-            {Mode.withControlButton && <MainHomeSheetControlButton />}
-          </View>
+          {withButtons && (
+            <View style={{justifyContent: 'center'}}>
+              {Mode.withStartButton && <MainHomeSheetStartButton />}
+              {Mode.withRouteButton && <MainHomeSheetRouteButton />}
+              {Mode.withControlButton && <MainHomeSheetControlButton />}
+            </View>
+          )}
         </Container>
-        {Mode.withStartButton && confirm && <MainHomeSheetConfirmButton />}
       </SafeAreaView>
       {Mode.withBottomBar && <BottomBar />}
     </BottomSheet>
