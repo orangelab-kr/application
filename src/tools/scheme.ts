@@ -39,6 +39,11 @@ export const onSchemeInitalize = async () => {
   });
 
   routes.push({
+    path: 'rides',
+    action: () => navigationRef.current?.navigate('Rides'),
+  });
+
+  routes.push({
     path: 'payments/register',
     action: ({query: params}) =>
       navigationRef.current?.navigate('Payment', {screen: 'Register', params}),

@@ -4,6 +4,7 @@ import {RootNavigatorRouteParams} from '../models/navigation';
 import {Notice} from '../screens/notice';
 import {Permission} from '../screens/permission';
 import {Qrcode} from '../screens/qrcode';
+import {Rides} from '../screens/rides';
 import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
 import {Weblink} from '../screens/weblink';
@@ -52,6 +53,7 @@ export const RootNavigator: React.FC = () => {
         component={Qrcode}
         options={{animation: 'fade_from_bottom'}}
       />
+      <Stack.Screen name="Rides" component={Rides} />
       <Stack.Screen name="Payment" component={PaymentNavigator} />
       <Stack.Screen name="Coupon" component={CouponNavigator} />
       <Stack.Screen name="Debug" component={DebugNavigator} />

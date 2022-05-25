@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {FC, useState} from 'react';
-import {ScrollView, Text} from 'react-native';
+import React, {FC} from 'react';
+import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {BottomButton} from '../../components/BottomButton';

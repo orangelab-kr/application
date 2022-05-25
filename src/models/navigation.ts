@@ -10,6 +10,7 @@ export type RootNavigatorRouteParams = {
   Splash: undefined;
   Start: undefined;
   Permission: undefined;
+  Rides: undefined;
   Main: undefined | SubNavigator<MainNavigatorRouteParams>;
   Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
   ReturnedPhoto: SubNavigator<ReturnedPhotoNavigatorRouteParams>;
