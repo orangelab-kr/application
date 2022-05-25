@@ -15,6 +15,12 @@ export const MainHomePopup: React.FC = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useRecoilState(PopupState);
   const [popup, setPopup] = useState<{image: string; url: string} | null>(null);
+  const openPopup = () => {
+    if (!popup) return;
+    openInAppBrowser(popup?.url);
+    setVisible(false);
+    setPopup(null);
+  };
 
   useEffect(() => {
     const unload = () => setVisible(false);
@@ -38,7 +44,7 @@ export const MainHomePopup: React.FC = () => {
           <Image
             resizeMode={FastImage.resizeMode.contain}
             source={{uri: popup?.image}}
-            onTouchStart={() => popup && openInAppBrowser(popup?.url)}
+            onTouchStart={openPopup}
           />
           <CloseButton onPress={() => setVisible(false)}>
             <FontAwesomeIcon
