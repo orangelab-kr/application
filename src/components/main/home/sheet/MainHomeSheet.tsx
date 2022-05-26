@@ -7,6 +7,7 @@ import {modeState} from '../../../../recoils/mode';
 import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirm} from './MainHomeSheetConfirm';
 import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
+import {MainHomeSheetHandle} from './MainHomeSheetHandle';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
 import {MainHomeSheetRegion} from './MainHomeSheetRegion';
 import {MainHomeSheetRiding} from './MainHomeSheetRiding';
@@ -32,7 +33,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
   } = {
     welcome: {
       component: MainHomeSheetWelcome,
-      snapPoints: ['20.3%', '80%'],
+      snapPoints: ['17.3%', '80%'],
       withStartButton: true,
       withRouteButton: false,
       withControlButton: false,
@@ -40,7 +41,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     kickboard: {
       component: MainHomeSheetKickboard,
-      snapPoints: ['16%'],
+      snapPoints: ['15%'],
       withStartButton: true,
       withRouteButton: true,
       withControlButton: false,
@@ -48,7 +49,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     riding: {
       component: MainHomeSheetRiding,
-      snapPoints: ['18%', '80%'],
+      snapPoints: ['17%', '80%'],
       withStartButton: false,
       withRouteButton: false,
       withControlButton: true,
@@ -64,7 +65,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     confirm: {
       component: MainHomeSheetConfirm,
-      snapPoints: ['25%'],
+      snapPoints: ['38%'],
       withStartButton: false,
       withRouteButton: false,
       withControlButton: false,
@@ -80,6 +81,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
   return (
     <BottomSheet
       enableHandlePanningGesture={false}
+      handleComponent={MainHomeSheetHandle}
       snapPoints={Mode.snapPoints}>
       <SafeAreaView>
         <Container>
@@ -99,7 +101,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
 };
 
 const Container = styled(View)`
-  padding: 12px 30px 0 30px;
+  padding: 22px 30px 0 30px;
   flex-direction: row;
   justify-content: space-between;
 `;

@@ -1,16 +1,13 @@
 import React, {createRef, useEffect} from 'react';
-import NaverMapView, {
-  LayerGroup,
-  MapType,
-  TrackingMode,
-} from 'react-native-nmap';
-import {useSetRecoilState} from 'recoil';
+import NaverMapView, {LayerGroup, MapType} from 'react-native-nmap';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {useRecoilValueDebounce} from '../../../../hooks/useRecoilValueDebounce';
 import {cameraLocState} from '../../../../recoils/cameraLoc';
 import {confirmState} from '../../../../recoils/confirm';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {selectedRegionState} from '../../../../recoils/selectedRegion';
+import {trackingModeState} from '../../../../recoils/trackingMode';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
 import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
@@ -24,6 +21,8 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
   const setConfirm = useSetRecoilState(confirmState);
   const [, setCameraLoc] = useRecoilValueDebounce(cameraLocState, 800);
   const setSelectedRegion = useSetRecoilState(selectedRegionState);
+  const trackingMode = useRecoilValue(trackingModeState);
+
   const onMapClick = () => {
     setConfirm(false);
     if (selectedKickboard) {
@@ -35,7 +34,10 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
   };
 
   useEffect(() => {
-    mapRef.current?.setLocationTrackingMode(TrackingMode.Follow);
+    mapRef.current?.setLocationTrackingMode(trackingMode);
+  }, [trackingMode]);
+
+  useEffect(() => {
     mapRef.current?.setLayerGroupEnabled(LayerGroup.LAYER_GROUP_BUILDING, true);
     mapRef.current?.setLayerGroupEnabled(LayerGroup.LAYER_GROUP_BICYCLE, true);
   }, []);
