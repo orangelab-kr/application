@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 import RNShake from 'react-native-shake';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
-import {currentRideState} from '../../../../recoils/currentRide';
-import {menuPopupState} from '../../../../recoils/MenuPopup';
+import {menuPopupState} from '../../../../recoils/menuPopup';
 import {modeState} from '../../../../recoils/mode';
 import {MainHomeMenuButton} from './MainHomeMenuButton';
 import {MainHomeMenuPopup} from './MainHomeMenuPopup';

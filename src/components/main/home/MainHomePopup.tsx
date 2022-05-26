@@ -7,7 +7,7 @@ import FastImage from 'react-native-fast-image';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../../../constants/screenSize';
-import {PopupState} from '../../../recoils/Popup';
+import {PopupState} from '../../../recoils/popup';
 import {openInAppBrowser} from '../../../tools/openInAppBrowser';
 import {remoteConfig} from '../../../tools/remoteConfig';
 
@@ -33,7 +33,7 @@ export const MainHomePopup: React.FC = () => {
     if (!popupValue) return;
 
     const {image, url} = JSON.parse(popupValue);
-    setPopup({ image, url });
+    setPopup({image, url});
     setVisible(true);
   }, [navigation, setPopup]);
 

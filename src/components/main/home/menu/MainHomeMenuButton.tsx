@@ -5,7 +5,7 @@ import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
-import {menuPopupState} from '../../../../recoils/MenuPopup';
+import {menuPopupState} from '../../../../recoils/menuPopup';
 
 export const MainHomeMenuButton: React.FC<TouchableOpacityProps> = props => {
   const setVisible = useSetRecoilState(menuPopupState);
