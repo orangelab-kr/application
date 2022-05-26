@@ -110,12 +110,24 @@ export type ResponseRideGetKickboard = CommonResponse<{
   kickboard: RideKickboard;
 }>;
 
+export type ResponseRideGetRides = CommonResponse<{
+  rides: RideRide[];
+  total: number;
+}>;
+
 export interface RideOpenApi {
   rideId: string;
 }
 
 export interface RideProperties {
   openapi: RideOpenApi;
+}
+
+export interface RequestRideGetRides {
+  take?: number;
+  skip?: number;
+  orderByField?: string;
+  orderBySort?: string;
 }
 
 export interface RideRide {
@@ -181,5 +193,11 @@ export class RideClient {
     photo: string,
   ): Promise<void> {
     return this.client.post(`/histories/${rideId}/photo`, {photo});
+  }
+
+  public static async getRides(
+    params: RequestRideGetRides,
+  ): Promise<ResponseRideGetRides> {
+    return this.client.get('/histories', {params}).then(r => r.data);
   }
 }
