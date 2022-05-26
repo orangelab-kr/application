@@ -62,7 +62,7 @@ export const PaymentItem: FC<PaymentItemProps> = props => {
 
 const Container = styled(View)`
   margin-top: 10px;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: #eee;
   flex-direction: row;
   justify-content: space-between;
