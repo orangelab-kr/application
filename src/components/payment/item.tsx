@@ -61,11 +61,16 @@ export const PaymentItem: FC<PaymentItemProps> = props => {
 };
 
 const Container = styled(View)`
-  margin-top: 10px;
-  border-radius: 10px;
-  background-color: #eee;
+  margin: 12px 8px 5px;
+  border-radius: 16px;
+  background-color: #fff;
   flex-direction: row;
   justify-content: space-between;
+  shadow-color: #999;
+  shadow-opacity: 1;
+  shadow-radius: 6px;
+  elevation: 5;
+  shadow-offset: {width: 3px, height: 3px};
   align-items: center;
 `;
 

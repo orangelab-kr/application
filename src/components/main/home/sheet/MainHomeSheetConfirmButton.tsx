@@ -54,6 +54,12 @@ const CenterContainer = styled(View)`
 const Button = styled(TouchableOpacity)`
   width: 100%;
   height: ${screenHeight * 0.065}px;
+  margin: 10px 0;
+  shadow-color: #999;
+  shadow-opacity: 1;
+  shadow-radius: 6px;
+  elevation: 5;
+  shadow-offset: {width: 3px, height: 3px};
   background-color: #000;
   border-radius: 20px;
   padding: 15px;

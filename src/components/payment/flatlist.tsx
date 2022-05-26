@@ -17,6 +17,7 @@ export const PaymentFlatlist: FC = () => {
     PaymentsClient.getCards().then(({cards}) => setCards(cards));
 
   useEffect(() => {
+    loadCards();
     const unsubscribe = navigation.addListener('focus', loadCards);
     return unsubscribe;
   }, []);
@@ -67,7 +68,7 @@ export const PaymentFlatlist: FC = () => {
 };
 
 const NoCard = styled(Text)`
-  font-size: ${screenWidth / 23}px;
+  font-size: ${screenWidth / 16}px;
   width: 100%;
   text-align: center;
   font-weight: 600;
@@ -75,7 +76,13 @@ const NoCard = styled(Text)`
 `;
 
 const NoCardContainer = styled(View)`
-  border-radius: 5px;
-  background-color: #eee;
+  border-radius: 8px;
+  background-color: #fff;
   margin-top: ${screenWidth * 0.05}px;
+  margin: 10px 0;
+  shadow-color: #999;
+  shadow-opacity: 1;
+  shadow-radius: 6px;
+  elevation: 5;
+  shadow-offset: {width: 3px, height: 3px};
 `;

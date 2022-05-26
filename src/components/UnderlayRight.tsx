@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
+import styled from 'styled-components/native';
 
 interface UnderlayRightProps {
   onPress: () => void | Promise<void>;
@@ -9,17 +10,7 @@ interface UnderlayRightProps {
 
 export const UnderlayRight: FC<UnderlayRightProps> = ({onPress}) => {
   return (
-    <Animated.View
-      style={{
-        flex: 1,
-        padding: 15,
-        marginTop: 10,
-        alignItems: 'center',
-        flexDirection: 'row',
-        backgroundColor: 'tomato',
-        justifyContent: 'flex-start',
-        borderRadius: 2,
-      }}>
+    <Container>
       <TouchableOpacity onPress={onPress}>
         <Text
           style={{
@@ -30,6 +21,21 @@ export const UnderlayRight: FC<UnderlayRightProps> = ({onPress}) => {
           삭제
         </Text>
       </TouchableOpacity>
-    </Animated.View>
+    </Container>
   );
 };
+
+export const Container = styled(Animated.View)`
+  flex: 1;
+  margin: 12px;
+  padding: 15px;
+  align-items: center;
+  flex-direction: row;
+  background-color: tomato;
+  border-radius: 16px;
+  justify-content: flex-start;
+  shadow-color: #999;
+  shadow-opacity: 1;
+  elevation: 5;
+  shadow-offset: {width: 3px, height: 3px};
+`;
