@@ -33,7 +33,8 @@ export const MainHomePopup: React.FC = () => {
     if (!popupValue) return;
 
     const {image, url} = JSON.parse(popupValue);
-    setPopup({image, url});
+    setPopup({ image, url });
+    setVisible(true);
   }, [navigation, setPopup]);
 
   return (
