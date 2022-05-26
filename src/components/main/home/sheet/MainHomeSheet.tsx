@@ -7,6 +7,7 @@ import {modeState} from '../../../../recoils/mode';
 import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirm} from './MainHomeSheetConfirm';
 import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
+import {MainHomeSheetCoupon} from './MainHomeSheetCoupon';
 import {MainHomeSheetHandle} from './MainHomeSheetHandle';
 import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
 import {MainHomeSheetRegion} from './MainHomeSheetRegion';
@@ -65,7 +66,15 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     confirm: {
       component: MainHomeSheetConfirm,
-      snapPoints: ['38%'],
+      snapPoints: ['30%'],
+      withStartButton: false,
+      withRouteButton: false,
+      withControlButton: false,
+      withBottomBar: false,
+    },
+    coupon: {
+      component: MainHomeSheetCoupon,
+      snapPoints: ['37%'],
       withStartButton: false,
       withRouteButton: false,
       withControlButton: false,
@@ -75,6 +84,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
 
   const Mode = useMemo(() => MainHomeSheetComponents[mode], [mode]);
   if (!Mode) return <></>;
+
   const withButtons =
     Mode.withBottomBar || Mode.withRouteButton || Mode.withControlButton;
 

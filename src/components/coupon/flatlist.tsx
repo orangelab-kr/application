@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Text, View} from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
@@ -8,7 +8,11 @@ import {PaymentsClient, PaymentsCoupon} from '../../api/payments';
 import {screenWidth} from '../../constants/screenSize';
 import {CouponItem} from './item';
 
-export const CouponFlatlist: FC = () => {
+export interface CouponFlatlistProps {
+  onSelect?: (coupon: PaymentsCoupon) => any;
+}
+
+export const CouponFlatlist: React.FC<CouponFlatlistProps> = ({onSelect}) => {
   const navigation = useNavigation();
   const [coupons, setCoupons] = useState<PaymentsCoupon[]>([]);
   const itemRefs = useRef(new Map());
@@ -17,6 +21,7 @@ export const CouponFlatlist: FC = () => {
     PaymentsClient.getCoupons({}).then(({coupons}) => setCoupons(coupons));
 
   useEffect(() => {
+    loadCoupons();
     const unsubscribe = navigation.addListener('focus', loadCoupons);
     return unsubscribe;
   }, []);
@@ -35,6 +40,8 @@ export const CouponFlatlist: FC = () => {
     await PaymentsClient.deleteCoupon(couponId).then(loadCoupons);
   };
 
+  const onPress = (coupon: PaymentsCoupon) => () =>
+    onSelect && onSelect(coupon);
   return coupons.length > 0 ? (
     <DraggableFlatList
       data={coupons}
@@ -44,6 +51,7 @@ export const CouponFlatlist: FC = () => {
           {...props}
           itemRefs={itemRefs}
           onDelete={onDelete(props.item)}
+          onPress={onPress(props.item)}
         />
       )}
     />
@@ -55,7 +63,7 @@ export const CouponFlatlist: FC = () => {
 };
 
 const NoCoupon = styled(Text)`
-  font-size: ${screenWidth / 23}px;
+  font-size: ${screenWidth / 16}px;
   width: 100%;
   text-align: center;
   font-weight: 600;
@@ -63,7 +71,13 @@ const NoCoupon = styled(Text)`
 `;
 
 const NoCouponContainer = styled(View)`
-  border-radius: 5px;
-  background-color: #eee;
+  border-radius: 8px;
+  background-color: #fff;
   margin-top: ${screenWidth * 0.05}px;
+  margin: 10px 0;
+  shadow-color: #999;
+  shadow-opacity: 1;
+  shadow-radius: 6px;
+  elevation: 5;
+  shadow-offset: {width: 3px, height: 3px};
 `;

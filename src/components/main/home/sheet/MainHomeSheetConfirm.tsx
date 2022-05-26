@@ -17,6 +17,7 @@ import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
+import {MainHomeSheetCouponSelect} from './MainHomeSheetCouponSelect';
 
 export const MainHomeSheetConfirm: React.FC<
   MainHomeSheetCommonProps
@@ -68,6 +69,7 @@ export const MainHomeSheetConfirm: React.FC<
         <KickboardBatteryStatus
           battery={selectedKickboard?.status.power.scooter.battery || 100}
         />
+        <MainHomeSheetCouponSelect />
         <MainHomeSheetConfirmButton />
       </View>
     </Container>

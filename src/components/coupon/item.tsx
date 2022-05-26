@@ -1,5 +1,3 @@
-import {faEllipsisV} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import dayjs from 'dayjs';
 import React, {FC} from 'react';
 import {Text, View} from 'react-native';
@@ -16,10 +14,11 @@ import {UnderlayRight} from '../UnderlayRight';
 export interface CouponItemProps extends RenderItemParams<PaymentsCoupon> {
   itemRefs: React.MutableRefObject<Map<any, any>>;
   onDelete: () => void | Promise<void>;
+  onPress: () => any;
 }
 
 export const CouponItem: FC<CouponItemProps> = props => {
-  const {item, itemRefs, onDelete} = props;
+  const {item, itemRefs, onDelete, onPress} = props;
 
   return (
     <ScaleDecorator>
@@ -42,7 +41,7 @@ export const CouponItem: FC<CouponItemProps> = props => {
           });
         }}>
         <Container>
-          <TouchableCoupon>
+          <TouchableCoupon onPress={onPress}>
             <CouponLabel>
               <CouponName>{item.couponGroup.name}</CouponName>
               <CouponLabelDivider />
@@ -63,19 +62,23 @@ export const CouponItem: FC<CouponItemProps> = props => {
 };
 
 const Container = styled(View)`
-  margin-top: 10px;
-  border-radius: 10px;
-  background-color: #eee;
+  margin: 12px 8px 5px;
+  border-radius: 16px;
+  background-color: #fff;
   flex-direction: row;
   justify-content: space-between;
+  shadow-color: #999;
+  shadow-opacity: 1;
+  shadow-radius: 6px;
+  elevation: 5;
+  shadow-offset: {width: 3px, height: 3px};
   align-items: center;
-  overflow: hidden;
 `;
 
 const TouchableCoupon = styled(TouchableOpacity)`
   flex-direction: row;
   align-items: center;
-  padding: 18px 0 18px 18px;
+  padding: 9px;
 `;
 
 const CouponLabel = styled(View)`
