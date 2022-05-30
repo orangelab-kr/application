@@ -55,9 +55,9 @@ export const CouponRegister: FC = () => {
 
   return (
     <SafeAreaView style={{height: '100%'}}>
-      <KeyboardAvoidingView behavior="position">
-        <Depth />
-        <ScrollView>
+      <ScrollView>
+        <KeyboardAvoidingView behavior="position">
+          <Depth />
           <Container>
             <Title>쿠폰 등록</Title>
             <Description>코드를 입력하여 쿠폰을 등록하세요. 😎</Description>
@@ -82,8 +82,8 @@ export const CouponRegister: FC = () => {
               )}
             </Formik>
           </Container>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </ScrollView>
       <BottomButton onPress={formRef.current?.submitForm}>등록</BottomButton>
     </SafeAreaView>
   );
