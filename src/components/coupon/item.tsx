@@ -14,7 +14,7 @@ import {UnderlayRight} from '../UnderlayRight';
 export interface CouponItemProps extends RenderItemParams<PaymentsCoupon> {
   itemRefs: React.MutableRefObject<Map<any, any>>;
   onDelete: () => void | Promise<void>;
-  onPress: () => any;
+  onPress?: () => any;
 }
 
 export const CouponItem: FC<CouponItemProps> = props => {
@@ -41,7 +41,7 @@ export const CouponItem: FC<CouponItemProps> = props => {
           });
         }}>
         <Container>
-          <TouchableCoupon onPress={onPress}>
+          <TouchableCoupon onPress={onPress} disabled={!onPress}>
             <CouponLabel>
               <CouponName>{item.couponGroup.name}</CouponName>
               <CouponLabelDivider />

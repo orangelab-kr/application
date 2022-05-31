@@ -48,6 +48,7 @@ export const CouponFlatlist: React.FC<CouponFlatlistProps> = ({onSelect}) => {
     const unsubscribe = navigation.addListener('focus', loadCoupons);
     return unsubscribe;
   }, []);
+
   const onDelete = (coupon: PaymentsCoupon) => async () => {
     const {couponId, couponGroup} = coupon;
     Notifier.showNotification({
@@ -85,7 +86,7 @@ export const CouponFlatlist: React.FC<CouponFlatlistProps> = ({onSelect}) => {
       onEndReached={onEndReached}
       onEndReachedThreshold={0.6}
       keyExtractor={coupon => coupon.couponId}
-      ListFooterComponent={loading ? <ActivityIndicator size="large" /> : <></>}
+      ListFooterComponent={loading ? <Loading size="large" /> : <></>}
       ListEmptyComponent={
         <NoCouponContainer>
           <NoCoupon>🤨 아직 쿠폰이 없습니다.</NoCoupon>
@@ -96,12 +97,16 @@ export const CouponFlatlist: React.FC<CouponFlatlistProps> = ({onSelect}) => {
           {...props}
           itemRefs={itemRefs}
           onDelete={onDelete(props.item)}
-          onPress={onPress(props.item)}
+          onPress={onSelect && onPress(props.item)}
         />
       )}
     />
   );
 };
+
+const Loading = styled(ActivityIndicator)`
+  margin-top: 20px;
+`;
 
 const NoCoupon = styled(Text)`
   font-size: ${screenWidth / 16}px;
@@ -112,10 +117,10 @@ const NoCoupon = styled(Text)`
 `;
 
 const NoCouponContainer = styled(View)`
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #fff;
   margin-top: ${screenWidth * 0.05}px;
-  margin: 10px 5px;
+  margin: 10px;
   shadow-color: #999;
   shadow-opacity: 1;
   shadow-radius: 6px;
