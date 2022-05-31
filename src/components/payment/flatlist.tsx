@@ -47,11 +47,18 @@ export const PaymentFlatlist: FC = () => {
     await PaymentsClient.deleteCard(cardId).then(loadCards);
   };
 
-  return cards.length > 0 ? (
+  return (
     <DraggableFlatList
       data={cards}
       keyExtractor={card => card.cardId}
       onDragEnd={({data}) => setCards(data)}
+      ListEmptyComponent={
+        <NoCardContainer>
+          <NoCard>
+            🧐 아직 카드가 없습니다.{'\n'}결제 수단을 등록해볼까요?
+          </NoCard>
+        </NoCardContainer>
+      }
       renderItem={props => (
         <PaymentItem
           {...props}
@@ -60,10 +67,6 @@ export const PaymentFlatlist: FC = () => {
         />
       )}
     />
-  ) : (
-    <NoCardContainer>
-      <NoCard>🧐 아직 카드가 없습니다.{'\n'}결제 수단을 등록해볼까요?</NoCard>
-    </NoCardContainer>
   );
 };
 
@@ -76,10 +79,10 @@ const NoCard = styled(Text)`
 `;
 
 const NoCardContainer = styled(View)`
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #fff;
   margin-top: ${screenWidth * 0.05}px;
-  margin: 10px 0;
+  margin: 10px;
   shadow-color: #999;
   shadow-opacity: 1;
   shadow-radius: 6px;
