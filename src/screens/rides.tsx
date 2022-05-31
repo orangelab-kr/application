@@ -1,28 +1,27 @@
 import React, {FC} from 'react';
-import {ScrollView, Text} from 'react-native';
+import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {Depth} from '../components/Depth';
-import {RideList} from '../components/ride/list';
+import {RideFlatlist} from '../components/ride/flatlist';
 import {screenHeight} from '../constants/screenSize';
 
 export const Rides: FC = () => {
   return (
     <SafeAreaView style={{height: '100%'}}>
       <Depth />
-      <ScrollView>
-        <Container>
-          <Title>라이드 기록</Title>
-          <Description>그만큼 하이킥이 편하다는 증거 👍</Description>
-          <RideList />
-        </Container>
-      </ScrollView>
+      <Container>
+        <Title>라이드 기록</Title>
+        <Description>그만큼 하이킥이 편하다는 증거 👍</Description>
+        <RideFlatlist />
+      </Container>
     </SafeAreaView>
   );
 };
 
 const Container = styled(SafeAreaView)`
   margin: 10px 30px;
+  margin-bottom: ${screenHeight * 0.08}px;
 `;
 
 const Title = styled(Text)`
