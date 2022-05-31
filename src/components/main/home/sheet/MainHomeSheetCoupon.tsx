@@ -20,7 +20,7 @@ export const MainHomeSheetCoupon: React.FC = () => {
   };
 
   return (
-    <View style={{width: '100%'}}>
+    <Container>
       <TopBar>
         <TouchableOpacity onPress={() => onSelect()}>
           <FontAwesomeIcon icon={faAngleLeft} size={screenWidth / 15} />
@@ -28,9 +28,14 @@ export const MainHomeSheetCoupon: React.FC = () => {
         <Title>쿠폰 선택</Title>
       </TopBar>
       <CouponFlatlist onSelect={onSelect} />
-    </View>
+    </Container>
   );
 };
+
+const Container = styled(View)`
+  width: 100%;
+  margin-bottom: ${screenHeight * 0.18}px;
+`;
 
 const TopBar = styled(View)`
   flex-direction: row;

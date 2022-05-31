@@ -28,6 +28,7 @@ export const CouponList: FC = () => {
 
 const Container = styled(SafeAreaView)`
   margin: 10px 30px;
+  margin-bottom: ${screenHeight * 0.22}px;
 `;
 
 const Title = styled(Text)`
