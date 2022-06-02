@@ -1,4 +1,6 @@
 PODS:
+  - "@hariks789_react-native-background-geolocation (0.7.1)":
+    - React
   - Base64 (1.1.2)
   - boost (1.76.0)
   - CodePush (7.0.4):
@@ -529,6 +531,7 @@ PODS:
   - Yoga (1.14.0)
 
 DEPENDENCIES:
+  - "@hariks789_react-native-background-geolocation (from `../node_modules/@hariks789/react-native-background-geolocation`)"
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - CodePush (from `../node_modules/react-native-code-push`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -619,6 +622,8 @@ SPEC REPOS:
     - SSZipArchive
 
 EXTERNAL SOURCES:
+  "@hariks789_react-native-background-geolocation":
+    :path: "../node_modules/@hariks789/react-native-background-geolocation"
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
   CodePush:
@@ -741,6 +746,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  "@hariks789_react-native-background-geolocation": 273dcea78c35bd4232a47565aa6fb437cc519006
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   CodePush: b51b7ac64c07d4eacfc8cc5750a1dd28adbf2528

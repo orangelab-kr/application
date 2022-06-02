@@ -979,6 +979,22 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@hariks789/react-native-background-geolocation@^0.6.9":
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/@hariks789/react-native-background-geolocation/-/react-native-background-geolocation-0.6.11.tgz#d75ede6008b0f3fb63a17e492d5f012c340190cf"
+  integrity sha512-uAkdpSns0Be1VXwNn+44dkaR9gmJVEXjP77AX0qjACscOMtlR0PWQ9VUN8T0PaeOqTKzJJQiFRBT+EgHbbOxVA==
+  dependencies:
+    "@hariks789/react-native-background-geolocation" "^0.6.9"
+    plist "^3.0.1"
+
+"@hariks789/react-native-background-geolocation@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@hariks789/react-native-background-geolocation/-/react-native-background-geolocation-0.7.1.tgz#234f79c9c8809b738784aa7c2fa7764dee3f1f70"
+  integrity sha512-MCr7hcVtrP/fm4yhFWQ4zCegK97yA1oDydXU2lm+8swaOfSlGEGd2qfqbTJOG2ROpvyw38is7YbONoAnCTAxlw==
+  dependencies:
+    "@hariks789/react-native-background-geolocation" "^0.6.9"
+    plist "^3.0.1"
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.9.5.tgz"
@@ -5052,6 +5068,11 @@ jetifier@^1.6.2:
   resolved "https://registry.npmjs.org/jetifier/-/jetifier-1.6.8.tgz"
   integrity sha512-3Zi16h6L5tXDRQJTb221cnRoVG9/9OvreLdLU2/ZjRv/GILL+2Cemt0IKvkowwkDpvouAU1DQPOJ7qaiHeIdrw==
 
+jetifier@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-2.0.0.tgz#699391367ca1fe7bc4da5f8bf691eb117758e4cb"
+  integrity sha512-J4Au9KuT74te+PCCCHKgAjyLlEa+2VyIAEPNCdE5aNkAJ6FAJcAqcdzEkSnzNksIa9NkGmC4tPiClk2e7tCJuQ==
+
 joi@^17.2.1:
   version "17.6.0"
   resolved "https://registry.npmjs.org/joi/-/joi-17.6.0.tgz"
@@ -6398,6 +6419,14 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
+plist@^3.0.1:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.5.tgz#2cbeb52d10e3cdccccf0c11a63a85d830970a987"
+  integrity sha512-83vX4eYdQp3vP9SxuYgEM/G/pJQqLUz/V/xzPrzruLs7fz7jxGQ1msZ/mg1nwZxUSuOp4sb+/bEIbRrbzZRxDA==
+  dependencies:
+    base64-js "^1.5.1"
+    xmlbuilder "^9.0.7"
+
 plist@^3.0.2, plist@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/plist/-/plist-3.0.4.tgz"
@@ -6405,6 +6434,11 @@ plist@^3.0.2, plist@^3.0.4:
   dependencies:
     base64-js "^1.5.1"
     xmlbuilder "^9.0.7"
+
+pod-install@^0.1.36:
+  version "0.1.36"
+  resolved "https://registry.yarnpkg.com/pod-install/-/pod-install-0.1.36.tgz#8090f57f76b42acf24c4325711bfa5730613fcab"
+  integrity sha512-r+f2SAqtM4K81Wv4OAhedbfCtBZhPz+1c1CVkQ1vT33PGAhM5A6GpaJ0pfQVgfZ0tUwagWxlDQ3eOprNyIFO6w==
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
