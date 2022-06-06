@@ -65,7 +65,7 @@ export const MainHomePopup: React.FC = () => {
 const CloseButton = styled(TouchableOpacity)`
   margin: 0 auto;
   margin-top: ${screenHeight * 0.02}px;
-  border-radius: 10;
+  border-radius: 10px;
   background-color: #fff;
   flex-direction: row;
   padding: 10px;

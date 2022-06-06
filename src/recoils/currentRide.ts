@@ -1,3 +1,4 @@
+import {AppState} from 'react-native';
 import {atom} from 'recoil';
 import {RideClient, RideRide} from '../api/ride';
 
@@ -7,6 +8,7 @@ export const currentRideState = atom<RideRide | undefined>({
   effects: [
     ({setSelf}) => {
       const getRide = async () => {
+        if (AppState.currentState === 'background') return;
         const currentRide = await RideClient.getCurrentRide();
         setSelf(currentRide.ride);
       };

@@ -1,10 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios, {AxiosInstance} from 'axios';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
+import {navigationRef} from '../navigators/navigation';
 
+export const endpoint = `https://coreservice.hikick.kr/v1`;
 export const createClient = (service: string, auth = true): AxiosInstance => {
   const debug = true;
-  const baseURL = `https://coreservice.hikick.kr/v1/${service}`;
+  const baseURL = `${endpoint}/${service}`;
   const client = axios.create({baseURL});
 
   client.interceptors.request.use(async request => {
@@ -54,6 +56,13 @@ export const createClient = (service: string, auth = true): AxiosInstance => {
             titleStyle: {color: '#fff'},
           },
         });
+      }
+
+      switch (response.data.opcode) {
+        case 118:
+          navigationRef.current?.navigate('Weblink', {page: 'settings'});
+        default:
+          break;
       }
     }
 

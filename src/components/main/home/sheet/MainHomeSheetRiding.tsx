@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import BackgroundGeolocation from '@hariks789/react-native-background-geolocation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
+import {endpoint} from '../../../../api/client';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useInterval} from '../../../../hooks/useInterval';
 import {currentRideState} from '../../../../recoils/currentRide';
@@ -48,6 +51,84 @@ export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
     },
     currentRide ? 1000 : 0,
   );
+
+  useEffect(() => {
+    if (!currentRide) return;
+    AsyncStorage.getItem('accessToken').then(accessToken => {
+      BackgroundGeolocation.configure({
+        debug: false,
+        startOnBoot: false,
+        notificationTitle: 'Background tracking',
+        notificationText: 'enabled',
+        stopOnTerminate: false,
+        stopOnStillActivity: false,
+        fastestInterval: 30000,
+        interval: 30000,
+        activitiesInterval: 30000,
+        stationaryRadius: 30,
+        desiredAccuracy: BackgroundGeolocation.MEDIUM_ACCURACY,
+        locationProvider: BackgroundGeolocation.RAW_PROVIDER,
+        url: `${endpoint}/ride/current/location`,
+        httpHeaders: {Authorization: `Bearer ${accessToken}`},
+        postTemplate: {latitude: '@latitude', longitude: '@longitude'},
+      });
+
+      BackgroundGeolocation.on('error', error => {
+        console.log('[ERROR] BackgroundGeolocation error:', error);
+      });
+
+      BackgroundGeolocation.on('start', () => {
+        console.log('[INFO] BackgroundGeolocation service has been started');
+      });
+
+      BackgroundGeolocation.on('stop', () => {
+        console.log('[INFO] BackgroundGeolocation service has been stopped');
+      });
+
+      BackgroundGeolocation.on('stationary', stationaryLocation => {
+        // handle stationary locations here
+        console.log(stationaryLocation);
+      });
+      BackgroundGeolocation.on('background', () => {
+        console.log('[INFO] App is in background');
+      });
+
+      BackgroundGeolocation.on('foreground', () => {
+        console.log('[INFO] App is in foreground');
+      });
+
+      BackgroundGeolocation.on('abort_requested', () => {
+        console.log('[INFO] Server responded with 285 Updates Not Required');
+
+        // Here we can decide whether we want stop the updates or not.
+        // If you've configured the server to return 285, then it means the server does not require further update.
+        // So the normal thing to do here would be to `BackgroundGeolocation.stop()`.
+        // But you might be counting on it to receive location updates in the UI, so you could just reconfigure and set `url` to null.
+      });
+
+      BackgroundGeolocation.on('http_authorization', () => {
+        console.log('[INFO] App needs to authorize the http requests');
+      });
+
+      BackgroundGeolocation.checkStatus(status => {
+        console.log(
+          '[INFO] BackgroundGeolocation service is running',
+          status.isRunning,
+        );
+        console.log(
+          '[INFO] BackgroundGeolocation services enabled',
+          status.locationServicesEnabled,
+        );
+        console.log(
+          '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
+        );
+
+        if (!status.isRunning) {
+          BackgroundGeolocation.start(); //triggers start on start event
+        }
+      });
+    });
+  }, []);
 
   if (!currentRide) return <></>;
   return (
