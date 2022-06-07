@@ -13,10 +13,12 @@ import {screenHeight} from '../../constants/screenSize';
 
 export interface KickboardBatteryStatusProps {
   battery: number;
+  text?: string;
 }
 
 export const KickboardBatteryStatus: React.FC<KickboardBatteryStatusProps> = ({
   battery,
+  text,
 }) => {
   const icon =
     battery > 90
@@ -32,7 +34,9 @@ export const KickboardBatteryStatus: React.FC<KickboardBatteryStatusProps> = ({
   return (
     <Container>
       <FontAwesomeIcon icon={icon} size={25} />
-      <Percent>{battery}%</Percent>
+      <Percent>
+        {battery}% {text && text}
+      </Percent>
     </Container>
   );
 };

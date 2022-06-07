@@ -1,11 +1,12 @@
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, {useMemo} from 'react';
+import React, {useMemo, useRef} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
 import {modeState} from '../../../../recoils/mode';
 import {BottomBar} from '../../../BottomBar';
 import {MainHomeSheetConfirm} from './MainHomeSheetConfirm';
+import {MainHomeSheetControl} from './MainHomeSheetControl';
 import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
 import {MainHomeSheetCoupon} from './MainHomeSheetCoupon';
 import {MainHomeSheetHandle} from './MainHomeSheetHandle';
@@ -25,9 +26,12 @@ export interface MainHomeSheetComponentInfo {
   withBottomBar: boolean;
 }
 
-export interface MainHomeSheetCommonProps {}
+export interface MainHomeSheetCommonProps {
+  sheetRef: React.MutableRefObject<BottomSheet | null>;
+}
 
 export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
+  const sheetRef = useRef<BottomSheet>(null);
   const mode = useRecoilValue(modeState);
   const MainHomeSheetComponents: {
     [key: string]: MainHomeSheetComponentInfo;
@@ -50,7 +54,7 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
     },
     riding: {
       component: MainHomeSheetRiding,
-      snapPoints: ['17%', '80%'],
+      snapPoints: ['14%', '32%'],
       withStartButton: false,
       withRouteButton: false,
       withControlButton: true,
@@ -90,22 +94,26 @@ export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
 
   return (
     <BottomSheet
+      ref={sheetRef}
       enableHandlePanningGesture={false}
       handleComponent={MainHomeSheetHandle}
       snapPoints={Mode.snapPoints}>
       <SafeAreaView>
         <Container>
-          <Mode.component />
+          <Mode.component sheetRef={sheetRef} />
           {withButtons && (
             <View style={{justifyContent: 'center'}}>
               {Mode.withStartButton && <MainHomeSheetStartButton />}
               {Mode.withRouteButton && <MainHomeSheetRouteButton />}
-              {Mode.withControlButton && <MainHomeSheetControlButton />}
+              {Mode.withControlButton && (
+                <MainHomeSheetControlButton sheetRef={sheetRef} />
+              )}
             </View>
           )}
         </Container>
       </SafeAreaView>
       {Mode.withBottomBar && <BottomBar />}
+      {mode === 'riding' && <MainHomeSheetControl />}
     </BottomSheet>
   );
 };
@@ -114,4 +122,5 @@ const Container = styled(View)`
   padding: 22px 30px 0 30px;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
 `;

@@ -1,50 +1,21 @@
 import {faGamepad} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import BackgroundGeolocation from '@hariks789/react-native-background-geolocation';
-import {useNavigation} from '@react-navigation/native';
+import BottomSheet from '@gorhom/bottom-sheet';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
-import {RideClient} from '../../../../api/ride';
 import {screenHeight} from '../../../../constants/screenSize';
-import {useGeolocation} from '../../../../hooks/useGeolocation';
-import {currentRideState} from '../../../../recoils/currentRide';
 
-export const MainHomeSheetControlButton: React.FC = () => {
-  const navigation = useNavigation();
-  const [coords] = useGeolocation();
-  const currentRide = useRecoilValue(currentRideState);
+export interface MainHomeSheetControlButtonProps {
+  sheetRef: React.MutableRefObject<BottomSheet | null>;
+}
 
-  const onTerminate = async () => {
-    if (!coords || !currentRide) return;
-
-    const {rideId} = currentRide;
-    const {latitude, longitude} = coords;
-    await RideClient.terminate({latitude, longitude});
-    BackgroundGeolocation.checkStatus(status => {
-      console.log(
-        '[INFO] BackgroundGeolocation service is running',
-        status.isRunning,
-      );
-      console.log(
-        '[INFO] BackgroundGeolocation services enabled',
-        status.locationServicesEnabled,
-      );
-      console.log(
-        '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
-      );
-
-      if (status.isRunning) {
-        BackgroundGeolocation.stop(); //triggers stop on stop event
-      }
-    });
-
-    navigation.navigate('ReturnedPhoto', {screen: 'Camera', params: {rideId}});
-  };
-
+export const MainHomeSheetControlButton: React.FC<
+  MainHomeSheetControlButtonProps
+> = ({sheetRef}) => {
+  const onControl = () => sheetRef.current?.snapToIndex(1);
   return (
-    <Button onPress={onTerminate}>
+    <Button onPress={onControl}>
       <FontAwesomeIcon icon={faGamepad} color="#fff" />
       <ButtonText>컨트롤</ButtonText>
     </Button>

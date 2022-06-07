@@ -200,4 +200,12 @@ export class RideClient {
   ): Promise<ResponseRideGetRides> {
     return this.client.get('/histories', {params}).then(r => r.data);
   }
+
+  public static async lights(on: boolean): Promise<void> {
+    await this.client.get(`/current/lights/${on ? 'on' : 'off'}`);
+  }
+
+  public static async lock(on: boolean): Promise<void> {
+    await this.client.get(`/current/lock/${on ? 'on' : 'off'}`);
+  }
 }

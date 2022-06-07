@@ -17,7 +17,7 @@ import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
-export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
+export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = () => {
   const [currentRide] = useRecoilState(currentRideState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const resetSelectedKickboard = useSetRecoilState(resetSelectedKickboardState);
@@ -138,6 +138,7 @@ export const MainHomeSheetRiding: React.FC<MainHomeSheetCommonProps> = ({}) => {
         <Title>{elapsedTime}</Title>
         <KickboardBatteryStatus
           battery={selectedKickboard?.status.power.scooter.battery || 100}
+          text={currentRide?.isLocked ? '(일시정지됨)' : ''}
         />
       </View>
     </Container>
@@ -158,8 +159,4 @@ const Title = styled(Text)`
   font-size: ${screenHeight / 30}px;
   font-weight: 500,
   color: #000
-`;
-
-const Bold = styled(Text)`
-  font-weight: 800;
 `;
