@@ -47,19 +47,22 @@ export const ReturnedPhotoConfirm: React.FC = () => {
       const {url} = await ImagesClient.upload(resizedImage);
       await RideClient.setReturnedPhotoInRide(rideId, url);
       setLoading(false);
-
-      navigation.navigate('Main', {screen: 'Home'});
-      Notifier.showNotification({
-        title: '반납 사진을 제공해주셔서 감사합니다. :)',
-        Component: NotifierComponents.Alert,
-        componentProps: {
-          alertType: 'success',
-          titleStyle: {color: '#fff'},
-        },
-      });
-    } catch (err) {
-      onError();
+    } catch (err: any) {
+      if (err?.response?.data?.opcode !== -512) {
+        onError();
+        return;
+      }
     }
+
+    navigation.navigate('Main', {screen: 'Home'});
+    Notifier.showNotification({
+      title: '반납 사진을 제공해주셔서 감사합니다. :)',
+      Component: NotifierComponents.Alert,
+      componentProps: {
+        alertType: 'success',
+        titleStyle: {color: '#fff'},
+      },
+    });
   };
 
   useEffect(() => {
