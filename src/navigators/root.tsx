@@ -11,6 +11,7 @@ import {Weblink} from '../screens/weblink';
 import {AuthNavigator} from './auth';
 import {CouponNavigator} from './coupon';
 import {DebugNavigator} from './debug';
+import {HelmetNavigator} from './helmet';
 import {MainNavigator} from './main';
 import {PaymentNavigator} from './payment';
 import {ReturnedPhotoNavigator} from './returnedPhoto';
@@ -54,6 +55,7 @@ export const RootNavigator: React.FC = () => {
         options={{animation: 'fade_from_bottom'}}
       />
       <Stack.Screen name="Rides" component={Rides} />
+      <Stack.Screen name="Helmet" component={HelmetNavigator} />
       <Stack.Screen name="Payment" component={PaymentNavigator} />
       <Stack.Screen name="Coupon" component={CouponNavigator} />
       <Stack.Screen name="Debug" component={DebugNavigator} />

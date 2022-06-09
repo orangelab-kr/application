@@ -17,6 +17,7 @@ export type RootNavigatorRouteParams = {
   Payment: undefined | SubNavigator<PaymentsNavigatorRouteParams>;
   Coupon: undefined | SubNavigator<CouponsNavigatorRouteParams>;
   Debug: undefined | SubNavigator<DebugNavigatorRouteParams>;
+  Helmet: undefined | SubNavigator<HelmetNavigatorRouteParams>;
   Notice: undefined | {page?: string};
   Weblink: {page: string};
   Qrcode: undefined;
@@ -27,6 +28,10 @@ export type ReturnedPhotoNavigatorRouteParams = {
   Confirm: ReturnedPhotoNavigatorRouteParams['Camera'] & {
     photo: TakePictureResponse;
   };
+};
+
+export type HelmetNavigatorRouteParams = {
+  Terms: undefined;
 };
 
 export type PaymentsNavigatorRouteParams = {

@@ -77,6 +77,11 @@ export const onSchemeInitalize = async () => {
     },
   });
 
+  routes.push({
+    path: 'helmet',
+    action: () => navigationRef.current?.navigate('Helmet'),
+  });
+
   await Linking.getInitialURL().then(onSchemeAction);
   Linking.addEventListener('url', ({url}) => onSchemeAction(url));
 };

@@ -30,7 +30,7 @@ export interface MainHomeSheetCommonProps {
   sheetRef: React.MutableRefObject<BottomSheet | null>;
 }
 
-export const MainHomeSheet: React.FC<MainHomeSheetCommonProps> = () => {
+export const MainHomeSheet: React.FC = () => {
   const sheetRef = useRef<BottomSheet>(null);
   const mode = useRecoilValue(modeState);
   const MainHomeSheetComponents: {

@@ -170,7 +170,7 @@ const Button = styled(TouchableOpacity)`
   height: ${screenHeight * 0.05}px;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  background-color: #000;
   border-radius: 3px;
   shadow-color: #999;
   shadow-opacity: 0.3;
