@@ -32,6 +32,8 @@ export type ReturnedPhotoNavigatorRouteParams = {
 
 export type HelmetNavigatorRouteParams = {
   Terms: undefined;
+  Borrow: undefined;
+  Return: undefined;
 };
 
 export type PaymentsNavigatorRouteParams = {

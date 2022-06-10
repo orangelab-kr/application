@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import {Formik, FormikProps} from 'formik';
 import React, {createRef} from 'react';
 import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
@@ -18,6 +19,7 @@ const HelmetTermsSchema: Yup.SchemaOf<HelmetTermsForm> = Yup.object().shape({
 });
 
 export const HelmetTerms: React.FC = () => {
+  const navigation = useNavigation();
   const formRef = createRef<FormikProps<HelmetTermsForm>>();
   const initialValues: HelmetTermsForm = {helmetTerms: false};
   const onCheckbox = (key: keyof HelmetTermsForm) => (value: boolean) => {
@@ -34,7 +36,7 @@ export const HelmetTerms: React.FC = () => {
           innerRef={formRef}
           validateOnChange={false}
           validateOnBlur={false}
-          onSubmit={console.log}
+          onSubmit={() => navigation.navigate('Helmet', {screen: 'Borrow'})}
           validationSchema={HelmetTermsSchema}
           initialValues={initialValues}>
           {({handleSubmit, values, errors}) => (

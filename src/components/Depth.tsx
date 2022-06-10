@@ -7,15 +7,25 @@ import styled from 'styled-components/native';
 import {screenWidth} from '../constants/screenSize';
 
 export interface DepthProps {
+  onPress?: () => void;
   disabled?: boolean;
   color?: string;
 }
 
-export const Depth: React.FC<DepthProps> = ({disabled, color = '#000'}) => {
+export const Depth: React.FC<DepthProps> = ({
+  onPress,
+  disabled,
+  color = '#000',
+}) => {
   const navigation = useNavigation();
+  const onAction = () => {
+    if (disabled) return;
+    if (onPress) return onPress();
+    navigation.goBack();
+  };
 
   return (
-    <Container onPress={() => !disabled && navigation.goBack()}>
+    <Container onPress={onAction}>
       {!disabled && <FontAwesomeIcon icon={faAngleLeft} color={color} />}
     </Container>
   );
