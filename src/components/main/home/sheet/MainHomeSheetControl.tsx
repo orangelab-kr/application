@@ -15,6 +15,7 @@ import styled from 'styled-components/native';
 import {RideClient} from '../../../../api/ride';
 import {screenHeight, screenWidth} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
+import {navigationRef} from '../../../../navigators/navigation';
 import {currentRideState} from '../../../../recoils/currentRide';
 
 export const MainHomeSheetControl: React.FC = () => {
@@ -73,16 +74,23 @@ export const MainHomeSheetControl: React.FC = () => {
     try {
       const {rideId} = currentRide;
       const {latitude, longitude} = coords;
+      const {helmet} = await RideClient.getHelmetStatus();
+      if (helmet.status === 'BORROWED') {
+        return navigationRef.current?.navigate('Helmet', {screen: 'Return'});
+      }
+
       await RideClient.terminate({latitude, longitude});
       BackgroundGeolocation.checkStatus(status => {
         console.log(
           '[INFO] BackgroundGeolocation service is running',
           status.isRunning,
         );
+
         console.log(
           '[INFO] BackgroundGeolocation services enabled',
           status.locationServicesEnabled,
         );
+
         console.log(
           '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
         );

@@ -1,9 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
+import crypto from 'crypto';
+import _ from 'lodash';
 import AnimatedLottieView from 'lottie-react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert, SafeAreaView, Text, View} from 'react-native';
+import {BleManager, Characteristic} from 'react-native-ble-plx';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
+import {RideClient, RideHelmetCredentials} from '../../api/ride';
 import {BottomButton} from '../../components/BottomButton';
 import {Depth} from '../../components/Depth';
 import {screenHeight} from '../../constants/screenSize';
@@ -17,18 +21,18 @@ export const messages: {[key in ConnectStatus]: string} = {
   completed: '완료되었습니다.',
 };
 
+export const manager = new BleManager();
+export let writer: Characteristic | undefined;
+export let reader: Characteristic | undefined;
+
 export const HelmetReturn: React.FC = () => {
   const navigation = useNavigation();
+  const [token, setToken] = useState([0x00, 0x00, 0x00, 0x00]);
+  const serviceId = '0000fee7-0000-1000-8000-00805f9b34fb';
+  const writeId = '000036f5-0000-1000-8000-00805f9b34fb';
+  const readId = '000036f6-0000-1000-8000-00805f9b34fb';
   const [status, setStatus] = useState<ConnectStatus>('request');
-  useInterval(
-    () => {
-      if (status === 'completed') return;
-      const steps = Object.keys(messages);
-      const idx = steps.indexOf(status) + 1;
-      setStatus(steps[idx] as ConnectStatus);
-    },
-    status !== 'completed' ? 4000 : 0,
-  );
+  const [credentials, setCredentials] = useState<RideHelmetCredentials>();
 
   const onComplete = () => navigation.navigate('Main');
   const onBack = () => {
@@ -56,6 +60,155 @@ export const HelmetReturn: React.FC = () => {
       {cancelable: true},
     );
   };
+
+  const onRequest = async () => {
+    setStatus('request');
+    await RideClient.returnHelmet();
+    const {helmet} = await RideClient.getHelmetCredentials();
+    setCredentials(helmet);
+  };
+
+  const onSearching = async () => {
+    setStatus('searching');
+    manager.startDeviceScan(
+      [serviceId],
+      {allowDuplicates: false},
+      (err, device) => {
+        if (err) throw err;
+        if (!device || !device.manufacturerData) return;
+        const helmetId = Buffer.from(device.manufacturerData, 'base64')
+          .toString('hex')
+          .substring(4, 16);
+
+        if (helmetId !== credentials!.macAddress) return;
+        onPairing(device.id);
+        manager.stopDeviceScan();
+      },
+    );
+  };
+
+  const onPairing = async (bluetoothId: string) => {
+    setStatus('pairing');
+
+    const device = await manager.connectToDevice(bluetoothId);
+    await device.discoverAllServicesAndCharacteristics();
+    const services = await device.services();
+    const service = services.find(s => s.uuid === serviceId);
+    if (!service) return;
+    const characteristics = await service.characteristics();
+    writer = characteristics.find(c => c.uuid === writeId);
+    reader = characteristics.find(c => c.uuid === readId);
+    if (!writer || !reader) return;
+
+    await onHandshake();
+  };
+
+  const isLocked = async () => {
+    await write([0x05, 0x0e, 0x01, 0x01], {});
+    const [i] = await waitForResponse([0x05, 0x0f, 0x01], {size: 1});
+    return i === 1;
+  };
+
+  const onHandshake = async () => {
+    await write([0x06, 0x01, 0x01, 0x01], {withToken: false});
+    const token = await waitForResponse([0x06, 0x02, 0x08], {size: 4});
+    setToken(token);
+  };
+
+  const waitForResponse = async (
+    prefix: number[],
+    {size = 16},
+  ): Promise<number[]> =>
+    new Promise((resolve, reject) => {
+      const validate = (payload?: string | null) => {
+        if (!payload) return;
+        const decryptedPayload = decrypt(payload);
+        for (let i = 0; i < prefix.length; i++) {
+          if (decryptedPayload[i] !== prefix[i]) return;
+        }
+
+        const start = prefix.length;
+        const end = start + size;
+        return decryptedPayload.slice(start, end);
+      };
+
+      const monitor = reader!.monitor((err, msg) => {
+        const payload = validate(msg?.value);
+        if (!payload) return;
+
+        monitor.remove();
+        resolve(payload);
+      });
+
+      setTimeout(() => {
+        monitor.remove();
+        reject(new Error(`시간이 초과되었습니다.`));
+      }, 3000);
+    });
+
+  const write = async (
+    payload: number[],
+    {withToken = true, withPassword = false},
+  ): Promise<void> => {
+    if (withPassword) payload.push(...Buffer.from('000000', 'utf-8'));
+    if (withToken) payload.push(...token);
+    const margins = _.times(16 - payload.length, () => _.random(0, 255));
+    payload.push(...margins);
+    await writer!.writeWithResponse(encrypt(payload));
+  };
+
+  const encrypt = (payload: number[]): string => {
+    if (!payload) return '';
+    const key = Buffer.from(credentials?.encryptKey!, 'base64');
+    const cipher = crypto.createCipheriv('aes-128-ecb', key, '');
+    cipher.setAutoPadding(false);
+    return Buffer.concat([
+      cipher.update(Buffer.from(payload)),
+      cipher.final(),
+    ]).toString('base64');
+  };
+
+  const decrypt = (raw: string): number[] => {
+    if (!raw) return [];
+    const key = Buffer.from(credentials?.encryptKey!, 'base64');
+    const cipher = crypto.createDecipheriv('aes-128-ecb', key, '');
+    cipher.setAutoPadding(false);
+    return Array.prototype.slice.call(
+      Buffer.concat([
+        cipher.update(Buffer.from(raw, 'base64')),
+        cipher.final(),
+      ]),
+    );
+  };
+
+  const waitUntilLocked = async () => {
+    const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+    while (true) {
+      const locked = await isLocked().catch(() => false);
+      if (!locked) {
+        await sleep(1500);
+        continue;
+      }
+
+      await RideClient.returnHelmetComplete();
+      setStatus('completed');
+      break;
+    }
+  };
+
+  useEffect(() => {
+    onRequest();
+  }, []);
+
+  useEffect(() => {
+    if (status !== 'request' || !credentials) return;
+    onSearching();
+  }, [credentials]);
+
+  useEffect(() => {
+    if (!token) return;
+    waitUntilLocked();
+  }, [token]);
 
   return (
     <SafeAreaView style={{height: '100%'}}>
