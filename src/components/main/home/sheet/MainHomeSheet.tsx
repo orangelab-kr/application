@@ -54,7 +54,7 @@ export const MainHomeSheet: React.FC = () => {
     },
     riding: {
       component: MainHomeSheetRiding,
-      snapPoints: ['14%', '32%'],
+      snapPoints: ['32%'],
       withStartButton: false,
       withRouteButton: false,
       withControlButton: true,

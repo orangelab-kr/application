@@ -1,10 +1,11 @@
-import {faGamepad} from '@fortawesome/free-solid-svg-icons';
+import {faHelmetSafety} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import BottomSheet from '@gorhom/bottom-sheet';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
+import {navigationRef} from '../../../../navigators/navigation';
 
 export interface MainHomeSheetControlButtonProps {
   sheetRef: React.MutableRefObject<BottomSheet | null>;
@@ -12,12 +13,12 @@ export interface MainHomeSheetControlButtonProps {
 
 export const MainHomeSheetControlButton: React.FC<
   MainHomeSheetControlButtonProps
-> = ({sheetRef}) => {
-  const onControl = () => sheetRef.current?.snapToIndex(1);
+> = () => {
+  const onHelmet = () => navigationRef.current?.navigate('Helmet');
   return (
-    <Button onPress={onControl}>
-      <FontAwesomeIcon icon={faGamepad} color="#fff" />
-      <ButtonText>컨트롤</ButtonText>
+    <Button onPress={onHelmet}>
+      <FontAwesomeIcon icon={faHelmetSafety} color="#fff" />
+      <ButtonText>헬멧</ButtonText>
     </Button>
   );
 };

@@ -147,7 +147,34 @@ export interface RideRide {
   deletedAt?: any;
 }
 
+export interface RideHelmet {
+  borrowId: string;
+  status: 'IDLE' | 'BORROWED' | 'RETURNED';
+  deviceInfo: string;
+  returnedAt: Date | null;
+  rideId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: null;
+}
+
+export interface RideHelmetCredentials {
+  _id: string;
+  status: number;
+  macAddress: string;
+  version: number;
+  battery: number;
+  password: string;
+  encryptKey: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type ResponseRideGetRide = CommonResponse<{ride: RideRide}>;
+export type ResponseRideHelmet = CommonResponse<{helmet: RideHelmet}>;
+export type ResponseRideHelmetCredentials = CommonResponse<{
+  helmet: RideHelmetCredentials;
+}>;
 
 export class RideClient {
   private static client = createClient('ride');
@@ -207,5 +234,33 @@ export class RideClient {
 
   public static async lock(on: boolean): Promise<void> {
     await this.client.get(`/current/lock/${on ? 'on' : 'off'}`);
+  }
+
+  public static async borrowHelmet(
+    deviceInfo: string,
+  ): Promise<ResponseRideHelmet> {
+    return this.client
+      .get(`/current/helmet/borrow`, {params: {deviceInfo}})
+      .then(r => r.data);
+  }
+
+  public static async getHelmetStatus(): Promise<ResponseRideHelmet> {
+    return this.client.get(`/current/helmet`).then(r => r.data);
+  }
+
+  public static async borrowHelmetComplete(): Promise<ResponseRideHelmet> {
+    return this.client.patch(`/current/helmet/borrow`).then(r => r.data);
+  }
+
+  public static async returnHelmet(): Promise<ResponseRideHelmet> {
+    return this.client.get(`/current/helmet/return`).then(r => r.data);
+  }
+
+  public static async returnHelmetComplete(): Promise<ResponseRideHelmet> {
+    return this.client.patch(`/current/helmet/return`).then(r => r.data);
+  }
+
+  public static async getHelmetCredentials(): Promise<ResponseRideHelmetCredentials> {
+    return this.client.get(`/current/helmet/credentials`).then(r => r.data);
   }
 }
