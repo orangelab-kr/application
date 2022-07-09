@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>25</string>
+	<string>33</string>
 	<key>CodePushDeploymentKey</key>
 	<string>s8-zISvTY5CvCaVq3frBKjeee6UjKq-G7DZNs</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -88,6 +88,8 @@
 	<string>주변 킥보드 검색 및 보험 처리를 위해 위치 정보를 사용합니다.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>주변 킥보드 검색 및 보험 처리를 위해 위치 정보를 사용합니다.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>주변 킥보드 검색 및 보험 처리를 위해 위치 정보를 사용합니다.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-peripheral</string>
@@ -100,6 +102,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -108,7 +112,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSMotionUsageDescription</key>
-	<string>주변 킥보드 검색 및 보험 처리를 위해 위치 정보를 사용합니다.</string>
 </dict>
 </plist>

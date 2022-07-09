@@ -521,7 +521,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = hikick/hikick.entitlements;
-				CURRENT_PROJECT_VERSION = 25;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = hikick/Info.plist;
@@ -536,6 +538,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.hikick.application;
 				PRODUCT_NAME = hikick;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,7 +553,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = hikick/hikick.entitlements;
-				CURRENT_PROJECT_VERSION = 25;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
 				INFOPLIST_FILE = hikick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -564,6 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.hikick.application;
 				PRODUCT_NAME = hikick;
+				PROVISIONING_PROFILE_SPECIFIER = "HIKICK Main Application App Store";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
