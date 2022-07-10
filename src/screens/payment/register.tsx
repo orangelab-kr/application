@@ -1,4 +1,4 @@
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {Formik, FormikProps} from 'formik';
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {KeyboardAvoidingView, Text, View} from 'react-native';
@@ -14,6 +14,7 @@ import {ShadowInput} from '../../components/ShadowInput';
 import {ValidateMessage} from '../../components/ValidateMessage';
 import {screenHeight} from '../../constants/screenSize';
 import {PaymentsNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 import {onCardNumberFormatter, onExpiryFormatter} from '../../tools/formatter';
 
 export type PaymentRegisterForm = RequestPaymentsRegisterCard;
@@ -28,7 +29,6 @@ const PaymentRegisterScheme: Yup.SchemaOf<PaymentRegisterForm> =
   });
 
 export const PaymentRegister: FC = () => {
-  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(false);
   const formRef = useRef<FormikProps<PaymentRegisterForm>>(null);
@@ -61,7 +61,7 @@ export const PaymentRegister: FC = () => {
         },
       });
 
-      navigation.goBack();
+      navigationRef.current?.goBack();
     } finally {
       setLoading(false);
     }

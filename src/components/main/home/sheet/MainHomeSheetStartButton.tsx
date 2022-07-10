@@ -1,21 +1,17 @@
 import {faBarcode} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
+import {navigationRef} from '../../../../navigators/navigation';
 
-export const MainHomeSheetStartButton: React.FC = () => {
-  const navigation = useNavigation();
-
-  return (
-    <Button onPress={() => navigation.navigate('Qrcode')}>
-      <FontAwesomeIcon icon={faBarcode} color="#fff" />
-      <ButtonText>시작</ButtonText>
-    </Button>
-  );
-};
+export const MainHomeSheetStartButton: React.FC = () => (
+  <Button onPress={() => navigationRef.current?.navigate('Qrcode')}>
+    <FontAwesomeIcon icon={faBarcode} color="#fff" />
+    <ButtonText>시작</ButtonText>
+  </Button>
+);
 
 const Button = styled(TouchableOpacity)`
   background-color: #000;

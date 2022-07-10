@@ -7,7 +7,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import BackgroundGeolocation from '@hariks789/react-native-background-geolocation';
-import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Alert, Text, TouchableOpacity, View} from 'react-native';
 import {useRecoilState} from 'recoil';
@@ -19,7 +18,6 @@ import {navigationRef} from '../../../../navigators/navigation';
 import {currentRideState} from '../../../../recoils/currentRide';
 
 export const MainHomeSheetControl: React.FC = () => {
-  const navigation = useNavigation();
   const [coords] = useGeolocation();
   const [currentRide, setCurrentRide] = useRecoilState(currentRideState);
   const [terminating, setTerminating] = useState(false);
@@ -75,7 +73,7 @@ export const MainHomeSheetControl: React.FC = () => {
       const {rideId} = currentRide;
       const {latitude, longitude} = coords;
       const {helmet} = await RideClient.getHelmetStatus();
-      if (helmet.status === 'BORROWED') {
+      if (helmet && helmet.status === 'BORROWED') {
         return navigationRef.current?.navigate('Helmet', {screen: 'Return'});
       }
 
@@ -101,7 +99,7 @@ export const MainHomeSheetControl: React.FC = () => {
       });
 
       setCurrentRide(undefined);
-      navigation.navigate('ReturnedPhoto', {
+      navigationRef.current?.navigate('ReturnedPhoto', {
         screen: 'Camera',
         params: {rideId},
       });

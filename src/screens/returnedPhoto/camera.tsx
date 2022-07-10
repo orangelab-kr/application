@@ -1,5 +1,5 @@
 import {faCamera} from '@fortawesome/free-solid-svg-icons';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {
   Keyboard,
@@ -14,9 +14,9 @@ import styled from 'styled-components/native';
 import {TransparentButton} from '../../components/TransparentButton';
 import {screenHeight} from '../../constants/screenSize';
 import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 
 export const ReturnedPhotoCamera: React.FC = () => {
-  const navigation = useNavigation();
   const cameraRef = React.createRef<RNCamera>();
   const {params} =
     useRoute<RouteProp<ReturnedPhotoNavigatorRouteParams, 'Camera'>>();
@@ -26,7 +26,7 @@ export const ReturnedPhotoCamera: React.FC = () => {
     if (!rideId || !cameraRef.current) return;
     const options = {quality: 1, exif: true, base64: false};
     const photo = await cameraRef.current.takePictureAsync(options);
-    navigation.navigate('ReturnedPhoto', {
+    navigationRef.current?.navigate('ReturnedPhoto', {
       screen: 'Confirm',
       params: {rideId, photo},
     });

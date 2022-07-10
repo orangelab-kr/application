@@ -17,6 +17,7 @@ import {ShadowInput} from '../../components/ShadowInput';
 import {ValidateMessage} from '../../components/ValidateMessage';
 import {screenHeight} from '../../constants/screenSize';
 import {CouponsNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 
 export type CouponRegisterForm = RequestPaymentsRegisterCoupon;
 const CouponRegisterScheme: Yup.SchemaOf<CouponRegisterForm> =
@@ -25,7 +26,6 @@ const CouponRegisterScheme: Yup.SchemaOf<CouponRegisterForm> =
   });
 
 export const CouponRegister: FC = () => {
-  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(false);
   const formRef = useRef<FormikProps<CouponRegisterForm>>(null);
@@ -47,7 +47,7 @@ export const CouponRegister: FC = () => {
         },
       });
 
-      navigation.goBack();
+      navigationRef.current?.goBack();
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,4 @@
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React from 'react';
 import {
@@ -17,6 +17,7 @@ import {ShadowInput} from '../../../components/ShadowInput';
 import {ValidateMessage} from '../../../components/ValidateMessage';
 import {screenHeight} from '../../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../../models/navigation';
+import {navigationRef} from '../../../navigators/navigation';
 
 export interface AuthSignupNameForm {
   realname: string;
@@ -33,12 +34,11 @@ const AuthSignupNameSchema: Yup.SchemaOf<AuthSignupNameForm> =
   });
 
 export const AuthSignupName: React.FC = () => {
-  const navigation = useNavigation();
   const initialValues: AuthSignupNameForm = {realname: ''};
   const {params} =
     useRoute<RouteProp<AuthNavigatorRouteParams, 'SignupName'>>();
   const onNext = (payload: AuthSignupNameForm) =>
-    navigation.navigate('SignupBirthday', {...params, ...payload});
+    navigationRef.current?.navigate('SignupBirthday', {...params, ...payload});
 
   return (
     <SafeAreaView>

@@ -1,10 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  CommonActions,
-  RouteProp,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
+import {CommonActions, RouteProp, useRoute} from '@react-navigation/native';
 import {Formik, FormikProps} from 'formik';
 import React, {createRef, useState} from 'react';
 import {
@@ -25,6 +20,7 @@ import {Depth} from '../../../components/Depth';
 import {ValidateMessage} from '../../../components/ValidateMessage';
 import {screenHeight} from '../../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../../models/navigation';
+import {navigationRef} from '../../../navigators/navigation';
 
 export interface AuthSignupTermsForm {
   terms: boolean;
@@ -46,7 +42,6 @@ const AuthSignupTermsSchema: Yup.SchemaOf<AuthSignupTermsForm> =
   });
 
 export const AuthSignupTerms: React.FC = () => {
-  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const formRef = createRef<FormikProps<AuthSignupTermsForm>>();
   const initialValues: AuthSignupTermsForm = {
@@ -76,7 +71,7 @@ export const AuthSignupTerms: React.FC = () => {
 
       const {sessionId} = await AccountsClient.signup(body);
       await AsyncStorage.setItem('accessToken', sessionId);
-      navigation.dispatch(
+      navigationRef.current?.dispatch(
         CommonActions.reset({index: 0, routes: [{name: 'Splash'}]}),
       );
     } catch (err) {

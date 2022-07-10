@@ -7,11 +7,11 @@ import {BottomButton} from '../../components/BottomButton';
 import {Depth} from '../../components/Depth';
 import {PaymentFlatlist} from '../../components/payment/flatlist';
 import {screenHeight} from '../../constants/screenSize';
+import {navigationRef} from '../../navigators/navigation';
 
 export const PaymentList: FC = () => {
-  const navigation = useNavigation();
   const onRegisterPress = () =>
-    navigation.navigate('Payment', {screen: 'Register'});
+    navigationRef.current?.navigate('Payment', {screen: 'Register'});
 
   return (
     <SafeAreaView style={{height: '100%'}}>

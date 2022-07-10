@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import _ from 'lodash';
 import React, {useState} from 'react';
@@ -8,6 +7,7 @@ import * as Yup from 'yup';
 import {AccountsClient} from '../api/accounts';
 import {ShadowInput} from '../components/ShadowInput';
 import {screenHeight} from '../constants/screenSize';
+import {navigationRef} from '../navigators/navigation';
 import {onPhoneFormatter} from '../tools/formatter';
 
 export interface StartForm {
@@ -19,7 +19,6 @@ const StartSchema: Yup.SchemaOf<StartForm> = Yup.object().shape({
 });
 
 export const Start: React.FC = () => {
-  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const initialValues: StartForm = {phoneNo: ''};
   const onLogin = async (params: StartForm) => {
@@ -27,7 +26,10 @@ export const Start: React.FC = () => {
       setLoading(true);
       const phoneNo = `+82${params.phoneNo.substring(1).replace(/-/g, '')}`;
       await AccountsClient.requestPhone(phoneNo);
-      navigation.navigate('Auth', {screen: 'Verify', params: {phoneNo}});
+      navigationRef.current?.navigate('Auth', {
+        screen: 'Verify',
+        params: {phoneNo},
+      });
     } finally {
       setLoading(false);
     }

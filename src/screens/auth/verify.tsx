@@ -1,10 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  CommonActions,
-  RouteProp,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
+import {CommonActions, RouteProp, useRoute} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React from 'react';
 import {
@@ -27,6 +22,7 @@ import {ShadowInput} from '../../components/ShadowInput';
 import {ValidateMessage} from '../../components/ValidateMessage';
 import {screenHeight} from '../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 import {onPhoneFormatter} from '../../tools/formatter';
 export interface AuthVerifyForm {
   code: string;
@@ -39,7 +35,6 @@ const AuthVerifySchema: Yup.SchemaOf<AuthVerifyForm> = Yup.object().shape({
 });
 
 export const AuthVerify: React.FC = () => {
-  const navigation = useNavigation();
   const initialValues: AuthVerifyForm = {code: ''};
   const {params} = useRoute<RouteProp<AuthNavigatorRouteParams, 'Verify'>>();
   const onVerify = async (form: AuthVerifyForm) => {
@@ -50,9 +45,9 @@ export const AuthVerify: React.FC = () => {
       );
 
       const login = await onLogin(phone);
-      if (!login) return navigation.navigate('SignupName', {phone});
+      if (!login) return navigationRef.current?.navigate('SignupName', {phone});
       await AsyncStorage.setItem('accessToken', login.sessionId);
-      navigation.dispatch(
+      navigationRef.current?.dispatch(
         CommonActions.reset({index: 0, routes: [{name: 'Main'}]}),
       );
     } catch (err) {

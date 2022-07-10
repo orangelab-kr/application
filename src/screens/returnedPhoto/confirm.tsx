@@ -3,7 +3,7 @@ import {
   faMicrochip,
   faUpload,
 } from '@fortawesome/free-solid-svg-icons';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {StatusBar, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -17,9 +17,9 @@ import {Depth} from '../../components/Depth';
 import {TransparentButton} from '../../components/TransparentButton';
 import {screenHeight, screenWidth} from '../../constants/screenSize';
 import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 
 export const ReturnedPhotoConfirm: React.FC = () => {
-  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [resizedImage, setResizedImage] = useState<Response>();
   const {params} =
@@ -27,7 +27,11 @@ export const ReturnedPhotoConfirm: React.FC = () => {
 
   const onError = () => {
     const {rideId} = params;
-    navigation.navigate('ReturnedPhoto', {screen: 'Camera', params: {rideId}});
+    navigationRef.current?.navigate('ReturnedPhoto', {
+      screen: 'Camera',
+      params: {rideId},
+    });
+
     Notifier.showNotification({
       title: '죄송합니다. 다시 촬영해주세요.',
       Component: NotifierComponents.Alert,
@@ -54,7 +58,7 @@ export const ReturnedPhotoConfirm: React.FC = () => {
       }
     }
 
-    navigation.navigate('Main', {screen: 'Home'});
+    navigationRef.current?.navigate('Main', {screen: 'Home'});
     Notifier.showNotification({
       title: '반납 사진을 제공해주셔서 감사합니다. :)',
       Component: NotifierComponents.Alert,

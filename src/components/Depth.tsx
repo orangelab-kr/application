@@ -1,10 +1,10 @@
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import {screenWidth} from '../constants/screenSize';
+import {navigationRef} from '../navigators/navigation';
 
 export interface DepthProps {
   onPress?: () => void;
@@ -17,11 +17,10 @@ export const Depth: React.FC<DepthProps> = ({
   disabled,
   color = '#000',
 }) => {
-  const navigation = useNavigation();
   const onAction = () => {
     if (disabled) return;
     if (onPress) return onPress();
-    navigation.goBack();
+    navigationRef.current?.goBack();
   };
 
   return (

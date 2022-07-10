@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import crypto from 'crypto';
 import _ from 'lodash';
 import AnimatedLottieView, {AnimationObject} from 'lottie-react-native';
@@ -10,6 +9,7 @@ import {RideClient, RideHelmetCredentials} from '../../api/ride';
 import {BottomButton} from '../../components/BottomButton';
 import {Depth} from '../../components/Depth';
 import {screenHeight} from '../../constants/screenSize';
+import {navigationRef} from '../../navigators/navigation';
 
 export const manager = new BleManager();
 export let writer: Characteristic | undefined;
@@ -32,7 +32,6 @@ const messages: {[key in ConnectStatus]: string} = {
 };
 
 export const HelmetBorrow: React.FC = () => {
-  const navigation = useNavigation();
   const [token, setToken] = useState([0x00, 0x00, 0x00, 0x00]);
   const serviceId = '0000fee7-0000-1000-8000-00805f9b34fb';
   const writeId = '000036f5-0000-1000-8000-00805f9b34fb';
@@ -40,9 +39,9 @@ export const HelmetBorrow: React.FC = () => {
   const [status, setStatus] = useState<ConnectStatus>('request');
   const [credentials, setCredentials] = useState<RideHelmetCredentials>();
 
-  const onComplete = () => navigation.navigate('Main');
+  const onComplete = () => navigationRef.current?.navigate('Main');
   const onBack = () => {
-    const onPress = () => navigation.goBack();
+    const onPress = () => navigationRef.current?.goBack();
     Alert.alert(
       '헬멧과 통신하는 중...',
       '헬멧 대여를 취소하시겠습니까?',

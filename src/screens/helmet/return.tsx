@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import crypto from 'crypto';
 import _ from 'lodash';
 import AnimatedLottieView from 'lottie-react-native';
@@ -11,7 +10,7 @@ import {RideClient, RideHelmetCredentials} from '../../api/ride';
 import {BottomButton} from '../../components/BottomButton';
 import {Depth} from '../../components/Depth';
 import {screenHeight} from '../../constants/screenSize';
-import {useInterval} from '../../hooks/useInterval';
+import {navigationRef} from '../../navigators/navigation';
 import {ConnectStatus, icons} from './borrow';
 
 export const messages: {[key in ConnectStatus]: string} = {
@@ -26,7 +25,6 @@ export let writer: Characteristic | undefined;
 export let reader: Characteristic | undefined;
 
 export const HelmetReturn: React.FC = () => {
-  const navigation = useNavigation();
   const [token, setToken] = useState([0x00, 0x00, 0x00, 0x00]);
   const serviceId = '0000fee7-0000-1000-8000-00805f9b34fb';
   const writeId = '000036f5-0000-1000-8000-00805f9b34fb';
@@ -34,9 +32,9 @@ export const HelmetReturn: React.FC = () => {
   const [status, setStatus] = useState<ConnectStatus>('request');
   const [credentials, setCredentials] = useState<RideHelmetCredentials>();
 
-  const onComplete = () => navigation.navigate('Main');
+  const onComplete = () => navigationRef.current?.navigate('Main');
   const onBack = () => {
-    const onPress = () => navigation.goBack();
+    const onPress = () => navigationRef.current?.goBack();
     Alert.alert(
       '라이드를 종료하는 중...',
       '이어서 라이드를 진행하시겠습니까?',
@@ -49,7 +47,7 @@ export const HelmetReturn: React.FC = () => {
   };
 
   const onLost = () => {
-    const onPress = () => navigation.goBack();
+    const onPress = () => navigationRef.current?.goBack();
     Alert.alert(
       '헬멧이 파손되었거나 분실되었나요?',
       '파손 및 분실의 경우, 이용 정책에 따라 15,000원이 추가로 결제됩니다. 오류일 경우, 오류를 증명할 수 있는 사진과 함께 고객센터에 문의주시면 환불 조치해드립니다.',

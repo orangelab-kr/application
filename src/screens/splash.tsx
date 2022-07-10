@@ -1,27 +1,26 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {Image, Text, View} from 'react-native';
 import {checkMultiple} from 'react-native-permissions';
 import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../constants/screenSize';
+import {navigationRef} from '../navigators/navigation';
 import {loginedUserState} from '../recoils/loginedUser';
 import {useRecoilValueMaybe} from '../tools/recoil';
 import {requiredPermissions} from './permission';
 
 export const Splash: React.FC = () => {
-  const navigation = useNavigation();
   const user = useRecoilValueMaybe(loginedUserState);
 
   useEffect(() => {
     checkMultiple(requiredPermissions).then(permissions => {
       const isAllow = (p: string) => !['granted', 'unavailable'].includes(p);
       if (Object.values(permissions).find(isAllow)) {
-        return navigation.navigate('Permission');
+        return navigationRef.current?.navigate('Permission');
       }
 
       if (user === undefined) return;
-      if (user == null) return navigation.navigate('Start');
-      navigation.navigate('Main');
+      if (user == null) return navigationRef.current?.navigate('Start');
+      navigationRef.current?.navigate('Main');
     });
   }, [user]);
 

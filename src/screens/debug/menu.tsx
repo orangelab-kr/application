@@ -1,13 +1,12 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {Depth} from '../../components/Depth';
 import {screenHeight} from '../../constants/screenSize';
+import {navigationRef} from '../../navigators/navigation';
 
 export const DebugMenu: React.FC = () => {
-  const navigation = useNavigation();
   const menus: {name: string; screen: any}[] = [
     {name: '스킴', screen: 'Scheme'},
     {name: '블루투스', screen: 'Bluetooth'},
@@ -24,7 +23,7 @@ export const DebugMenu: React.FC = () => {
           <Button
             key={screen}
             title={name}
-            onPress={() => navigation.navigate('Debug', {screen})}
+            onPress={() => navigationRef.current?.navigate('Debug', {screen})}
           />
         ))}
       </Container>

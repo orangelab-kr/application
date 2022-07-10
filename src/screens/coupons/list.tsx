@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {FC} from 'react';
 import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -7,11 +6,11 @@ import {BottomButton} from '../../components/BottomButton';
 import {CouponFlatlist} from '../../components/coupon/flatlist';
 import {Depth} from '../../components/Depth';
 import {screenHeight} from '../../constants/screenSize';
+import {navigationRef} from '../../navigators/navigation';
 
 export const CouponList: FC = () => {
-  const navigation = useNavigation();
   const onRegisterPress = () =>
-    navigation.navigate('Coupon', {screen: 'Register'});
+    navigationRef.current?.navigate('Coupon', {screen: 'Register'});
 
   return (
     <SafeAreaView style={{height: '100%'}}>

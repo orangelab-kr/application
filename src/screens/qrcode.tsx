@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   Keyboard,
@@ -15,6 +14,7 @@ import {Depth} from '../components/Depth';
 import {QrcodeCodeInput} from '../components/qrcode/QrcodeCodeInput';
 import {QrcodeFlashButton} from '../components/qrcode/QrcodeFlashButton';
 import {screenHeight} from '../constants/screenSize';
+import {navigationRef} from '../navigators/navigation';
 import {confirmState} from '../recoils/confirm';
 import {selectedKickboardCodeState} from '../recoils/selectedKickboardCode';
 
@@ -26,15 +26,13 @@ export const Qrcode: React.FC = () => {
   const [flash, setFlash] = useState(false);
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const setConfirm = useSetRecoilState(confirmState);
-  const navigation = useNavigation();
-
   const onKickboardCode: GetKickboardCodeEvent = async (
     kickboardCode: string,
   ) => {
     setConfirm(true);
     setSelectedKickboard(kickboardCode);
     console.log(`Kickboard Code: ${kickboardCode}`);
-    navigation.navigate('Main', {screen: 'Home'});
+    navigationRef.current?.navigate('Main', {screen: 'Home'});
   };
 
   const onReadByScanner = async (e: BarCodeReadEvent) => {

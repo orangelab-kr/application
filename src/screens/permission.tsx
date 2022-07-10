@@ -4,7 +4,7 @@ import {
   faCamera,
   faLocationArrow,
 } from '@fortawesome/free-solid-svg-icons';
-import {CommonActions, useNavigation} from '@react-navigation/native';
+import {CommonActions} from '@react-navigation/native';
 import React from 'react';
 import {
   Alert,
@@ -28,6 +28,7 @@ import {Depth} from '../components/Depth';
 import {IconWithTextBox} from '../components/IconWithTextBox';
 import isAndroid from '../constants/isAndroid';
 import {screenHeight} from '../constants/screenSize';
+import {navigationRef} from '../navigators/navigation';
 
 export const requestPermissions = isAndroid
   ? [
@@ -54,7 +55,6 @@ export const requiredPermissions = [
 ];
 
 export const Permission: React.FC = () => {
-  const navigation = useNavigation();
   const onClick = async () => {
     await requestNotifications(['alert', 'sound']);
     const permissions = await requestMultiple(requestPermissions);
@@ -80,7 +80,7 @@ export const Permission: React.FC = () => {
       );
     }
 
-    navigation.dispatch(
+    navigationRef.current?.dispatch(
       CommonActions.reset({index: 0, routes: [{name: 'Splash'}]}),
     );
   };
