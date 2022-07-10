@@ -30,7 +30,7 @@ export const MainHomeMenu: React.FC = () => {
 
   return (
     <>
-      {mode !== 'welcome' && <MainHomeMenuButton />}
+      <MainHomeMenuButton />
       <MainHomeMenuPopup />
     </>
   );

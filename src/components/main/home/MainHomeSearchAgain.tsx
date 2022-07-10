@@ -32,7 +32,7 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
       previousCameraLoc.longitude,
     );
 
-    if (meter <= 3000) {
+    if (meter <= 1500) {
       console.log(`Moved too close. not requesting api (Distance: ${meter}m)`);
 
       return;
