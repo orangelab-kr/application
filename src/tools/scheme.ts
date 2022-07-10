@@ -1,6 +1,8 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {parse, UrlObject} from 'ale-url-parser';
 import _ from 'lodash';
-import {Linking} from 'react-native';
+import {Alert, Linking} from 'react-native';
+import CodePush from 'react-native-code-push';
 import {navigationRef} from '../navigators/navigation';
 
 let initalized = false;
@@ -74,6 +76,26 @@ export const onSchemeInitalize = async () => {
     action: ({path}) => {
       const screen: any = _.camelCase(path?.join('/'));
       navigationRef.current?.navigate('Debug', {screen});
+    },
+  });
+
+  routes.push({
+    path: 'auth/logout',
+    action: () => {
+      const onPress = () => {
+        AsyncStorage.clear();
+        CodePush.restartApp();
+      };
+
+      Alert.alert(
+        '로그아웃',
+        '정말로 로그아웃하시겠습니까?',
+        [
+          {text: '아니요', style: 'cancel'},
+          {text: '네, 로그아웃합니다', onPress},
+        ],
+        {cancelable: true},
+      );
     },
   });
 
