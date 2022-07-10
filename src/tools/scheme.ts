@@ -104,6 +104,11 @@ export const onSchemeInitalize = async () => {
     action: () => navigationRef.current?.navigate('Helmet'),
   });
 
+  routes.push({
+    path: 'kakaotalk',
+    action: () => Linking.openURL('kakaoplus://plusfriend/home/338273664'),
+  });
+
   await Linking.getInitialURL().then(onSchemeAction);
   Linking.addEventListener('url', ({url}) => onSchemeAction(url));
 };

@@ -19,7 +19,7 @@ export const DebugScheme: React.FC = () => {
     {name: '공지사항', path: 'notices'},
     {name: '공지사항(게시글ID)', path: 'notices/mykick'},
     {name: '설정', path: 'weblink/settings'},
-    {name: '채널톡', path: 'channeltalk'},
+    {name: '고객센터', path: 'kakaotalk'},
     {name: '카카오 연동', path: 'methods/kakao/connect'},
     {name: '카카오 해제', path: 'methods/kakao/disconnect'},
     {name: '애플 연동', path: 'methods/apple/connect'},
