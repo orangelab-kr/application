@@ -33,8 +33,7 @@ export const MainHomeSheetLocationButton: React.FC = () => {
 const Button = styled(TouchableOpacity)`
   position: absolute;
   padding: 17px;
-  padding-top: 21px;
-  border-radius: 30px;
+  border-radius: 10px;
   background-color: #fff;
   shadow-color: #999;
   shadow-opacity: 1;

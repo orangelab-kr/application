@@ -19,7 +19,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const setConfirm = useSetRecoilState(confirmState);
-  const [, setCameraLoc] = useRecoilValueDebounce(cameraLocState, 800);
+  const [, setCameraLoc] = useRecoilValueDebounce(cameraLocState, 100);
   const setSelectedRegion = useSetRecoilState(selectedRegionState);
   const trackingMode = useRecoilValue(trackingModeState);
 
@@ -56,7 +56,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
       scaleBar={false}
       zoomControl={true}
       mapType={MapType.Basic}
-      // minZoomLevel={12}
+      minZoomLevel={12}
       onCameraChange={setCameraLoc}
       onMapClick={onMapClick}
       useTextureView>

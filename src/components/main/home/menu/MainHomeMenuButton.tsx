@@ -13,7 +13,7 @@ export const MainHomeMenuButton: React.FC<TouchableOpacityProps> = props => {
   return (
     <Button onPress={() => setVisible(true)} {...props}>
       <FontAwesomeIcon icon={faSliders} color="#000" size={18} />
-      <ButtonText>메뉴</ButtonText>
+      {/* <ButtonText>메뉴</ButtonText> */}
     </Button>
   );
 };

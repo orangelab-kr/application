@@ -2,10 +2,9 @@ import React, {useEffect} from 'react';
 import {Marker} from 'react-native-nmap';
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
 import {RideKickboard} from '../../../../api/ride';
-import {useKickboards} from '../../../../hooks/useKickboards';
-import {cameraLocState} from '../../../../recoils/cameraLoc';
 import {confirmState} from '../../../../recoils/confirm';
 import {currentRideState} from '../../../../recoils/currentRide';
+import {kickboardsState} from '../../../../recoils/kickboards';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
@@ -17,10 +16,9 @@ interface MainHomeMapKickboardProps {}
 export const MainHomeMapKickboard: React.FC<
   MainHomeMapKickboardProps
 > = ({}) => {
-  const cameraLoc = useRecoilValue(cameraLocState);
   const currentRide = useRecoilValue(currentRideState);
   const setConfirm = useSetRecoilState(confirmState);
-  const [kickboards, setKickboards] = useKickboards(cameraLoc);
+  const [kickboards, setKickboards] = useRecoilState(kickboardsState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
   const [selectedKickboardCode, setSelectedKickboard] = useRecoilState(
     selectedKickboardCodeState,
