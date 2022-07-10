@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import RNShake from 'react-native-shake';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {navigationRef} from '../../../../navigators/navigation';
 import {menuPopupState} from '../../../../recoils/menuPopup';
 import {modeState} from '../../../../recoils/mode';
 import {MainHomeMenuButton} from './MainHomeMenuButton';
@@ -16,7 +17,11 @@ export const MainHomeMenu: React.FC = () => {
 
   useEffect(() => {
     const subscription = RNShake.addListener(() => {
-      if (mode === 'welcome') return;
+      if (mode === 'welcome') {
+        navigationRef.current?.navigate('Qrcode');
+        return;
+      }
+
       setMenuPopup(true);
     });
 
