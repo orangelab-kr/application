@@ -1,5 +1,5 @@
 import CheckBox from '@react-native-community/checkbox';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import {openInAppBrowser} from '../../../../tools/openInAppBrowser';
@@ -21,7 +21,10 @@ export const Terms: React.FC<TermsProps> = ({
 }) => {
   const openURL = () => url && openInAppBrowser(url);
   const onPress = () => onChange(!value);
-  useEffect(() => onChange && onChange(value), [value]);
+  useEffect(() => {
+    if (!onChange) return;
+    onChange(value);
+  }, [value]);
 
   return (
     <Container>

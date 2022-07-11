@@ -42,7 +42,10 @@ export const PaymentRegister: FC = () => {
     ...params,
   };
 
-  useEffect(() => setRerender(!rerender), []);
+  useEffect(() => {
+    setRerender(!rerender);
+  }, []);
+
   const onRegister = async (body: PaymentRegisterForm) => {
     try {
       setLoading(true);

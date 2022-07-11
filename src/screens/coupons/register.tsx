@@ -33,7 +33,10 @@ export const CouponRegister: FC = () => {
     useRoute<RouteProp<CouponsNavigatorRouteParams, 'Register'>>();
   const initialValues: CouponRegisterForm = {code: '', ...params};
 
-  useEffect(() => setRerender(!rerender), []);
+  useEffect(() => {
+    setRerender(!rerender);
+  }, []);
+
   const onRegister = async (body: CouponRegisterForm) => {
     try {
       setLoading(true);

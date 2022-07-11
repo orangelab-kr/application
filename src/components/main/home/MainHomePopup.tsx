@@ -24,8 +24,7 @@ export const MainHomePopup: React.FC = () => {
 
   useEffect(() => {
     const unload = () => setVisible(false);
-    const unsubscribe = navigation.addListener('blur', unload);
-    return unsubscribe;
+    return navigation.addListener('blur', unload);
   }, [navigation]);
 
   useEffect(() => {

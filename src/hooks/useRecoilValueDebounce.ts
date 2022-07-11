@@ -15,6 +15,9 @@ export const useRecoilValueDebounce = <T>(
     if (onChanged) onChanged();
   }, [debouncedValue, onChanged, setValueInStore]);
 
-  useEffect(() => setValue(valueInStore), [valueInStore]);
+  useEffect(() => {
+    setValue(valueInStore);
+  }, [valueInStore]);
+
   return [value, setValue];
 };

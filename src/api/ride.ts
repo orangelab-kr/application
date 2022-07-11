@@ -90,6 +90,11 @@ export interface RequestRideTerminate {
   longitude?: number;
 }
 
+export interface RequestRideGetCurrentGeofence {
+  lat: number;
+  lng: number;
+}
+
 export interface RequestRideStart {
   kickboardCode: string;
   latitude: number;
@@ -174,6 +179,10 @@ export type ResponseRideGetRide = CommonResponse<{ride: RideRide}>;
 export type ResponseRideHelmet = CommonResponse<{helmet: RideHelmet}>;
 export type ResponseRideHelmetCredentials = CommonResponse<{
   helmet: RideHelmetCredentials;
+}>;
+
+export type ResponseRideGetGeofence = CommonResponse<{
+  geofence: RideRegionGeofence & {region: RideRegion};
 }>;
 
 export class RideClient {
@@ -262,5 +271,11 @@ export class RideClient {
 
   public static async getHelmetCredentials(): Promise<ResponseRideHelmetCredentials> {
     return this.client.get(`/current/helmet/credentials`).then(r => r.data);
+  }
+
+  public static async getCurrentGeofence(
+    params: RequestRideGetCurrentGeofence,
+  ): Promise<ResponseRideGetGeofence> {
+    return this.client.get(`/location`, {params}).then(r => r.data);
   }
 }
