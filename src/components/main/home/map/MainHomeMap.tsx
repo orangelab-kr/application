@@ -11,6 +11,7 @@ import {trackingModeState} from '../../../../recoils/trackingMode';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
 import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
+import {MainHomeMapRegionMain} from './MainHomeMapRegionMain';
 
 export interface MainHomeMap {}
 
@@ -60,6 +61,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
       onCameraChange={setCameraLoc}
       onMapClick={onMapClick}
       useTextureView>
+      <MainHomeMapRegionMain />
       <MainHomeMapRegionBulk />
       <MainHomeMapKickboard />
     </NaverMapView>

@@ -1,8 +1,8 @@
 import {atom} from 'recoil';
-import {RideRegion, RideRegionGeofence} from '../api/ride';
+import {RideRegionGeofence, RideShortRegion} from '../api/ride';
 
 export interface SelectedRegion {
-  region: RideRegion;
+  region: RideShortRegion;
   geofence: RideRegionGeofence;
 }
 

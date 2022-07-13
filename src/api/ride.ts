@@ -55,10 +55,17 @@ export interface RideRegionGeofence {
   profile: RideRegionGeofenceProfile;
 }
 
+export type RideShortRegion = Partial<RideRegion> &
+  Pick<RideRegion, 'regionId' | 'name' | 'cacheUrl' | 'main'> & {
+    geofences: RideRegionGeofence[];
+  };
+
 export interface RideRegion {
   regionId: string;
   enabled: boolean;
   name: string;
+  main: boolean;
+  cacheUrl: string;
   pricingId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -105,6 +112,10 @@ export interface RequestRideStart {
 
 export type ResponseRideGetAllRegions = CommonResponse<{
   regions: RideRegion[];
+}>;
+
+export type ResponseRideGetRegions = CommonResponse<{
+  regions: Pick<RideRegion, 'regionId' | 'name' | 'cacheUrl' | 'main'>[];
 }>;
 
 export type ResponseRideGetNearKickboards = CommonResponse<{
@@ -188,7 +199,7 @@ export type ResponseRideGetGeofence = CommonResponse<{
 export class RideClient {
   private static client = createClient('ride');
 
-  static async getAllRegions(): Promise<ResponseRideGetAllRegions> {
+  static async getRegions(): Promise<ResponseRideGetRegions> {
     return this.client.get('/regions').then(r => r.data);
   }
 
