@@ -1,68 +1,35 @@
-import React, {useEffect} from 'react';
+import React, {useMemo} from 'react';
 import {Coord, Polygon} from 'react-native-nmap';
-import {useRecoilState, useSetRecoilState} from 'recoil';
-import {RideRegionGeofence, RideShortRegion} from '../../../../api/ride';
-import {confirmState} from '../../../../recoils/confirm';
-import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
-import {selectedRegionState} from '../../../../recoils/selectedRegion';
+import {useRecoilValue} from 'recoil';
+import {RideRegionGeofence} from '../../../../api/ride';
+import {geofencesState} from '../../../../recoils/geofences';
+import {mainGeofenceState} from '../../../../recoils/mainGeofence';
 
-interface MainHomeMapRegionProps {
-  region: RideShortRegion;
-}
-
-export const MainHomeMapRegion: React.FC<MainHomeMapRegionProps> = ({
-  region,
-}) => {
-  const {geofences} = region;
-  const setConfirm = useSetRecoilState(confirmState);
-  const [selectedKickboardCode, setSelectedKickboard] = useRecoilState(
-    selectedKickboardCodeState,
-  );
-
-  const [selectedRegion, setSelectedRegion] =
-    useRecoilState(selectedRegionState);
-
-  useEffect(() => {
-    if (!geofences) return;
-    console.log(
-      `Found ${geofences.length} geofences in ${region.name}(${region.regionId})`,
-    );
-  }, [geofences]);
-
+export const MainHomeMapRegion: React.FC = () => {
+  const mainGeofence = useRecoilValue(mainGeofenceState);
+  const geofences = useRecoilValue(geofencesState);
   const getCoord = (geofence: RideRegionGeofence): Coord[] =>
     geofence.geojson.coordinates[0].map(([longitude, latitude]) => ({
       latitude,
       longitude,
     }));
 
-  const onClick = (geofence: RideRegionGeofence) => () => {
-    if (selectedKickboardCode) {
-      setConfirm(false);
-      setSelectedKickboard(undefined);
-      return;
-    }
+  const getCoords = (geofences: RideRegionGeofence[]): Coord[][] =>
+    geofences.map(geofences => getCoord(geofences));
 
-    if (
-      selectedRegion?.geofence === geofence ||
-      geofence.profile.priority === 0
-    ) {
-      setSelectedRegion(undefined);
-      return;
-    }
+  const serviceGeofences = useMemo(
+    () => getCoords(geofences.filter(r => r.profile.priority === 1)),
+    [geofences],
+  );
 
-    setSelectedRegion({region, geofence});
-  };
-
+  if (!mainGeofence) return <></>;
   return (
-    <>
-      {geofences.map(geofence => (
-        <Polygon
-          onClick={onClick(geofence)}
-          coordinates={getCoord(geofence)}
-          color={geofence.profile.color}
-          key={geofence.geofenceId}
-        />
-      ))}
-    </>
+    <Polygon
+      outlineWidth={3}
+      outlineColor={mainGeofence.profile.color.substring(0, 7)}
+      coordinates={getCoord(mainGeofence)}
+      color={mainGeofence.profile.color}
+      holes={serviceGeofences}
+    />
   );
 };

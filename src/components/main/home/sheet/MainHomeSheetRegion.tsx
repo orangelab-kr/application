@@ -5,20 +5,20 @@ import {Text, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
-import {selectedRegionState} from '../../../../recoils/selectedRegion';
+import {selectedGeofenceState} from '../../../../recoils/selectedRegion';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
 export const MainHomeSheetRegion: React.FC<MainHomeSheetCommonProps> = ({}) => {
-  const selectedRegion = useRecoilValue(selectedRegionState);
+  const selectedGeofence = useRecoilValue(selectedGeofenceState);
 
-  if (!selectedRegion) return <></>;
+  if (!selectedGeofence) return <></>;
   return (
     <Container>
       <View style={{marginRight: 10}}>
-        <RegionName>{selectedRegion.region.name}</RegionName>
+        <RegionName>{selectedGeofence.profile.name}</RegionName>
         <Title>
           <FontAwesomeIcon icon={faMap} size={25} />{' '}
-          <Bold>{selectedRegion.geofence.name}</Bold>
+          <Bold>{selectedGeofence.name}</Bold>
         </Title>
       </View>
     </Container>

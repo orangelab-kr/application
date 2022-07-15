@@ -1,18 +1,20 @@
+import axios from 'axios';
 import React, {createRef, useEffect} from 'react';
 import NaverMapView, {LayerGroup, MapType} from 'react-native-nmap';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {RideClient, RideRegionGeofence} from '../../../../api/ride';
 import {useRecoilValueDebounce} from '../../../../hooks/useRecoilValueDebounce';
 import {cameraLocState} from '../../../../recoils/cameraLoc';
 import {confirmState} from '../../../../recoils/confirm';
+import {mainGeofenceState} from '../../../../recoils/mainGeofence';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
-import {selectedRegionState} from '../../../../recoils/selectedRegion';
+import {selectedGeofenceState} from '../../../../recoils/selectedRegion';
 import {trackingModeState} from '../../../../recoils/trackingMode';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
+import {MainHomeMapGeofences} from './MainHomeMapGeofences';
 import {MainHomeMapKickboard} from './MainHomeMapKickboards';
-import {MainHomeMapRegionBulk} from './MainHomeMapRegionBulk';
-import {MainHomeMapRegionMain} from './MainHomeMapRegionMain';
-
+import {MainHomeMapRegion} from './MainHomeMapRegion';
 export interface MainHomeMap {}
 
 export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
@@ -21,8 +23,9 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const setConfirm = useSetRecoilState(confirmState);
   const [, setCameraLoc] = useRecoilValueDebounce(cameraLocState, 100);
-  const setSelectedRegion = useSetRecoilState(selectedRegionState);
+  const setSelectedRegion = useSetRecoilState(selectedGeofenceState);
   const trackingMode = useRecoilValue(trackingModeState);
+  const setMainGeofence = useSetRecoilState(mainGeofenceState);
 
   const onMapClick = () => {
     setConfirm(false);
@@ -34,11 +37,24 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
     setSelectedRegion(undefined);
   };
 
+  const initalize = async () => {
+    const {regions} = await RideClient.getRegions();
+    const region = regions.find(region => region.main);
+    if (!region) return;
+
+    const geofences = await axios
+      .get(region.cacheUrl)
+      .then(r => r.data as RideRegionGeofence[]);
+    const geofence = geofences.find(geofence => geofence.main);
+    setMainGeofence(geofence);
+  };
+
   useEffect(() => {
     mapRef.current?.setLocationTrackingMode(trackingMode);
   }, [trackingMode]);
 
   useEffect(() => {
+    initalize();
     mapRef.current?.setLayerGroupEnabled(LayerGroup.LAYER_GROUP_BUILDING, true);
     mapRef.current?.setLayerGroupEnabled(LayerGroup.LAYER_GROUP_BICYCLE, true);
   }, []);
@@ -57,12 +73,12 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
       scaleBar={false}
       zoomControl={true}
       mapType={MapType.Basic}
-      minZoomLevel={12}
+      // minZoomLevel={14}
       onCameraChange={setCameraLoc}
       onMapClick={onMapClick}
       useTextureView>
-      <MainHomeMapRegionMain />
-      <MainHomeMapRegionBulk />
+      <MainHomeMapRegion />
+      <MainHomeMapGeofences />
       <MainHomeMapKickboard />
     </NaverMapView>
   );

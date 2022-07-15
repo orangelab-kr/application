@@ -1,5 +1,6 @@
 import {faRefresh} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import axios from 'axios';
 import _ from 'lodash';
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
@@ -9,6 +10,8 @@ import {RideClient} from '../../../api/ride';
 import {screenHeight} from '../../../constants/screenSize';
 import {CameraLoc} from '../../../models/cameraLoc';
 import {cameraLocState} from '../../../recoils/cameraLoc';
+import {currentRegionState} from '../../../recoils/currentRegion';
+import {geofencesState} from '../../../recoils/geofences';
 import {kickboardsState} from '../../../recoils/kickboards';
 import {calculateMeter, distance} from '../../../tools/calculateMeter';
 
@@ -16,7 +19,9 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const [showSearch, setShowSearch] = useState(false);
   const cameraLoc = useRecoilValue(cameraLocState);
   const [previousCameraLoc, setPreviousCameraLoc] = useState<CameraLoc>();
+  const setCurrentRegion = useSetRecoilState(currentRegionState);
   const setKickboards = useSetRecoilState(kickboardsState);
+  const setGeofences = useSetRecoilState(geofencesState);
 
   useEffect(() => {
     if (!cameraLoc) return;
@@ -32,7 +37,7 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
       previousCameraLoc.longitude,
     );
 
-    if (meter <= 1500) {
+    if (meter <= 1000) {
       console.log(`Moved too close. not requesting api (Distance: ${meter}m)`);
 
       return;
@@ -41,20 +46,37 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
     setShowSearch(true);
   }, [cameraLoc]);
 
-  const onSearch = async () => {
+  const onSearchKickboard = async () => {
     if (!cameraLoc) return;
-    setShowSearch(false);
-
     const props = {
       lat: cameraLoc.latitude,
       lng: cameraLoc.longitude,
       radius: Math.min(Math.round(calculateMeter(cameraLoc)), 10000),
     };
 
-    setPreviousCameraLoc(cameraLoc);
     RideClient.getNearKickboards(props).then(({kickboards}) =>
       setKickboards(_.keyBy(kickboards, 'kickboardCode')),
     );
+  };
+
+  const onSearchGeofence = async () => {
+    if (!cameraLoc) return;
+
+    const {latitude: lat, longitude: lng} = cameraLoc;
+    console.log(lat, lng);
+    const {geofence} = await RideClient.getCurrentGeofence({lat, lng});
+    setCurrentRegion(geofence);
+
+    const {data} = await axios.get(geofence.region.cacheUrl);
+    setGeofences(data);
+  };
+
+  const onSearch = async () => {
+    if (!cameraLoc) return;
+    setShowSearch(false);
+
+    await Promise.all([onSearchKickboard(), onSearchGeofence()]);
+    setPreviousCameraLoc(cameraLoc);
   };
 
   useEffect(() => {
