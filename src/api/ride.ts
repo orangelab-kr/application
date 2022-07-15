@@ -49,6 +49,7 @@ export interface RideRegionGeofence {
   regionId: string;
   profileId: string;
   weblink: string;
+  main: boolean;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null;
@@ -192,8 +193,9 @@ export type ResponseRideHelmetCredentials = CommonResponse<{
   helmet: RideHelmetCredentials;
 }>;
 
+export type RideGeofenceWithRegion = RideRegionGeofence & {region: RideRegion};
 export type ResponseRideGetGeofence = CommonResponse<{
-  geofence: RideRegionGeofence & {region: RideRegion};
+  geofence: RideGeofenceWithRegion;
 }>;
 
 export class RideClient {

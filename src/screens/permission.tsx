@@ -59,7 +59,6 @@ export const Permission: React.FC = () => {
     await requestNotifications(['alert', 'sound']);
     const permissions = await requestMultiple(requestPermissions);
     if (Object.values(permissions).find(p => p !== 'granted')) {
-      console.log(permissions);
       return Alert.alert(
         '권한이 필요합니다.',
         '설정에 접근하여 모든 권한을 허용해주세요.',
