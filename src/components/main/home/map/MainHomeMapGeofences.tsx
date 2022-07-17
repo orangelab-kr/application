@@ -25,7 +25,7 @@ export const MainHomeMapGeofences: React.FC = () => {
     }));
 
   const otherGeofences = useMemo(
-    () => geofences.filter(r => r.profile.priority > 1),
+    () => geofences.filter(r => r.profile.priority > 2),
     [geofences],
   );
 
@@ -36,7 +36,7 @@ export const MainHomeMapGeofences: React.FC = () => {
       return;
     }
 
-    if (selectedGeofence === geofence || geofence.profile.priority === 0) {
+    if (selectedGeofence === geofence || geofence.profile.priority <= 2) {
       setSelectedGeofence(undefined);
       return;
     }

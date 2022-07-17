@@ -18,7 +18,7 @@ export const MainHomeMapRegion: React.FC = () => {
     geofences.map(geofences => getCoord(geofences));
 
   const serviceGeofences = useMemo(
-    () => getCoords(geofences.filter(r => r.profile.priority === 1)),
+    () => getCoords(geofences.filter(r => r.profile.priority === 2)),
     [geofences],
   );
 
