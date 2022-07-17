@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CommonActions, RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {Formik, FormikProps} from 'formik';
 import React, {createRef, useState} from 'react';
 import {
@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import CodePush from 'react-native-code-push';
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
@@ -20,7 +21,6 @@ import {Depth} from '../../../components/Depth';
 import {ValidateMessage} from '../../../components/ValidateMessage';
 import {screenHeight} from '../../../constants/screenSize';
 import {AuthNavigatorRouteParams} from '../../../models/navigation';
-import {navigationRef} from '../../../navigators/navigation';
 
 export interface AuthSignupTermsForm {
   terms: boolean;
@@ -71,9 +71,7 @@ export const AuthSignupTerms: React.FC = () => {
 
       const {sessionId} = await AccountsClient.signup(body);
       await AsyncStorage.setItem('accessToken', sessionId);
-      navigationRef.current?.dispatch(
-        CommonActions.reset({index: 0, routes: [{name: 'Splash'}]}),
-      );
+      CodePush.restartApp();
     } catch (err) {
       console.log(err);
     } finally {
