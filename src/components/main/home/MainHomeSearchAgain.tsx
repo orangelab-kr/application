@@ -23,29 +23,6 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const setKickboards = useSetRecoilState(kickboardsState);
   const setGeofences = useSetRecoilState(geofencesState);
 
-  useEffect(() => {
-    if (!cameraLoc) return;
-    if (!previousCameraLoc) {
-      setPreviousCameraLoc(cameraLoc);
-      return;
-    }
-
-    const meter = distance(
-      cameraLoc.latitude,
-      cameraLoc.longitude,
-      previousCameraLoc.latitude,
-      previousCameraLoc.longitude,
-    );
-
-    if (meter <= 1000) {
-      console.log(`Moved too close. not requesting api (Distance: ${meter}m)`);
-
-      return;
-    }
-
-    setShowSearch(true);
-  }, [cameraLoc]);
-
   const onSearchKickboard = async () => {
     if (!cameraLoc) return;
     const props = {
@@ -78,6 +55,34 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
     await Promise.all([onSearchKickboard(), onSearchGeofence()]);
     setPreviousCameraLoc(cameraLoc);
   };
+
+  useEffect(() => {
+    if (!cameraLoc) return;
+    if (!previousCameraLoc) {
+      setPreviousCameraLoc(cameraLoc);
+      return;
+    }
+
+    const meter = distance(
+      cameraLoc.latitude,
+      cameraLoc.longitude,
+      previousCameraLoc.latitude,
+      previousCameraLoc.longitude,
+    );
+
+    if (meter <= 1000) {
+      console.log(`Moved too close. not requesting api (Distance: ${meter}m)`);
+
+      return;
+    }
+
+    if (meter > 10000) {
+      onSearch();
+      return;
+    }
+
+    setShowSearch(true);
+  }, [cameraLoc, onSearch]);
 
   useEffect(() => {
     if (!cameraLoc || previousCameraLoc) return;
