@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios, {AxiosInstance} from 'axios';
+import CodePush from 'react-native-code-push';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {navigationRef} from '../navigators/navigation';
 
@@ -59,6 +60,17 @@ export const createClient = (service: string, auth = true): AxiosInstance => {
       }
 
       switch (response.data.opcode) {
+        case 104: // 로그인이 필요한 서비스
+          const page = navigationRef.current?.getCurrentRoute()?.name;
+          if (
+            page &&
+            !page.startsWith('Signup') &&
+            !['Verify', 'Start', 'Splash'].includes(page)
+          ) {
+            CodePush.restartApp();
+          }
+
+          break;
         case 118: // 면허 인증
           navigationRef.current?.navigate('Weblink', {page: 'settings'});
           break;
