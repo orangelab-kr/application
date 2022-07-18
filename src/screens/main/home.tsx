@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
+import {MainHomeCentercoinBanner} from '../../components/main/home/MainHomeCentercoinBanner';
 import {MainHomePopup} from '../../components/main/home/MainHomePopup';
 import {MainHomeSearchAgain} from '../../components/main/home/MainHomeSearchAgain';
 import {MainHomeMap} from '../../components/main/home/map/MainHomeMap';
@@ -17,6 +18,7 @@ export const Home: React.FC = () => {
   return (
     <View>
       <MainHomeMap />
+      <MainHomeCentercoinBanner />
       <MainHomeSearchAgain />
       <MainHomeMenu />
       <MainHomeSheet />

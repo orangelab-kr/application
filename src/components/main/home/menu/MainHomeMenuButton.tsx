@@ -13,7 +13,6 @@ export const MainHomeMenuButton: React.FC<TouchableOpacityProps> = props => {
   return (
     <Button onPress={() => setVisible(true)} {...props}>
       <FontAwesomeIcon icon={faSliders} color="#000" size={18} />
-      {/* <ButtonText>메뉴</ButtonText> */}
     </Button>
   );
 };
@@ -24,10 +23,10 @@ const Button = styled(TouchableOpacity)`
   padding: 16px;
   border-radius: 10px;
   background-color: #fff;
-  top: ${screenHeight * 0.07}px;
+  top: ${screenHeight * 0.12}px;
   right: ${screenHeight * 0.025}px;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.3;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 6px, height: 6px};
