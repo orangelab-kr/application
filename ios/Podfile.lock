@@ -397,8 +397,6 @@ PODS:
     - ReactCommon/turbomodule/core
   - react-native-shake (5.1.1):
     - React
-  - react-native-udp (2.7.0):
-    - React
   - react-native-webview (11.18.1):
     - React-Core
   - React-perflogger (0.67.4)
@@ -497,8 +495,6 @@ PODS:
     - React-Core
   - RNInAppBrowser (3.6.3):
     - React-Core
-  - RNOS (1.2.6):
-    - React
   - RNPermissions (3.3.1):
     - React-Core
   - RNReanimated (2.6.0):
@@ -540,8 +536,6 @@ PODS:
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.10)
   - SSZipArchive (2.2.3)
-  - TcpSockets (3.3.2):
-    - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -584,7 +578,6 @@ DEPENDENCIES:
   - react-native-randombytes (from `../node_modules/react-native-randombytes`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-shake (from `../node_modules/react-native-shake`)
-  - react-native-udp (from `../node_modules/react-native-udp`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -608,12 +601,10 @@ DEPENDENCIES:
   - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNInAppBrowser (from `../node_modules/react-native-inappbrowser-reborn`)
-  - RNOS (from `../node_modules/react-native-os`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - TcpSockets (from `../node_modules/react-native-tcp`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -715,8 +706,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-shake:
     :path: "../node_modules/react-native-shake"
-  react-native-udp:
-    :path: "../node_modules/react-native-udp"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -763,8 +752,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNInAppBrowser:
     :path: "../node_modules/react-native-inappbrowser-reborn"
-  RNOS:
-    :path: "../node_modules/react-native-os"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
@@ -773,8 +760,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
-  TcpSockets:
-    :path: "../node_modules/react-native-tcp"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -835,7 +820,6 @@ SPEC CHECKSUMS:
   react-native-randombytes: 421f1c7d48c0af8dbcd471b0324393ebf8fe7846
   react-native-safe-area-context: f98b0b16d1546d208fc293b4661e3f81a895afd9
   react-native-shake: 67d43d6af4abfc299400b17fea7d2ec0754c72ac
-  react-native-udp: ff9d13e523f2b58e6bc5d4d32321ac60671b5dc9
   react-native-webview: 0b7bd2bffced115aefd393e1841babd9b9a557b1
   React-perflogger: 0afaf2f01a47fd0fc368a93bfbb5bd3b26db6e7f
   React-RCTActionSheet: 59f35c4029e0b532fc42114241a06e170b7431a2
@@ -859,7 +843,6 @@ SPEC CHECKSUMS:
   RNFBRemoteConfig: d7982f2b0bc337c14213e16c8b122d071e5dab41
   RNGestureHandler: 6e757e487a4834e7280e98e9bac66d2d9c575e9c
   RNInAppBrowser: 3ff3a3b8f458aaf25aaee879d057352862edf357
-  RNOS: 6f2f9a70895bbbfbdad7196abd952e7b01d45027
   RNPermissions: 34d678157c800b25b22a488e4d8babb57456e796
   RNReanimated: 2cdfe6a706d512bfa721da47b769410e8fdf516b
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
@@ -867,7 +850,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  TcpSockets: 14306fb79f9750ea7d2ddd02d8bed182abb01797
   Yoga: d6b6a80659aa3e91aaba01d0012e7edcbedcbecd
 
 PODFILE CHECKSUM: 6ebd8732722edf5574a1fcc6aefebbf4d14179ce

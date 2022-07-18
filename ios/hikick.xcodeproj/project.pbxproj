@@ -523,7 +523,7 @@
 				CODE_SIGN_ENTITLEMENTS = hikick/hikick.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = hikick/Info.plist;
@@ -556,7 +556,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = Q49HBDY2NJ;
 				INFOPLIST_FILE = hikick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
