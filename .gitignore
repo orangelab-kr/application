@@ -25,6 +25,7 @@ DerivedData
 
 # Android/IntelliJ
 #
+release
 build/
 .idea
 .gradle
@@ -43,6 +44,7 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
+!release.keystore
 
 # fastlane
 #
