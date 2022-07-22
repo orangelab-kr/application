@@ -70,6 +70,7 @@ const CheckBoxAndName = styled(TouchableOpacity)`
 `;
 
 const Name = styled(Text)`
+  color: #000;
   font-size: 16px;
   margin-left: 8px;
 `;

@@ -81,15 +81,18 @@ const TouchableCard = styled(TouchableOpacity)`
 `;
 
 const CardLabel = styled(View)`
+  color: #000;
   margin-left: 15px;
 `;
 
 const CardName = styled(Text)`
+  color: #000;
   font-weight: 600;
   font-size: 25px;
 `;
 
 const CardDate = styled(Text)`
+  color: #000;
   font-size: 15px;
 `;
 

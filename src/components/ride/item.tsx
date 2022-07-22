@@ -45,16 +45,19 @@ const RideLabel = styled(View)`
 `;
 
 const RideName = styled(Text)`
+  color: #000;
   font-weight: 900;
   font-size: 26px;
 `;
 
 const RideDescription = styled(Text)`
+  color: #000;
   font-weight: 600;
   font-size: 18px;
 `;
 
 const RideDate = styled(Text)`
+  color: #000;
   font-size: 13px;
   font-weight: 400;
 `;

@@ -221,11 +221,13 @@ const Container = styled(View)`
 `;
 
 const Title = styled(Text)`
+  color: #000;
   font-size: ${screenHeight / 25}px;
   font-weight: 900;
 `;
 
 const Description = styled(Text)`
+  color: #000;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;
 `;

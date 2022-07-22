@@ -74,6 +74,7 @@ const Loading = styled(ActivityIndicator)`
 `;
 
 const NoRide = styled(Text)`
+  color: #000;
   font-size: ${screenWidth / 16}px;
   width: 100%;
   text-align: center;
