@@ -71,7 +71,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
       style={{height: '100%', width: '100%'}}
       compass={false}
       scaleBar={false}
-      zoomControl={true}
+      zoomControl={false}
       mapType={MapType.Basic}
       minZoomLevel={14}
       onCameraChange={setCameraLoc}
