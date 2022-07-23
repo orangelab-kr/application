@@ -10,7 +10,7 @@ import {
   PaymentsCoupon,
   RequestPaymentsGetCoupons,
 } from '../../api/payments';
-import {screenWidth} from '../../constants/screenSize';
+import {screenHeight, screenWidth} from '../../constants/screenSize';
 import {CouponItem} from './item';
 
 export interface CouponFlatlistProps {
@@ -109,7 +109,8 @@ const Loading = styled(ActivityIndicator)`
 `;
 
 const NoCoupon = styled(Text)`
-  font-size: ${screenWidth / 16}px;
+  color: #000;
+  font-size: ${screenWidth / 17}px;
   width: 100%;
   text-align: center;
   font-weight: 600;
@@ -117,7 +118,7 @@ const NoCoupon = styled(Text)`
 `;
 
 const NoCouponContainer = styled(View)`
-  border-radius: 12px;
+  border-radius: ${screenHeight * 0.022}px;
   background-color: #fff;
   margin-top: ${screenWidth * 0.05}px;
   margin: 10px;

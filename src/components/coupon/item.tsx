@@ -87,11 +87,13 @@ const CouponLabel = styled(View)`
 `;
 
 const CouponName = styled(Text)`
+  color: #000;
   font-weight: 900;
   font-size: 26px;
 `;
 
 const CouponDescription = styled(Text)`
+  color: #000;
   font-weight: 600;
   font-size: 18px;
 `;
@@ -103,6 +105,7 @@ const CouponLabelDivider = styled(View)`
 `;
 
 const CouponDate = styled(Text)`
+  color: #000;
   font-size: 13px;
   font-weight: 400;
 `;
