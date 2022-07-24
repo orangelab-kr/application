@@ -164,12 +164,13 @@ export const MainHomeSheetControl: React.FC = () => {
 
 const Button = styled(TouchableOpacity)`
   background-color: #000;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: ${screenHeight * 0.02}px;
+  padding: ${screenHeight * 0.019}px;
   flex-direction: row;
   margin: 2px 0;
   border-radius: 16px;
   justify-content: flex-start;
+  align-items: center;
   shadow-color: #999;
   shadow-opacity: 1;
   elevation: 5;

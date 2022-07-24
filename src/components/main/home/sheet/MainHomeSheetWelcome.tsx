@@ -13,7 +13,7 @@ export const MainHomeSheetWelcome: React.FC = () => {
       {user && (
         <>
           <Bold>{user?.realname}</Bold>
-          {'님\n '}
+          {'님\n'}
         </>
       )}
       라이드를 시작해볼까요?

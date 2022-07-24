@@ -5,7 +5,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {RideClient} from '../../../../api/ride';
-import {screenHeight, screenWidth} from '../../../../constants/screenSize';
+import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {currentRideState} from '../../../../recoils/currentRide';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
@@ -37,7 +37,7 @@ export const MainHomeSheetConfirmButton: React.FC<
           <FontAwesomeIcon
             icon={faBolt}
             color="#fff"
-            style={{marginLeft: 5}}
+            style={{marginLeft: 8}}
             size={screenHeight / 44}
           />
         </ButtonText>
@@ -53,15 +53,15 @@ const CenterContainer = styled(View)`
 
 const Button = styled(TouchableOpacity)`
   width: 100%;
-  height: ${screenHeight * 0.065}px;
   margin: 10px 0;
   shadow-color: #999;
   shadow-opacity: 1;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};
+  height: ${screenHeight * 0.065}px;
+  border-radius: ${screenHeight * 0.022}px;
   background-color: #000;
-  border-radius: 20px;
   padding: 15px;
   margin: 2px 0;
 `;
@@ -70,5 +70,7 @@ const ButtonText = styled(Text)`
   color: #fff;
   width: 100%;
   text-align: center;
-  font-size: ${screenHeight / 44}px;
+  font-size: ${screenHeight / 43}px;
+  align-items: center;
+  justify-content: center;
 `;

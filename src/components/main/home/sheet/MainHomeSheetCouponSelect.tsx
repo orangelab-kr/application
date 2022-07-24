@@ -45,9 +45,9 @@ const CouponSelect = styled(Text)`
 const Button = styled(TouchableOpacity)`
   width: 100%;
   height: ${screenHeight * 0.055}px;
+  border-radius: ${screenHeight * 0.018}px;
   padding: 10px 15px;
   background-color: #fff;
-  border-radius: 17px;
   margin: 10px 0;
   shadow-color: #999;
   shadow-opacity: 1;

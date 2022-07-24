@@ -6,6 +6,7 @@ import {TouchableOpacity} from 'react-native';
 import {TrackingMode} from 'react-native-nmap';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components/native';
+import {screenHeight} from '../../../../constants/screenSize';
 import {trackingModeState} from '../../../../recoils/trackingMode';
 
 export const MainHomeSheetLocationButton: React.FC = () => {
@@ -32,8 +33,8 @@ export const MainHomeSheetLocationButton: React.FC = () => {
 
 const Button = styled(TouchableOpacity)`
   position: absolute;
-  padding: 17px;
-  border-radius: 10px;
+  padding: ${screenHeight * 0.02}px;
+  border-radius: ${screenHeight * 0.015}px;
   background-color: #fff;
   shadow-color: #999;
   shadow-opacity: 1;

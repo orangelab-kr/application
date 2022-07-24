@@ -18,6 +18,8 @@ const Button = styled(TouchableOpacity)`
   border-radius: 10px;
   padding: 15px;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   margin: 2px 0;
 `;
 
