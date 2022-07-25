@@ -26,7 +26,7 @@ export const Weblink: React.FC<WeblinkProps> = ({isPopup}) => {
     })();`;
 
   const style = isPopup
-    ? {borderRadius: 15}
+    ? {borderRadius: 20}
     : {
         height: '100%',
         width: '100%',

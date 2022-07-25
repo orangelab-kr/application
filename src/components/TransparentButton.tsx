@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
+import {screenHeight} from '../constants/screenSize';
 
 interface TransparentButtonProps extends TouchableOpacityProps {
   size?: number;
@@ -32,12 +33,14 @@ const Button = styled(TouchableOpacity)`
   background-color: transparent;
   border-color: #fff;
   border-width: 2px;
-  border-radius: 15px;
-  padding: 12px;  
+  justify-content: center;
+  align-items: center;
+  border-radius: ${screenHeight * 0.022}px;
+  padding: ${screenHeight * 0.013}px;
   shadow-color: #999;
   shadow-opacity: 0.6;
   shadow-radius: 5px;
-  elevation: 5;
+  elevation: 1;
   shadow-offset: {width: 3px, height: 3px};
 `;
 

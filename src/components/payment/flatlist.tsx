@@ -71,7 +71,8 @@ export const PaymentFlatlist: FC = () => {
 };
 
 const NoCard = styled(Text)`
-  font-size: ${screenWidth / 16}px;
+  color: #000;
+  font-size: ${screenWidth / 20}px;
   width: 100%;
   text-align: center;
   font-weight: 600;
@@ -84,8 +85,8 @@ const NoCardContainer = styled(View)`
   margin-top: ${screenWidth * 0.05}px;
   margin: 10px;
   shadow-color: #999;
-  shadow-opacity: 1;
-  shadow-radius: 6px;
+  shadow-opacity: 0.3;
+  shadow-radius: 6;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};
 `;

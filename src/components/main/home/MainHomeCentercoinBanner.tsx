@@ -1,11 +1,15 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import styled from 'styled-components';
 import {screenHeight} from '../../../constants/screenSize';
 
 export const MainHomeCentercoinBanner: React.FC = () => {
+  const insets = useSafeAreaInsets();
+  const topMargin = Math.floor(screenHeight * 0.01 + insets.top);
+
   return (
-    <Button>
+    <Button style={{top: topMargin}}>
       <MyBalance>
         💸 내 리워드 <MyBalanceNumber>1,000원</MyBalanceNumber>
       </MyBalance>
@@ -16,12 +20,11 @@ export const MainHomeCentercoinBanner: React.FC = () => {
 
 const Button = styled(TouchableOpacity)`
   position: absolute;
-  padding: 5px;
-  border-radius: 7px;
   background-color: #fff;
   justify-content: center;
   align-items: center;
-  top: ${screenHeight * 0.05}px;
+  border-radius: ${screenHeight * 0.02}px;
+  padding: ${screenHeight * 0.005}px;
   right: ${screenHeight * 0.02}px;
   left: ${screenHeight * 0.02}px;
   shadow-color: #999;
@@ -32,13 +35,13 @@ const Button = styled(TouchableOpacity)`
 `;
 
 const ButtonText = styled(Text)`
-  font-size: 17px;
+  font-size: ${screenHeight * 0.02}px;
   font-weight: 600;
   color: #000;
 `;
 
 const MyBalance = styled(Text)`
-  font-size: 22px;
+  font-size: ${screenHeight * 0.026}px;
   font-weight: 400;
   color: #000;
 `;
