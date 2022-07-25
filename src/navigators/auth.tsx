@@ -13,7 +13,11 @@ export const AuthNavigator: React.FC = () => {
     <Stack.Navigator
       initialRouteName="Verify"
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Verify" component={AuthVerify} />
+      <Stack.Screen
+        name="Verify"
+        component={AuthVerify}
+        options={{gestureEnabled: false}}
+      />
       <Stack.Screen
         name="SignupName"
         component={AuthSignupName}

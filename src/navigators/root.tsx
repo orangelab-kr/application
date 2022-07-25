@@ -43,7 +43,11 @@ export const RootNavigator: React.FC = () => {
         component={Permission}
         options={{gestureEnabled: false}}
       />
-      <Stack.Screen name="Start" component={Start} />
+      <Stack.Screen
+        name="Start"
+        component={Start}
+        options={{gestureEnabled: false}}
+      />
       <Stack.Screen
         name="Auth"
         component={AuthNavigator}
