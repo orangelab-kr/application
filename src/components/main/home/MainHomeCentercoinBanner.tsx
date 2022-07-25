@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {Alert, Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import styled from 'styled-components';
 import {screenHeight} from '../../../constants/screenSize';
@@ -7,9 +7,14 @@ import {screenHeight} from '../../../constants/screenSize';
 export const MainHomeCentercoinBanner: React.FC = () => {
   const insets = useSafeAreaInsets();
   const topMargin = Math.floor(screenHeight * 0.01 + insets.top);
+  const onClick = () => {
+    Alert.alert(
+      '죄송합니다. 아직 준비 중입니다. 조만간 다시 사용하실 수 있습니다.',
+    );
+  };
 
   return (
-    <Button style={{top: topMargin}}>
+    <Button style={{top: topMargin}} onPress={onClick}>
       <MyBalance>
         💸 내 리워드 <MyBalanceNumber>1,000원</MyBalanceNumber>
       </MyBalance>
