@@ -86,7 +86,7 @@ const NoCardContainer = styled(View)`
   margin: 10px;
   shadow-color: #999;
   shadow-opacity: 0.3;
-  shadow-radius: 6;
+  shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};
 `;

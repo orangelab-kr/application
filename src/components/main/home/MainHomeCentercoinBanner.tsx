@@ -18,7 +18,7 @@ export const MainHomeCentercoinBanner: React.FC = () => {
       <MyBalance>
         💸 내 리워드 <MyBalanceNumber>1,000원</MyBalanceNumber>
       </MyBalance>
-      <ButtonText>지금 당장 킥보드타고 캐시백 받자!</ButtonText>
+      <ButtonText>지금 바로 킥보드타고 캐시백 받자!</ButtonText>
     </Button>
   );
 };

@@ -59,7 +59,7 @@ export class AccountsClient {
 
   static async requestPhone(phoneNo: string): Promise<void> {
     await this.client.get('/methods/phone/verify', {
-      params: {phoneNo, debug: true},
+      params: {phoneNo, debug: false},
     });
   }
 

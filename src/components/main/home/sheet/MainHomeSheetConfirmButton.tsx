@@ -24,7 +24,7 @@ export const MainHomeSheetConfirmButton: React.FC<
     if (!coords || !selectedKickboard) return;
     const {latitude, longitude} = coords;
     const {kickboardCode} = selectedKickboard;
-    const props = {latitude, longitude, kickboardCode, debug: true};
+    const props = {latitude, longitude, kickboardCode, debug: false};
     const {ride} = await RideClient.start(props);
     setCurrentRide(ride);
   };
