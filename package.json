@@ -7,6 +7,7 @@
     "postinstall": "jetifier && pod-install && yarn nodeify",
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator \"iPhone 13 (15.0)\"",
+    "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
