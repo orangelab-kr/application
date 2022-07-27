@@ -102,13 +102,15 @@ export const Permission: React.FC = () => {
             <Bold>킥보드 잠금해제</Bold>와 <Bold>헬멧 잠금해제</Bold> 통신할때에
             사용합니다.
           </IconWithTextBox>
-          <IconWithTextBox icon={faLocationArrow}>
-            <Bold>주변 킥보드 검색</Bold> 및 <Bold>보험 처리</Bold>를 위해 위치
-            정보를 사용합니다.
-          </IconWithTextBox>
           <IconWithTextBox icon={faCamera}>
             <Bold>킥보드 QR코드 인식</Bold> 및 <Bold>반납 사진 업로드</Bold>시
             사용됩니다.
+          </IconWithTextBox>
+          <IconWithTextBox icon={faLocationArrow}>
+            라이드 중에는 앱이 <Bold>종료되었거나 사용중</Bold>이 아니더라도
+            위치 데이터를 수집하여{' '}
+            <Bold>서비스 지역 이탈 경보 및 어린이 보호구역 속도</Bold> 제어
+            서비스를 지원합니다.
           </IconWithTextBox>
           <Button onPress={onClick}>
             <ButtonText>동의</ButtonText>

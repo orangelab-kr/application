@@ -21,7 +21,6 @@ target 'hikick' do
     :hermes_enabled => false
   )
 
-  pod 'CodePush', :path => '../node_modules/react-native-code-push'
 
   target 'hikickTests' do
     inherit! :complete
