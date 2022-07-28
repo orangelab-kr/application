@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import CodePush from 'react-native-code-push';
-import {checkMultiple} from 'react-native-permissions';
+import {checkMultiple, checkNotifications} from 'react-native-permissions';
 import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../constants/screenSize';
 import {navigationRef} from '../navigators/navigation';
@@ -36,9 +36,13 @@ export const Splash: React.FC = () => {
   };
 
   const onReady = async () => {
-    const permissions = await checkMultiple(requiredPermissions);
+    const [permissions, tryRequestNotification] = await Promise.all([
+      checkMultiple(requiredPermissions),
+      checkNotifications().then(r => r.status === 'denied'),
+    ]);
+
     const isAllow = (p: string) => !['granted', 'unavailable'].includes(p);
-    if (Object.values(permissions).find(isAllow)) {
+    if (Object.values(permissions).find(isAllow) || tryRequestNotification) {
       return navigationRef.current?.navigate('Permission');
     }
 
