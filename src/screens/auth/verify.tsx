@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import CodePush from 'react-native-code-push';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
 import {
@@ -47,9 +48,7 @@ export const AuthVerify: React.FC = () => {
       const login = await onLogin(phone);
       if (!login) return navigationRef.current?.navigate('SignupName', {phone});
       await AsyncStorage.setItem('accessToken', login.sessionId);
-      navigationRef.current?.dispatch(
-        CommonActions.reset({index: 0, routes: [{name: 'Main'}]}),
-      );
+      CodePush.restartApp();
     } catch (err) {
       console.log(err);
     }

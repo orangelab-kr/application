@@ -44,6 +44,8 @@ export interface AuthUser {
   receivePush?: string;
   referralCode: string;
   referrerUserId?: string;
+  centercoinAddress?: string;
+  centercoinBalance: number;
   usedAt: string;
   createdAt: string;
   updatedAt: string;

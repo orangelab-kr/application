@@ -1,22 +1,27 @@
-import React from 'react';
-import {Alert, Text, TouchableOpacity} from 'react-native';
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import React, {useMemo} from 'react';
+import {Text, TouchableOpacity} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
 import {screenHeight} from '../../../constants/screenSize';
+import {navigationRef} from '../../../navigators/navigation';
+import {loginedUserState} from '../../../recoils/loginedUser';
 
 export const MainHomeCentercoinBanner: React.FC = () => {
   const insets = useSafeAreaInsets();
+  const loginedUser = useRecoilValue(loginedUserState);
   const topMargin = Math.floor(screenHeight * 0.01 + insets.top);
-  const onClick = () => {
-    Alert.alert(
-      '죄송합니다. 아직 준비 중입니다. 조만간 다시 사용하실 수 있습니다.',
-    );
-  };
+  const balance = loginedUser?.centercoinAddress
+    ? loginedUser.centercoinBalance
+    : 1000;
 
+  const onClick = () =>
+    navigationRef.current?.navigate('Notice', {page: 'centercoin'});
   return (
     <Button style={{top: topMargin}} onPress={onClick}>
       <MyBalance>
-        💸 내 리워드 <MyBalanceNumber>1,000원</MyBalanceNumber>
+        💸 내 리워드{' '}
+        <MyBalanceNumber>{balance.toLocaleString()}원</MyBalanceNumber>
       </MyBalance>
       <ButtonText>지금 바로 킥보드타고 캐시백 받자!</ButtonText>
     </Button>
