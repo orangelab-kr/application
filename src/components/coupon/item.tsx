@@ -88,7 +88,7 @@ const CouponLabel = styled(View)`
 
 const CouponName = styled(Text)`
   color: #000;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 26px;
 `;
 

@@ -46,6 +46,6 @@ const TopBar = styled(View)`
 const Title = styled(Text)`
   color: #000;
   font-size: ${screenHeight / 30}px;
-  font-weight: 900;
+  font-weight: 800;
   color: #000;
 `;

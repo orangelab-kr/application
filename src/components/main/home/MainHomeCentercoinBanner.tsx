@@ -58,5 +58,5 @@ const MyBalance = styled(Text)`
 
 const MyBalanceNumber = styled(Text)`
   color: darkblue;
-  font-weight: 900;
+  font-weight: 800;
 `;

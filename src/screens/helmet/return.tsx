@@ -253,14 +253,14 @@ const LostButton = styled(TouchableOpacity)`
 const LostButtonText = styled(Text)`
   color: #000;
   font-size: ${screenHeight / 46}px;
-  font-weight: 900;
+  font-weight: 800;
   color: #696969;
 `;
 
 const Title = styled(Text)`
   color: #000;
   font-size: ${screenHeight / 25}px;
-  font-weight: 900;
+  font-weight: 800;
 `;
 
 const Description = styled(Text)`

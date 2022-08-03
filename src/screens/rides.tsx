@@ -27,7 +27,7 @@ const Container = styled(SafeAreaView)`
 const Title = styled(Text)`
   color: #000;
   font-size: ${screenHeight / 25}px;
-  font-weight: 900;
+  font-weight: 800;
 `;
 
 const Description = styled(Text)`

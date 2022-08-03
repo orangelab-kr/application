@@ -183,5 +183,5 @@ const Title = styled(Text)`
 `;
 
 const Bold = styled(Text)`
-  font-weight: 900;
+  font-weight: 800;
 `;

@@ -33,7 +33,7 @@ export const MainHomeSheetCouponSelect: React.FC = () => {
 const CouponLabel = styled(Text)`
   color: #000;
   font-size: ${screenHeight / 45}px;
-  font-weight: 900;
+  font-weight: 800;
 `;
 
 const CouponSelect = styled(Text)`
