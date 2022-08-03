@@ -39,12 +39,13 @@ export const Splash: React.FC = () => {
       mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
       rollbackRetryOptions: {
         delayInHours: 24,
-        maxRetryAttempts: 3,
+        maxRetryAttempts: 1,
       },
     };
 
     const syncStatusChangedCallback = (status: CodePush.SyncStatus) => {
       switch (status) {
+        case CodePush.SyncStatus.UNKNOWN_ERROR:
         case CodePush.SyncStatus.UP_TO_DATE:
           onReady();
           break;
@@ -63,13 +64,13 @@ export const Splash: React.FC = () => {
     const downloadProgressCallback = ({
       receivedBytes,
       totalBytes,
-    }: DownloadProgress) =>
-      setProgress(Math.ceil((receivedBytes / totalBytes) * 100));
+    }: DownloadProgress) => setProgress(receivedBytes / totalBytes);
 
     await CodePush.sync(
       options,
       syncStatusChangedCallback,
       downloadProgressCallback,
+      err => console.log(err),
     );
   };
 
@@ -84,14 +85,13 @@ export const Splash: React.FC = () => {
       return navigationRef.current?.navigate('Permission');
     }
 
-    if (user === undefined) return;
-    if (user == null) return navigationRef.current?.navigate('Start');
-
-    CodePush.notifyAppReady();
+    if (user === null) return navigationRef.current?.navigate('Start');
     navigationRef.current?.navigate('Main');
   };
 
   useEffect(() => {
+    if (user === undefined) return;
+
     onVersionCheck();
     navigation.addListener('focus', onVersionCheck);
   }, [user]);
