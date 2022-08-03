@@ -42,6 +42,8 @@
       </activity>
     </application>
     <queries>
+      <package android:name="com.kakao.talk" />
+      <package android:name="io.metamask"/>
       <intent>
         <action android:name="android.intent.action.VIEW" />
         <data android:scheme="http"/>
