@@ -1,20 +1,20 @@
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, { useMemo, useRef } from 'react';
-import { SafeAreaView, View } from 'react-native';
-import { useRecoilValue } from 'recoil';
+import React, {useMemo, useRef} from 'react';
+import {SafeAreaView, View} from 'react-native';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
-import { modeState } from '../../../../recoils/mode';
-import { MainHomeSheetConfirm } from './MainHomeSheetConfirm';
-import { MainHomeSheetControl } from './MainHomeSheetControl';
-import { MainHomeSheetControlButton } from './MainHomeSheetControlButton';
-import { MainHomeSheetCoupon } from './MainHomeSheetCoupon';
-import { MainHomeSheetHandle } from './MainHomeSheetHandle';
-import { MainHomeSheetKickboard } from './MainHomeSheetKickboard';
-import { MainHomeSheetRegion } from './MainHomeSheetRegion';
-import { MainHomeSheetRiding } from './MainHomeSheetRiding';
-import { MainHomeSheetRouteButton } from './MainHomeSheetRouteButton';
-import { MainHomeSheetStartButton } from './MainHomeSheetStartButton';
-import { MainHomeSheetWelcome } from './MainHomeSheetWelcome';
+import {modeState} from '../../../../recoils/mode';
+import {MainHomeSheetConfirm} from './MainHomeSheetConfirm';
+import {MainHomeSheetControl} from './MainHomeSheetControl';
+import {MainHomeSheetControlButton} from './MainHomeSheetControlButton';
+import {MainHomeSheetCoupon} from './MainHomeSheetCoupon';
+import {MainHomeSheetHandle} from './MainHomeSheetHandle';
+import {MainHomeSheetKickboard} from './MainHomeSheetKickboard';
+import {MainHomeSheetRegion} from './MainHomeSheetRegion';
+import {MainHomeSheetRiding} from './MainHomeSheetRiding';
+import {MainHomeSheetRouteButton} from './MainHomeSheetRouteButton';
+import {MainHomeSheetStartButton} from './MainHomeSheetStartButton';
+import {MainHomeSheetWelcome} from './MainHomeSheetWelcome';
 
 export interface MainHomeSheetComponentInfo {
   component: React.FC<MainHomeSheetCommonProps>;

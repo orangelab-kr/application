@@ -1,15 +1,15 @@
-import React, {useMemo} from 'react';
+import React, {Suspense} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useRecoilValue} from 'recoil';
 import styled from 'styled-components';
 import {screenHeight} from '../../../constants/screenSize';
 import {navigationRef} from '../../../navigators/navigation';
 import {loginedUserState} from '../../../recoils/loginedUser';
+import {useRecoilValueMaybe} from '../../../tools/recoil';
 
 export const MainHomeCentercoinBanner: React.FC = () => {
   const insets = useSafeAreaInsets();
-  const loginedUser = useRecoilValue(loginedUserState);
+  const loginedUser = useRecoilValueMaybe(loginedUserState);
   const topMargin = Math.floor(screenHeight * 0.01 + insets.top);
   const balance = loginedUser?.centercoinAddress
     ? loginedUser.centercoinBalance

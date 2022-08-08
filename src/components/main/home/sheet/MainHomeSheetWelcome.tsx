@@ -1,12 +1,17 @@
-import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect} from 'react';
 import {Text} from 'react-native';
+import {useRecoilRefresher_UNSTABLE} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {loginedUserState} from '../../../../recoils/loginedUser';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 
 export const MainHomeSheetWelcome: React.FC = () => {
+  const navigation = useNavigation();
   const user = useRecoilValueMaybe(loginedUserState);
+  const refreshUser = useRecoilRefresher_UNSTABLE(loginedUserState);
+  useEffect(() => navigation.addListener('focus', refreshUser), []);
 
   return (
     <Title>
