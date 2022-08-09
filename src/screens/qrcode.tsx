@@ -13,6 +13,7 @@ import {RideClient} from '../api/ride';
 import {Depth} from '../components/Depth';
 import {QrcodeCodeInput} from '../components/qrcode/QrcodeCodeInput';
 import {QrcodeFlashButton} from '../components/qrcode/QrcodeFlashButton';
+import {QrcodeSafetyNotice} from '../components/qrcode/QrcodeSafetyNotice';
 import {screenHeight} from '../constants/screenSize';
 import {navigationRef} from '../navigators/navigation';
 import {confirmState} from '../recoils/confirm';
@@ -44,6 +45,7 @@ export const Qrcode: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
+        <QrcodeSafetyNotice />
         <StatusBar barStyle="light-content" />
         <QRCodeScanner
           onRead={onReadByScanner}
