@@ -100,6 +100,12 @@ export const onSchemeInitalize = async () => {
   });
 
   routes.push({
+    path: 'qrcode',
+    action: ({query: params}) =>
+      navigationRef.current?.navigate('Qrcode', params),
+  });
+
+  routes.push({
     path: 'helmet',
     action: () => navigationRef.current?.navigate('Helmet'),
   });

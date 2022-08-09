@@ -72,7 +72,9 @@ export const createClient = (service: string, auth = true): AxiosInstance => {
 
           break;
         case 118: // 면허 인증
-          navigationRef.current?.navigate('Weblink', {page: 'settings'});
+          navigationRef.current?.navigate('Weblink', {
+            page: 'settings?license=1&later=1',
+          });
           break;
         case 221: // 결제 수단
           navigationRef.current?.navigate('Payment');

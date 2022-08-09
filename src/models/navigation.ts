@@ -18,9 +18,9 @@ export type RootNavigatorRouteParams = {
   Coupon: undefined | SubNavigator<CouponsNavigatorRouteParams>;
   Debug: undefined | SubNavigator<DebugNavigatorRouteParams>;
   Helmet: undefined | SubNavigator<HelmetNavigatorRouteParams>;
+  Qrcode: undefined | {later?: boolean};
   Notice: undefined | {page?: string};
   Weblink: {page: string};
-  Qrcode: undefined;
 };
 
 export type ReturnedPhotoNavigatorRouteParams = {
