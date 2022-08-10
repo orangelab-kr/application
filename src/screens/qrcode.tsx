@@ -1,5 +1,5 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Keyboard,
   StatusBar,
@@ -49,7 +49,7 @@ export const Qrcode: React.FC = () => {
     return onKickboardCode(kickboardCode);
   };
 
-  useEffect(() => {
+  const onConfirm = () => {
     if (!user) return;
     if (params?.later || user.licenseId) return;
     Notifier.showNotification({
@@ -64,12 +64,12 @@ export const Qrcode: React.FC = () => {
     navigationRef.current?.navigate('Weblink', {
       page: 'settings?license=1&later=1',
     });
-  }, [user]);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
-        <QrcodeSafetyNotice />
+        <QrcodeSafetyNotice onConfirm={onConfirm} />
         <StatusBar barStyle="light-content" />
         <QRCodeScanner
           onRead={onReadByScanner}

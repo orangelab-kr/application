@@ -7,7 +7,13 @@ import FastImage from 'react-native-fast-image';
 import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../../constants/screenSize';
 
-export const QrcodeSafetyNotice: React.FC = () => {
+export interface QrcodeSafetyNoticeProps {
+  onConfirm?: () => any | Promise<any>;
+}
+
+export const QrcodeSafetyNotice: React.FC<QrcodeSafetyNoticeProps> = ({
+  onConfirm,
+}) => {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(true);
 
@@ -16,28 +22,31 @@ export const QrcodeSafetyNotice: React.FC = () => {
     return navigation.addListener('blur', unload);
   }, [navigation]);
 
+  const onClick = () => {
+    setVisible(false);
+    if (onConfirm) onConfirm();
+  };
+
   return (
-    <>
-      <Modal transparent visible={visible} animationType="fade">
-        <FakeContainer />
-        <Container style={{marginTop: screenHeight / 4.5}}>
-          <Image
-            style={{height: screenHeight / 1.8}}
-            resizeMode={FastImage.resizeMode.contain}
-            source={require('../../assets/safety-notice.png')}
+    <Modal transparent visible={visible} animationType="fade">
+      <FakeContainer />
+      <Container style={{marginTop: screenHeight / 4.5}}>
+        <Image
+          style={{height: screenHeight / 1.8}}
+          resizeMode={FastImage.resizeMode.contain}
+          source={require('../../assets/safety-notice.png')}
+        />
+        <CloseButton onPress={onClick}>
+          <FontAwesomeIcon
+            icon={faCheck}
+            color="#000"
+            size={screenHeight * 0.03}
+            style={{marginRight: 5}}
           />
-          <CloseButton onPress={() => setVisible(false)}>
-            <FontAwesomeIcon
-              icon={faCheck}
-              color="#000"
-              size={screenHeight * 0.03}
-              style={{marginRight: 5}}
-            />
-            <CloseText>동의합니다.</CloseText>
-          </CloseButton>
-        </Container>
-      </Modal>
-    </>
+          <CloseText>동의합니다.</CloseText>
+        </CloseButton>
+      </Container>
+    </Modal>
   );
 };
 
