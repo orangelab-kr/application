@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 
 export interface IconWithMessageProps {
   icon: IconProp;
+  children: React.ReactNode;
 }
 
 export const IconWithTextBox: React.FC<IconWithMessageProps> = ({

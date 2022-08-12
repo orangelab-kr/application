@@ -8,8 +8,8 @@ import {CommonActions} from '@react-navigation/native';
 import React from 'react';
 import {
   Alert,
-  KeyboardAvoidingView,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
@@ -86,9 +86,9 @@ export const Permission: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <KeyboardAvoidingView behavior="position">
-        <StatusBar barStyle="dark-content" />
-        <Depth disabled />
+      <StatusBar barStyle="dark-content" />
+      <Depth disabled />
+      <ScrollView>
         <Container>
           <Title>
             <Bold>접근 권한 승인</Bold>
@@ -116,7 +116,7 @@ export const Permission: React.FC = () => {
             <ButtonText>동의</ButtonText>
           </Button>
         </Container>
-      </KeyboardAvoidingView>
+      </ScrollView>
     </SafeAreaView>
   );
 };
