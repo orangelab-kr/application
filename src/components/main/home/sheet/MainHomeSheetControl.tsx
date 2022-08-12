@@ -78,26 +78,7 @@ export const MainHomeSheetControl: React.FC = () => {
       }
 
       await RideClient.terminate({latitude, longitude});
-      BackgroundGeolocation.checkStatus(status => {
-        console.log(
-          '[INFO] BackgroundGeolocation service is running',
-          status.isRunning,
-        );
-
-        console.log(
-          '[INFO] BackgroundGeolocation services enabled',
-          status.locationServicesEnabled,
-        );
-
-        console.log(
-          '[INFO] BackgroundGeolocation auth status: ' + status.authorization,
-        );
-
-        if (status.isRunning) {
-          BackgroundGeolocation.stop();
-        }
-      });
-
+      BackgroundGeolocation.stop();
       setCurrentRide(undefined);
       navigationRef.current?.navigate('ReturnedPhoto', {
         screen: 'Camera',
