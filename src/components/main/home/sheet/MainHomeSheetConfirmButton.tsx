@@ -1,6 +1,6 @@
-import {faBolt} from '@fortawesome/free-solid-svg-icons';
+import {faBolt, faUnlock} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
@@ -19,26 +19,33 @@ export const MainHomeSheetConfirmButton: React.FC<
   const [coords] = useGeolocation();
   const setCurrentRide = useSetRecoilState(currentRideState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);
+  const [loading, setLoading] = useState(false);
 
   const onClick = async () => {
     if (!coords || !selectedKickboard) return;
-    const {latitude, longitude} = coords;
-    const {kickboardCode} = selectedKickboard;
-    const props = {latitude, longitude, kickboardCode, debug: false};
-    const {ride} = await RideClient.start(props);
-    setCurrentRide(ride);
+
+    try {
+      setLoading(true);
+      const {latitude, longitude} = coords;
+      const {kickboardCode} = selectedKickboard;
+      const props = {latitude, longitude, kickboardCode, debug: false};
+      const {ride} = await RideClient.start(props);
+      setCurrentRide(ride);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <CenterContainer>
-      <Button onPress={onClick}>
+      <Button onPress={onClick} loading={loading} disabled={loading}>
         <ButtonText>
-          라이드 시작하기
+          {loading ? '시작하는 중...' : '라이드 시작하기'}
           <FontAwesomeIcon
-            icon={faBolt}
+            icon={loading ? faUnlock : faBolt}
             color="#fff"
             style={{marginLeft: 8}}
-            size={screenHeight / 44}
+            size={screenHeight / 46}
           />
         </ButtonText>
       </Button>
@@ -51,7 +58,8 @@ const CenterContainer = styled(View)`
   justify-content: center;
 `;
 
-const Button = styled(TouchableOpacity)`
+const Button = styled(TouchableOpacity)<{loading: boolean}>`
+  opacity: ${({loading}) => (loading ? 0.8 : 1)}
   width: 100%;
   margin: 10px 0;
   shadow-color: #999;
