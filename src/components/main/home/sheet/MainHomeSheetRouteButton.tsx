@@ -1,13 +1,13 @@
-import {faMap} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { faMap } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-import {showLocation} from 'react-native-map-link';
+import { Text, TouchableOpacity } from 'react-native';
+import { showLocation } from 'react-native-map-link';
 import styled from 'styled-components/native';
-import {RideKickboard} from '../../../../api/ride';
-import {screenHeight} from '../../../../constants/screenSize';
-import {useGeolocation} from '../../../../hooks/useGeolocation';
-import {HookResultValue} from '../../../../models/hookResult';
+import { RideKickboard } from '../../../../api/ride';
+import { screenHeight } from '../../../../constants/screenSize';
+import { useGeolocation } from '../../../../hooks/useGeolocation';
+import { HookResultValue } from '../../../../models/hookResult';
 
 interface MainHomeSheetRouteButtonProps {
   kickboard?: HookResultValue<RideKickboard>;
@@ -38,24 +38,24 @@ export const MainHomeSheetRouteButton: React.FC<
 
   return (
     <Button onPress={onPress}>
-      <FontAwesomeIcon icon={faMap} color="#000" />
+      <FontAwesomeIcon icon={faMap} color="#0a0c0c" />
       <ButtonText>길 안내</ButtonText>
     </Button>
   );
 };
 
 const Button = styled(TouchableOpacity)`
-  background-color: #fff;
+  background-color: #fcfeff;
   border-radius: 10px;
   border-width: 1px;
-  border-color: #000;
+  border-color: #0a0c0c;
   padding: 9px;
   flex-direction: row;
   margin: 2px 0;
 `;
 
 const ButtonText = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight / 70}px;
   margin-left: 6px;
 `;

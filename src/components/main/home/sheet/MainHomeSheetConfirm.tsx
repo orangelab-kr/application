@@ -1,23 +1,23 @@
-import {faPersonWalking, faRoute} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React, {useEffect, useMemo} from 'react';
-import {Text, View} from 'react-native';
-import {useSetRecoilState} from 'recoil';
+import { faPersonWalking, faRoute } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import React, { useEffect, useMemo } from 'react';
+import { Text, View } from 'react-native';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components/native';
-import {screenHeight} from '../../../../constants/screenSize';
-import {useGeolocation} from '../../../../hooks/useGeolocation';
-import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
-import {selectedKickboardCodeState} from '../../../../recoils/selectedKickboardCode';
-import {distance} from '../../../../tools/calculateMeter';
+import { screenHeight } from '../../../../constants/screenSize';
+import { useGeolocation } from '../../../../hooks/useGeolocation';
+import { selectedKickboardState } from '../../../../recoils/selectedKickboard';
+import { selectedKickboardCodeState } from '../../../../recoils/selectedKickboardCode';
+import { distance } from '../../../../tools/calculateMeter';
 import {
-  onDistanceFormatter,
-  onTimeFormatter,
+    onDistanceFormatter,
+    onTimeFormatter
 } from '../../../../tools/formatter';
-import {useRecoilValueMaybe} from '../../../../tools/recoil';
-import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
-import {MainHomeSheetCommonProps} from './MainHomeSheet';
-import {MainHomeSheetConfirmButton} from './MainHomeSheetConfirmButton';
-import {MainHomeSheetCouponSelect} from './MainHomeSheetCouponSelect';
+import { useRecoilValueMaybe } from '../../../../tools/recoil';
+import { KickboardBatteryStatus } from '../../../kickboard/KickboardBatteryStatus';
+import { MainHomeSheetCommonProps } from './MainHomeSheet';
+import { MainHomeSheetConfirmButton } from './MainHomeSheetConfirmButton';
+import { MainHomeSheetCouponSelect } from './MainHomeSheetCouponSelect';
 
 export const MainHomeSheetConfirm: React.FC<
   MainHomeSheetCommonProps
@@ -82,7 +82,7 @@ const Container = styled(View)`
 `;
 
 const Distance = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   margin-left: 10px;
   font-size: ${screenHeight / 36}px;
 `;
@@ -96,7 +96,7 @@ const KickboardCode = styled(Text)`
 const Title = styled(Text)`
   font-size: ${screenHeight / 30}px;
   font-weight: 300,
-  color: #000
+  color: #0a0c0c
 `;
 
 const Bold = styled(Text)`

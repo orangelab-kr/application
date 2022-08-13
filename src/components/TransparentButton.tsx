@@ -1,9 +1,9 @@
-import {IconProp} from '@fortawesome/fontawesome-svg-core';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
-import {screenHeight} from '../constants/screenSize';
+import { screenHeight } from '../constants/screenSize';
 
 interface TransparentButtonProps extends TouchableOpacityProps {
   size?: number;
@@ -18,7 +18,7 @@ export const TransparentButton: React.FC<TransparentButtonProps> = ({
 }) => {
   return (
     <Button {...props}>
-      {icon && <Icon icon={icon} size={size + 2} color="#fff" />}
+      {icon && <Icon icon={icon} size={size + 2} color="#fcfeff" />}
       <Label size={size}>{children}</Label>
     </Button>
   );
@@ -31,7 +31,7 @@ const Icon = styled(FontAwesomeIcon)`
 const Button = styled(TouchableOpacity)`
   flex-direction: row;
   background-color: transparent;
-  border-color: #fff;
+  border-color: #fcfeff;
   border-width: 2px;
   justify-content: center;
   align-items: center;
@@ -47,5 +47,5 @@ const Button = styled(TouchableOpacity)`
 const Label = styled(Text)<{size: number}>`
   font-size: ${({size}) => size}px;
   font-weight: 500;
-  color: #fff;
+  color: #fcfeff;
 `;

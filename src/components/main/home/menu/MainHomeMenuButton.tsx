@@ -1,12 +1,12 @@
-import {faSliders} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { faSliders } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useSetRecoilState} from 'recoil';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components/native';
-import {screenHeight} from '../../../../constants/screenSize';
-import {menuPopupState} from '../../../../recoils/menuPopup';
+import { screenHeight } from '../../../../constants/screenSize';
+import { menuPopupState } from '../../../../recoils/menuPopup';
 
 export const MainHomeMenuButton: React.FC<TouchableOpacityProps> = props => {
   const insets = useSafeAreaInsets();
@@ -18,7 +18,7 @@ export const MainHomeMenuButton: React.FC<TouchableOpacityProps> = props => {
       style={{top: topMargin}}
       onPress={() => setVisible(true)}
       {...props}>
-      <FontAwesomeIcon icon={faSliders} color="#000" size={18} />
+      <FontAwesomeIcon icon={faSliders} color="#0a0c0c" size={18} />
     </Button>
   );
 };
@@ -26,7 +26,7 @@ export const MainHomeMenuButton: React.FC<TouchableOpacityProps> = props => {
 const Button = styled(TouchableOpacity)`
   flex-direction: row;
   position: absolute;
-  background-color: #fff;
+  background-color: #fcfeff;
   border-radius: ${screenHeight * 0.02}px;
   padding: ${screenHeight * 0.023}px;
   right: ${screenHeight * 0.025}px;

@@ -70,13 +70,13 @@ const Container = styled(View)`
 `;
 
 const Title = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
   font-weight: 800;
 `;
 
 const Description = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;
 `;

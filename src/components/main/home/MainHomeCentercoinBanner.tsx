@@ -1,11 +1,11 @@
-import React, {Suspense} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import React, { Suspense } from 'react';
+import { Text, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components';
-import {screenHeight} from '../../../constants/screenSize';
-import {navigationRef} from '../../../navigators/navigation';
-import {loginedUserState} from '../../../recoils/loginedUser';
-import {useRecoilValueMaybe} from '../../../tools/recoil';
+import { screenHeight } from '../../../constants/screenSize';
+import { navigationRef } from '../../../navigators/navigation';
+import { loginedUserState } from '../../../recoils/loginedUser';
+import { useRecoilValueMaybe } from '../../../tools/recoil';
 
 export const MainHomeCentercoinBanner: React.FC = () => {
   const insets = useSafeAreaInsets();
@@ -30,7 +30,7 @@ export const MainHomeCentercoinBanner: React.FC = () => {
 
 const Button = styled(TouchableOpacity)`
   position: absolute;
-  background-color: #fff;
+  background-color: #fcfeff;
   justify-content: center;
   align-items: center;
   border-radius: ${screenHeight * 0.02}px;
@@ -47,13 +47,13 @@ const Button = styled(TouchableOpacity)`
 const ButtonText = styled(Text)`
   font-size: ${screenHeight * 0.02}px;
   font-weight: 600;
-  color: #000;
+  color: #0a0c0c;
 `;
 
 const MyBalance = styled(Text)`
   font-size: ${screenHeight * 0.026}px;
   font-weight: 400;
-  color: #000;
+  color: #0a0c0c;
 `;
 
 const MyBalanceNumber = styled(Text)`

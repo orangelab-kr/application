@@ -147,7 +147,7 @@ const ButtonText = styled(Text)`
 `;
 
 const Title = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: 26px;
   shadow-color: #999;
   shadow-opacity: 0.3;

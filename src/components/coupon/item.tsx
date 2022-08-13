@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
-import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import React, { FC } from 'react';
+import { Text, View } from 'react-native';
 import {
-  RenderItemParams,
-  ScaleDecorator,
+    RenderItemParams,
+    ScaleDecorator
 } from 'react-native-draggable-flatlist';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import SwipeableItem from 'react-native-swipeable-item';
 import styled from 'styled-components/native';
-import {PaymentsCoupon} from '../../api/payments';
-import {UnderlayRight} from '../UnderlayRight';
+import { PaymentsCoupon } from '../../api/payments';
+import { UnderlayRight } from '../UnderlayRight';
 
 export interface CouponItemProps extends RenderItemParams<PaymentsCoupon> {
   itemRefs: React.MutableRefObject<Map<any, any>>;
@@ -64,7 +64,7 @@ export const CouponItem: FC<CouponItemProps> = props => {
 const Container = styled(View)`
   margin: 12px 8px 5px;
   border-radius: 16px;
-  background-color: #fff;
+  background-color: #fcfeff;
   flex-direction: row;
   justify-content: space-between;
   shadow-color: #999;
@@ -87,25 +87,25 @@ const CouponLabel = styled(View)`
 `;
 
 const CouponName = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-weight: 800;
   font-size: 26px;
 `;
 
 const CouponDescription = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-weight: 600;
   font-size: 18px;
 `;
 
 const CouponLabelDivider = styled(View)`
   border-width: 0.5px;
-  border-color: #000;
+  border-color: #0a0c0c;
   margin: 3px 0;
 `;
 
 const CouponDate = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: 13px;
   font-weight: 400;
 `;

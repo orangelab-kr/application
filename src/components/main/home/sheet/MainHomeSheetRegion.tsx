@@ -1,12 +1,12 @@
-import {faMap} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { faMap } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, View} from 'react-native';
-import {useRecoilValue} from 'recoil';
+import { Text, View } from 'react-native';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components/native';
-import {screenHeight} from '../../../../constants/screenSize';
-import {selectedGeofenceState} from '../../../../recoils/selectedRegion';
-import {MainHomeSheetCommonProps} from './MainHomeSheet';
+import { screenHeight } from '../../../../constants/screenSize';
+import { selectedGeofenceState } from '../../../../recoils/selectedRegion';
+import { MainHomeSheetCommonProps } from './MainHomeSheet';
 
 export const MainHomeSheetRegion: React.FC<MainHomeSheetCommonProps> = ({}) => {
   const selectedGeofence = useRecoilValue(selectedGeofenceState);
@@ -30,7 +30,7 @@ const Container = styled(View)`
 `;
 
 const Distance = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   margin-left: 10px;
   font-size: ${screenHeight / 36}px;
 `;
@@ -44,7 +44,7 @@ const RegionName = styled(Text)`
 const Title = styled(Text)`
   font-size: ${screenHeight / 30}px;
   font-weight: 300,
-  color: #000
+  color: #0a0c0c
 `;
 
 const Bold = styled(Text)`

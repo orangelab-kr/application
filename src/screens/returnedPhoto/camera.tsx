@@ -1,20 +1,20 @@
-import {faCamera} from '@fortawesome/free-solid-svg-icons';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
 import {
-  Keyboard,
-  StatusBar,
-  Text,
-  TouchableWithoutFeedback,
-  View,
+    Keyboard,
+    StatusBar,
+    Text,
+    TouchableWithoutFeedback,
+    View
 } from 'react-native';
-import {RNCamera} from 'react-native-camera';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { RNCamera } from 'react-native-camera';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {TransparentButton} from '../../components/TransparentButton';
-import {screenHeight} from '../../constants/screenSize';
-import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
-import {navigationRef} from '../../navigators/navigation';
+import { TransparentButton } from '../../components/TransparentButton';
+import { screenHeight } from '../../constants/screenSize';
+import { ReturnedPhotoNavigatorRouteParams } from '../../models/navigation';
+import { navigationRef } from '../../navigators/navigation';
 
 export const ReturnedPhotoCamera: React.FC = () => {
   const cameraRef = React.createRef<RNCamera>();
@@ -72,13 +72,13 @@ const ButtonContainer = styled(View)`
 const TitleContainer = styled(View)`
   margin: 20px;
   padding: 10px;
-  border-color: #fff;
+  border-color: #fcfeff;
   border-width: 1px;
   border-radius: 10px;
 `;
 
 const Subtitle = styled(Text)`
-  color: #fff;
+  color: #fcfeff;
   font-weight: 300;
   font-size: ${screenHeight / 32}px;
   text-align: left;

@@ -8,8 +8,8 @@ export const openInAppBrowser = async (url: string) => {
       await InAppBrowser.open(url, {
         // iOS Properties
         dismissButtonStyle: 'done',
-        preferredBarTintColor: '#ffffff',
-        preferredControlTintColor: '#000000',
+        preferredBarTintColor: '#fcfeff',
+        preferredControlTintColor: '#0a0c0c000',
         readerMode: true,
         animated: true,
         modalPresentationStyle: 'fullScreen',
@@ -18,7 +18,7 @@ export const openInAppBrowser = async (url: string) => {
         enableBarCollapsing: false,
         // Android Properties
         showTitle: true,
-        toolbarColor: '#ffffff',
+        toolbarColor: '#fcfeff',
         secondaryToolbarColor: 'black',
         enableUrlBarHiding: true,
         enableDefaultShare: true,

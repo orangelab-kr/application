@@ -1,15 +1,15 @@
-import {faXmark} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {useRecoilState} from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/native';
-import {screenHeight, screenWidth} from '../../../constants/screenSize';
-import {PopupState} from '../../../recoils/popup';
-import {openInAppBrowser} from '../../../tools/openInAppBrowser';
-import {remoteConfig} from '../../../tools/remoteConfig';
+import { screenHeight, screenWidth } from '../../../constants/screenSize';
+import { PopupState } from '../../../recoils/popup';
+import { openInAppBrowser } from '../../../tools/openInAppBrowser';
+import { remoteConfig } from '../../../tools/remoteConfig';
 
 export const MainHomePopup: React.FC = () => {
   const navigation = useNavigation();
@@ -49,7 +49,7 @@ export const MainHomePopup: React.FC = () => {
           <CloseButton onPress={() => setVisible(false)}>
             <FontAwesomeIcon
               icon={faXmark}
-              color="#000"
+              color="#0a0c0c"
               size={screenHeight * 0.025}
               style={{marginRight: 5}}
             />
@@ -67,13 +67,13 @@ const CloseButton = styled(TouchableOpacity)`
   justify-contents: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #fcfeff;
   flex-direction: row;
   padding: 10px;
 `;
 
 const CloseText = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight * 0.025}px;
 `;
 
@@ -97,6 +97,6 @@ const FakeContainer = styled(View)`
   position: absolute;
   height: ${screenHeight}px;
   width: ${screenWidth}px;
-  background-color: #000;
+  background-color: #0a0c0c;
   opacity: 0.7;
 `;

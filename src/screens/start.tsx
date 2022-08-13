@@ -82,7 +82,7 @@ const Container = styled(View)`
 `;
 
 const Title = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: 24px;
   font-weight: 800;
 `;

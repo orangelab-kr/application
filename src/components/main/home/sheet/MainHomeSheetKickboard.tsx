@@ -78,7 +78,7 @@ const Container = styled(View)`
 `;
 
 const Distance = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   margin-left: 10px;
   font-size: ${screenHeight / 36}px;
 `;
@@ -92,7 +92,7 @@ const KickboardCode = styled(Text)`
 const Title = styled(Text)`
   font-size: ${screenHeight / 30}px;
   font-weight: 300,
-  color: #000
+  color: #0a0c0c
 `;
 
 const Bold = styled(Text)`

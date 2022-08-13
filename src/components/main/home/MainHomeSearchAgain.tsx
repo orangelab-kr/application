@@ -1,20 +1,20 @@
-import {faRefresh} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { faRefresh } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import axios from 'axios';
 import _ from 'lodash';
-import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useRecoilValue, useSetRecoilState} from 'recoil';
+import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components/native';
-import {RideClient} from '../../../api/ride';
-import {screenHeight} from '../../../constants/screenSize';
-import {CameraLoc} from '../../../models/cameraLoc';
-import {cameraLocState} from '../../../recoils/cameraLoc';
-import {currentRegionState} from '../../../recoils/currentRegion';
-import {geofencesState} from '../../../recoils/geofences';
-import {kickboardsState} from '../../../recoils/kickboards';
-import {calculateMeter, distance} from '../../../tools/calculateMeter';
+import { RideClient } from '../../../api/ride';
+import { screenHeight } from '../../../constants/screenSize';
+import { CameraLoc } from '../../../models/cameraLoc';
+import { cameraLocState } from '../../../recoils/cameraLoc';
+import { currentRegionState } from '../../../recoils/currentRegion';
+import { geofencesState } from '../../../recoils/geofences';
+import { kickboardsState } from '../../../recoils/kickboards';
+import { calculateMeter, distance } from '../../../tools/calculateMeter';
 
 export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const insets = useSafeAreaInsets();
@@ -98,7 +98,7 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
       <FontAwesomeIcon
         size={screenHeight * 0.02}
         icon={faRefresh}
-        color="#000"
+        color="#0a0c0c"
       />
       <ButtonText>다시 검색하기</ButtonText>
     </Button>
@@ -108,7 +108,7 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
 const Button = styled(TouchableOpacity)`
   flex-direction: row;
   position: absolute;
-  background-color: #fff;
+  background-color: #fcfeff;
   justify-content: center;
   align-items: center;
   border-radius: ${screenHeight * 0.015}px;
@@ -126,5 +126,5 @@ const ButtonText = styled(Text)`
   font-size: ${screenHeight * 0.02}px;
   margin-left: 5px;
   font-weight: 800;
-  color: #000;
+  color: #0a0c0c;
 `;

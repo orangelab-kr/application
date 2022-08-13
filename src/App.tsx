@@ -1,13 +1,13 @@
-import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect} from 'react';
-import {LogBox, StatusBar, StyleSheet} from 'react-native';
-import {NotifierWrapper} from 'react-native-notifier';
-import {ShowNotificationParams} from 'react-native-notifier/lib/typescript/types';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {RecoilRoot} from 'recoil';
-import {navigationRef} from './navigators/navigation';
-import {RootNavigator} from './navigators/root';
-import {onRemoteConfigInitalize} from './tools/remoteConfig';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { LogBox, StatusBar, StyleSheet } from 'react-native';
+import { NotifierWrapper } from 'react-native-notifier';
+import { ShowNotificationParams } from 'react-native-notifier/lib/typescript/types';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RecoilRoot } from 'recoil';
+import { navigationRef } from './navigators/navigation';
+import { RootNavigator } from './navigators/root';
+import { onRemoteConfigInitalize } from './tools/remoteConfig';
 
 const styles = StyleSheet.create({container: {flex: 1}});
 export const App: React.FC = () => {
@@ -21,8 +21,8 @@ export const App: React.FC = () => {
     hideOnPress: true,
     componentProps: {
       containerStyle: {borderRadius: 12},
-      titleStyle: {color: '#000', fontWeight: '800'},
-      descriptionStyle: {color: '#000', fontWeight: '400'},
+      titleStyle: {color: '#0a0c0c', fontWeight: '800'},
+      descriptionStyle: {color: '#0a0c0c', fontWeight: '400'},
     },
   };
 
@@ -33,7 +33,7 @@ export const App: React.FC = () => {
           <StatusBar barStyle="dark-content" />
           <NavigationContainer
             ref={navigationRef}
-            theme={{colors: {background: '#fff'}} as any}>
+            theme={{colors: {background: '#fcfeff'}} as any}>
             <RootNavigator />
           </NavigationContainer>
         </SafeAreaProvider>

@@ -1,28 +1,28 @@
-import {RouteProp, useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
 import {
-  Keyboard,
-  StatusBar,
-  TouchableWithoutFeedback,
-  View,
+    Keyboard,
+    StatusBar,
+    TouchableWithoutFeedback,
+    View
 } from 'react-native';
-import {BarCodeReadEvent, RNCamera} from 'react-native-camera';
-import {Notifier, NotifierComponents} from 'react-native-notifier';
+import { BarCodeReadEvent, RNCamera } from 'react-native-camera';
+import { Notifier, NotifierComponents } from 'react-native-notifier';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {useSetRecoilState} from 'recoil';
-import {RideClient} from '../api/ride';
-import {Depth} from '../components/Depth';
-import {QrcodeCodeInput} from '../components/qrcode/QrcodeCodeInput';
-import {QrcodeFlashButton} from '../components/qrcode/QrcodeFlashButton';
-import {QrcodeSafetyNotice} from '../components/qrcode/QrcodeSafetyNotice';
-import {screenHeight} from '../constants/screenSize';
-import {RootNavigatorRouteParams} from '../models/navigation';
-import {navigationRef} from '../navigators/navigation';
-import {confirmState} from '../recoils/confirm';
-import {loginedUserState} from '../recoils/loginedUser';
-import {selectedKickboardCodeState} from '../recoils/selectedKickboardCode';
-import {useRecoilValueMaybe} from '../tools/recoil';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSetRecoilState } from 'recoil';
+import { RideClient } from '../api/ride';
+import { Depth } from '../components/Depth';
+import { QrcodeCodeInput } from '../components/qrcode/QrcodeCodeInput';
+import { QrcodeFlashButton } from '../components/qrcode/QrcodeFlashButton';
+import { QrcodeSafetyNotice } from '../components/qrcode/QrcodeSafetyNotice';
+import { screenHeight } from '../constants/screenSize';
+import { RootNavigatorRouteParams } from '../models/navigation';
+import { navigationRef } from '../navigators/navigation';
+import { confirmState } from '../recoils/confirm';
+import { loginedUserState } from '../recoils/loginedUser';
+import { selectedKickboardCodeState } from '../recoils/selectedKickboardCode';
+import { useRecoilValueMaybe } from '../tools/recoil';
 
 export type GetKickboardCodeEvent = (
   kickboardCode: string,
@@ -57,7 +57,7 @@ export const Qrcode: React.FC = () => {
       Component: NotifierComponents.Alert,
       componentProps: {
         alertType: 'warn',
-        titleStyle: {color: '#fff'},
+        titleStyle: {color: '#fcfeff'},
       },
     });
 
@@ -81,7 +81,7 @@ export const Qrcode: React.FC = () => {
           }
         />
         <SafeAreaView>
-          <Depth color="#fff" />
+          <Depth color="#fcfeff" />
           <QrcodeCodeInput onKickboardCode={onKickboardCode} />
           <QrcodeFlashButton flash={flash} setFlash={setFlash} />
         </SafeAreaView>

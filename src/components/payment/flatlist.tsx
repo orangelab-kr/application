@@ -1,12 +1,12 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {FC, useEffect, useRef, useState} from 'react';
-import {Text, View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { Text, View } from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
-import {Notifier, NotifierComponents} from 'react-native-notifier';
+import { Notifier, NotifierComponents } from 'react-native-notifier';
 import styled from 'styled-components/native';
-import {PaymentsCard, PaymentsClient} from '../../api/payments';
-import {screenWidth} from '../../constants/screenSize';
-import {PaymentItem} from './item';
+import { PaymentsCard, PaymentsClient } from '../../api/payments';
+import { screenWidth } from '../../constants/screenSize';
+import { PaymentItem } from './item';
 
 export const PaymentFlatlist: FC = () => {
   const navigation = useNavigation();
@@ -40,7 +40,7 @@ export const PaymentFlatlist: FC = () => {
       Component: NotifierComponents.Alert,
       componentProps: {
         alertType: 'error',
-        titleStyle: {color: '#fff'},
+        titleStyle: {color: '#fcfeff'},
       },
     });
 
@@ -71,7 +71,7 @@ export const PaymentFlatlist: FC = () => {
 };
 
 const NoCard = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenWidth / 20}px;
   width: 100%;
   text-align: center;
@@ -81,7 +81,7 @@ const NoCard = styled(Text)`
 
 const NoCardContainer = styled(View)`
   border-radius: 12px;
-  background-color: #fff;
+  background-color: #fcfeff;
   margin-top: ${screenWidth * 0.05}px;
   margin: 10px;
   shadow-color: #999;

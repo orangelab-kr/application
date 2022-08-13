@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
-  NativeSyntheticEvent,
-  Text,
-  TextInputKeyPressEventData,
-  TouchableOpacity,
-  View,
+    NativeSyntheticEvent,
+    Text,
+    TextInputKeyPressEventData,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import styled from 'styled-components/native';
-import {FormatterInput, FormatterInputProps} from './FormatterInput';
+import { FormatterInput, FormatterInputProps } from './FormatterInput';
 
 export interface ShadowInputProps extends FormatterInputProps {
   hideButton?: boolean;
@@ -45,7 +45,7 @@ export const ShadowInput: React.FC<ShadowInputProps> = ({
         borderRadius: 5,
         marginLeft: 1,
         marginRight: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#fcfeff',
         shadowColor: '#999',
         shadowOpacity: 0.3,
         shadowRadius: 3,

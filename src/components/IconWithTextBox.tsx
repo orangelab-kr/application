@@ -37,7 +37,7 @@ const IconContainer = styled(View)`
 `;
 
 const TextContainer = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   padding: 10px;
   font-size: 18px;
   width: 80%;

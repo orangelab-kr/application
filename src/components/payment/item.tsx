@@ -1,17 +1,17 @@
-import {faAngleRight, faEllipsisV} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { faAngleRight, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import dayjs from 'dayjs';
-import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import React, { FC } from 'react';
+import { Text, View } from 'react-native';
 import {
-  RenderItemParams,
-  ScaleDecorator,
+    RenderItemParams,
+    ScaleDecorator
 } from 'react-native-draggable-flatlist';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import SwipeableItem from 'react-native-swipeable-item';
 import styled from 'styled-components/native';
-import {PaymentsCard} from '../../api/payments';
-import {UnderlayRight} from '../UnderlayRight';
+import { PaymentsCard } from '../../api/payments';
+import { UnderlayRight } from '../UnderlayRight';
 
 export interface PaymentItemProps extends RenderItemParams<PaymentsCard> {
   itemRefs: React.MutableRefObject<Map<any, any>>;
@@ -63,7 +63,7 @@ export const PaymentItem: FC<PaymentItemProps> = props => {
 const Container = styled(View)`
   margin: 12px 8px 5px;
   border-radius: 16px;
-  background-color: #fff;
+  background-color: #fcfeff;
   flex-direction: row;
   justify-content: space-between;
   shadow-color: #999;
@@ -81,18 +81,18 @@ const TouchableCard = styled(TouchableOpacity)`
 `;
 
 const CardLabel = styled(View)`
-  color: #000;
+  color: #0a0c0c;
   margin-left: 15px;
 `;
 
 const CardName = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-weight: 600;
   font-size: 25px;
 `;
 
 const CardDate = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: 15px;
 `;
 

@@ -8,13 +8,13 @@ import {navigationRef} from '../../../../navigators/navigation';
 
 export const MainHomeSheetStartButton: React.FC = () => (
   <Button onPress={() => navigationRef.current?.navigate('Qrcode')}>
-    <FontAwesomeIcon icon={faBarcode} color="#fff" />
+    <FontAwesomeIcon icon={faBarcode} color="#fcfeff" />
     <ButtonText>시작</ButtonText>
   </Button>
 );
 
 const Button = styled(TouchableOpacity)`
-  background-color: #000;
+  background-color: #0a0c0c;
   border-radius: 10px;
   padding: 15px;
   flex-direction: row;
@@ -24,7 +24,7 @@ const Button = styled(TouchableOpacity)`
 `;
 
 const ButtonText = styled(Text)`
-  color: #fff;
+  color: #fcfeff;
   font-size: ${screenHeight / 48}px;
   margin-left: 6px;
 `;

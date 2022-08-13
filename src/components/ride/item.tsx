@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
-import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import React, { FC } from 'react';
+import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import {RideRide} from '../../api/ride';
+import { RideRide } from '../../api/ride';
 
 export interface RideItemProps {
   ride: RideRide;
@@ -28,7 +28,7 @@ const Container = styled(View)`
   padding: 8px;
   margin: 12px 8px 5px;
   border-radius: 16px;
-  background-color: #fff;
+  background-color: #fcfeff;
   flex-direction: row;
   justify-content: space-between;
   shadow-color: #999;
@@ -45,19 +45,19 @@ const RideLabel = styled(View)`
 `;
 
 const RideName = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-weight: 800;
   font-size: 26px;
 `;
 
 const RideDescription = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-weight: 600;
   font-size: 18px;
 `;
 
 const RideDate = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: 13px;
   font-weight: 400;
 `;

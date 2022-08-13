@@ -15,7 +15,7 @@ export interface DepthProps {
 export const Depth: React.FC<DepthProps> = ({
   onPress,
   disabled,
-  color = '#000',
+  color = '#0a0c0c',
 }) => {
   const onAction = () => {
     if (disabled) return;

@@ -1,17 +1,17 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import _ from 'lodash';
-import React, {useEffect, useRef, useState} from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Text, View } from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
-import {Notifier, NotifierComponents} from 'react-native-notifier';
+import { Notifier, NotifierComponents } from 'react-native-notifier';
 import styled from 'styled-components/native';
 import {
-  PaymentsClient,
-  PaymentsCoupon,
-  RequestPaymentsGetCoupons,
+    PaymentsClient,
+    PaymentsCoupon,
+    RequestPaymentsGetCoupons
 } from '../../api/payments';
-import {screenHeight, screenWidth} from '../../constants/screenSize';
-import {CouponItem} from './item';
+import { screenHeight, screenWidth } from '../../constants/screenSize';
+import { CouponItem } from './item';
 
 export interface CouponFlatlistProps {
   onSelect?: (coupon: PaymentsCoupon) => any;
@@ -56,7 +56,7 @@ export const CouponFlatlist: React.FC<CouponFlatlistProps> = ({onSelect}) => {
       Component: NotifierComponents.Alert,
       componentProps: {
         alertType: 'error',
-        titleStyle: {color: '#fff'},
+        titleStyle: {color: '#fcfeff'},
       },
     });
 
@@ -109,7 +109,7 @@ const Loading = styled(ActivityIndicator)`
 `;
 
 const NoCoupon = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenWidth / 17}px;
   width: 100%;
   text-align: center;
@@ -119,7 +119,7 @@ const NoCoupon = styled(Text)`
 
 const NoCouponContainer = styled(View)`
   border-radius: ${screenHeight * 0.022}px;
-  background-color: #fff;
+  background-color: #fcfeff;
   margin-top: ${screenWidth * 0.05}px;
   margin: 10px;
   shadow-color: #999;

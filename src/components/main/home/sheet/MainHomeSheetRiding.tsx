@@ -158,5 +158,5 @@ const KickboardCode = styled(Text)`
 const Title = styled(Text)`
   font-size: ${screenHeight / 30}px;
   font-weight: 500,
-  color: #000
+  color: #0a0c0c
 `;

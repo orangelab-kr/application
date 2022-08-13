@@ -1,23 +1,23 @@
 import {
-  faCheck,
-  faMicrochip,
-  faUpload,
+    faCheck,
+    faMicrochip,
+    faUpload
 } from '@fortawesome/free-solid-svg-icons';
-import {RouteProp, useRoute} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {StatusBar, Text, View} from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { StatusBar, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import ImageResizer, {Response} from 'react-native-image-resizer';
-import {Notifier, NotifierComponents} from 'react-native-notifier';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import ImageResizer, { Response } from 'react-native-image-resizer';
+import { Notifier, NotifierComponents } from 'react-native-notifier';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {ImagesClient} from '../../api/images';
-import {RideClient} from '../../api/ride';
-import {Depth} from '../../components/Depth';
-import {TransparentButton} from '../../components/TransparentButton';
-import {screenHeight, screenWidth} from '../../constants/screenSize';
-import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
-import {navigationRef} from '../../navigators/navigation';
+import { ImagesClient } from '../../api/images';
+import { RideClient } from '../../api/ride';
+import { Depth } from '../../components/Depth';
+import { TransparentButton } from '../../components/TransparentButton';
+import { screenHeight, screenWidth } from '../../constants/screenSize';
+import { ReturnedPhotoNavigatorRouteParams } from '../../models/navigation';
+import { navigationRef } from '../../navigators/navigation';
 
 export const ReturnedPhotoConfirm: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ export const ReturnedPhotoConfirm: React.FC = () => {
       Component: NotifierComponents.Alert,
       componentProps: {
         alertType: 'warn',
-        titleStyle: {color: '#fff'},
+        titleStyle: {color: '#fcfeff'},
       },
     });
   };
@@ -64,7 +64,7 @@ export const ReturnedPhotoConfirm: React.FC = () => {
       Component: NotifierComponents.Alert,
       componentProps: {
         alertType: 'success',
-        titleStyle: {color: '#fff'},
+        titleStyle: {color: '#fcfeff'},
       },
     });
   };
@@ -94,7 +94,7 @@ export const ReturnedPhotoConfirm: React.FC = () => {
           priority: FastImage.priority.high,
         }}>
         <SafeAreaView>
-          <Depth color="#fff" />
+          <Depth color="#fcfeff" />
           <TitleContainer>
             <Subtitle>킥보드가 잘 보이는지</Subtitle>
             <Subtitle>다시 한 번 확인해주세요.</Subtitle>
@@ -128,13 +128,13 @@ const ButtonContainer = styled(View)`
 const TitleContainer = styled(View)`
   margin: 20px;
   padding: 10px;
-  border-color: #fff;
+  border-color: #fcfeff;
   border-width: 1px;
   border-radius: 10px;
 `;
 
 const Subtitle = styled(Text)`
-  color: #fff;
+  color: #fcfeff;
   font-weight: 300;
   font-size: ${screenHeight / 32}px;
   text-align: left;

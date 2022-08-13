@@ -1,15 +1,15 @@
 import crypto from 'crypto';
 import _ from 'lodash';
-import AnimatedLottieView, {AnimationObject} from 'lottie-react-native';
-import React, {useEffect, useState} from 'react';
-import {Alert, SafeAreaView, Text, View} from 'react-native';
-import {BleManager, Characteristic} from 'react-native-ble-plx';
+import AnimatedLottieView, { AnimationObject } from 'lottie-react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, SafeAreaView, Text, View } from 'react-native';
+import { BleManager, Characteristic } from 'react-native-ble-plx';
 import styled from 'styled-components/native';
-import {RideClient, RideHelmetCredentials} from '../../api/ride';
-import {BottomButton} from '../../components/BottomButton';
-import {Depth} from '../../components/Depth';
-import {screenHeight} from '../../constants/screenSize';
-import {navigationRef} from '../../navigators/navigation';
+import { RideClient, RideHelmetCredentials } from '../../api/ride';
+import { BottomButton } from '../../components/BottomButton';
+import { Depth } from '../../components/Depth';
+import { screenHeight } from '../../constants/screenSize';
+import { navigationRef } from '../../navigators/navigation';
 
 export const manager = new BleManager();
 export let writer: Characteristic | undefined;
@@ -192,7 +192,7 @@ export const HelmetBorrow: React.FC = () => {
     <SafeAreaView style={{height: '100%'}}>
       <Depth
         onPress={onBack}
-        color={status === 'completed' ? '#fff' : '#000'}
+        color={status === 'completed' ? '#fcfeff' : '#0a0c0c'}
         disabled={status === 'completed'}
       />
       <Container>
@@ -221,13 +221,13 @@ const Container = styled(View)`
 `;
 
 const Title = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
   font-weight: 800;
 `;
 
 const Description = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;
 `;

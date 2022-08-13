@@ -1,14 +1,14 @@
-import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {useSetRecoilState} from 'recoil';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components/native';
-import {PaymentsCoupon} from '../../../../api/payments';
-import {screenHeight, screenWidth} from '../../../../constants/screenSize';
-import {CouponSelectorState} from '../../../../recoils/couponSelector';
-import {selectedCouponState} from '../../../../recoils/selectedCoupon';
-import {CouponFlatlist} from '../../../coupon/flatlist';
+import { PaymentsCoupon } from '../../../../api/payments';
+import { screenHeight, screenWidth } from '../../../../constants/screenSize';
+import { CouponSelectorState } from '../../../../recoils/couponSelector';
+import { selectedCouponState } from '../../../../recoils/selectedCoupon';
+import { CouponFlatlist } from '../../../coupon/flatlist';
 
 export const MainHomeSheetCoupon: React.FC = () => {
   const setSelectedCoupon = useSetRecoilState(selectedCouponState);
@@ -44,8 +44,8 @@ const TopBar = styled(View)`
 `;
 
 const Title = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight / 30}px;
   font-weight: 800;
-  color: #000;
+  color: #0a0c0c;
 `;

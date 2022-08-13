@@ -3,19 +3,19 @@ import {
   faLightbulb,
   faLock,
   faLockOpen,
-  faToggleOff,
+  faToggleOff
 } from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import BackgroundGeolocation from '@hariks789/react-native-background-geolocation';
-import React, {useState} from 'react';
-import {Alert, Text, TouchableOpacity, View} from 'react-native';
-import {useRecoilState} from 'recoil';
+import React, { useState } from 'react';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/native';
-import {RideClient} from '../../../../api/ride';
-import {screenHeight, screenWidth} from '../../../../constants/screenSize';
-import {useGeolocation} from '../../../../hooks/useGeolocation';
-import {navigationRef} from '../../../../navigators/navigation';
-import {currentRideState} from '../../../../recoils/currentRide';
+import { RideClient } from '../../../../api/ride';
+import { screenHeight, screenWidth } from '../../../../constants/screenSize';
+import { useGeolocation } from '../../../../hooks/useGeolocation';
+import { navigationRef } from '../../../../navigators/navigation';
+import { currentRideState } from '../../../../recoils/currentRide';
 
 export const MainHomeSheetControl: React.FC = () => {
   const [coords] = useGeolocation();
@@ -100,7 +100,7 @@ export const MainHomeSheetControl: React.FC = () => {
           <FontAwesomeIcon
             icon={currentRide?.isLightsOn ? faToggleOff : faLightbulb}
             size={screenHeight / 48}
-            color="#fff"
+            color="#fcfeff"
           />
           <ButtonText>
             {currentRide?.isLightsOn ? '라이트 끄기' : '라이트 켜기'}
@@ -119,7 +119,7 @@ export const MainHomeSheetControl: React.FC = () => {
           <FontAwesomeIcon
             icon={currentRide?.isLocked ? faLockOpen : faLock}
             size={screenHeight / 48}
-            color="#fff"
+            color="#fcfeff"
           />
           <ButtonText>일시정지{currentRide?.isLocked && ' 해제'}</ButtonText>
         </Button>
@@ -134,7 +134,7 @@ export const MainHomeSheetControl: React.FC = () => {
         )}>
         <FontAwesomeIcon
           icon={faGamepad}
-          color="#fff"
+          color="#fcfeff"
           size={screenHeight / 48}
         />
         <ButtonText>{terminating ? '종료 중...' : '종료'}</ButtonText>
@@ -144,7 +144,7 @@ export const MainHomeSheetControl: React.FC = () => {
 };
 
 const Button = styled(TouchableOpacity)`
-  background-color: #000;
+  background-color: #0a0c0c;
   border-radius: ${screenHeight * 0.02}px;
   padding: ${screenHeight * 0.019}px;
   flex-direction: row;
@@ -159,7 +159,7 @@ const Button = styled(TouchableOpacity)`
 `;
 
 const ButtonText = styled(Text)`
-  color: #fff;
+  color: #fcfeff;
   font-size: ${screenHeight / 48}px;
   margin-left: 6px;
   font-weight: 600;

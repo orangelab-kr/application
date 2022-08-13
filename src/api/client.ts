@@ -54,7 +54,7 @@ export const createClient = (service: string, auth = true): AxiosInstance => {
           Component: NotifierComponents.Alert,
           componentProps: {
             alertType: 'warn',
-            titleStyle: {color: '#fff'},
+            titleStyle: {color: '#fcfeff'},
           },
         });
       }

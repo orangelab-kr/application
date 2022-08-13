@@ -1,11 +1,11 @@
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import styled from 'styled-components/native';
-import {screenHeight, screenWidth} from '../../constants/screenSize';
+import { screenHeight, screenWidth } from '../../constants/screenSize';
 
 export interface QrcodeSafetyNoticeProps {
   onConfirm?: () => any | Promise<any>;
@@ -39,7 +39,7 @@ export const QrcodeSafetyNotice: React.FC<QrcodeSafetyNoticeProps> = ({
         <CloseButton onPress={onClick}>
           <FontAwesomeIcon
             icon={faCheck}
-            color="#000"
+            color="#0a0c0c"
             size={screenHeight * 0.03}
             style={{marginRight: 5}}
           />
@@ -56,13 +56,13 @@ const CloseButton = styled(TouchableOpacity)`
   justify-contents: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #fcfeff;
   flex-direction: row;
   padding: 10px;
 `;
 
 const CloseText = styled(Text)`
-  color: #000;
+  color: #0a0c0c;
   font-size: ${screenHeight * 0.025}px;
 `;
 
@@ -86,6 +86,6 @@ const FakeContainer = styled(View)`
   position: absolute;
   height: ${screenHeight}px;
   width: ${screenWidth}px;
-  background-color: #000;
+  background-color: #0a0c0c;
   opacity: 0.7;
 `;
