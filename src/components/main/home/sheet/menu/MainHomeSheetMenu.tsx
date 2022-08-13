@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import RNShake from 'react-native-shake';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
-import {navigationRef} from '../../../../navigators/navigation';
-import {menuPopupState} from '../../../../recoils/menuPopup';
-import {modeState} from '../../../../recoils/mode';
-import {MainHomeMenuButton} from './MainHomeMenuButton';
-import {MainHomeMenuPopup} from './MainHomeMenuPopup';
+import {navigationRef} from '../../../../../navigators/navigation';
+import {menuPopupState} from '../../../../../recoils/menuPopup';
+import {modeState} from '../../../../../recoils/mode';
+import {MainHomeSheetMenuButton} from './MainHomeSheetMenuButton';
+import {MainHomeSheetMenuPopup} from './MainHomeSheetMenuPopup';
 
-export const MainHomeMenu: React.FC = () => {
+export const MainHomeSheetMenu: React.FC = () => {
   const mode = useRecoilValue(modeState);
   const setMenuPopup = useSetRecoilState(menuPopupState);
   useEffect(() => {
@@ -30,8 +30,8 @@ export const MainHomeMenu: React.FC = () => {
 
   return (
     <>
-      <MainHomeMenuButton />
-      <MainHomeMenuPopup />
+      <MainHomeSheetMenuButton />
+      <MainHomeSheetMenuPopup />
     </>
   );
 };

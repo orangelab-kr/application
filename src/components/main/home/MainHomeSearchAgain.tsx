@@ -1,20 +1,20 @@
-import { faRefresh } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faRefresh} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import axios from 'axios';
 import _ from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
-import { RideClient } from '../../../api/ride';
-import { screenHeight } from '../../../constants/screenSize';
-import { CameraLoc } from '../../../models/cameraLoc';
-import { cameraLocState } from '../../../recoils/cameraLoc';
-import { currentRegionState } from '../../../recoils/currentRegion';
-import { geofencesState } from '../../../recoils/geofences';
-import { kickboardsState } from '../../../recoils/kickboards';
-import { calculateMeter, distance } from '../../../tools/calculateMeter';
+import {RideClient} from '../../../api/ride';
+import {screenHeight} from '../../../constants/screenSize';
+import {CameraLoc} from '../../../models/cameraLoc';
+import {cameraLocState} from '../../../recoils/cameraLoc';
+import {currentRegionState} from '../../../recoils/currentRegion';
+import {geofencesState} from '../../../recoils/geofences';
+import {kickboardsState} from '../../../recoils/kickboards';
+import {calculateMeter, distance} from '../../../tools/calculateMeter';
 
 export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const insets = useSafeAreaInsets();
@@ -24,7 +24,7 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const setCurrentRegion = useSetRecoilState(currentRegionState);
   const setKickboards = useSetRecoilState(kickboardsState);
   const setGeofences = useSetRecoilState(geofencesState);
-  const topMargin = Math.floor(screenHeight * 0.099 + insets.top);
+  const topMargin = Math.floor(screenHeight * 0.11 + insets.top);
 
   const onSearchKickboard = async () => {
     if (!cameraLoc) return;
@@ -115,11 +115,6 @@ const Button = styled(TouchableOpacity)`
   padding: ${screenHeight * 0.01}px;
   right: ${screenHeight * 0.14}px;
   left: ${screenHeight * 0.14}px;
-  shadow-color: #999;
-  shadow-opacity: 0.3;
-  shadow-radius: 6px;
-  elevation: 5;
-  shadow-offset: {width: 6px, height: 6px};
 `;
 
 const ButtonText = styled(Text)`

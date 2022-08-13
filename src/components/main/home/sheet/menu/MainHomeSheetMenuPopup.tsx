@@ -3,11 +3,11 @@ import React, {useEffect} from 'react';
 import {Modal, View} from 'react-native';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components/native';
-import {screenHeight, screenWidth} from '../../../../constants/screenSize';
-import {menuPopupState} from '../../../../recoils/menuPopup';
-import {Weblink} from '../../../../screens/weblink';
+import {screenHeight, screenWidth} from '../../../../../constants/screenSize';
+import {menuPopupState} from '../../../../../recoils/menuPopup';
+import {Weblink} from '../../../../../screens/weblink';
 
-export const MainHomeMenuPopup: React.FC = () => {
+export const MainHomeSheetMenuPopup: React.FC = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useRecoilState(menuPopupState);
 

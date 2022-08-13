@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, {Suspense} from 'react';
+import {Text, TouchableOpacity} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import styled from 'styled-components';
-import { screenHeight } from '../../../constants/screenSize';
-import { navigationRef } from '../../../navigators/navigation';
-import { loginedUserState } from '../../../recoils/loginedUser';
-import { useRecoilValueMaybe } from '../../../tools/recoil';
+import {screenHeight, screenWidth} from '../../../constants/screenSize';
+import {navigationRef} from '../../../navigators/navigation';
+import {loginedUserState} from '../../../recoils/loginedUser';
+import {useRecoilValueMaybe} from '../../../tools/recoil';
 
 export const MainHomeCentercoinBanner: React.FC = () => {
   const insets = useSafeAreaInsets();
@@ -32,9 +32,9 @@ const Button = styled(TouchableOpacity)`
   position: absolute;
   background-color: #fcfeff;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   border-radius: ${screenHeight * 0.02}px;
-  padding: ${screenHeight * 0.005}px;
+  padding: ${screenHeight * 0.016}px ${screenWidth * 0.05}px;
   right: ${screenHeight * 0.02}px;
   left: ${screenHeight * 0.02}px;
   shadow-color: #999;
