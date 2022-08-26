@@ -1,23 +1,23 @@
 import {
-    faCheck,
-    faMicrochip,
-    faUpload
+  faCheck,
+  faMicrochip,
+  faUpload,
 } from '@fortawesome/free-solid-svg-icons';
-import { RouteProp, useRoute } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { StatusBar, Text, View } from 'react-native';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {StatusBar, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import ImageResizer, { Response } from 'react-native-image-resizer';
-import { Notifier, NotifierComponents } from 'react-native-notifier';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import ImageResizer, {Response} from 'react-native-image-resizer';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { ImagesClient } from '../../api/images';
-import { RideClient } from '../../api/ride';
-import { Depth } from '../../components/Depth';
-import { TransparentButton } from '../../components/TransparentButton';
-import { screenHeight, screenWidth } from '../../constants/screenSize';
-import { ReturnedPhotoNavigatorRouteParams } from '../../models/navigation';
-import { navigationRef } from '../../navigators/navigation';
+import {ImagesClient} from '../../api/images';
+import {RideClient} from '../../api/ride';
+import {Depth} from '../../components/Depth';
+import {TransparentButton} from '../../components/TransparentButton';
+import {screenHeight, screenWidth} from '../../constants/screenSize';
+import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 
 export const ReturnedPhotoConfirm: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -25,23 +25,8 @@ export const ReturnedPhotoConfirm: React.FC = () => {
   const {params} =
     useRoute<RouteProp<ReturnedPhotoNavigatorRouteParams, 'Confirm'>>();
 
-  const onError = () => {
-    const {rideId} = params;
-    navigationRef.current?.navigate('ReturnedPhoto', {
-      screen: 'Camera',
-      params: {rideId},
-    });
-
-    Notifier.showNotification({
-      title: '죄송합니다. 다시 촬영해주세요.',
-      Component: NotifierComponents.Alert,
-      componentProps: {
-        alertType: 'warn',
-        titleStyle: {color: '#fcfeff'},
-      },
-    });
-  };
-
+  const onError = () =>
+    navigationRef.current?.navigate('Main', {screen: 'Home'});
   const onPress = async () => {
     if (!resizedImage) return;
 
@@ -138,11 +123,4 @@ const Subtitle = styled(Text)`
   font-weight: 300;
   font-size: ${screenHeight / 32}px;
   text-align: left;
-`;
-
-const Title = styled(Subtitle)`
-  font-weight: 800;
-  font-size: ${screenHeight / 18}px;
-  margin-bottom: 10px;
-  text-align: center;
 `;
