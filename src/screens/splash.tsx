@@ -127,7 +127,7 @@ const Description = styled(Text)`
   font-size: 18px;
   font-weight: 700;
   shadow-color: #999;
-  shadow-opacity: 0.3;
+  shadow-opacity: 0.2;
   shadow-radius: 3px;
   elevation: 5;
   shadow-offset: {height: 3px, width: 3px};

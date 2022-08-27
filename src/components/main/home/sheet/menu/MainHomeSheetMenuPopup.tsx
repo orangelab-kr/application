@@ -36,7 +36,7 @@ const Container = styled(View)`
   margin-left: ${screenHeight * 0.02}px;
   margin-right: ${screenHeight * 0.02}px;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 6px, height: 6px};

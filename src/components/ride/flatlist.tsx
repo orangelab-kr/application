@@ -1,11 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import _ from 'lodash';
-import React, { FC, useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import React, {FC, useEffect, useState} from 'react';
+import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import styled from 'styled-components/native';
-import { RequestRideGetRides, RideClient, RideRide } from '../../api/ride';
-import { screenWidth } from '../../constants/screenSize';
-import { RideItem } from './item';
+import {RequestRideGetRides, RideClient, RideRide} from '../../api/ride';
+import {screenWidth} from '../../constants/screenSize';
+import {RideItem} from './item';
 
 export const RideFlatlist: FC = () => {
   const navigation = useNavigation();
@@ -75,10 +75,10 @@ const Loading = styled(ActivityIndicator)`
 
 const NoRide = styled(Text)`
   color: #0a0c0c;
-  font-size: ${screenWidth / 16}px;
+  font-size: ${screenWidth / 18}px;
   width: 100%;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   padding: 10px;
 `;
 
@@ -88,7 +88,7 @@ const NoRideContainer = styled(View)`
   margin-top: ${screenWidth * 0.05}px;
   margin: 10px 5px;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};

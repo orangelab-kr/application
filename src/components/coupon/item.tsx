@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
-import React, { FC } from 'react';
-import { Text, View } from 'react-native';
+import React, {FC} from 'react';
+import {Text, View} from 'react-native';
 import {
-    RenderItemParams,
-    ScaleDecorator
+  RenderItemParams,
+  ScaleDecorator,
 } from 'react-native-draggable-flatlist';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import SwipeableItem from 'react-native-swipeable-item';
 import styled from 'styled-components/native';
-import { PaymentsCoupon } from '../../api/payments';
-import { UnderlayRight } from '../UnderlayRight';
+import {PaymentsCoupon} from '../../api/payments';
+import {UnderlayRight} from '../UnderlayRight';
 
 export interface CouponItemProps extends RenderItemParams<PaymentsCoupon> {
   itemRefs: React.MutableRefObject<Map<any, any>>;
@@ -68,7 +68,7 @@ const Container = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};

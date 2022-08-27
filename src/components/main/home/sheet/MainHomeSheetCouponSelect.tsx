@@ -1,12 +1,12 @@
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
-import { screenHeight } from '../../../../constants/screenSize';
-import { CouponSelectorState } from '../../../../recoils/couponSelector';
-import { selectedCouponState } from '../../../../recoils/selectedCoupon';
+import {screenHeight} from '../../../../constants/screenSize';
+import {CouponSelectorState} from '../../../../recoils/couponSelector';
+import {selectedCouponState} from '../../../../recoils/selectedCoupon';
 
 export const MainHomeSheetCouponSelect: React.FC = () => {
   const selectedCoupon = useRecoilValue(selectedCouponState);
@@ -50,7 +50,7 @@ const Button = styled(TouchableOpacity)`
   background-color: #fcfeff;
   margin: 10px 0;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};
@@ -64,7 +64,7 @@ const ButtonText = styled(View)`
   justify-content: space-between;
   align-items: center;
   shadow-color: #999;
-  shadow-opacity: 0.3;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
 `;

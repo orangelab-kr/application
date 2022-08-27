@@ -35,7 +35,7 @@ export const Container = styled(Animated.View)`
   border-radius: 16px;
   justify-content: flex-start;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};
 `;

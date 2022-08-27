@@ -38,7 +38,7 @@ const Button = styled(TouchableOpacity)`
   right: ${screenHeight * 0.02}px;
   left: ${screenHeight * 0.02}px;
   shadow-color: #999;
-  shadow-opacity: 0.3;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 6px, height: 6px};

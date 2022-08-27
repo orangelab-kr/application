@@ -1,15 +1,15 @@
-import { faBolt, faUnlock } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import React, { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { useSetRecoilState } from 'recoil';
+import {faBolt, faUnlock} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import React, {useState} from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
-import { RideClient } from '../../../../api/ride';
-import { screenHeight } from '../../../../constants/screenSize';
-import { useGeolocation } from '../../../../hooks/useGeolocation';
-import { currentRideState } from '../../../../recoils/currentRide';
-import { selectedKickboardState } from '../../../../recoils/selectedKickboard';
-import { useRecoilValueMaybe } from '../../../../tools/recoil';
+import {RideClient} from '../../../../api/ride';
+import {screenHeight} from '../../../../constants/screenSize';
+import {useGeolocation} from '../../../../hooks/useGeolocation';
+import {currentRideState} from '../../../../recoils/currentRide';
+import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
+import {useRecoilValueMaybe} from '../../../../tools/recoil';
 
 export interface MainHomeSheetConfirmButtonProps {}
 
@@ -63,7 +63,7 @@ const Button = styled(TouchableOpacity)<{loading: boolean}>`
   width: 100%;
   margin: 10px 0;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};

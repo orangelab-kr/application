@@ -1,11 +1,11 @@
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import styled from 'styled-components/native';
-import { screenHeight, screenWidth } from '../../constants/screenSize';
+import {screenHeight, screenWidth} from '../../constants/screenSize';
 
 export interface QrcodeSafetyNoticeProps {
   onConfirm?: () => any | Promise<any>;
@@ -76,7 +76,7 @@ const Container = styled(View)`
   flex: 1;
   margin: 0 auto;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 6px, height: 6px};

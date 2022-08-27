@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
-import React, { FC } from 'react';
-import { Text, View } from 'react-native';
+import React, {FC} from 'react';
+import {Text, View} from 'react-native';
 import styled from 'styled-components/native';
-import { RideRide } from '../../api/ride';
+import {RideRide} from '../../api/ride';
 
 export interface RideItemProps {
   ride: RideRide;
@@ -27,12 +27,12 @@ export const RideItem: FC<RideItemProps> = ({ride}) => {
 const Container = styled(View)`
   padding: 8px;
   margin: 12px 8px 5px;
-  border-radius: 16px;
+  border-radius: 12px;
   background-color: #fcfeff;
   flex-direction: row;
   justify-content: space-between;
   shadow-color: #999;
-  shadow-opacity: 1;
+  shadow-opacity: 0.2;
   shadow-radius: 6px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};

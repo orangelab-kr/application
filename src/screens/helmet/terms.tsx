@@ -90,7 +90,7 @@ const Button = styled(TouchableOpacity)`
   background-color: black;
   border-radius: 3px;
   shadow-color: #999;
-  shadow-opacity: 0.3;
+  shadow-opacity: 0.2;
   shadow-radius: 3px;
   elevation: 5;
   shadow-offset: {width: 3px, height: 3px};
