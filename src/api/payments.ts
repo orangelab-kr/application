@@ -9,6 +9,58 @@ export type ResponsePaymentsCoupons = CommonResponse<{
   total: number;
 }>;
 
+export type ResponsePaymentsRecords = CommonResponse<{
+  records: PaymentsRecord[];
+  total: number;
+}>;
+
+export interface PaymentsRecord {
+  recordId: string;
+  userId: string;
+  cardId: Date | null;
+  paymentKeyId: string;
+  name: string;
+  displayName: string;
+  amount: number;
+  initialAmount: number;
+  description: string;
+  tid: string | null;
+  refundedAt: Date | null;
+  reason: string | null;
+  processedAt: Date | null;
+  retiredAt: string;
+  properties: PaymentsRecordProperties;
+  dunnedAt: Date | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PaymentsRecordProperties {
+  coreservice: PaymentsRecordPropertiesCoreservice;
+  openapi: PaymentsRecordPropertiesOpenapi;
+}
+
+export interface PaymentsRecordPropertiesCoreservice {
+  rideId: string;
+}
+
+export interface PaymentsRecordPropertiesOpenapi {
+  paymentId: string;
+  description: string;
+  platformId: string;
+  franchiseId: string;
+  paymentType: string;
+  initialAmount: number;
+  amount: number;
+  rideId: string;
+  reason: string | null;
+  refundedAt: Date | null;
+  processedAt: Date | null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: Date | null;
+}
+
 export interface RequestPaymentsRegisterCard {
   cardNumber: string;
   expiry: string;
@@ -60,6 +112,22 @@ export interface RequestPaymentsGetCoupons {
   orderBySort?: string;
 }
 
+export interface RequestPaymentsGetRecords {
+  take?: number;
+  skip?: number;
+  search?: string;
+  userId?: string;
+  orderByField?:
+    | 'amount'
+    | 'refundedAt'
+    | 'processedAt'
+    | 'retriedAt'
+    | 'createdAt'
+    | 'updatedAt';
+  orderBySort?: 'asc' | 'desc';
+  onlyUnpaid?: boolean;
+}
+
 export interface RequestPaymentsRegisterCoupon {
   code: string;
 }
@@ -87,6 +155,12 @@ export class PaymentsClient {
 
   public static async deleteCoupon(couponId: string): Promise<void> {
     return this.client.delete(`/coupons/${couponId}`).then(r => r.data);
+  }
+
+  public static async getRecords(
+    params: RequestPaymentsGetRecords,
+  ): Promise<ResponsePaymentsRecords> {
+    return this.client.get('/records', {params}).then(r => r.data);
   }
 
   public static async getCoupons(
