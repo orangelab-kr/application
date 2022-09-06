@@ -2,11 +2,10 @@ import {useNavigation} from '@react-navigation/native';
 import _ from 'lodash';
 import React, {FC, useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
-import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
+import {PaymentsClient, PaymentsRecord} from '../../api/payments';
 import {RequestRideGetRides, RideClient, RideRide} from '../../api/ride';
 import {screenWidth} from '../../constants/screenSize';
-import {unpaidRecordsState} from '../../recoils/unpaidRecords';
 import {RideItem} from './item';
 
 export const RideFlatlist: FC = () => {
@@ -14,13 +13,24 @@ export const RideFlatlist: FC = () => {
   const [rides, setRides] = useState<RideRide[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [total, setTotal] = useState<number>();
-  const unpaidRecords = useRecoilValue(unpaidRecordsState);
+  const [unpaidRecords, setUnpaidRecords] = useState<PaymentsRecord[]>([]);
   const [params, setParams] = useState<RequestRideGetRides>({
     skip: 0,
     take: 10,
   });
 
+  const loadUnpaidRecords = async () => {
+    const {records} = await PaymentsClient.getRecords({
+      onlyUnpaid: true,
+      take: 1000,
+    });
+
+    setUnpaidRecords(records);
+  };
+
   const loadRides = async () => {
+    loadUnpaidRecords();
+
     try {
       if (loading) return;
       setLoading(true);
@@ -36,11 +46,7 @@ export const RideFlatlist: FC = () => {
     loadRides();
   }, [params]);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', loadRides);
-    return unsubscribe;
-  }, []);
-
+  useEffect(() => navigation.addListener('focus', loadRides), [loadRides]);
   const onEndReached = ({distanceFromEnd}: {distanceFromEnd: number}) => {
     if (distanceFromEnd < 0) return;
     if (loading) return;
