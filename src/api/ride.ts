@@ -164,6 +164,13 @@ export interface RideRide {
   deletedAt?: any;
 }
 
+export interface RideTimeline {
+  latitude: number;
+  longitude: number;
+  battery: number;
+  createdAt: Date;
+}
+
 export interface RideHelmet {
   borrowId: string;
   status: 'IDLE' | 'BORROWED' | 'RETURNED';
@@ -188,6 +195,10 @@ export interface RideHelmetCredentials {
 }
 
 export type ResponseRideGetRide = CommonResponse<{ride: RideRide}>;
+export type ResponseRideGetRideTimeline = CommonResponse<{
+  timeline: RideTimeline[];
+}>;
+
 export type ResponseRideHelmet = CommonResponse<{helmet: RideHelmet}>;
 export type ResponseRideHelmetCredentials = CommonResponse<{
   helmet: RideHelmetCredentials;
@@ -242,6 +253,16 @@ export class RideClient {
     photo: string,
   ): Promise<void> {
     return this.client.post(`/histories/${rideId}/photo`, {photo});
+  }
+
+  public static async getRide(rideId: string): Promise<ResponseRideGetRide> {
+    return this.client.get(`/histories/${rideId}`).then(r => r.data);
+  }
+
+  public static async getRideTimeline(
+    rideId: string,
+  ): Promise<ResponseRideGetRideTimeline> {
+    return this.client.get(`/histories/${rideId}/timeline`).then(r => r.data);
   }
 
   public static async getRides(

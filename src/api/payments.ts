@@ -117,6 +117,7 @@ export interface RequestPaymentsGetRecords {
   skip?: number;
   search?: string;
   userId?: string;
+  rideId?: string;
   orderByField?:
     | 'amount'
     | 'refundedAt'
@@ -161,6 +162,10 @@ export class PaymentsClient {
     params: RequestPaymentsGetRecords,
   ): Promise<ResponsePaymentsRecords> {
     return this.client.get('/records', {params}).then(r => r.data);
+  }
+
+  public static async retryRecord(recordId: string): Promise<CommonResponse> {
+    return this.client.get(`/records/${recordId}/retry`).then(r => r.data);
   }
 
   public static async getCoupons(
