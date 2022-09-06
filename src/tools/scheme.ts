@@ -42,7 +42,7 @@ export const onSchemeInitalize = async () => {
 
   routes.push({
     path: 'rides',
-    action: () => navigationRef.current?.navigate('Rides'),
+    action: () => navigationRef.current?.navigate('Rides', {screen: 'List'}),
   });
 
   routes.push({

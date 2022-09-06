@@ -10,7 +10,7 @@ export type RootNavigatorRouteParams = {
   Splash: undefined;
   Start: undefined;
   Permission: undefined;
-  Rides: undefined;
+  Rides: SubNavigator<RidesNavigatorRouteParams>;
   Main: undefined | SubNavigator<MainNavigatorRouteParams>;
   Auth: undefined | SubNavigator<AuthNavigatorRouteParams>;
   ReturnedPhoto: SubNavigator<ReturnedPhotoNavigatorRouteParams>;
@@ -34,6 +34,11 @@ export type HelmetNavigatorRouteParams = {
   Terms: undefined;
   Borrow: undefined;
   Return: undefined;
+};
+
+export type RidesNavigatorRouteParams = {
+  List: undefined;
+  Detail: {rideId: string};
 };
 
 export type PaymentsNavigatorRouteParams = {

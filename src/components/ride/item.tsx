@@ -6,6 +6,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import {PaymentsRecord} from '../../api/payments';
 import {RideRide} from '../../api/ride';
+import {navigationRef} from '../../navigators/navigation';
 
 export interface RideItemProps {
   ride: RideRide;
@@ -13,22 +14,29 @@ export interface RideItemProps {
 }
 
 export const RideItem: FC<RideItemProps> = ({ride, unpaidRecords: records}) => {
+  const {rideId} = ride;
+  const gotoDetail = () =>
+    navigationRef.current?.navigate('Rides', {
+      screen: 'Detail',
+      params: {rideId},
+    });
+
   const unpaidPrice = useMemo(
     () =>
       records
-        .filter(r => r.properties.coreservice.rideId === ride.rideId)
+        .filter(r => r.properties.coreservice.rideId === rideId)
         .map(r => r.amount)
         .reduce((a, b) => a + b, 0),
     [records],
   );
 
   return (
-    <Container>
+    <Container onPress={gotoDetail}>
       <RideLabel>
         <RideDate>
-          {dayjs(ride.createdAt).format('M월 DD일 h시 m분 s초')}
+          {dayjs(ride.createdAt).format('M월 DD일 h시 m분')}
           {' ~ '}
-          {dayjs(ride.endedAt).format('h시 m분 s초')}
+          {dayjs(ride.endedAt).format('h시 m분')}
         </RideDate>
         <RideName>{ride.kickboardCode}</RideName>
         <RideDescription>

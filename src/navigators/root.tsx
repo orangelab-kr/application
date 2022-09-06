@@ -4,7 +4,6 @@ import {RootNavigatorRouteParams} from '../models/navigation';
 import {Notice} from '../screens/notice';
 import {Permission} from '../screens/permission';
 import {Qrcode} from '../screens/qrcode';
-import {Rides} from '../screens/rides';
 import {Splash} from '../screens/splash';
 import {Start} from '../screens/start';
 import {Weblink} from '../screens/weblink';
@@ -15,6 +14,7 @@ import {HelmetNavigator} from './helmet';
 import {MainNavigator} from './main';
 import {PaymentNavigator} from './payment';
 import {ReturnedPhotoNavigator} from './returnedPhoto';
+import {RideNavigator} from './ride';
 
 export const RootNavigator: React.FC = () => {
   const Stack = createNativeStackNavigator<RootNavigatorRouteParams>();
@@ -58,7 +58,7 @@ export const RootNavigator: React.FC = () => {
         component={Qrcode}
         options={{animation: 'fade_from_bottom'}}
       />
-      <Stack.Screen name="Rides" component={Rides} />
+      <Stack.Screen name="Rides" component={RideNavigator} />
       <Stack.Screen name="Helmet" component={HelmetNavigator} />
       <Stack.Screen name="Payment" component={PaymentNavigator} />
       <Stack.Screen name="Coupon" component={CouponNavigator} />
