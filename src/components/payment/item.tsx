@@ -35,7 +35,7 @@ export const PaymentItem: FC<PaymentItemProps> = props => {
           if (!ref || itemRefs.current.get(item.cardId)) return;
           itemRefs.current.set(item.cardId, ref);
         }}
-        onChange={({open}) => {
+        onChange={({open}: any) => {
           if (!open) return;
           [...itemRefs.current.entries()].forEach(([key, ref]) => {
             if (key !== item.cardId && ref) ref.close();

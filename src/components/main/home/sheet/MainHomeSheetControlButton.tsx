@@ -1,11 +1,11 @@
-import { faHelmetSafety } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faHelmetSafety} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import BottomSheet from '@gorhom/bottom-sheet';
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
-import { screenHeight } from '../../../../constants/screenSize';
-import { navigationRef } from '../../../../navigators/navigation';
+import {screenHeight} from '../../../../constants/screenSize';
+import {navigationRef} from '../../../../navigators/navigation';
 
 export interface MainHomeSheetControlButtonProps {
   sheetRef: React.MutableRefObject<BottomSheet | null>;

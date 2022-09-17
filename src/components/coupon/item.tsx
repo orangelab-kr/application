@@ -34,7 +34,7 @@ export const CouponItem: FC<CouponItemProps> = props => {
           if (!ref || itemRefs.current.get(item.couponId)) return;
           itemRefs.current.set(item.couponId, ref);
         }}
-        onChange={({open}) => {
+        onChange={({open}: any) => {
           if (!open) return;
           [...itemRefs.current.entries()].forEach(([key, ref]) => {
             if (key !== item.couponId && ref) ref.close();

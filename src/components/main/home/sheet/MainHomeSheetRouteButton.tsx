@@ -1,13 +1,13 @@
-import { faMap } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faMap} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { showLocation } from 'react-native-map-link';
+import {Text, TouchableOpacity} from 'react-native';
+import {showLocation} from 'react-native-map-link';
 import styled from 'styled-components/native';
-import { RideKickboard } from '../../../../api/ride';
-import { screenHeight } from '../../../../constants/screenSize';
-import { useGeolocation } from '../../../../hooks/useGeolocation';
-import { HookResultValue } from '../../../../models/hookResult';
+import {RideKickboard} from '../../../../api/ride';
+import {screenHeight} from '../../../../constants/screenSize';
+import {useGeolocation} from '../../../../hooks/useGeolocation';
+import {HookResultValue} from '../../../../models/hookResult';
 
 interface MainHomeSheetRouteButtonProps {
   kickboard?: HookResultValue<RideKickboard>;

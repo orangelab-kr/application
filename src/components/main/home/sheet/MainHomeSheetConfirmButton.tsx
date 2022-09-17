@@ -11,11 +11,7 @@ import {currentRideState} from '../../../../recoils/currentRide';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
 
-export interface MainHomeSheetConfirmButtonProps {}
-
-export const MainHomeSheetConfirmButton: React.FC<
-  MainHomeSheetConfirmButtonProps
-> = () => {
+export const MainHomeSheetConfirmButton: React.FC = () => {
   const [coords] = useGeolocation();
   const setCurrentRide = useSetRecoilState(currentRideState);
   const selectedKickboard = useRecoilValueMaybe(selectedKickboardState);

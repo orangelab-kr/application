@@ -11,11 +11,10 @@ export const MainHomeSheetMenuPopup: React.FC = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useRecoilState(menuPopupState);
 
-  useEffect(() => {
-    const unload = () => setVisible(false);
-    const unsubscribe = navigation.addListener('blur', unload);
-    return unsubscribe;
-  }, [navigation]);
+  useEffect(
+    () => navigation.addListener('blur', () => setVisible(false)),
+    [navigation],
+  );
 
   return (
     <>

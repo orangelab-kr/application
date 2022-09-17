@@ -10,7 +10,7 @@ import {
   PaymentsCoupon,
   RequestPaymentsGetCoupons,
 } from '../../api/payments';
-import {screenHeight, screenWidth} from '../../constants/screenSize';
+import {screenWidth} from '../../constants/screenSize';
 import {CouponItem} from './item';
 
 export interface CouponFlatlistProps {

@@ -4,8 +4,8 @@ import {MainHomeCentercoinBanner} from '../../components/main/home/MainHomeCente
 import {MainHomePopup} from '../../components/main/home/MainHomePopup';
 import {MainHomeSearchAgain} from '../../components/main/home/MainHomeSearchAgain';
 import {MainHomeMap} from '../../components/main/home/map/MainHomeMap';
-import {MainHomeSheetMenu} from '../../components/main/home/sheet/menu/MainHomeSheetMenu';
 import {MainHomeSheet} from '../../components/main/home/sheet/MainHomeSheet';
+import {MainHomeSheetMenu} from '../../components/main/home/sheet/menu/MainHomeSheetMenu';
 import {onRegisterFCM} from '../../tools/notification';
 import {onSchemeInitalize} from '../../tools/scheme';
 

@@ -1,12 +1,12 @@
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 import styled from 'styled-components/native';
-import { screenHeight } from '../../constants/screenSize';
-import { GetKickboardCodeEvent } from '../../screens/qrcode';
-import { onKickboardCodeFormatter } from '../../tools/formatter';
-import { FormatterInput } from '../FormatterInput';
-import { TransparentButton } from '../TransparentButton';
+import {screenHeight} from '../../constants/screenSize';
+import {GetKickboardCodeEvent} from '../../screens/qrcode';
+import {onKickboardCodeFormatter} from '../../tools/formatter';
+import {FormatterInput} from '../FormatterInput';
+import {TransparentButton} from '../TransparentButton';
 
 interface QrcodeCodeInputProps {
   onKickboardCode: GetKickboardCodeEvent;

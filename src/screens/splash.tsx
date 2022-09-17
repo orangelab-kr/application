@@ -125,7 +125,7 @@ const Logo = styled(Image)`
 const Description = styled(Text)`
   margin-bottom: -100px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 300;
   shadow-color: #999;
   shadow-opacity: 0.2;
   shadow-radius: 3px;

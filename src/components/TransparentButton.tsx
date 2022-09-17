@@ -1,9 +1,9 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {IconProp} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
-import { screenHeight } from '../constants/screenSize';
+import {screenHeight} from '../constants/screenSize';
 
 interface TransparentButtonProps extends TouchableOpacityProps {
   size?: number;
