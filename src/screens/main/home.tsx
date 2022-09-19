@@ -18,7 +18,6 @@ export const Home: React.FC = () => {
   return (
     <View>
       <MainHomeMap />
-      <MainHomeCentercoinBanner />
       <MainHomeSearchAgain />
       <MainHomeSheetMenu />
       <MainHomeSheet />
