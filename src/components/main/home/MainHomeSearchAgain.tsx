@@ -14,6 +14,7 @@ import {cameraLocState} from '../../../recoils/cameraLoc';
 import {currentRegionState} from '../../../recoils/currentRegion';
 import {geofencesState} from '../../../recoils/geofences';
 import {kickboardsState} from '../../../recoils/kickboards';
+import {selectedGeofenceState} from '../../../recoils/selectedRegion';
 import {calculateMeter, distance} from '../../../tools/calculateMeter';
 
 export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
@@ -22,9 +23,10 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const cameraLoc = useRecoilValue(cameraLocState);
   const [previousCameraLoc, setPreviousCameraLoc] = useState<CameraLoc>();
   const setCurrentRegion = useSetRecoilState(currentRegionState);
+  const setSelectedGeofence = useSetRecoilState(selectedGeofenceState);
   const setKickboards = useSetRecoilState(kickboardsState);
   const setGeofences = useSetRecoilState(geofencesState);
-  const topMargin = Math.floor(screenHeight * 0.11 + insets.top);
+  const topMargin = Math.floor(screenHeight * 0.07 + insets.top);
 
   const onSearchKickboard = async () => {
     if (!cameraLoc) return;
@@ -54,6 +56,7 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const onSearch = async () => {
     if (!cameraLoc) return;
     setShowSearch(false);
+    setSelectedGeofence(undefined);
 
     await Promise.all([onSearchKickboard(), onSearchGeofence()]);
     setPreviousCameraLoc(cameraLoc);
@@ -95,12 +98,12 @@ export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   if (!showSearch) return <></>;
   return (
     <Button onPress={onSearch} style={{top: topMargin}} {...props}>
+      <ButtonText>다시 검색하기</ButtonText>
       <FontAwesomeIcon
         size={screenHeight * 0.02}
         icon={faRefresh}
         color="#0a0c0c"
       />
-      <ButtonText>다시 검색하기</ButtonText>
     </Button>
   );
 };
@@ -111,7 +114,7 @@ const Button = styled(TouchableOpacity)`
   background-color: #fcfeff;
   justify-content: center;
   align-items: center;
-  border-radius: ${screenHeight * 0.015}px;
+  border-radius: ${screenHeight * 0.02}px;
   padding: ${screenHeight * 0.01}px;
   right: ${screenHeight * 0.14}px;
   left: ${screenHeight * 0.14}px;
@@ -119,7 +122,7 @@ const Button = styled(TouchableOpacity)`
 
 const ButtonText = styled(Text)`
   font-size: ${screenHeight * 0.02}px;
-  margin-left: 5px;
+  margin-right: 5px;
   font-weight: 800;
   color: #0a0c0c;
 `;
