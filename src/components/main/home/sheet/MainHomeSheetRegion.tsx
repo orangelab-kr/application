@@ -1,39 +1,64 @@
-import { faMap } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {
+  faArrowTrendUp,
+  faBan,
+  faHourglass,
+  faMap,
+} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import { Text, View } from 'react-native';
-import { useRecoilValue } from 'recoil';
+import {Text, View} from 'react-native';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
-import { screenHeight } from '../../../../constants/screenSize';
-import { selectedGeofenceState } from '../../../../recoils/selectedRegion';
-import { MainHomeSheetCommonProps } from './MainHomeSheet';
+import {screenHeight} from '../../../../constants/screenSize';
+import {currentRegionState} from '../../../../recoils/currentRegion';
+import {selectedGeofenceState} from '../../../../recoils/selectedRegion';
+import {RegionPolicy} from '../../../region/RegionPolicy/RegionPolicy';
+import {RegionPolicyItem} from '../../../region/RegionPolicy/RegionPolicyItem';
+import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
 export const MainHomeSheetRegion: React.FC<MainHomeSheetCommonProps> = ({}) => {
+  const selectedRegion = useRecoilValue(currentRegionState);
   const selectedGeofence = useRecoilValue(selectedGeofenceState);
+  const pricing = selectedRegion?.region.pricing;
 
+  console.log(JSON.stringify(selectedGeofence, null, 2));
   if (!selectedGeofence) return <></>;
   return (
-    <Container>
-      <View style={{marginRight: 10}}>
-        <RegionName>{selectedGeofence.profile.name}</RegionName>
-        <Title>
-          <FontAwesomeIcon icon={faMap} size={25} />{' '}
-          <Bold>{selectedGeofence.name}</Bold>
-        </Title>
-      </View>
-    </Container>
+    <View style={{padding: 3, width: '100%'}}>
+      <RegionName>{selectedGeofence.profile.name}</RegionName>
+      <Title>
+        <FontAwesomeIcon icon={faMap} size={25} />{' '}
+        {selectedGeofence.name.replace(/_/, ' ').replace(/^[0-9]|[0-9]$/, '')}
+      </Title>
+      <RegionPolicy>
+        {selectedGeofence.profile.speed && (
+          <RegionPolicyItem
+            icon={faHourglass}
+            title="속도 제한"
+            details={`${selectedGeofence.profile.speed}km`}
+          />
+        )}
+        {selectedGeofence.profile.canReturn && (
+          <RegionPolicyItem
+            icon={faBan}
+            title="반납 불가"
+            details="반납할 수 없습니다."
+          />
+        )}
+        {selectedGeofence.profile.hasSurcharge &&
+          pricing?.surchargePrice! > 0 && (
+            <RegionPolicyItem
+              icon={faArrowTrendUp}
+              title="벌금 발생"
+              details={
+                pricing ? `${pricing.surchargePrice.toLocaleString()}원` : ''
+              }
+            />
+          )}
+      </RegionPolicy>
+    </View>
   );
 };
-
-const Container = styled(View)`
-  flex-direction: row;
-`;
-
-const Distance = styled(Text)`
-  color: #0a0c0c;
-  margin-left: 10px;
-  font-size: ${screenHeight / 36}px;
-`;
 
 const RegionName = styled(Text)`
   color: #999;
@@ -45,8 +70,4 @@ const Title = styled(Text)`
   font-size: ${screenHeight / 30}px;
   font-weight: 300,
   color: #0a0c0c
-`;
-
-const Bold = styled(Text)`
-  font-weight: 800;
 `;

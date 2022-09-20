@@ -61,7 +61,7 @@ export const MainHomeSheet: React.FC = () => {
     },
     region: {
       component: MainHomeSheetRegion,
-      snapPoints: ['15%'],
+      snapPoints: ['30%'],
       withStartButton: true,
       withRouteButton: false,
       withControlButton: false,
