@@ -73,7 +73,7 @@ export const MainHomeMap: React.FC<MainHomeMap> = ({}) => {
       scaleBar={false}
       zoomControl={false}
       mapType={MapType.Basic}
-      minZoomLevel={14}
+      // minZoomLevel={14}
       onCameraChange={setCameraLoc}
       onMapClick={onMapClick}
       useTextureView>

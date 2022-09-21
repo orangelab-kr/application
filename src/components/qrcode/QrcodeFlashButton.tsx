@@ -28,7 +28,7 @@ const Container = styled(View)`
   position: absolute;
   justify-content: center;
   align-items: center;
-  top: ${screenHeight * 0.8}px;
+  top: ${screenHeight * 0.83}px;
   left: 0;
   right: 0;
 `;
