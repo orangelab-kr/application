@@ -2,11 +2,12 @@ import {faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import dayjs from 'dayjs';
 import React, {FC, useMemo} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import {PaymentsRecord} from '../../api/payments';
 import {RideRide} from '../../api/ride';
 import {navigationRef} from '../../navigators/navigation';
+import {CommonText} from '../common/CommonText';
 
 export interface RideItemProps {
   ride: RideRide;
@@ -72,7 +73,7 @@ const Container = styled(TouchableOpacity)`
   align-items: center;
 `;
 
-const UnpaidPriceText = styled(Text)`
+const UnpaidPriceText = styled(CommonText)`
   color: #ed2839;
   font-weight: 600;
 `;
@@ -82,19 +83,19 @@ const RideLabel = styled(View)`
   margin-left: 10px;
 `;
 
-const RideName = styled(Text)`
+const RideName = styled(CommonText)`
   color: #0a0c0c;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 26px;
 `;
 
-const RideDescription = styled(Text)`
+const RideDescription = styled(CommonText)`
   color: #0a0c0c;
   font-weight: 400;
   font-size: 18px;
 `;
 
-const RideDate = styled(Text)`
+const RideDate = styled(CommonText)`
   color: #0a0c0c;
   font-size: 13px;
   font-weight: 400;

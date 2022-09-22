@@ -1,10 +1,11 @@
 import {Formik} from 'formik';
 import _ from 'lodash';
 import React, {useState} from 'react';
-import {Image, KeyboardAvoidingView, StatusBar, Text, View} from 'react-native';
+import {Image, KeyboardAvoidingView, StatusBar, View} from 'react-native';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
 import {AccountsClient} from '../api/accounts';
+import {CommonText} from '../components/common/CommonText';
 import {ShadowInput} from '../components/ShadowInput';
 import {screenHeight} from '../constants/screenSize';
 import {navigationRef} from '../navigators/navigation';
@@ -81,8 +82,8 @@ const Container = styled(View)`
   margin: 12% 8%;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 700;
 `;

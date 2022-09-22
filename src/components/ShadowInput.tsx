@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {
   NativeSyntheticEvent,
-  Text,
   TextInputKeyPressEventData,
   TouchableOpacity,
   View,
 } from 'react-native';
 import styled from 'styled-components/native';
+import {CommonText} from './common/CommonText';
 import {FormatterInput, FormatterInputProps} from './FormatterInput';
 
 export interface ShadowInputProps extends FormatterInputProps {
@@ -83,7 +83,7 @@ const Input = styled(FormatterInput)`
   padding: 10px;
 `;
 
-const InputButton = styled(Text)`
+const InputButton = styled(CommonText)`
   font-size: 18px;
   font-weight: 500;
   margin: 12px;

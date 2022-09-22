@@ -7,9 +7,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import styled from 'styled-components';
 import {screenHeight} from '../../constants/screenSize';
+import {CommonText} from '../common/CommonText';
 
 export interface KickboardBatteryStatusProps {
   battery: number;
@@ -46,7 +47,7 @@ const Container = styled(View)`
   align-items: center;
 `;
 
-const Percent = styled(Text)`
+const Percent = styled(CommonText)`
   color: #999;
   margin-left: 5px;
   font-size: ${screenHeight / 52}px;

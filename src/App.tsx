@@ -1,13 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
-import React, { useEffect } from 'react';
-import { LogBox, StatusBar, StyleSheet } from 'react-native';
-import { NotifierWrapper } from 'react-native-notifier';
-import { ShowNotificationParams } from 'react-native-notifier/lib/typescript/types';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { RecoilRoot } from 'recoil';
-import { navigationRef } from './navigators/navigation';
-import { RootNavigator } from './navigators/root';
-import { onRemoteConfigInitalize } from './tools/remoteConfig';
+import {NavigationContainer} from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {LogBox, StatusBar, StyleSheet} from 'react-native';
+import {NotifierWrapper} from 'react-native-notifier';
+import {ShowNotificationParams} from 'react-native-notifier/lib/typescript/types';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {RecoilRoot} from 'recoil';
+import {navigationRef} from './navigators/navigation';
+import {RootNavigator} from './navigators/root';
+import {onRemoteConfigInitalize} from './tools/remoteConfig';
 
 const styles = StyleSheet.create({container: {flex: 1}});
 export const App: React.FC = () => {
@@ -17,11 +17,11 @@ export const App: React.FC = () => {
 
   const notifierProps: ShowNotificationParams = {
     duration: 5000,
-    showAnimationDuration: 800,
+    showAnimationDuration: 700,
     hideOnPress: true,
     componentProps: {
       containerStyle: {borderRadius: 12},
-      titleStyle: {color: '#0a0c0c', fontWeight: '800'},
+      titleStyle: {color: '#0a0c0c', fontWeight: '700'},
       descriptionStyle: {color: '#0a0c0c', fontWeight: '400'},
     },
   };

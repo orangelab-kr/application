@@ -1,9 +1,10 @@
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import styled from 'styled-components/native';
 import {screenWidth} from '../../../constants/screenSize';
+import {CommonText} from '../../common/CommonText';
 
 export interface RegionPolicyItemProps {
   icon: IconProp;
@@ -40,17 +41,17 @@ const Icon = styled(FontAwesomeIcon)<withColor>`
   color: ${({color}) => color};
 `;
 
-const Title = styled(Text)<withColor>`
+const Title = styled(CommonText)<withColor>`
   margin-top: 10px;
   text-align: center;
   font-size: ${screenWidth / 20}px;
   color: ${({color}) => color};
-  font-weight: 700;
+  font-weight: 500;
 `;
 
-const Details = styled(Text)<withColor>`
+const Details = styled(CommonText)<withColor>`
   text-align: center;
   font-size: ${screenWidth / 28}px;
   color: ${({color}) => color};
-  font-weight: 400;
+  font-weight: 300;
 `;

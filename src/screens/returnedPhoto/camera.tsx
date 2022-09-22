@@ -1,20 +1,20 @@
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import {faCamera} from '@fortawesome/free-solid-svg-icons';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {
-    Keyboard,
-    StatusBar,
-    Text,
-    TouchableWithoutFeedback,
-    View
+  Keyboard,
+  StatusBar,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
-import { RNCamera } from 'react-native-camera';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {RNCamera} from 'react-native-camera';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { TransparentButton } from '../../components/TransparentButton';
-import { screenHeight } from '../../constants/screenSize';
-import { ReturnedPhotoNavigatorRouteParams } from '../../models/navigation';
-import { navigationRef } from '../../navigators/navigation';
+import {CommonText} from '../../components/common/CommonText';
+import {TransparentButton} from '../../components/TransparentButton';
+import {screenHeight} from '../../constants/screenSize';
+import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 
 export const ReturnedPhotoCamera: React.FC = () => {
   const cameraRef = React.createRef<RNCamera>();
@@ -77,7 +77,7 @@ const TitleContainer = styled(View)`
   border-radius: 10px;
 `;
 
-const Subtitle = styled(Text)`
+const Subtitle = styled(CommonText)`
   color: #fcfeff;
   font-weight: 300;
   font-size: ${screenHeight / 32}px;
@@ -85,7 +85,7 @@ const Subtitle = styled(Text)`
 `;
 
 const Title = styled(Subtitle)`
-  font-weight: 800;
+  font-weight: 700;
   font-size: ${screenHeight / 18}px;
   margin-bottom: 10px;
   text-align: center;

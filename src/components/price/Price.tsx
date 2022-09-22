@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {View} from 'react-native';
+import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../../constants/screenSize';
 import {currentRegionState} from '../../recoils/currentRegion';
-import {selectedGeofenceState} from '../../recoils/selectedRegion';
+import {CommonText} from '../common/CommonText';
 
 export const Price: React.FC = () => {
   const selectedRegion = useRecoilValue(currentRegionState);
@@ -54,7 +54,7 @@ const Divider = styled(View)`
   width: 1px;
 `;
 
-const PriceInfo = styled(Text)`
+const PriceInfo = styled(CommonText)`
   color: #fff;
   font-weight: 500;
   text-align: center;

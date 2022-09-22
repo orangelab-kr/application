@@ -1,11 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {FC, useEffect, useRef, useState} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import styled from 'styled-components/native';
 import {PaymentsCard, PaymentsClient} from '../../api/payments';
 import {screenWidth} from '../../constants/screenSize';
+import {CommonText} from '../common/CommonText';
 import {PaymentItem} from './item';
 
 export const PaymentFlatlist: FC = () => {
@@ -70,7 +71,7 @@ export const PaymentFlatlist: FC = () => {
   );
 };
 
-const NoCard = styled(Text)`
+const NoCard = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenWidth / 22}px;
   width: 100%;

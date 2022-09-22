@@ -8,7 +8,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import BackgroundGeolocation from '@hariks789/react-native-background-geolocation';
 import React, {useState} from 'react';
-import {Alert, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, TouchableOpacity, View} from 'react-native';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {RideClient} from '../../../../api/ride';
@@ -16,6 +16,7 @@ import {screenHeight, screenWidth} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {navigationRef} from '../../../../navigators/navigation';
 import {currentRideState} from '../../../../recoils/currentRide';
+import {CommonText} from '../../../common/CommonText';
 
 export const MainHomeSheetControl: React.FC = () => {
   const [coords] = useGeolocation();
@@ -158,7 +159,7 @@ const Button = styled(TouchableOpacity)`
   shadow-offset: {width: 3px, height: 3px};
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   color: #fcfeff;
   font-size: ${screenHeight / 48}px;
   margin-left: 6px;

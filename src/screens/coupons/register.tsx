@@ -1,23 +1,24 @@
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { Formik, FormikProps } from 'formik';
-import React, { FC, useEffect, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { Notifier, NotifierComponents } from 'react-native-notifier';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import {Formik, FormikProps} from 'formik';
+import React, {FC, useEffect, useRef, useState} from 'react';
+import {KeyboardAvoidingView, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {Notifier, NotifierComponents} from 'react-native-notifier';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
 import {
   PaymentsClient,
-  RequestPaymentsRegisterCoupon
+  RequestPaymentsRegisterCoupon,
 } from '../../api/payments';
-import { BottomButton } from '../../components/BottomButton';
-import { Depth } from '../../components/Depth';
-import { ShadowInput } from '../../components/ShadowInput';
-import { ValidateMessage } from '../../components/ValidateMessage';
-import { screenHeight } from '../../constants/screenSize';
-import { CouponsNavigatorRouteParams } from '../../models/navigation';
-import { navigationRef } from '../../navigators/navigation';
+import {BottomButton} from '../../components/BottomButton';
+import {CommonText} from '../../components/common/CommonText';
+import {Depth} from '../../components/Depth';
+import {ShadowInput} from '../../components/ShadowInput';
+import {ValidateMessage} from '../../components/ValidateMessage';
+import {screenHeight} from '../../constants/screenSize';
+import {CouponsNavigatorRouteParams} from '../../models/navigation';
+import {navigationRef} from '../../navigators/navigation';
 
 export type CouponRegisterForm = RequestPaymentsRegisterCoupon;
 const CouponRegisterScheme: Yup.SchemaOf<CouponRegisterForm> =
@@ -96,13 +97,13 @@ const Container = styled(SafeAreaView)`
   margin: 10px 30px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
-const Description = styled(Text)`
+const Description = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;

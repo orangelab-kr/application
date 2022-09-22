@@ -1,12 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CommonActions, RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React from 'react';
 import {
   KeyboardAvoidingView,
   SafeAreaView,
   StatusBar,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -18,6 +17,7 @@ import {
   AuthVerifyPhone,
   ResponseAccountsAuthLogin,
 } from '../../api/accounts';
+import {CommonText} from '../../components/common/CommonText';
 import {Depth} from '../../components/Depth';
 import {ShadowInput} from '../../components/ShadowInput';
 import {ValidateMessage} from '../../components/ValidateMessage';
@@ -124,12 +124,12 @@ const Button = styled(TouchableOpacity)`
   shadow-offset: {width: 3px, height: 3px};
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   color: white;
   font-weight: 600;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: 26px;
   shadow-color: #999;
@@ -140,6 +140,6 @@ const Title = styled(Text)`
   font-weight: 300;
 `;
 
-const Bold = styled(Text)`
-  font-weight: 800;
+const Bold = styled(CommonText)`
+  font-weight: 700;
 `;

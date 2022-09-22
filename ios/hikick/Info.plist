@@ -91,6 +91,10 @@
 	<string>주변 킥보드 검색 및 보험 처리를 위해 위치 정보를 사용합니다.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>주변 킥보드 검색 및 보험 처리를 위해 위치 정보를 사용합니다.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PretendardVariable.ttf</string>
+	</array>
 	<key>NSMotionUsageDescription</key>
 	<string>주변 킥보드 검색 및 보험 처리를 위해 위치 정보를 사용합니다.</string>
 	<key>UIBackgroundModes</key>

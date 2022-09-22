@@ -1,15 +1,16 @@
 import crypto from 'crypto';
 import _ from 'lodash';
-import AnimatedLottieView, { AnimationObject } from 'lottie-react-native';
-import React, { useEffect, useState } from 'react';
-import { Alert, SafeAreaView, Text, View } from 'react-native';
-import { BleManager, Characteristic } from 'react-native-ble-plx';
+import AnimatedLottieView, {AnimationObject} from 'lottie-react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, SafeAreaView, View} from 'react-native';
+import {BleManager, Characteristic} from 'react-native-ble-plx';
 import styled from 'styled-components/native';
-import { RideClient, RideHelmetCredentials } from '../../api/ride';
-import { BottomButton } from '../../components/BottomButton';
-import { Depth } from '../../components/Depth';
-import { screenHeight } from '../../constants/screenSize';
-import { navigationRef } from '../../navigators/navigation';
+import {RideClient, RideHelmetCredentials} from '../../api/ride';
+import {BottomButton} from '../../components/BottomButton';
+import {CommonText} from '../../components/common/CommonText';
+import {Depth} from '../../components/Depth';
+import {screenHeight} from '../../constants/screenSize';
+import {navigationRef} from '../../navigators/navigation';
 
 export const manager = new BleManager();
 export let writer: Characteristic | undefined;
@@ -220,13 +221,13 @@ const Container = styled(View)`
   margin-top: ${screenHeight * 0.1}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
-const Description = styled(Text)`
+const Description = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;

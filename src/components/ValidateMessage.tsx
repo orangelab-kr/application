@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text} from 'react-native';
 import styled from 'styled-components/native';
+import {CommonText} from './common/CommonText';
 
 export interface ValidateMessageProps {
   message?: any;
@@ -11,7 +11,7 @@ export const ValidateMessage: React.FC<ValidateMessageProps> = ({message}) => {
   return <Message>{message}</Message>;
 };
 
-const Message = styled(Text)`
+const Message = styled(CommonText)`
   margin: 8px 0 2px 3px;
   font-weight: 400;
   text-align: right;

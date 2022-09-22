@@ -1,7 +1,7 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import dayjs from 'dayjs';
 import React, {FC, useEffect, useMemo, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import NaverMapView, {Path} from 'react-native-nmap';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -9,6 +9,7 @@ import styled from 'styled-components/native';
 import {PaymentsClient, PaymentsRecord} from '../../api/payments';
 import {RideClient, RideRide, RideTimeline} from '../../api/ride';
 import {BottomButton} from '../../components/BottomButton';
+import {CommonText} from '../../components/common/CommonText';
 import {Depth} from '../../components/Depth';
 import {screenHeight, screenWidth} from '../../constants/screenSize';
 import {RidesNavigatorRouteParams} from '../../models/navigation';
@@ -158,13 +159,13 @@ const Container = styled(SafeAreaView)`
   margin-bottom: ${screenHeight * 0.08}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
-const DetailText = styled(Text)`
+const DetailText = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 35}px;
   font-weight: 300;
@@ -178,7 +179,7 @@ const Map = styled(NaverMapView)`
   overflow: hidden;
 `;
 
-const UnpaidPriceText = styled(Text)`
+const UnpaidPriceText = styled(CommonText)`
   margin-top: 10px;
   border-radius: 10px;
   border-width: 1px;
@@ -200,12 +201,12 @@ const RecordContainer = styled(View)`
   align-items: center;
 `;
 
-const RecordText = styled(Text)`
+const RecordText = styled(CommonText)`
   font-size: ${screenWidth / 17}px;
   font-weight: 500;
 `;
 
-const RecordPrice = styled(Text)`
+const RecordPrice = styled(CommonText)`
   font-size: ${screenWidth / 22}px;
   font-weight: 300;
 `;

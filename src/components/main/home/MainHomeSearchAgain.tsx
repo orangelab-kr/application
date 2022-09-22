@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import axios from 'axios';
 import _ from 'lodash';
 import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
@@ -16,6 +16,7 @@ import {geofencesState} from '../../../recoils/geofences';
 import {kickboardsState} from '../../../recoils/kickboards';
 import {selectedGeofenceState} from '../../../recoils/selectedRegion';
 import {calculateMeter, distance} from '../../../tools/calculateMeter';
+import {CommonText} from '../../common/CommonText';
 
 export const MainHomeSearchAgain: React.FC<TouchableOpacityProps> = props => {
   const insets = useSafeAreaInsets();
@@ -120,9 +121,9 @@ const Button = styled(TouchableOpacity)`
   left: ${screenHeight * 0.14}px;
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   font-size: ${screenHeight * 0.02}px;
   margin-right: 5px;
-  font-weight: 800;
+  font-weight: 700;
   color: #0a0c0c;
 `;

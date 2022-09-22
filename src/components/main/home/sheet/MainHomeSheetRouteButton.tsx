@@ -1,13 +1,14 @@
 import {faMap} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {showLocation} from 'react-native-map-link';
 import styled from 'styled-components/native';
 import {RideKickboard} from '../../../../api/ride';
 import {screenHeight} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {HookResultValue} from '../../../../models/hookResult';
+import {CommonText} from '../../../common/CommonText';
 
 interface MainHomeSheetRouteButtonProps {
   kickboard?: HookResultValue<RideKickboard>;
@@ -54,7 +55,7 @@ const Button = styled(TouchableOpacity)`
   margin: 2px 0;
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 70}px;
   margin-left: 6px;

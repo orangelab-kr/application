@@ -1,11 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
 import {Formik, FormikProps} from 'formik';
 import React, {createRef} from 'react';
-import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
 import {Terms} from '../../components/auth/signup/terms/Terms';
 import {TermsGroup} from '../../components/auth/signup/terms/TermsGroup';
+import {CommonText} from '../../components/common/CommonText';
 import {Depth} from '../../components/Depth';
 import {ValidateMessage} from '../../components/ValidateMessage';
 import {screenHeight} from '../../constants/screenSize';
@@ -69,13 +69,13 @@ const Container = styled(View)`
   margin-top: ${screenHeight * 0.25}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
-const Description = styled(Text)`
+const Description = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;
@@ -96,7 +96,7 @@ const Button = styled(TouchableOpacity)`
   shadow-offset: {width: 3px, height: 3px};
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   color: white;
   font-weight: 600;
 `;

@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {BottomButton} from '../../components/BottomButton';
+import {CommonText} from '../../components/common/CommonText';
 import {CouponFlatlist} from '../../components/coupon/flatlist';
 import {Depth} from '../../components/Depth';
 import {screenHeight} from '../../constants/screenSize';
@@ -30,13 +30,13 @@ const Container = styled(SafeAreaView)`
   margin-bottom: ${screenHeight * 0.22}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
-const Description = styled(Text)`
+const Description = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;

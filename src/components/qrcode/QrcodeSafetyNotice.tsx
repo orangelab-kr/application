@@ -2,10 +2,11 @@ import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
+import {Modal, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import styled from 'styled-components/native';
 import {screenHeight, screenWidth} from '../../constants/screenSize';
+import {CommonText} from '../common/CommonText';
 
 export interface QrcodeSafetyNoticeProps {
   onConfirm?: () => any | Promise<any>;
@@ -61,7 +62,7 @@ const CloseButton = styled(TouchableOpacity)`
   padding: 10px;
 `;
 
-const CloseText = styled(Text)`
+const CloseText = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight * 0.025}px;
 `;

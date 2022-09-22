@@ -5,7 +5,6 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   StatusBar,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -13,6 +12,7 @@ import DatePicker from 'react-native-date-picker';
 import {ScrollView} from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
+import {CommonText} from '../../../components/common/CommonText';
 import {Depth} from '../../../components/Depth';
 import {ValidateMessage} from '../../../components/ValidateMessage';
 import {screenHeight} from '../../../constants/screenSize';
@@ -97,12 +97,12 @@ const Button = styled(TouchableOpacity)`
   shadow-offset: {width: 3px, height: 3px};
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   color: white;
   font-weight: 600;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   font-size: 26px;
   shadow-color: #999;
   shadow-opacity: 0.2;
@@ -112,6 +112,6 @@ const Title = styled(Text)`
   font-weight: 300;
 `;
 
-const Bold = styled(Text)`
-  font-weight: 800;
+const Bold = styled(CommonText)`
+  font-weight: 700;
 `;

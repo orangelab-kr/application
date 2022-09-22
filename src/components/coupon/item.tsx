@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {
   RenderItemParams,
   ScaleDecorator,
@@ -9,6 +9,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import SwipeableItem from 'react-native-swipeable-item';
 import styled from 'styled-components/native';
 import {PaymentsCoupon} from '../../api/payments';
+import {CommonText} from '../common/CommonText';
 import {UnderlayRight} from '../UnderlayRight';
 
 export interface CouponItemProps extends RenderItemParams<PaymentsCoupon> {
@@ -86,13 +87,13 @@ const CouponLabel = styled(View)`
   margin-left: 15px;
 `;
 
-const CouponName = styled(Text)`
+const CouponName = styled(CommonText)`
   color: #0a0c0c;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 26px;
 `;
 
-const CouponDescription = styled(Text)`
+const CouponDescription = styled(CommonText)`
   color: #0a0c0c;
   font-weight: 600;
   font-size: 18px;
@@ -104,7 +105,7 @@ const CouponLabelDivider = styled(View)`
   margin: 3px 0;
 `;
 
-const CouponDate = styled(Text)`
+const CouponDate = styled(CommonText)`
   color: #0a0c0c;
   font-size: 13px;
   font-weight: 400;

@@ -1,10 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, View} from 'react-native';
 import CodePush, {DownloadProgress} from 'react-native-code-push';
 import {checkMultiple, checkNotifications} from 'react-native-permissions';
 import {Bar} from 'react-native-progress';
 import styled from 'styled-components/native';
+import {CommonText} from '../components/common/CommonText';
 import {screenHeight, screenWidth} from '../constants/screenSize';
 import {navigationRef} from '../navigators/navigation';
 import {loginedUserState} from '../recoils/loginedUser';
@@ -122,10 +123,10 @@ const Logo = styled(Image)`
   resize-mode: contain;
 `;
 
-const Description = styled(Text)`
+const Description = styled(CommonText)`
   margin-bottom: -100px;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   shadow-color: #999;
   shadow-opacity: 0.2;
   shadow-radius: 3px;
@@ -141,7 +142,7 @@ const ProgressContainer = styled(View)`
   color: #999;
 `;
 
-const ProgressMessage = styled(Text)`
+const ProgressMessage = styled(CommonText)`
   margin-top: 6px;
   text-align: center;
   color: #999;

@@ -1,8 +1,9 @@
 import CheckBox from '@react-native-community/checkbox';
 import React, {useEffect} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import {openInAppBrowser} from '../../../../tools/openInAppBrowser';
+import {CommonText} from '../../../common/CommonText';
 
 export interface TermsProps {
   name: string;
@@ -47,7 +48,7 @@ export const Terms: React.FC<TermsProps> = ({
   );
 };
 
-const Link = styled(Text)`
+const Link = styled(CommonText)`
   color: blue;
   text-decoration-line: underline;
   padding: 15px;
@@ -69,13 +70,12 @@ const CheckBoxAndName = styled(TouchableOpacity)`
   flex-direction: row;
 `;
 
-const Name = styled(Text)`
-  color: #0a0c0c;
+const Name = styled(CommonText)`
   font-size: 16px;
   margin-left: 8px;
 `;
 
-const Required = styled(Text)`
+const Required = styled(CommonText)`
   color: red;
   font-size: 12px;
   margin-left: 4px;

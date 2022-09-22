@@ -1,11 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {Text} from 'react-native';
 import {useRecoilRefresher_UNSTABLE} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {loginedUserState} from '../../../../recoils/loginedUser';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
+import {CommonText} from '../../../common/CommonText';
 
 export const MainHomeSheetWelcome: React.FC = () => {
   const navigation = useNavigation();
@@ -26,12 +26,12 @@ export const MainHomeSheetWelcome: React.FC = () => {
   );
 };
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   font-size: ${screenHeight / 38}px;
   font-weight: 300,
   color: #0a0c0c
 `;
 
-const Bold = styled(Text)`
-  font-weight: 800;
+const Bold = styled(CommonText)`
+  font-weight: 600;
 `;

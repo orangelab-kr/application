@@ -1,11 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import _ from 'lodash';
 import React, {FC, useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import styled from 'styled-components/native';
 import {PaymentsClient, PaymentsRecord} from '../../api/payments';
 import {RequestRideGetRides, RideClient, RideRide} from '../../api/ride';
 import {screenWidth} from '../../constants/screenSize';
+import {CommonText} from '../common/CommonText';
 import {RideItem} from './item';
 
 export const RideFlatlist: FC = () => {
@@ -84,7 +85,7 @@ const Loading = styled(ActivityIndicator)`
   margin-top: 20px;
 `;
 
-const NoRide = styled(Text)`
+const NoRide = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenWidth / 18}px;
   width: 100%;

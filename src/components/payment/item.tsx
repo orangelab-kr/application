@@ -2,7 +2,7 @@ import {faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import dayjs from 'dayjs';
 import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {
   RenderItemParams,
   ScaleDecorator,
@@ -11,6 +11,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import SwipeableItem from 'react-native-swipeable-item';
 import styled from 'styled-components/native';
 import {PaymentsCard} from '../../api/payments';
+import {CommonText} from '../common/CommonText';
 import {UnderlayRight} from '../UnderlayRight';
 
 export interface PaymentItemProps extends RenderItemParams<PaymentsCard> {
@@ -85,13 +86,13 @@ const CardLabel = styled(View)`
   margin-left: 15px;
 `;
 
-const CardName = styled(Text)`
+const CardName = styled(CommonText)`
   color: #0a0c0c;
   font-weight: 600;
   font-size: 25px;
 `;
 
-const CardDate = styled(Text)`
+const CardDate = styled(CommonText)`
   color: #0a0c0c;
   font-size: 15px;
 `;

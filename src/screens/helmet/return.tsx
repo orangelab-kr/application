@@ -1,17 +1,18 @@
 import crypto from 'crypto';
 import _ from 'lodash';
 import AnimatedLottieView from 'lottie-react-native';
-import React, { useEffect, useState } from 'react';
-import { Alert, SafeAreaView, Text, View } from 'react-native';
-import { BleManager, Characteristic } from 'react-native-ble-plx';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, {useEffect, useState} from 'react';
+import {Alert, SafeAreaView, View} from 'react-native';
+import {BleManager, Characteristic} from 'react-native-ble-plx';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
-import { RideClient, RideHelmetCredentials } from '../../api/ride';
-import { BottomButton } from '../../components/BottomButton';
-import { Depth } from '../../components/Depth';
-import { screenHeight } from '../../constants/screenSize';
-import { navigationRef } from '../../navigators/navigation';
-import { ConnectStatus, icons } from './borrow';
+import {RideClient, RideHelmetCredentials} from '../../api/ride';
+import {BottomButton} from '../../components/BottomButton';
+import {CommonText} from '../../components/common/CommonText';
+import {Depth} from '../../components/Depth';
+import {screenHeight} from '../../constants/screenSize';
+import {navigationRef} from '../../navigators/navigation';
+import {ConnectStatus, icons} from './borrow';
 
 export const messages: {[key in ConnectStatus]: string} = {
   request: '서버에 요청 중...',
@@ -250,20 +251,20 @@ const LostButton = styled(TouchableOpacity)`
   align-items: center;
 `;
 
-const LostButtonText = styled(Text)`
+const LostButtonText = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 46}px;
-  font-weight: 800;
+  font-weight: 700;
   color: #696969;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 25}px;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
-const Description = styled(Text)`
+const Description = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 40}px;
   font-weight: 300;

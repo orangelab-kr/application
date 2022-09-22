@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 import {screenHeight, screenWidth} from '../../../constants/screenSize';
 import {navigationRef} from '../../../navigators/navigation';
 import {loginedUserState} from '../../../recoils/loginedUser';
 import {useRecoilValueMaybe} from '../../../tools/recoil';
+import {CommonText} from '../../common/CommonText';
 
 export const MainHomeCentercoinBanner: React.FC = () => {
   const loginedUser = useRecoilValueMaybe(loginedUserState);
@@ -42,19 +43,19 @@ const Button = styled(TouchableOpacity)`
   bottom: 15px;
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   font-size: ${screenHeight * 0.015}px;
   font-weight: 600;
   color: #0a0c0c;
 `;
 
-const MyBalance = styled(Text)`
+const MyBalance = styled(CommonText)`
   font-size: ${screenHeight * 0.02}px;
   font-weight: 400;
   color: #0a0c0c;
 `;
 
-const MyBalanceNumber = styled(Text)`
+const MyBalanceNumber = styled(CommonText)`
   color: darkblue;
-  font-weight: 800;
+  font-weight: 700;
 `;

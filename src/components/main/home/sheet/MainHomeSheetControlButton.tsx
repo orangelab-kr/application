@@ -2,10 +2,11 @@ import {faHelmetSafety} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import BottomSheet from '@gorhom/bottom-sheet';
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {navigationRef} from '../../../../navigators/navigation';
+import {CommonText} from '../../../common/CommonText';
 
 export interface MainHomeSheetControlButtonProps {
   sheetRef: React.MutableRefObject<BottomSheet | null>;
@@ -31,7 +32,7 @@ const Button = styled(TouchableOpacity)`
   margin: 2px 0;
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   color: #fcfeff;
   font-size: ${screenHeight / 48}px;
   margin-left: 6px;

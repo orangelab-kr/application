@@ -2,10 +2,11 @@ import {Buffer} from 'buffer';
 import crypto from 'crypto';
 import _ from 'lodash';
 import React, {useState} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, View} from 'react-native';
 import {BleManager, Characteristic, Device} from 'react-native-ble-plx';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
+import {CommonText} from '../../components/common/CommonText';
 import {Depth} from '../../components/Depth';
 import {screenHeight} from '../../constants/screenSize';
 
@@ -172,7 +173,7 @@ const Container = styled(View)`
   margin-top: ${screenHeight * 0.1}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   font-size: 26px;
   shadow-color: #999;
   shadow-opacity: 0.2;
@@ -182,6 +183,6 @@ const Title = styled(Text)`
   font-weight: 300;
 `;
 
-const Bold = styled(Text)`
-  font-weight: 800;
+const Bold = styled(CommonText)`
+  font-weight: 700;
 `;

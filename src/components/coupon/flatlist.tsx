@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import _ from 'lodash';
 import React, {useEffect, useRef, useState} from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
 import styled from 'styled-components/native';
@@ -11,6 +11,7 @@ import {
   RequestPaymentsGetCoupons,
 } from '../../api/payments';
 import {screenWidth} from '../../constants/screenSize';
+import {CommonText} from '../common/CommonText';
 import {CouponItem} from './item';
 
 export interface CouponFlatlistProps {
@@ -108,7 +109,7 @@ const Loading = styled(ActivityIndicator)`
   margin-top: 20px;
 `;
 
-const NoCoupon = styled(Text)`
+const NoCoupon = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenWidth / 20}px;
   width: 100%;

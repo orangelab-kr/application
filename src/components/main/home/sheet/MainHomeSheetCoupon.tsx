@@ -1,13 +1,14 @@
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {PaymentsCoupon} from '../../../../api/payments';
 import {screenHeight, screenWidth} from '../../../../constants/screenSize';
 import {CouponSelectorState} from '../../../../recoils/couponSelector';
 import {selectedCouponState} from '../../../../recoils/selectedCoupon';
+import {CommonText} from '../../../common/CommonText';
 import {CouponFlatlist} from '../../../coupon/flatlist';
 
 export const MainHomeSheetCoupon: React.FC = () => {
@@ -43,9 +44,8 @@ const TopBar = styled(View)`
   margin-bottom: 10px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   color: #0a0c0c;
   font-size: ${screenHeight / 30}px;
-  font-weight: 800;
-  color: #0a0c0c;
+  font-weight: 700;
 `;

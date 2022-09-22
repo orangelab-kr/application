@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../constants/screenSize';
+import {CommonText} from './common/CommonText';
 
 export interface BlockButtonProps extends TouchableOpacityProps {
   backgroundColor?: string;
@@ -21,7 +22,7 @@ export const BottomButton: FC<BlockButtonProps> = ({
   );
 };
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   font-weight: 600;
   font-size: ${screenHeight / 40}px;
   margin-bottom: ${screenHeight * 0.015}px;

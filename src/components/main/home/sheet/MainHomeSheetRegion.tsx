@@ -6,12 +6,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../constants/screenSize';
 import {currentRegionState} from '../../../../recoils/currentRegion';
 import {selectedGeofenceState} from '../../../../recoils/selectedRegion';
+import {CommonText} from '../../../common/CommonText';
 import {RegionPolicy} from '../../../region/RegionPolicy/RegionPolicy';
 import {RegionPolicyItem} from '../../../region/RegionPolicy/RegionPolicyItem';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
@@ -21,7 +22,6 @@ export const MainHomeSheetRegion: React.FC<MainHomeSheetCommonProps> = ({}) => {
   const selectedGeofence = useRecoilValue(selectedGeofenceState);
   const pricing = selectedRegion?.region.pricing;
 
-  console.log(JSON.stringify(selectedGeofence, null, 2));
   if (!selectedGeofence) return <></>;
   return (
     <View style={{padding: 3, width: '100%'}}>
@@ -60,13 +60,13 @@ export const MainHomeSheetRegion: React.FC<MainHomeSheetCommonProps> = ({}) => {
   );
 };
 
-const RegionName = styled(Text)`
+const RegionName = styled(CommonText)`
   color: #999;
   font-weight: 600;
   font-size: ${screenHeight / 45}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   font-size: ${screenHeight / 30}px;
   font-weight: 300,
   color: #0a0c0c

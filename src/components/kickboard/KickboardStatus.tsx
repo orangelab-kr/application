@@ -1,13 +1,13 @@
 import {faPersonWalking, faRoute} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React, {useMemo} from 'react';
-import {Text} from 'react-native';
 import styled from 'styled-components';
 import {RideKickboard} from '../../api/ride';
 import {screenHeight} from '../../constants/screenSize';
 import {useGeolocation} from '../../hooks/useGeolocation';
 import {distance} from '../../tools/calculateMeter';
 import {onDistanceFormatter, onTimeFormatter} from '../../tools/formatter';
+import {CommonText} from '../common/CommonText';
 import {KickboardBatteryStatus} from './KickboardBatteryStatus';
 
 export interface KickboardStatusProps {
@@ -58,24 +58,24 @@ export const KickboardStatus: React.FC<KickboardStatusProps> = ({
   );
 };
 
-const Distance = styled(Text)`
+const Distance = styled(CommonText)`
   color: #0a0c0c;
   margin-left: 10px;
   font-size: ${screenHeight / 36}px;
 `;
 
-const KickboardCode = styled(Text)`
+const KickboardCode = styled(CommonText)`
   color: #999;
   font-weight: 600;
   font-size: ${screenHeight / 40}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   font-size: ${screenHeight / 30}px;
   font-weight: 300,
   color: #0a0c0c
 `;
 
-const Bold = styled(Text)`
-  font-weight: 800;
+const Bold = styled(CommonText)`
+  font-weight: 700;
 `;

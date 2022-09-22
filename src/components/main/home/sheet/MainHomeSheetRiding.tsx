@@ -1,7 +1,7 @@
 import BackgroundGeolocation from '@hariks789/react-native-background-geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {endpoint} from '../../../../api/client';
@@ -14,6 +14,7 @@ import {
 } from '../../../../recoils/selectedKickboard';
 import {djs} from '../../../../tools/dayjs';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
+import {CommonText} from '../../../common/CommonText';
 import {KickboardBatteryStatus} from '../../../kickboard/KickboardBatteryStatus';
 import {MainHomeSheetCommonProps} from './MainHomeSheet';
 
@@ -149,13 +150,13 @@ const Container = styled(View)`
   flex-direction: row;
 `;
 
-const KickboardCode = styled(Text)`
+const KickboardCode = styled(CommonText)`
   color: #999;
   font-weight: 600;
   font-size: ${screenHeight / 45}px;
 `;
 
-const Title = styled(Text)`
+const Title = styled(CommonText)`
   font-size: ${screenHeight / 30}px;
   font-weight: 500,
   color: #0a0c0c

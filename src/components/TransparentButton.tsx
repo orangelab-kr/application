@@ -1,9 +1,10 @@
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
 import {screenHeight} from '../constants/screenSize';
+import {CommonText} from './common/CommonText';
 
 interface TransparentButtonProps extends TouchableOpacityProps {
   size?: number;
@@ -44,7 +45,7 @@ const Button = styled(TouchableOpacity)`
   shadow-offset: {width: 3px, height: 3px};
 `;
 
-const Label = styled(Text)<{size: number}>`
+const Label = styled(CommonText)<{size: number}>`
   font-size: ${({size}) => size}px;
   font-weight: 500;
   color: #fcfeff;

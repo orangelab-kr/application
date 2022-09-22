@@ -1,7 +1,7 @@
 import {faBolt, faUnlock} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {RideClient} from '../../../../api/ride';
@@ -10,6 +10,7 @@ import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {currentRideState} from '../../../../recoils/currentRide';
 import {selectedKickboardState} from '../../../../recoils/selectedKickboard';
 import {useRecoilValueMaybe} from '../../../../tools/recoil';
+import {CommonText} from '../../../common/CommonText';
 
 export const MainHomeSheetConfirmButton: React.FC = () => {
   const [coords] = useGeolocation();
@@ -70,7 +71,7 @@ const Button = styled(TouchableOpacity)<{loading: boolean}>`
   margin: 2px 0;
 `;
 
-const ButtonText = styled(Text)`
+const ButtonText = styled(CommonText)`
   color: #fcfeff;
   width: 100%;
   text-align: center;

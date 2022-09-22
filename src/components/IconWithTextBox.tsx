@@ -1,8 +1,9 @@
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import styled from 'styled-components/native';
+import {CommonText} from './common/CommonText';
 
 export interface IconWithMessageProps {
   icon: IconProp;
@@ -36,7 +37,7 @@ const IconContainer = styled(View)`
   align-items: center;
 `;
 
-const TextContainer = styled(Text)`
+const TextContainer = styled(CommonText)`
   color: #0a0c0c;
   padding: 10px;
   font-size: 18px;

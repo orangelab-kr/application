@@ -1,23 +1,24 @@
 import {
   faCheck,
   faMicrochip,
-  faUpload,
+  faUpload
 } from '@fortawesome/free-solid-svg-icons';
-import {RouteProp, useRoute} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {StatusBar, Text, View} from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { StatusBar, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import ImageResizer, {Response} from 'react-native-image-resizer';
-import {Notifier, NotifierComponents} from 'react-native-notifier';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import ImageResizer, { Response } from 'react-native-image-resizer';
+import { Notifier, NotifierComponents } from 'react-native-notifier';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {ImagesClient} from '../../api/images';
-import {RideClient} from '../../api/ride';
-import {Depth} from '../../components/Depth';
-import {TransparentButton} from '../../components/TransparentButton';
-import {screenHeight, screenWidth} from '../../constants/screenSize';
-import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
-import {navigationRef} from '../../navigators/navigation';
+import { ImagesClient } from '../../api/images';
+import { RideClient } from '../../api/ride';
+import { CommonText } from '../../components/common/CommonText';
+import { Depth } from '../../components/Depth';
+import { TransparentButton } from '../../components/TransparentButton';
+import { screenHeight, screenWidth } from '../../constants/screenSize';
+import { ReturnedPhotoNavigatorRouteParams } from '../../models/navigation';
+import { navigationRef } from '../../navigators/navigation';
 
 export const ReturnedPhotoConfirm: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -118,7 +119,7 @@ const TitleContainer = styled(View)`
   border-radius: 10px;
 `;
 
-const Subtitle = styled(Text)`
+const Subtitle = styled(CommonText)`
   color: #fcfeff;
   font-weight: 300;
   font-size: ${screenHeight / 32}px;
