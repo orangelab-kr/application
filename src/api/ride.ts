@@ -164,6 +164,33 @@ export interface RideRide {
   deletedAt?: any;
 }
 
+export interface RideKickboardStatusGps {
+  latitude: number;
+  longitude: number;
+  satelliteUsedCount: number;
+  isValid: boolean;
+  speed: number;
+}
+
+export interface RideKickboardStatusPowerScooter {
+  battery: number;
+}
+
+export interface RideKickboardStatusPower {
+  speedLimit: number;
+  scooter: RideKickboardStatusPowerScooter;
+}
+
+export interface RideKickboardStatus {
+  gps: RideKickboardStatusGps;
+  power: RideKickboardStatusPower;
+  isEnabled: boolean;
+  isLightsOn: boolean;
+  isFallDown: boolean;
+  speed: number;
+  createdAt: Date;
+}
+
 export interface RideTimeline {
   latitude: number;
   longitude: number;
@@ -202,6 +229,10 @@ export type ResponseRideGetRideTimeline = CommonResponse<{
 export type ResponseRideHelmet = CommonResponse<{helmet: RideHelmet}>;
 export type ResponseRideHelmetCredentials = CommonResponse<{
   helmet: RideHelmetCredentials;
+}>;
+
+export type ResponseRideKickboardStatus = CommonResponse<{
+  status: RideKickboardStatus;
 }>;
 
 export type RideGeofenceWithRegion = RideRegionGeofence & {region: RideRegion};
@@ -285,6 +316,10 @@ export class RideClient {
     return this.client
       .get(`/current/helmet/borrow`, {params: {deviceInfo}})
       .then(r => r.data);
+  }
+
+  public static async getKickboardStatus(): Promise<ResponseRideKickboardStatus> {
+    return this.client.get(`/current/status`).then(r => r.data);
   }
 
   public static async getHelmetStatus(): Promise<ResponseRideHelmet> {

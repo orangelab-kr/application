@@ -9,18 +9,21 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import BackgroundGeolocation from '@hariks789/react-native-background-geolocation';
 import React, {useState} from 'react';
 import {Alert, TouchableOpacity, View} from 'react-native';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import styled from 'styled-components/native';
 import {RideClient} from '../../../../api/ride';
 import {screenHeight, screenWidth} from '../../../../constants/screenSize';
 import {useGeolocation} from '../../../../hooks/useGeolocation';
 import {navigationRef} from '../../../../navigators/navigation';
+import {currentRegionState} from '../../../../recoils/currentRegion';
 import {currentRideState} from '../../../../recoils/currentRide';
 import {CommonText} from '../../../common/CommonText';
 
 export const MainHomeSheetControl: React.FC = () => {
   const [coords] = useGeolocation();
   const [currentRide, setCurrentRide] = useRecoilState(currentRideState);
+  const selectedRegion = useRecoilValue(currentRegionState);
+  const pricing = selectedRegion?.region.pricing;
   const [terminating, setTerminating] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -65,10 +68,30 @@ export const MainHomeSheetControl: React.FC = () => {
     }
   };
 
+  const isServiceArea = async () => {
+    setLoading(true);
+    const {status} = await RideClient.getKickboardStatus();
+    const {latitude: lat, longitude: lng} = status.gps;
+    const {geofence} = await RideClient.getCurrentGeofence({lat, lng});
+    setLoading(false);
+    return !geofence.profile.hasSurcharge;
+  };
+
+  const checkBeforeTerminate = async () => {
+    if (await isServiceArea()) return onTerminate();
+    if (!pricing?.surchargePrice) return onTerminate();
+
+    onDialog(
+      '현재 반납구역 밖에 있습니다.',
+      `반납시 ${pricing.surchargePrice.toLocaleString()}원이 추가로 부가됩니다.`,
+      onTerminate,
+    )();
+  };
+
   const onTerminate = async () => {
     if (loading || !coords || !currentRide) return;
-    setTerminating(true);
     setLoading(true);
+    setTerminating(true);
 
     try {
       const {rideId} = currentRide;
@@ -131,7 +154,7 @@ export const MainHomeSheetControl: React.FC = () => {
         onPress={onDialog(
           '라이드 종료',
           '여기서 라이드를 마무리하시겠습니까?',
-          onTerminate,
+          checkBeforeTerminate,
         )}>
         <FontAwesomeIcon
           icon={faGamepad}
