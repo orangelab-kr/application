@@ -1,16 +1,16 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Keyboard,
   StatusBar,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {BarCodeReadEvent, RNCamera} from 'react-native-camera';
+import {CameraScreen} from 'react-native-camera-kit';
 import {Notifier, NotifierComponents} from 'react-native-notifier';
-import QRCodeScanner from 'react-native-qrcode-scanner';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSetRecoilState} from 'recoil';
+import styled from 'styled-components/native';
 import {RideClient} from '../api/ride';
 import {Depth} from '../components/Depth';
 import {Price} from '../components/price/Price';
@@ -31,7 +31,9 @@ export type GetKickboardCodeEvent = (
 
 export const Qrcode: React.FC = () => {
   const [flash, setFlash] = useState(false);
+  const cameraRef = React.createRef<CameraScreen>();
   const {params} = useRoute<RouteProp<RootNavigatorRouteParams, 'Qrcode'>>();
+  const [rawData, setRawData] = useState('');
   const setSelectedKickboard = useSetRecoilState(selectedKickboardCodeState);
   const setConfirm = useSetRecoilState(confirmState);
   const user = useRecoilValueMaybe(loginedUserState);
@@ -44,9 +46,15 @@ export const Qrcode: React.FC = () => {
     navigationRef.current?.navigate('Main', {screen: 'Home'});
   };
 
-  const onReadByScanner = async (e: BarCodeReadEvent) => {
-    console.log(`Kickboard Url: ${e.data}`);
-    const kickboardCode = await RideClient.getKickboardCodeByQrcode(e.data);
+  const onReadByScanner = async (e: {
+    nativeEvent: {codeStringValue: string};
+  }) => {
+    const data = e.nativeEvent.codeStringValue;
+    if (rawData === data) return;
+    setRawData(data);
+
+    console.log(`Kickboard Url: ${data}`);
+    const kickboardCode = await RideClient.getKickboardCodeByQrcode(data);
     return onKickboardCode(kickboardCode);
   };
 
@@ -67,23 +75,30 @@ export const Qrcode: React.FC = () => {
     });
   };
 
+  useEffect(() => {
+    cameraRef.current?.setState({torchMode: flash});
+  }, [flash]);
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
         <QrcodeSafetyNotice onConfirm={onConfirm} />
         <StatusBar barStyle="light-content" />
-        <QRCodeScanner
-          onRead={onReadByScanner}
-          cameraStyle={{height: screenHeight}}
-          flashMode={
-            flash
-              ? RNCamera.Constants.FlashMode.torch
-              : RNCamera.Constants.FlashMode.off
-          }
+        <StyledCamera
+          ref={cameraRef}
+          onReadCode={onReadByScanner}
+          scanBarcode
+          hideControls
+          state={{
+            torchMode: flash ? 'on' : 'off',
+          }}
         />
         <SafeAreaView>
           <Depth color="#fcfeff" />
-          <QrcodeCodeInput onKickboardCode={onKickboardCode} />
+          <QrcodeCodeInput
+            onKickboardCode={onKickboardCode}
+            loading={!!rawData}
+          />
           <QrcodeFlashButton flash={flash} setFlash={setFlash} />
           <Price />
         </SafeAreaView>
@@ -91,3 +106,12 @@ export const Qrcode: React.FC = () => {
     </TouchableWithoutFeedback>
   );
 };
+
+const StyledCamera = styled(CameraScreen as any)`
+  height: ${screenHeight}px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;

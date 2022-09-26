@@ -42,5 +42,5 @@ const TextContainer = styled(CommonText)`
   padding: 10px;
   font-size: 18px;
   width: 80%;
-  font-weight: 300;
+  font-weight: 400;
 `;

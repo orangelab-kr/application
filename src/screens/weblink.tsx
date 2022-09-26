@@ -7,7 +7,7 @@ import {Depth} from '../components/Depth';
 import {RootNavigatorRouteParams} from '../models/navigation';
 
 interface WeblinkProps {
-  isPopup: boolean;
+  isPopup?: boolean;
 }
 
 export const Weblink: React.FC<WeblinkProps> = ({isPopup}) => {

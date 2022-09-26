@@ -10,17 +10,19 @@ import {TransparentButton} from '../TransparentButton';
 
 interface QrcodeCodeInputProps {
   onKickboardCode: GetKickboardCodeEvent;
+  loading?: boolean;
 }
 
 export const QrcodeCodeInput: React.FC<QrcodeCodeInputProps> = ({
   onKickboardCode,
+  loading,
 }) => {
   const [kickboardCode, setKickboardCode] = useState('');
 
   return (
     <Container>
       <Input
-        placeholder="킥보드 코드"
+        placeholder={loading ? '로딩 중' : '킥보드 코드'}
         onFormat={onKickboardCodeFormatter}
         onChangeText={setKickboardCode}
         value={kickboardCode}

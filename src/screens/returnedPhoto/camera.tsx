@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {RNCamera} from 'react-native-camera';
+import {CameraScreen} from 'react-native-camera-kit';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import {CommonText} from '../../components/common/CommonText';
@@ -17,15 +17,15 @@ import {ReturnedPhotoNavigatorRouteParams} from '../../models/navigation';
 import {navigationRef} from '../../navigators/navigation';
 
 export const ReturnedPhotoCamera: React.FC = () => {
-  const cameraRef = React.createRef<RNCamera>();
+  const cameraRef = React.createRef<CameraScreen>();
+
   const {params} =
     useRoute<RouteProp<ReturnedPhotoNavigatorRouteParams, 'Camera'>>();
 
   const onTakePhoto = async () => {
     const {rideId} = params;
     if (!rideId || !cameraRef.current) return;
-    const options = {quality: 1, exif: true, base64: false};
-    const photo = await cameraRef.current.takePictureAsync(options);
+    const photo = await cameraRef.current?.camera.capture();
     navigationRef.current?.navigate('ReturnedPhoto', {
       screen: 'Confirm',
       params: {rideId, photo},
@@ -36,25 +36,19 @@ export const ReturnedPhotoCamera: React.FC = () => {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
         <StatusBar barStyle="light-content" />
-        <RNCamera
-          ref={cameraRef}
-          captureAudio={false}
-          style={{height: screenHeight}}
-          type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.auto}>
-          <SafeAreaView>
-            <TitleContainer>
-              <Title>📸 사진을 찰칵!</Title>
-              <Subtitle>촬영하여 다음 사람이 쉽게</Subtitle>
-              <Subtitle>이용할 수 있도록 배려해주세요.</Subtitle>
-            </TitleContainer>
-            <ButtonContainer>
-              <TransparentButton icon={faCamera} onPress={onTakePhoto}>
-                촬영
-              </TransparentButton>
-            </ButtonContainer>
-          </SafeAreaView>
-        </RNCamera>
+        <StyledCamera ref={cameraRef} hideControls />
+        <SafeAreaView>
+          <TitleContainer>
+            <Title>사진을 찰칵!</Title>
+            <Subtitle>촬영하여 다음 사람이 쉽게</Subtitle>
+            <Subtitle>이용할 수 있도록 배려해주세요.</Subtitle>
+          </TitleContainer>
+          <ButtonContainer>
+            <TransparentButton icon={faCamera} onPress={onTakePhoto}>
+              촬영
+            </TransparentButton>
+          </ButtonContainer>
+        </SafeAreaView>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -89,4 +83,13 @@ const Title = styled(Subtitle)`
   font-size: ${screenHeight / 18}px;
   margin-bottom: 10px;
   text-align: center;
+`;
+
+const StyledCamera = styled(CameraScreen as any)`
+  height: ${screenHeight}px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
