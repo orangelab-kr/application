@@ -7039,6 +7039,10 @@ react-native-nmap@^0.0.66:
   resolved "https://registry.yarnpkg.com/react-native-nmap/-/react-native-nmap-0.0.66.tgz#caea39b1af54d4e46c4313c21130986d3adea3fc"
   integrity sha512-+XMJOqn4zZ6PWO0UH478yj0b9PjYGHQcLUd0W5gJQ3DqGeJEb3vvWVDMbkzcuHsh59hkhGPsE9Q6pZkXxKsYtQ==
 
+"react-native-nmap@https://github.com/RyuuseiKang/react-native-naver-map.git":
+  version "0.0.66"
+  resolved "https://github.com/RyuuseiKang/react-native-naver-map.git#69a844099094fbbea75de2d27d31493b3749e38f"
+
 react-native-notifier@^1.7.1:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/react-native-notifier/-/react-native-notifier-1.9.0.tgz#22351619063620af0371e8fb5583fee47edf0836"
