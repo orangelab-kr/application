@@ -1,16 +1,21 @@
+import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
+
 import {faSliders} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import styled from 'styled-components/native';
 import {screenHeight} from '../../../../../constants/screenSize';
+import {currentRideState} from '../../../../../recoils/currentRide';
 import {menuPopupState} from '../../../../../recoils/menuPopup';
+import {useRecoilValueMaybe} from '../../../../../tools/recoil';
 
 export const MainHomeSheetMenuButton: React.FC<
   TouchableOpacityProps
 > = props => {
   const setVisible = useSetRecoilState(menuPopupState);
+  const currentRide = useRecoilValueMaybe(currentRideState);
+  if (currentRide) return <></>;
 
   return (
     <Button onPress={() => setVisible(true)} {...props}>

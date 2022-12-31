@@ -1,15 +1,18 @@
 import React, {useEffect} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
-import {MainHomeSheetMenuButton} from './MainHomeSheetMenuButton';
-import {MainHomeSheetMenuPopup} from './MainHomeSheetMenuPopup';
 import RNShake from 'react-native-shake';
+import {navigationRef} from '../../../../../navigators/navigation';
+import {currentRideState} from '../../../../../recoils/currentRide';
 import {menuPopupState} from '../../../../../recoils/menuPopup';
 import {modeState} from '../../../../../recoils/mode';
-import {navigationRef} from '../../../../../navigators/navigation';
+import {useRecoilValueMaybe} from '../../../../../tools/recoil';
+import {MainHomeSheetMenuButton} from './MainHomeSheetMenuButton';
+import {MainHomeSheetMenuPopup} from './MainHomeSheetMenuPopup';
 
 export const MainHomeSheetMenu: React.FC = () => {
   const mode = useRecoilValue(modeState);
+  const currentRide = useRecoilValueMaybe(currentRideState);
   const setMenuPopup = useSetRecoilState(menuPopupState);
   useEffect(() => {
     if (mode === 'welcome') return;
@@ -23,6 +26,7 @@ export const MainHomeSheetMenu: React.FC = () => {
         return;
       }
 
+      if (currentRide) return;
       setMenuPopup(true);
     });
 
